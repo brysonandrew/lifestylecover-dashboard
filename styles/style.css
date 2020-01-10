@@ -1,0 +1,186 @@
+* {
+  color: inherit;
+  font-size: inherit;
+  font-feature-settings: 'calt' 0;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background-color: #FFF;
+  overflow-x: hidden;
+}
+
+body, a, button, input {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+div.--title {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+ul {
+  margin: 0;
+}
+
+h4, a, button {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+p, li {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+a {
+  font-size: 18px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/*
+  background-image: radial-gradient(rgba(244,67,54, 0.1) 60%, rgba(244,67,54, 0.1) 85%, rgba(244,67,54, 0.2) 95%, rgba(244,67,54, 0.8) 100%);
+ background-size: 100px 100px;
+ */
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 2px solid #4A148C;
+  height: 22px;
+  width: 22px;
+  border-radius: 11px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  border: 2px solid #4A148C;
+  height: 22px;
+  width: 22px;
+  border-radius: 11px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  border: 2px solid #4A148C;
+  height: 22px;
+  width: 22px;
+  border-radius: 11px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #000;
+  border: 1px solid #FFF;
+  border-radius: 1px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #000;
+  border: 1px solid #FFF;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #FFF;
+  border: 1px solid #000;
+  border-radius: 1px;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #FFF;
+  border: 1px solid #000;
+  border-radius: 1px;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #FFF;
+  border: 1px solid #000;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #FFF;
+  border: 1px solid #000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #FFF;
+  border: 1px solid #000;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #FFF;
+  border: 1px solid #000;
+}
+
+/* Placeholder */
+
+input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #FFF;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #FFF;
+  opacity: 1;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #FFF;
+  opacity: 1;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #FFF;
+}
+input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #FFF;
+}
+input::placeholder {
+  /* Most modern browsers support this now. */
+  color: #FFF;
+}
