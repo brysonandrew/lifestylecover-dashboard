@@ -10,24 +10,24 @@ const Wrapper = styled.div`
 
 const ButtonStyled = styled(Button)`
   && {
-    font-size: 40px;
-    height: 72px;
+    font-size: 28px;
+    height: 60px;
     width: 260px;
     & span {
       position: relative;
-      bottom: 6px;
+      bottom: 1px;
     }
   }
 `
 
-type TSubmitProps = { isSubmitting: boolean }
+type TProps = { children: React.ReactNode, isSubmitting: boolean }
 
-export const Submit = (props: TSubmitProps) => {
+export const Submit = (props: TProps) => {
   return (
     <Wrapper>
-      <Button disabled={props.isSubmitting} type="submit">
-        download
-      </Button>
+      <ButtonStyled disabled={props.isSubmitting} type="submit">
+        {props.children}
+      </ButtonStyled>
     </Wrapper>
   )
 }

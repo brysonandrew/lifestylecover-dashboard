@@ -6,16 +6,15 @@ import { PLACEHOLDER_LOOKUP } from "../data"
 export const Login = () => {
   return (
     <FormWrapper>
-      <h2>Dashboard Login</h2>
       <TextField
-        label="name"
-        placeholder={PLACEHOLDER_LOOKUP.email}
-        name="name"
+        label="username"
+        placeholder={PLACEHOLDER_LOOKUP.username}
+        name="username"
       />
       <TextField
-        label="position"
+        label="password"
         placeholder={PLACEHOLDER_LOOKUP.password}
-        name="position"
+        name="password"
         type="password"
       />
     </FormWrapper>

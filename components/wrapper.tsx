@@ -7,11 +7,10 @@ import { sizes } from "../utils"
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      "Jura",
+      "Roboto",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
-      "Roboto",
       '"Helvetica Neue"',
       "Arial",
       "sans-serif",
@@ -59,16 +58,17 @@ Main = styled(Main)`
  `}
 `
 
-export interface IMainWrapperProps {
-  children: JSX.Element | JSX.Element[]
+type TProps = {
+  title: string,
+  children: React.ReactNode
 }
 
-export const MainWrapper = (props: IMainWrapperProps) => {
+export const MainWrapper = (props: TProps) => {
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Main>
-          <Title>Lifestyle Cover</Title>
+          <Title>{props.title}</Title>
           {props.children}
         </Main>
       </Wrapper>

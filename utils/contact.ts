@@ -1,4 +1,5 @@
 import { fromKebabCase } from "."
+import { ROOT_URL } from "../data" 
 
 export enum ESendingStatus {
   None = "None",
@@ -7,7 +8,7 @@ export enum ESendingStatus {
   Error = "Error",
 }
 
-const SEND_EMAIL_URL = `https://cms.baycom.thedevguys.co.nz/wp-json/email/v2/send-email`
+const SEND_EMAIL_URL = `${ROOT_URL}/wp-json/email/v2/send-email`
 
 export async function sendEmail(
   subject: string,

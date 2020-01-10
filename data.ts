@@ -11,6 +11,8 @@ export const COLOR_6 = "#cdbd80"
 export const BLACK = "#1d2432"
 
 export const PLACEHOLDER_LOOKUP = {
-  email: 'Enter email',
-  password: 'Enter password'
+  username: 'Username',
+  password: 'Password'
 }
+
+export const ROOT_URL = "https://dashboard.lifestyleportal.thedevguys.co.nz"

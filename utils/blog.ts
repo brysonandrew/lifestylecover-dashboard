@@ -1,9 +1,11 @@
+import { ROOT_URL } from "../data"
+
 export const addLike = async (
   postId: number,
   onAdding: (isLoading: boolean) => void
 ) => {
   onAdding(true)
-  const url = `https://cms.baycom.thedevguys.co.nz/wp-json/likes/v2/add-like/${postId}`
+  const url = `${ROOT_URL}/wp-json/likes/v2/add-like/${postId}`
   let likes
 
   try {
@@ -25,7 +27,7 @@ export const removeLike = async (
   onRemoving: (isLoading: boolean) => void
 ) => {
   onRemoving(true)
-  const url = `https://cms.baycom.thedevguys.co.nz/wp-json/likes/v2/remove-like/${postId}`
+  const url = `${ROOT_URL}/wp-json/likes/v2/remove-like/${postId}`
   let likes
 
   try {

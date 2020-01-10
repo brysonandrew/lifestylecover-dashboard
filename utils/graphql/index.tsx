@@ -1,1 +1,1 @@
-export * from "./jobs.query"
+export * from "./user-register.mutation"
