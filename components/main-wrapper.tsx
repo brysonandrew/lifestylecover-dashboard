@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { COLOR_1, COLOR_2, COLOR_3 } from "../data"
+import { color } from "../data"
 import { sizes } from "../utils"
 
 const theme = createMuiTheme({
@@ -22,19 +22,8 @@ const theme = createMuiTheme({
 })
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${COLOR_1};
-  background-color: ${COLOR_2};
-  background-image: linear-gradient(to left, ${COLOR_3}, ${COLOR_2});
-  padding-bottom: 100px;
-  min-height: 100vh;
-`
-
-const Title = styled.h2`
-  font-size: 40px;
-  text-transform: capitalize;
+  color: ${color.black};
+  background-color: ${color.offWhite};
 `
 
 let Main = styled.div`
@@ -42,24 +31,15 @@ let Main = styled.div`
   margin-right: auto;
   margin-left: auto;
   width: 100%;
-  padding: 12px;
 `
 
 Main = styled(Main)`
-  text-align: center;
- ${sizes.tablet`
-    width: 750px;
- `}
-  ${sizes.laptop`
-    width: 970px;
- `}
   ${sizes.desktop`
     width: 1170px;
  `}
 `
 
 type TProps = {
-  title: string,
   children: React.ReactNode
 }
 
@@ -68,7 +48,6 @@ export const MainWrapper = (props: TProps) => {
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Main>
-          <Title>{props.title}</Title>
           {props.children}
         </Main>
       </Wrapper>

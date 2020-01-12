@@ -1,16 +1,16 @@
 import * as React from "react"
 import styled from "styled-components"
-import { COLOR_1, COLOR_3, COLOR_6 } from "../data"
+import { color } from "../data"
 
 const Wrapper = styled.div`
   position: relative;
-  background-color: ${COLOR_1};
+  background-color: ${color.offWhite};
   margin-top: 12px;
   padding: 12px;
   border-radius: 4px;
-  color: ${COLOR_3};
+  color: ${color.black};
   text-align: left;
-  box-shadow: inset 0 0 2px 1px ${COLOR_6};
+  box-shadow: inset 0 0 2px 1px ${color.black};
   & h2 {
     font-size: 40px;
     text-transform: capitalize;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `
 
 type TProps = {
-  children: JSX.Element | JSX.Element[]
+  children: React.ReactNode
 }
 
 export const FormWrapper = (props: TProps) => {

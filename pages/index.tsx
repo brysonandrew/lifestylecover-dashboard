@@ -1,18 +1,23 @@
-import * as React from "react"
+import React from "react"
 import { NextRouter, withRouter } from "next/router"
-import "../styles/reset.css"
-import "../styles/style.css"
-import { Index } from "../components"
+import { Index } from "../components/login"
+import { Layout } from "../layout"
 
-export interface IIndexProps {
+export type TIndexProps = {
   width: number
   router: NextRouter
 }
 
-export default withRouter((props: IIndexProps) => {
-  const { width, router } = props
+export default withRouter((props: TIndexProps) => {
+  const activeMenuItem = (props.router.query.activeMenuItem as string)
 
-  return (
-    <Index/>
-  )
+  if (activeMenuItem) {
+    return (
+      <Layout activeMenuItem={activeMenuItem} {...props}/>
+    )
+  } else {
+    return (
+      <Index router={props.router}/>
+    )
+  }
 })

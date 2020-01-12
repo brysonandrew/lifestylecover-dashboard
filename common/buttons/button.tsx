@@ -1,15 +1,15 @@
 import * as React from "react"
 import styled from "styled-components"
 import { Button as MaterialButton } from "@material-ui/core"
-import { COLOR_4, COLOR_5, COLOR_2, COLOR_3 } from "../../data"
+import { color } from "../../data"
 
 const MaterialButtonStyled = styled(MaterialButton)`
   && {
     text-transform: capitalize;
-    background-color: ${COLOR_2};
+    background-color: ${color.highlightGreen};
     font-size: 28px;
     &:hover {
-      background-color: ${COLOR_3};
+      background-color: ${color.darkGreen};
     }
   }
 `

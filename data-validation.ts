@@ -1,6 +1,6 @@
 import * as yup from "yup"
 
-export const validationSchema = yup.object({
+export const loginValidationSchema = yup.object({
   username: yup
     .string()
     .required()
@@ -9,4 +9,25 @@ export const validationSchema = yup.object({
     .string()
     .required()
     .max(20),
+})
+
+export const createUserValidationSchema = yup.object({
+  username: yup
+    .string()
+    .required()
+    .max(20),
+  password: yup
+    .string()
+    .required()
+    .max(20),
+  'user-type': yup
+    .string()
+    .required(),
+})
+
+export const createPolicyValidationSchema = yup.object({
+  referenceNumber: yup
+    .string()
+    .required()
+    .max(20)
 })

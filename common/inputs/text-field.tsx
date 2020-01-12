@@ -2,7 +2,7 @@ import * as React from "react"
 import styled from "styled-components"
 import { useField, FieldAttributes } from "formik"
 import { TextField as MaterialTextField } from "@material-ui/core"
-import { COLOR_2 } from "../../data"
+import { color } from "../../data"
 
 const Wrapper = styled.div`
   margin-top: 12px;
@@ -22,7 +22,7 @@ const MaterialTextFieldStyled = styled(MaterialTextField)`
     font-size: 40px;
   }
   & .MuiInput-underline:after {
-    border-bottom: 2px solid ${COLOR_2};
+    border-bottom: 2px solid ${color.highlightGreen};
   }
 `
 
