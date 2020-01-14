@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { CircularProgress } from "@material-ui/core"
+import { color } from "../../data"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -14,7 +15,7 @@ type TProps = {}
 export const LoadingCentered = (props: TProps) => {
   return (
     <Wrapper>
-      <CircularProgress />
+      <CircularProgress color="primary" />
     </Wrapper>
   )
 }

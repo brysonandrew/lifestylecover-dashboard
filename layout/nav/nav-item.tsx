@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
-import { color, layoutSizes } from "../../data"
+import { color, layoutSizes, GRADIENT } from "../../data"
 import { ICONS } from "../menu-items"
 import { toKebabCase } from "../../utils"
 import Link from 'next/link'
@@ -34,9 +34,8 @@ const ItemIcon = styled.div`
   }
 `
 
-const ItemText = styled.div`
+const ItemText = styled.h4`
   padding-left: 12px;
-  font-size: ${layoutSizes.nav.icon * 0.8}px;
   width: ${layoutSizes.nav.width - layoutSizes.nav.row}px;
   overflow: hidden;
   white-space: nowrap;
@@ -62,7 +61,7 @@ export const NavItem = (props: TProps) => {
           style={{
             backgroundImage:
               toKebabCase(item) === activeMenuItem
-                ? `linear-gradient(45deg, ${color.lightGreen}, ${color.highlightGreen})`
+                ? GRADIENT
                 : 'none'
           }}
           onClick={() => onSetOpen(false)}

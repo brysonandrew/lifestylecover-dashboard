@@ -7,10 +7,10 @@ const MaterialButtonStyled = styled(MaterialButton)`
   && {
     border-radius: 0;
     text-transform: capitalize;
-    background-color: ${color.highlightGreen};
+    background-color: ${color.green};
     font-size: 28px;
     &:hover {
-      background-color: ${color.lightGreen};
+      background-color: ${color.cyan};
     }
   }
 `

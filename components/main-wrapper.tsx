@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { color } from "../data"
 import { sizes } from "../utils"
-import {lightGreen, green, red, lime, teal, cyan} from '@material-ui/core/colors';
+import { blue, teal } from "@material-ui/core/colors"
 
 const theme = createMuiTheme({
   palette: {
     primary: teal,
-    secondary: cyan,
+    secondary: blue,
   },
   // status: {
   //   danger: red,
@@ -36,7 +36,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   color: ${color.black};
-  background-color: ${color.black};
 `
 
 let Main = styled.div`

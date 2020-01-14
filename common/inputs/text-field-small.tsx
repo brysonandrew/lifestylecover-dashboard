@@ -23,7 +23,7 @@ const MaterialTextFieldStyled = styled(MaterialTextField)`
     font-size: 16px;
   }
   & .MuiInput-underline:after {
-    border-bottom: 1px solid ${color.highlightGreen};
+    border-bottom: 1px solid ${color.green};
   }
 `
 

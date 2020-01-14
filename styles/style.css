@@ -25,13 +25,18 @@ h1,
 h2,
 div.--title {
   font-family: 'Roboto', Arial, sans-serif;
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 21px;
 }
 
 ul {
   margin: 0;
 }
 
-h4, a, button {
+a, button {
   font-size: 18px;
   font-weight: 400;
 }

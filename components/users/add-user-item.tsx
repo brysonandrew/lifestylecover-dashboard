@@ -11,9 +11,9 @@ import { Formik, Form } from "formik"
 import { addUserValidationSchema } from "../../data-validation"
 import { TextFieldSmall } from "../../common/inputs/text-field-small"
 import { placeholder } from "../../data-placeholders"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { SubmitButton } from "../../common/buttons/submit-button"
-import { Button, CircularProgress } from "@material-ui/core"
+import { Button, CircularProgress, Paper } from "@material-ui/core"
 import { ErrorDisplay } from "./error-display"
 import { AddItemForm } from "./add-item-form"
 
@@ -35,7 +35,6 @@ const Info = styled(motion.div)`
   flex-direction: column;
   width: calc(100% - ${layoutSizes.content.button.width - 8}px);
   margin-right: 8px;
-  background-color: ${color.lightGrey};
 `
 
 const FormInner = styled(motion.div)`
@@ -52,32 +51,32 @@ export const AddUserItem = (props: TProps) => {
   const { actionConfig, onSetAdd, onUnsetAdd } = props
   const [onSaveNewUser, updateConfig] = useMutation(USER_CREATE_MUTATION);
   const isAddOpen = actionConfig.action === EAction.Add
+  const handleSubmitClick = (values) => onSaveNewUser({ variables: { username: values.username, email: values.email } })
 
   return (
     <Wrapper>
-      <Info
-        initial={false}
-        animate={isAddOpen ? 'open' : 'close'}
-        variants={{
-          open: {
-            display: 'flex',
-            opacity: 1
-          },
-          close: {
-            display: 'none',
-            opacity: 0
-          }
-        }}
-      >
-        <AddItemForm
-          updateConfig
-          inputs={[
-            'username',
-            'email'
-          ]}
-          onSubmitClick={(values) => onSaveNewUser({ variables: { username: values.username, email: values.email } })}
-        />
-      </Info>
+      <AnimatePresence>
+        {isAddOpen && (
+          <Info
+            key="Info"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ ease: 'linear', duration: 0.1 }}
+          >
+            <Paper square={false} elevation={2}>
+              <AddItemForm
+                updateConfig
+                inputs={[
+                  'username',
+                  'email'
+                ]}
+                onSubmitClick={handleSubmitClick}
+              />
+            </Paper>
+          </Info>
+        )}
+      </AnimatePresence>
       <UserItemControls {...props}>
         {[
           isAddOpen

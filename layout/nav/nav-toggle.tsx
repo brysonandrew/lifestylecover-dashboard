@@ -1,12 +1,19 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
-import { color, layoutSizes } from "../../data"
+import { color, layoutSizes, GRADIENT } from "../../data"
 import { Fab } from "@material-ui/core"
 
 const Wrapper = styled.div`
   padding: 6px;
   height: ${layoutSizes.nav.row}px;
+`
+
+const FabStyled = styled(Fab)`
+  && {
+    color: ${color.white};
+    background-image: ${GRADIENT};
+  }
 `
 
 type TProps = {
@@ -18,8 +25,7 @@ export const NavToggle = (props: TProps) => {
   const { isOpen, onSetOpen } = props
   return (
     <Wrapper>
-      <Fab
-        style={{ color: color.white, backgroundImage: `linear-gradient(45deg, ${color.lightGreen}, ${color.highlightGreen})` }}
+      <FabStyled
         onClick={() => onSetOpen(!isOpen)}
       >
         <svg width={layoutSizes.nav.toggleIcon} height={layoutSizes.nav.toggleIcon} viewBox="0 0 24 24" fill="currentColor">
@@ -36,7 +42,7 @@ export const NavToggle = (props: TProps) => {
             }}
           />
         </svg>
-      </Fab>
+      </FabStyled>
     </Wrapper>
   )
 }

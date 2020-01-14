@@ -8,7 +8,7 @@ import { DeleteModal } from "./delete-modal"
 import { IActionConfig, EAction } from "../../models"
 import { AddUserItem } from "./add-user-item"
 import { LoadingCentered } from "../../common/loading"
-import { ApolloQueryResult } from "apollo-client"
+import { layoutSizes } from "../../data"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -16,16 +16,9 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-const LoadingWrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`
-
 const List = styled.ul`
   width: calc(100% - 80px);
-  margin: 40px auto 0;
+  margin: ${layoutSizes.nav.row + 40}px auto 0;
 `
 
 type TProps = {}
