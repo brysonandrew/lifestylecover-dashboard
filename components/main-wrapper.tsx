@@ -3,8 +3,16 @@ import styled from "styled-components"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { color } from "../data"
 import { sizes } from "../utils"
+import {lightGreen, green, red, lime, teal, cyan} from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
+  palette: {
+    primary: teal,
+    secondary: cyan,
+  },
+  // status: {
+  //   danger: red,
+  // },
   typography: {
     fontFamily: [
       "Roboto",

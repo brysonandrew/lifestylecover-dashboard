@@ -4,20 +4,26 @@ import { useField, FieldAttributes } from "formik"
 import { TextField as MaterialTextField } from "@material-ui/core"
 import { color } from "../../data"
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  padding: 8px;
+  text-align: left;
+`
 
 const Label = styled.div`
-  font-size: 14px;
+  font-size: 12px;
 `
 
 const MaterialTextFieldStyled = styled(MaterialTextField)`
   width: 100%;
   & input[type="text"], & input[type="password"] {
     position: relative;
-    font-size: 20px;
+    font-size: 16px;
   }
   & .MuiInput-underline:after {
-    border-bottom: 2px solid ${color.highlightGreen};
+    border-bottom: 1px solid ${color.highlightGreen};
   }
 `
 

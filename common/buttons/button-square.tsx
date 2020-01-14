@@ -10,7 +10,7 @@ const MaterialButtonStyled = styled(MaterialButton)`
     background-color: ${color.highlightGreen};
     font-size: 28px;
     &:hover {
-      background-color: ${color.darkGreen};
+      background-color: ${color.lightGreen};
     }
   }
 `

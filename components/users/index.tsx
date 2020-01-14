@@ -29,7 +29,11 @@ export const Users = (props: TProps) => {
           ? <CircularProgress />
           : (
             <List>
-              <AddUserItem actionConfig={actionConfig} onSetAdd={() => onSetActionConfig({ action: EUserAction.Add, userInfo: {} })} />
+              <AddUserItem
+                actionConfig={actionConfig}
+                onUnsetAdd={() => onSetActionConfig({ action: null, userInfo: {} })}
+                onSetAdd={() => onSetActionConfig({ action: EUserAction.Add, userInfo: {} })}
+              />
               {data.users.edges.map(edge => (
                 <UserItem
                   key={edge.node.id}

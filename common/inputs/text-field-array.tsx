@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
-import { FieldArray, FormikValues } from "formik"
-import { Button, Remove } from "../buttons"
+import { FieldArray } from "formik"
+import { Button } from "@material-ui/core"
 
 const Heading = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ export const TextFieldArray = ({
           {values.map((item, index) => (
             <Item key={item.id}>
               <Controls>
-                <Remove onClick={() => arrayHelpers.remove(index)} />
+                {/* <Remove onClick={() => arrayHelpers.remove(index)} /> */}
               </Controls>
               {children(item, index)}
             </Item>

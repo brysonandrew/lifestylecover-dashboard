@@ -12,6 +12,7 @@ const Wrapper = styled.li`
   position: relative;
   background-color: ${color.lightGrey};
   margin-top: 8px;
+  padding: 8px;
   &:first-child {
     margin-top: 0;
   }

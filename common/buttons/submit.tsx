@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
-import { Button } from "./button"
+import { Button } from "@material-ui/core"
 
 const Wrapper = styled.div`
   display: flex;
@@ -8,26 +8,15 @@ const Wrapper = styled.div`
   padding-top: 12px;
 `
 
-const ButtonStyled = styled(Button)`
-  && {
-    font-size: 28px;
-    height: 60px;
-    width: 260px;
-    & span {
-      position: relative;
-      bottom: 1px;
-    }
-  }
-`
-
-type TProps = { children: React.ReactNode, isSubmitting: boolean }
-
-export const Submit = (props: TProps) => {
+export const Submit = (props: any) => {
+  const { children, ...buttonProps } = props
   return (
     <Wrapper>
-      <ButtonStyled variant="contained" color="primary" disabled={props.isSubmitting} type="submit">
-        {props.children}
-      </ButtonStyled>
+      <Button
+        {...props}
+      >
+        {children}
+      </Button>
     </Wrapper>
   )
 }

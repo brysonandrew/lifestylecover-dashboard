@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { IUserActionControlConfig } from "../../models/users"
 import { layoutSizes } from "../../data"
 import { ButtonSquare } from "../../common/buttons/button-square"
+import { Fab } from "@material-ui/core"
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,6 +14,10 @@ const Wrapper = styled.div`
 const ButtonWrapper = styled.div`
   height: ${layoutSizes.content.button.height}px;
   width: ${layoutSizes.content.button.width}px;
+  margin-top: 8px;
+  &:first-child {
+    margin-top: 0;
+  }
 `
 
 type TProps = {
@@ -24,9 +29,9 @@ export const UserItemControls = (props: TProps) => {
     <Wrapper>
       {props.children.map((control: IUserActionControlConfig) => (
         <ButtonWrapper key={control.action}>
-          <ButtonSquare onClick={control.callback}>
+          <Fab size="medium" onClick={control.callback}>
             {control.icon}
-          </ButtonSquare>
+          </Fab>
         </ButtonWrapper>
       ))}
     </Wrapper>

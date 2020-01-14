@@ -1,3 +1,3 @@
-export * from "./button"
-export * from "./remove"
+export * from "./button-square"
+export * from "./submit-button"
 export * from "./submit"

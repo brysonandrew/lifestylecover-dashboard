@@ -20,8 +20,8 @@ export const layoutSizes = {
   },
   content: {
     button: {
-      height: 36,
-      width: 64
+      height: 48,
+      width: 48
     }
   }
 }

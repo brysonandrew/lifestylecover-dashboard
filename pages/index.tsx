@@ -17,8 +17,7 @@ export default withRouter((props: TIndexProps) => {
     )
   } else {
     return (
-      null
-      // <Login router={props.router}/>
+      <Login router={props.router}/>
     )
   }
 })

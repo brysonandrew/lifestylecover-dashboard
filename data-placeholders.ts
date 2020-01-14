@@ -16,3 +16,12 @@ export const UPDATE_USER_PLACEHOLDER_LOOKUP = {
 export const CREATE_POLICY_PLACEHOLDER_LOOKUP = {
   referenceNumber: 'Reference Number',
 }
+
+export const placeholder = {
+  user: {
+    username: 'Username',
+    name: 'Name',
+    password: 'Password',
+    email: 'Email'
+  }
+}
