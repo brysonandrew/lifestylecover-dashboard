@@ -1,5 +1,4 @@
-import {teal, blue, green, lightGreen, red, cyan, blueGrey} from '@material-ui/core/colors';
-console.log(teal)
+import {teal, green, red, cyan, blueGrey} from '@material-ui/core/colors';
 export const color = {
   cyan: cyan[900],
   teal: teal['A400'],

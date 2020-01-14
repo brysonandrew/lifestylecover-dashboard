@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/react-hooks"
 import { USER_LOGIN_MUTATION } from "../../utils/graphql/user-login.mutation"
 import { NextRouter } from "next/router"
 import { ErrorDisplay } from "./error-display"
-import { isBrowser, store } from "../../utils"
+import { canUseDOM, store, useIsomorphicLayoutEffect } from "../../utils"
 import { AUTH_TOKEN_KEY } from "../../data"
 import { Button, CircularProgress } from "@material-ui/core"
 
@@ -43,11 +43,10 @@ export const Login = (props: TProps) => {
     mutationResult,
   ] = useMutation(USER_LOGIN_MUTATION);
   const { loading, error, data } = mutationResult
-  React.useEffect(() => {
-    if (data && isBrowser()) {
-      console.log(data)
-      if (data.token) {
-        store(AUTH_TOKEN_KEY, data.token)
+  useIsomorphicLayoutEffect(() => {
+    if (data && canUseDOM) {
+      if (data.login.authToken) {
+        store(AUTH_TOKEN_KEY, data.login.authToken)
       }
       props.router.push('/?activeMenuItem=profile', '/profile')
     }

@@ -47,7 +47,7 @@ type TProps = {
   onUnsetAdd(): void
 }
 
-export const AddUserItem = (props: TProps) => {
+export const AddItemWithControls = (props: TProps) => {
   const { actionConfig, onSetAdd, onUnsetAdd } = props
   const [onSaveNewUser, updateConfig] = useMutation(USER_CREATE_MUTATION);
   const isAddOpen = actionConfig.action === EAction.Add

@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core"
 import { UserItem } from "./user-item"
 import { DeleteModal } from "./delete-modal"
 import { IActionConfig, EAction } from "../../models"
-import { AddUserItem } from "./add-user-item"
+import { AddItemWithControls } from "./add-item-with-controls"
 import { LoadingCentered } from "../../common/loading"
 import { layoutSizes } from "../../data"
 
@@ -24,10 +24,8 @@ const List = styled.ul`
 type TProps = {}
 
 export const Users = (props: TProps) => {
-  // const { loading, error, data } = useQuery(USER_GET_LIST_QUERY, {});
+  const { loading, error, data } = useQuery(USER_GET_LIST_QUERY, {});
   const [actionConfig, onSetActionConfig] = React.useState<IActionConfig>({ action: null, userInfo: null })
-  const loading = false
-  const data = null
   return (
     <Wrapper>
       <>
@@ -37,7 +35,7 @@ export const Users = (props: TProps) => {
           )
           : (
             <List>
-              <AddUserItem
+              <AddItemWithControls
                 actionConfig={actionConfig}
                 onUnsetAdd={() => onSetActionConfig({ action: null, userInfo: {} })}
                 onSetAdd={() => onSetActionConfig({ action: EAction.Add, userInfo: {} })}
