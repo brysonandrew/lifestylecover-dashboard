@@ -11,6 +11,7 @@ export const color = {
 
 export const TRANSITION_LINEAR_CONFIG = { ease: "linear", duration: 0.2 }
 export const ROOT_URL = "https://dashboard.lifestyleportal.thedevguys.co.nz"
+export const GRAPHQL_URL = 'https://dashboard.lifestyleportal.thedevguys.co.nz/graphql';
 
 export const layoutSizes = {
   nav: {
@@ -25,3 +26,5 @@ export const layoutSizes = {
     }
   }
 }
+
+export const AUTH_TOKEN_KEY = "AUTH_TOKEN"

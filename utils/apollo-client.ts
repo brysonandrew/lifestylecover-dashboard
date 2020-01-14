@@ -3,9 +3,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import withApollo from 'next-with-apollo';
 import { createHttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
+import { GRAPHQL_URL } from '../data';
 
 // Update the GraphQL endpoint to any instance of GraphQL that you like
-const GRAPHQL_URL = 'https://dashboard.lifestyleportal.thedevguys.co.nz/graphql';
 
 const link = createHttpLink({
   fetch, // Switches between unfetch & node-fetch for client & server.

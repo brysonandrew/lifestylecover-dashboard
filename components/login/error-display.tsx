@@ -5,6 +5,7 @@ import { renderSwitch } from "../../utils"
 const Wrapper = styled.div`
   color: red;
   margin-top: 24px;
+  font-size: 18px;
   text-align: center;
 `
 

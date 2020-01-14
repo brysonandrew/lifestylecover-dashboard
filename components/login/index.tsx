@@ -8,7 +8,9 @@ import { useMutation } from "@apollo/react-hooks"
 import { USER_LOGIN_MUTATION } from "../../utils/graphql/user-login.mutation"
 import { NextRouter } from "next/router"
 import { ErrorDisplay } from "./error-display"
-import { SubmitButton } from "../../common/buttons/submit-button"
+import { isBrowser, store } from "../../utils"
+import { AUTH_TOKEN_KEY } from "../../data"
+import { Button, CircularProgress } from "@material-ui/core"
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,6 +26,13 @@ const FormWrapper = styled.div`
   width: 400px;
 `
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+`
+
 type TProps = {
   router: NextRouter
 }
@@ -33,12 +42,16 @@ export const Login = (props: TProps) => {
     handleLogin,
     mutationResult,
   ] = useMutation(USER_LOGIN_MUTATION);
-  const { loading: mutationLoading, error: mutationError, data: mutationData } = mutationResult
+  const { loading, error, data } = mutationResult
   React.useEffect(() => {
-    if (mutationData) {
+    if (data && isBrowser()) {
+      console.log(data)
+      if (data.token) {
+        store(AUTH_TOKEN_KEY, data.token)
+      }
       props.router.push('/?activeMenuItem=profile', '/profile')
     }
-  }, [mutationData])
+  }, [data])
   return (
     <Wrapper>
       <FormWrapper>
@@ -49,30 +62,32 @@ export const Login = (props: TProps) => {
           validationSchema={loginValidationSchema}
           onSubmit={(data, { setSubmitting }) => {
             const { username, password } = data
-            setSubmitting(true)
             handleLogin({
               variables: {
                 username,
                 password
               }
             });
-            setSubmitting(false)
           }}
         >
           {() => (
             <Form>
               <LoginInputs />
-              <SubmitButton
-                type="submit"
-                variant="contained"
-                color="primary"
-                isLoading={mutationLoading}
-              >
-                Submit
-              </SubmitButton>
-              <ErrorDisplay>
-                {mutationError}
-              </ErrorDisplay>
+              <ButtonWrapper>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  disabled={loading}
+                  startIcon={loading ? <CircularProgress size={18} color="inherit" /> : null}
+                >
+                  Login
+                </Button>
+                <ErrorDisplay>
+                  {error}
+                </ErrorDisplay>
+              </ButtonWrapper>
             </Form>
           )}
         </Formik>

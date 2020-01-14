@@ -1,3 +1,5 @@
+export const isBrowser = () => typeof window === 'undefined'
+
 /**
  * Simple localStorage with Cookie Fallback
  * v.1.0.0
