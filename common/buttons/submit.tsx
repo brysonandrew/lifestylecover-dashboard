@@ -25,7 +25,7 @@ type TProps = { children: React.ReactNode, isSubmitting: boolean }
 export const Submit = (props: TProps) => {
   return (
     <Wrapper>
-      <ButtonStyled disabled={props.isSubmitting} type="submit">
+      <ButtonStyled variant="contained" color="primary" disabled={props.isSubmitting} type="submit">
         {props.children}
       </ButtonStyled>
     </Wrapper>

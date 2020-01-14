@@ -20,9 +20,9 @@ export const Layout = withRouter((props: TLayoutProps) => {
   return (
     <MainWrapper>
       <LayoutWrapper>
-        <Content>
-          {menuItemContent['Administrator'][activeMenuItem]}
-        </Content>
+        <Content
+          activeMenuItem={activeMenuItem}
+        />
         <Nav
           isOpen={isNavOpen}
           onSetOpen={handleNavToggle}

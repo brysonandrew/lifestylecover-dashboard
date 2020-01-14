@@ -1,6 +1,6 @@
 import React from "react"
 import { NextRouter, withRouter } from "next/router"
-import { Index } from "../components/login"
+import { Login } from "../components"
 import { Layout } from "../layout"
 
 export type TIndexProps = {
@@ -17,7 +17,7 @@ export default withRouter((props: TIndexProps) => {
     )
   } else {
     return (
-      <Index router={props.router}/>
+      <Login router={props.router}/>
     )
   }
 })

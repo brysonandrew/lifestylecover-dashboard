@@ -3,22 +3,22 @@ import { motion } from "framer-motion"
 import styled from "styled-components"
 import { color, TRANSITION_LINEAR_CONFIG } from "../data"
 import { ICONS } from "./menu-items"
-import { LINE_H, NAV_MAX } from "./data"
+import { LINE_S, NAV_MAX, ICON_S } from "./data"
 import { toKebabCase } from "../utils"
 import Link from 'next/link'
 
 const Wrapper = styled(motion.nav)`
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
-  width: ${LINE_H}px;
+  width: ${LINE_S}px;
   background-color: ${color.darkGreen};
   height: 100%;
   color: ${color.offWhite};
 `
 
 const Toggle = styled.div`
-  height: ${LINE_H}px;
+  height: ${LINE_S}px;
 `
 
 const List = styled(motion.ul)`
@@ -29,17 +29,17 @@ const List = styled(motion.ul)`
 
 const Item = styled.li`
   position: relative;
-  height: ${LINE_H}px;
+  height: ${LINE_S}px;
   width: ${NAV_MAX}px;
 `
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   position: relative;
   width: 100%;
   height: 100%;
 `
 
-const ItemLink = styled.a`
+const ItemLink = styled(motion.a)`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -52,19 +52,19 @@ const ItemIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
-  height: ${LINE_H}px;
-  width: ${LINE_H}px;
+  height: ${LINE_S}px;
+  width: ${LINE_S}px;
   & svg {
-    height: 40px;
-    width: 40px;
+    height: ${ICON_S}px;
+    width: ${ICON_S}px;
+    fill: ${color.offWhite};
   }
 `
 
 const ItemText = styled.div`
   padding-left: 12px;
-  font-size: 40px;
-  width: ${NAV_MAX - LINE_H}px;
+  font-size: ${ICON_S * 0.8}px;
+  width: ${NAV_MAX - LINE_S}px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -81,14 +81,15 @@ export const Nav = (props: TProps) => {
   const { isOpen, activeMenuItem, children, onSetOpen } = props
   return (
     <Wrapper
-      animate={{ width: isOpen ? NAV_MAX : LINE_H }}
+      animate={{ width: isOpen ? NAV_MAX : LINE_S }}
       transition={TRANSITION_LINEAR_CONFIG}
     >
       <Toggle>
         <Button
+          whileHover={{backgroundColor: `rgba(255,255,255,0.1)`}}
           onClick={() => onSetOpen(!isOpen)}
         >
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+          <svg width={ICON_S} height={ICON_S} viewBox="0 0 24 24" fill="currentColor">
             <motion.path
               initial={false}
               animate={{
@@ -104,19 +105,22 @@ export const Nav = (props: TProps) => {
           </svg>
         </Button>
       </Toggle>
-      <List
-      >
+      <List>
         {children.map((item: string) => (
           <Item key={item}>
-            <Link href={`/?activeMenuItem=${toKebabCase(item)}`} as={`/${toKebabCase(item)}/`}>
+            <Link
+              href={`/?activeMenuItem=${toKebabCase(item)}`}
+              as={`/${toKebabCase(item)}/`}
+            >
               <ItemLink
+                whileHover={{backgroundColor: `rgba(255,255,255,0.1)`}}
                 style={{
                   backgroundImage:
                     toKebabCase(item) === activeMenuItem
                       ? `linear-gradient(45deg, ${color.lightGreen}, ${color.highlightGreen})`
                       : 'none'
                 }}
-                onClick={null}
+                onClick={() => onSetOpen(false)}
               >
                 <ItemIcon>
                   {ICONS[item]}

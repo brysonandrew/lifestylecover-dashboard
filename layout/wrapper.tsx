@@ -4,7 +4,7 @@ import { color } from "../data"
 
 const Wrapper = styled.div`
   position: relative;
-  background-color: ${color.offWhite};
+  background-color: ${color.lightGrey};
   min-height: 100vh;
 `
 

@@ -2,10 +2,10 @@ import * as React from "react"
 
 export function renderSwitch(
   key: string | number,
-  callbacks: Record<string, (props) => JSX.Element>,
-  defaultCallback?: (props) => JSX.Element,
+  callbacks: Record<string, (props) => React.ReactNode>,
+  defaultCallback?: (props) => React.ReactNode,
   props?: any
-): JSX.Element | null {
+): React.ReactNode | null {
   if (callbacks[key]) {
     return callbacks[key](props)
   } else {

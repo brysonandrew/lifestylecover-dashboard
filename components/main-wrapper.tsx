@@ -22,8 +22,13 @@ const theme = createMuiTheme({
 })
 
 const Wrapper = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   color: ${color.black};
-  background-color: ${color.offWhite};
+  background-color: ${color.black};
 `
 
 let Main = styled.div`
@@ -34,9 +39,10 @@ let Main = styled.div`
 `
 
 Main = styled(Main)`
-  ${sizes.desktop`
-    width: 1170px;
- `}
+  width: 100%;
+  /* ${sizes.laptop`
+    width: 1200px;
+ `} */
 `
 
 type TProps = {
