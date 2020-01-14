@@ -1,11 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { Formik, Form } from "formik"
+// import { Formik, Form } from "formik"
 import { LoginInputs } from "./login-inputs"
-import { MainWrapper } from "../main-wrapper"
 import { LOGIN_FORM_INIT } from "../../data-initial-values"
 import { loginValidationSchema } from "../../data-validation"
-import { Submit } from "../../common/buttons"
 import { useMutation } from "@apollo/react-hooks"
 import { USER_LOGIN_MUTATION } from "../../utils/graphql/user-login.mutation"
 import { NextRouter } from "next/router"
@@ -43,7 +41,7 @@ export const Login = (props: TProps) => {
   }, [mutationData])
   return (
     <Wrapper>
-      <FormWrapper>
+      {/* <FormWrapper>
         <h2>Dashboard Login</h2>
         <Formik
           validateOnChange={true}
@@ -75,7 +73,7 @@ export const Login = (props: TProps) => {
             </Form>
           )}
         </Formik>
-      </FormWrapper>
+      </FormWrapper> */}
     </Wrapper>
   )
 }

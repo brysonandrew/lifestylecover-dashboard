@@ -1,9 +1,8 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
-import { color, TRANSITION_LINEAR_CONFIG } from "../data"
+import { color, TRANSITION_LINEAR_CONFIG, layoutSizes } from "../data"
 import { ICONS } from "./menu-items"
-import { LINE_S, NAV_MAX, ICON_S } from "./data"
 import { toKebabCase } from "../utils"
 import Link from 'next/link'
 
@@ -11,14 +10,14 @@ const Wrapper = styled(motion.nav)`
   position: absolute;
   left: 0;
   top: 0;
-  width: ${LINE_S}px;
+  width: ${layoutSizes.nav.row}px;
   background-color: ${color.darkGreen};
   height: 100%;
   color: ${color.offWhite};
 `
 
 const Toggle = styled.div`
-  height: ${LINE_S}px;
+  height: ${layoutSizes.nav.row}px;
 `
 
 const List = styled(motion.ul)`
@@ -29,8 +28,8 @@ const List = styled(motion.ul)`
 
 const Item = styled.li`
   position: relative;
-  height: ${LINE_S}px;
-  width: ${NAV_MAX}px;
+  height: ${layoutSizes.nav.row}px;
+  width: ${layoutSizes.nav.width}px;
 `
 
 const Button = styled(motion.button)`
@@ -52,19 +51,19 @@ const ItemIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${LINE_S}px;
-  width: ${LINE_S}px;
+  height: ${layoutSizes.nav.row}px;
+  width: ${layoutSizes.nav.row}px;
   & svg {
-    height: ${ICON_S}px;
-    width: ${ICON_S}px;
+    height: ${layoutSizes.nav.icon}px;
+    width: ${layoutSizes.nav.icon}px;
     fill: ${color.offWhite};
   }
 `
 
 const ItemText = styled.div`
   padding-left: 12px;
-  font-size: ${ICON_S * 0.8}px;
-  width: ${NAV_MAX - LINE_S}px;
+  font-size: ${layoutSizes.nav.icon * 0.8}px;
+  width: ${layoutSizes.nav.width - layoutSizes.nav.row}px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -81,7 +80,7 @@ export const Nav = (props: TProps) => {
   const { isOpen, activeMenuItem, children, onSetOpen } = props
   return (
     <Wrapper
-      animate={{ width: isOpen ? NAV_MAX : LINE_S }}
+      animate={{ width: isOpen ? layoutSizes.nav.width : layoutSizes.nav.row }}
       transition={TRANSITION_LINEAR_CONFIG}
     >
       <Toggle>
@@ -89,7 +88,7 @@ export const Nav = (props: TProps) => {
           whileHover={{backgroundColor: `rgba(255,255,255,0.1)`}}
           onClick={() => onSetOpen(!isOpen)}
         >
-          <svg width={ICON_S} height={ICON_S} viewBox="0 0 24 24" fill="currentColor">
+          <svg width={layoutSizes.nav.icon} height={layoutSizes.nav.icon} viewBox="0 0 24 24" fill="currentColor">
             <motion.path
               initial={false}
               animate={{

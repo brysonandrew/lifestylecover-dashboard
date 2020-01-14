@@ -6,13 +6,18 @@ import gql from 'graphql-tag';
  * must be authenticated and the user making the request 
  * must have proper capabilities to delete the user.
  */
+// type DeleteUserInput {
+//   clientMutationId: String!
+//   id: String!
+// }
 export const USER_DELETE_MUTATION = gql`
-  type DeleteUserInput {
-    clientMutationId: String!
-    id: String!
-  }
-  mutation USER_DELETE($input: DeleteUserInput!) {
-    deleteUser(input: $input) {
+  mutation USER_DELETE($id: String!) {
+    deleteUser(
+      input: {
+        clientMutationId: "USER_DELETE"
+        id: $id
+      }
+    ) {
       deletedId
     }
   }

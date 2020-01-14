@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "clean": "rm -r .next",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "@material-ui/icons": "^4.5.1",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
+    "apollo-link-context": "^1.0.19",
     "apollo-link-http": "^1.5.16",
     "formik": "^2.1.1",
     "framer-motion": "^1.7.0",

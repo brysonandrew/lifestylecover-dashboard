@@ -1,15 +1,8 @@
 import * as React from "react"
-import { Field } from "formik"
-import { Checkbox } from "@material-ui/core"
 import { TextField, Radio } from "../../common/inputs"
 import { FormWrapper } from "../../common/form-wrapper"
 import { CREATE_USER_PLACEHOLDER_LOOKUP } from "../../data-placeholders"
-
-enum EUserType {
-  administrator = 'administrator',
-  client = 'client',
-  advisor = 'advisor',
-}
+import { EUserType } from "../../models/users"
 
 type TProps = {
   userType?: EUserType

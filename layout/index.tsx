@@ -3,7 +3,7 @@ import { MainWrapper } from "../components/main-wrapper"
 import { NextRouter, withRouter } from "next/router"
 import { Nav } from "./nav"
 import { LayoutWrapper } from "./wrapper"
-import { menuItems, menuItemContent } from "./menu-items"
+import { menuItems } from "./menu-items"
 import { Content } from "./content"
 
 export type TLayoutProps = {

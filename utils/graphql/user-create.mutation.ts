@@ -7,14 +7,19 @@ import gql from 'graphql-tag';
  * to have proper capabilities to create users, much like if a user were 
  * to create another user from the WP-Admin dashboard.
  */
+// type CreateUserInput {
+//   clientMutationId: String!
+//   username: String!
+//   email: String!
+// }
 export const USER_CREATE_MUTATION = gql`
-  type CreateUserInput {
-    clientMutationId: String!
-    username: String!
-    email: String!
-  }
-  mutation USER_CREATE($input: CreateUserInput!) {
-    createUser(input: $input) {
+
+  mutation USER_CREATE($username: String!, $email: String!) {
+    createUser(input: {
+      clientMutationId: "USER_CREATE"
+      username: $username
+      email: $email
+    }) {
       user {
         id
         name

@@ -11,6 +11,13 @@ export const loginValidationSchema = yup.object({
     .max(20),
 })
 
+export const addUserValidationSchema = yup.object({
+  name: yup
+    .string()
+    .required()
+    .max(20),
+})
+
 export const createUserValidationSchema = yup.object({
   username: yup
     .string()

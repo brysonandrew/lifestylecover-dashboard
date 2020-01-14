@@ -11,3 +11,17 @@ export const color = {
 
 export const TRANSITION_LINEAR_CONFIG = { ease: "linear", duration: 0.2 }
 export const ROOT_URL = "https://dashboard.lifestyleportal.thedevguys.co.nz"
+
+export const layoutSizes = {
+  nav: {
+    row: 68,
+    width: 220,
+    icon: 32,
+  },
+  content: {
+    button: {
+      height: 36,
+      width: 64
+    }
+  }
+}
