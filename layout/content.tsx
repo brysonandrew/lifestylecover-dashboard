@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   width: calc(100% - ${layoutSizes.nav.row}px);
   height: 100%;
   text-align: center;
-  background-color: ${color.offWhite};
+  background-color: ${color.grey};
 `
 
 const Header = styled.header`

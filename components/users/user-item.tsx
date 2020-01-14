@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { color } from "../../data"
 import { UserItemControls } from "./user-item-controls"
 import { UserItemInfoWrapper } from "./user-item-info-wrapper"
-import { EUserAction, IUserActionConfig } from "../../models/users"
+import { EAction, IActionConfig } from "../../models"
 import { Edit, Delete } from "@material-ui/icons"
 
 const Wrapper = styled.li`
@@ -20,7 +20,7 @@ const Wrapper = styled.li`
 
 type TProps = {
   userInfo: any
-  actionConfig: IUserActionConfig
+  actionConfig: IActionConfig
   onSetEdit(): void
   onSetDelete(): void
 }
@@ -35,12 +35,12 @@ export const UserItem = (props: TProps) => {
       <UserItemControls>
         {[
           {
-            action: EUserAction.Edit,
+            action: EAction.Edit,
             callback: onSetEdit,
             icon: <Edit/>,
           },
           {
-            action: EUserAction.Delete,
+            action: EAction.Delete,
             callback: onSetDelete,
             icon: <Delete/>,
           }

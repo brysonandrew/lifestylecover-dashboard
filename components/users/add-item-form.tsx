@@ -15,7 +15,7 @@ import { motion } from "framer-motion"
 import { SubmitButton } from "../../common/buttons/submit-button"
 import { Button, CircularProgress } from "@material-ui/core"
 import { ErrorDisplay } from "./error-display"
-import { AddItemForm } from "./add-item-form"
+import { OperationVariables, ApolloQueryResult } from "apollo-client"
 
 const INIT = {
   username: 'x',
@@ -43,57 +43,50 @@ const FormInner = styled(motion.div)`
 `
 
 type TProps = {
-  actionConfig: IActionConfig
-  onSetAdd(): void
-  onUnsetAdd(): void
+  inputs: string[]
+  updateConfig: any
+  onSubmitClick(values: any): void
 }
 
-export const AddUserItem = (props: TProps) => {
-  const { actionConfig, onSetAdd, onUnsetAdd } = props
-  const [onSaveNewUser, updateConfig] = useMutation(USER_CREATE_MUTATION);
-  const isAddOpen = actionConfig.action === EAction.Add
+export const AddItemForm = (props: TProps) => {
+  const { inputs, updateConfig, onSubmitClick } = props
+  const { loading, data, error } = updateConfig
 
   return (
-    <Wrapper>
-      <Info
-        initial={false}
-        animate={isAddOpen ? 'open' : 'close'}
-        variants={{
-          open: {
-            display: 'flex',
-            opacity: 1
-          },
-          close: {
-            display: 'none',
-            opacity: 0
-          }
-        }}
-      >
-        <AddItemForm
-          updateConfig
-          inputs={[
-            'username',
-            'email'
-          ]}
-          onSubmitClick={(values) => onSaveNewUser({ variables: { username: values.username, email: values.email } })}
-        />
-      </Info>
-      <UserItemControls {...props}>
-        {[
-          isAddOpen
-            ? {
-              action: EAction.Save,
-              callback: onUnsetAdd,
-              icon: <Cancel />,
-            }
-            : {
-              action: EAction.Add,
-              callback: onSetAdd,
-              icon: <Add />,
-            }
-        ]}
-      </UserItemControls>
-    </Wrapper>
+    <Formik
+      validateOnChange={true}
+      initialValues={INIT}
+      validationSchema={addUserValidationSchema}
+      onSubmit={null}
+    >
+      {({ values }) => (
+        <Form>
+          <FormInner>
+            {inputs.map((inputKey) => (
+              <TextFieldSmall
+                key={inputKey}
+                label={inputKey}
+                placeholder={placeholder.user[inputKey]}
+                name={inputKey}
+              />
+            ))}
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              type="submit"
+              disabled={loading}
+              onClick={() => onSubmitClick(values)}
+              startIcon={loading ? <CircularProgress size={18} color="inherit" /> : <Save />}
+            >
+              Save
+              </Button>
+            <ErrorDisplay>
+              {error}
+            </ErrorDisplay>
+          </FormInner>
+        </Form>
+      )}
+    </Formik>
   )
 }
-// () => onSaveNewUser({ variables: { username: 'x', email: 'x@gmail.com' } })

@@ -18,6 +18,8 @@ export const layoutSizes = {
     row: 68,
     width: 220,
     icon: 32,
+    toggle: 80,
+    toggleIcon: 42
   },
   content: {
     button: {

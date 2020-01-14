@@ -5,3 +5,21 @@ export interface IDimensions {
   isWidthResizing?: boolean
   isHeightResizing?: boolean
 }
+
+export enum EAction {
+  Add = 'Add',
+  Edit = 'Edit',
+  Delete = 'Delete',
+  Save = 'Save',
+}
+
+export interface IActionConfig {
+  action: EAction,
+  userInfo: any
+}
+
+export interface IActionControlConfig {
+  action: EAction,
+  callback(): void
+  icon: JSX.Element
+}

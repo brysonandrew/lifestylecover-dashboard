@@ -5,11 +5,22 @@ import { USER_GET_LIST_QUERY } from "../../utils/graphql/user-get-list.query"
 import { CircularProgress } from "@material-ui/core"
 import { UserItem } from "./user-item"
 import { DeleteModal } from "./delete-modal"
-import { IUserActionConfig, EUserAction } from "../../models/users"
+import { IActionConfig, EAction } from "../../models"
 import { AddUserItem } from "./add-user-item"
+import { LoadingCentered } from "../../common/loading"
+import { ApolloQueryResult } from "apollo-client"
 
 const Wrapper = styled.div`
-  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`
+
+const LoadingWrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `
 
 const List = styled.ul`
@@ -20,34 +31,38 @@ const List = styled.ul`
 type TProps = {}
 
 export const Users = (props: TProps) => {
-  const { loading, error, data } = useQuery(USER_GET_LIST_QUERY, {});
-  const [actionConfig, onSetActionConfig] = React.useState<IUserActionConfig>({ action: null, userInfo: null })
+  // const { loading, error, data } = useQuery(USER_GET_LIST_QUERY, {});
+  const [actionConfig, onSetActionConfig] = React.useState<IActionConfig>({ action: null, userInfo: null })
+  const loading = false
+  const data = null
   return (
     <Wrapper>
       <>
         {loading
-          ? <CircularProgress />
+          ? (
+            <LoadingCentered/>
+          )
           : (
             <List>
               <AddUserItem
                 actionConfig={actionConfig}
                 onUnsetAdd={() => onSetActionConfig({ action: null, userInfo: {} })}
-                onSetAdd={() => onSetActionConfig({ action: EUserAction.Add, userInfo: {} })}
+                onSetAdd={() => onSetActionConfig({ action: EAction.Add, userInfo: {} })}
               />
-              {data.users.edges.map(edge => (
+              {data && data.users.edges.map(edge => (
                 <UserItem
                   key={edge.node.id}
                   userInfo={edge.node}
                   actionConfig={actionConfig}
-                  onSetEdit={() => onSetActionConfig({ action: EUserAction.Edit, userInfo: edge.node })}
-                  onSetDelete={() => onSetActionConfig({ action: EUserAction.Delete, userInfo: edge.node })}
+                  onSetEdit={() => onSetActionConfig({ action: EAction.Edit, userInfo: edge.node })}
+                  onSetDelete={() => onSetActionConfig({ action: EAction.Delete, userInfo: edge.node })}
                 />
               ))}
             </List>
           )}
       </>
       <>
-        {actionConfig.action === EUserAction.Delete && (
+        {actionConfig.action === EAction.Delete && (
           <DeleteModal {...actionConfig.userInfo} />
         )}
       </>

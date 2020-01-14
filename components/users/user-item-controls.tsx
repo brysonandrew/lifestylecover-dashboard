@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
-import { IUserActionControlConfig } from "../../models/users"
+import { IActionControlConfig } from "../../models"
 import { layoutSizes } from "../../data"
 import { ButtonSquare } from "../../common/buttons/button-square"
 import { Fab } from "@material-ui/core"
@@ -21,13 +21,13 @@ const ButtonWrapper = styled.div`
 `
 
 type TProps = {
-  children: IUserActionControlConfig[]
+  children: IActionControlConfig[]
 }
 
 export const UserItemControls = (props: TProps) => {
   return (
     <Wrapper>
-      {props.children.map((control: IUserActionControlConfig) => (
+      {props.children.map((control: IActionControlConfig) => (
         <ButtonWrapper key={control.action}>
           <Fab size="medium" onClick={control.callback}>
             {control.icon}
