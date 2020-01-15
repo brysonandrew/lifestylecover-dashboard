@@ -20,6 +20,8 @@ export const ErrorDisplay = (props: TProps) => {
       <Wrapper>
         {renderSwitch(props.children.message, {
           'GraphQL error: Sorry, you are not allowed to create a new user.': () => 'Not allowed to create a new user',
+          'GraphQL error: invalid_username': () => 'Username doesn\'t exist',
+          'GraphQL error: incorrect_password': () => 'Incorrect password'
         }, () => "Something went wrong")}
       </Wrapper>
     )

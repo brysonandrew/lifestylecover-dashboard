@@ -1,4 +1,6 @@
 import React from "react"
+
+export const isBrowser: boolean = (process as any).browser;
 // React currently throws a warning when using useLayoutEffect on the server.
 // To get around it, we can conditionally useEffect on the server (no-op) and
 // useLayoutEffect in the browser.
@@ -7,7 +9,6 @@ export const canUseDOM: boolean = !!(
   typeof window.document !== 'undefined' &&
   typeof window.document.createElement !== 'undefined'
 );
-
 export const useIsomorphicLayoutEffect = canUseDOM ? React.useLayoutEffect : React.useEffect;
 
 /**

@@ -1,18 +1,25 @@
 import React from 'react';
-import App from 'next/app';
+import App, {Container} from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { snackbarStore } from '../common/inputs/error-snackbar/store';
+import { StoreProvider } from "easy-peasy";
+import { ErrorSnackbar } from '../common/inputs/error-snackbar';
+import { withData } from '../utils';
 import "../styles/reset.css"
 import "../styles/style.css"
-
-import { withData } from '../utils';
 
 class MyApp extends App<any, any> {
   render() {
     const { Component, pageProps, apollo } = this.props;
     return (
-      <ApolloProvider client={apollo}>
-        <Component {...pageProps} />
-      </ApolloProvider>
+      <Container>
+        <ApolloProvider client={apollo}>
+          <Component {...pageProps} />
+          <StoreProvider store={snackbarStore}>
+            <ErrorSnackbar />
+          </StoreProvider>
+        </ApolloProvider>
+      </Container>
     );
   }
 }

@@ -7,10 +7,10 @@ import { loginValidationSchema } from "../../data-validation"
 import { useMutation } from "@apollo/react-hooks"
 import { USER_LOGIN_MUTATION } from "../../utils/graphql/user-login.mutation"
 import { NextRouter } from "next/router"
-import { ErrorDisplay } from "./error-display"
 import { canUseDOM, store, useIsomorphicLayoutEffect } from "../../utils"
 import { AUTH_TOKEN_KEY } from "../../data"
 import { Button, CircularProgress } from "@material-ui/core"
+import { ErrorDisplay } from "../../common/inputs/error-display"
 
 const Wrapper = styled.div`
   display: flex;
@@ -59,7 +59,7 @@ export const Login = (props: TProps) => {
           validateOnChange={true}
           initialValues={LOGIN_FORM_INIT}
           validationSchema={loginValidationSchema}
-          onSubmit={(data, { setSubmitting }) => {
+          onSubmit={(data) => {
             const { username, password } = data
             handleLogin({
               variables: {
