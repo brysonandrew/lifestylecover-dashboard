@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Formik, Form } from "formik"
 import { LoginInputs } from "./login-inputs"
@@ -7,10 +7,9 @@ import { loginValidationSchema } from "../../data-validation"
 import { useMutation } from "@apollo/react-hooks"
 import { USER_LOGIN_MUTATION } from "../../utils/graphql/user-login.mutation"
 import { NextRouter } from "next/router"
-import { canUseDOM, store, useIsomorphicLayoutEffect } from "../../utils"
+import { canUseDOM, store, useIsomorphicLayoutEffect, isBrowser } from "../../utils"
 import { AUTH_TOKEN_KEY } from "../../data"
 import { Button, CircularProgress } from "@material-ui/core"
-import { ErrorDisplay } from "../../common/inputs/error-display"
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,20 +34,19 @@ const ButtonWrapper = styled.div`
 
 type TProps = {
   router: NextRouter
+  onUpdateUser(user: any): void
 }
 
 export const Login = (props: TProps) => {
+  const { onUpdateUser } = props
   const [
     handleLogin,
     mutationResult,
   ] = useMutation(USER_LOGIN_MUTATION);
   const { loading, error, data } = mutationResult
-  useIsomorphicLayoutEffect(() => {
-    if (data && canUseDOM) {
-      if (data.login.authToken) {
-        store(AUTH_TOKEN_KEY, data.login.authToken)
-      }
-      props.router.push('/?activeMenuItem=profile', '/profile')
+  useEffect(() => {
+    if (data) {
+      onUpdateUser(data.login)
     }
   }, [data])
   return (
@@ -83,9 +81,6 @@ export const Login = (props: TProps) => {
                 >
                   Login
                 </Button>
-                <ErrorDisplay>
-                  {error}
-                </ErrorDisplay>
               </ButtonWrapper>
             </Form>
           )}

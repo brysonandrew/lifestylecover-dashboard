@@ -26,7 +26,12 @@ export const USER_LOGIN_MUTATION = gql`
       authToken
       user {
         id
-        name
+        username
+        roles {
+          nodes {
+            name
+          }
+        }
       }
     }
   }

@@ -1,8 +1,9 @@
 import * as React from "react"
 import styled from "styled-components"
-import { useField, FieldAttributes } from "formik"
+import { useField } from "formik"
 import { TextField as MaterialTextField } from "@material-ui/core"
 import { color } from "../../data"
+import { TTextFieldProps } from "../../models/inputs"
 
 const Wrapper = styled.div`
   margin-top: 12px;
@@ -19,14 +20,12 @@ const MaterialTextFieldStyled = styled(MaterialTextField)`
   width: 100%;
   & input[type="text"], & input[type="password"] {
     position: relative;
-    font-size: 40px;
+    font-size: 28px;
   }
   & .MuiInput-underline:after {
     border-bottom: 2px solid ${color.green};
   }
 `
-
-export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
 export const TextField: React.FC<TTextFieldProps> = ({
   label,

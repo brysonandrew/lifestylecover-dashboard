@@ -17,7 +17,8 @@ export const GRADIENT = `linear-gradient(45deg, ${color.teal}, ${color.green})`
 export const TRANSITION_LINEAR_CONFIG = { ease: "linear", duration: 0.2 }
 export const ROOT_URL = "https://dashboard.lifestyleportal.thedevguys.co.nz"
 export const GRAPHQL_URL = 'https://dashboard.lifestyleportal.thedevguys.co.nz/graphql';
-
+export const INDEX_ROUTE = process.env.NODE_ENV === 'development' ? '' : '/dashboard'
+export const LOGIN_ROUTE = `${INDEX_ROUTE}/`
 export const layoutSizes = {
   nav: {
     row: 68,

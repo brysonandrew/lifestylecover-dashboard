@@ -8,7 +8,7 @@ export const loginValidationSchema = yup.object({
   password: yup
     .string()
     .required()
-    .max(20),
+    .max(40),
 })
 
 export const addUserValidationSchema = yup.object({

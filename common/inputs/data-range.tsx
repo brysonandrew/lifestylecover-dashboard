@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
-import { TextField, TTextFieldProps } from "../inputs"
-import { Checkbox } from "../inputs"
+import { TextField, Checkbox } from "../inputs"
+import { TTextFieldProps } from "../../models/inputs"
 
 const Wrapper = styled.div`
   display: flex;

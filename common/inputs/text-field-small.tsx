@@ -27,7 +27,7 @@ const MaterialTextFieldStyled = styled(MaterialTextField)`
   }
 `
 
-export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
+type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
 export const TextFieldSmall: React.FC<TTextFieldProps> = ({
   label,

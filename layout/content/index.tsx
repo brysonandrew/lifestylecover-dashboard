@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import { color, layoutSizes, GRADIENT } from "../data"
-import { fromKebabCase, renderSwitch } from "../utils"
-import { Users } from "../components"
-import { Policies } from "../components/policies"
+import { color, layoutSizes, GRADIENT, AUTH_TOKEN_KEY } from "../../data"
+import { fromKebabCase, renderSwitch, isBrowser, store } from "../../utils"
+import { Users } from "../../components"
+import { Policies } from "../../components/policies"
 import { Button, Paper } from "@material-ui/core"
+import { Header } from "./header"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -25,32 +26,22 @@ const Inner = styled.div`
   background-color: ${color.lightCyan};
 `
 
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px 0 ${layoutSizes.nav.row + 24}px;
-  width: 100%;
-  height: ${layoutSizes.nav.row}px;
-  background-color: ${color.white};
-`
-
 type TProps = {
+  user: any
   activeMenuItem: string
+  onUpdateUser(user: any): void
 }
 
 export const Content = (props: TProps) => {
-  const { activeMenuItem } = props
-  const title = fromKebabCase(activeMenuItem)
+  const { user, activeMenuItem, onUpdateUser } = props
+  console.log(user)
   return (
     <Wrapper>
       <Paper square={false}>
-        <Header>
-          <h2>Hi there, Andrew</h2>
-          <Button>
-            Logout
-        </Button>
-        </Header>
+        <Header
+          user={user}
+          onUpdateUser={onUpdateUser}
+        />
       </Paper>
       <Inner>
         {renderSwitch(fromKebabCase(activeMenuItem), {

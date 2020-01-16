@@ -1,28 +1,50 @@
-import React from 'react';
-import App, {Container} from 'next/app';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { snackbarStore } from '../common/inputs/error-snackbar/store';
-import { StoreProvider } from "easy-peasy";
-import { ErrorSnackbar } from '../common/inputs/error-snackbar';
-import { withData } from '../utils';
+import React, { ReactNode } from 'react';
+import { withApollo, isBrowser, store } from '../utils';
+import { NextRouter } from 'next/router';
 import "../styles/reset.css"
 import "../styles/style.css"
+import { AUTH_TOKEN_KEY } from '../data';
 
-class MyApp extends App<any, any> {
-  render() {
-    const { Component, pageProps, apollo } = this.props;
-    return (
-      <Container>
-        <ApolloProvider client={apollo}>
-          <Component {...pageProps} />
-          <StoreProvider store={snackbarStore}>
-            <ErrorSnackbar />
-          </StoreProvider>
-        </ApolloProvider>
-      </Container>
-    );
+type TProps = {
+  err: any
+  pageProps?: any
+  router: NextRouter
+  Component: any
+}
+
+const MyApp = (props: TProps) => {
+  const { Component, pageProps, router } = props;
+  const [user, setUser] = React.useState(null)
+
+  const handleSetAuthToken = (token?: string) => {
+    if (isBrowser) {
+      store(AUTH_TOKEN_KEY, token)
+    }
   }
+
+  const handleUpdateUser = (userConfig?) => {
+    if (userConfig) {
+      if (userConfig.authToken) {
+        handleSetAuthToken(userConfig.authToken)
+      }
+      router.push('/?activeMenuItem=profile', '/profile')
+      setUser(userConfig.user)
+    } else {
+      handleSetAuthToken(null)
+      router.replace('/')
+      setUser(null)
+    }
+  }
+
+  return (
+    <Component
+      {...pageProps}
+      user={user}
+      onUpdateUser={handleUpdateUser}
+      router={router}
+    />
+  );
 }
 
 // Wraps all components in the tree with the data provider
-export default withData(MyApp);
+export default withApollo(MyApp);

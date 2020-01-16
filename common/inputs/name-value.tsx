@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
-import { TextField, TTextFieldProps } from "../inputs"
+import { TextField } from "../inputs"
+import { TTextFieldProps } from "../../models/inputs"
 
 const Wrapper = styled.div`
   margin-top: 28px;

@@ -7,12 +7,14 @@ import { menuItems } from "./menu-items"
 import { Content } from "./content"
 
 export type TLayoutProps = {
-  activeMenuItem: string
+  user: any
+  onUpdateUser(user: any): void
   router: NextRouter
 }
 
 export const Layout = withRouter((props: TLayoutProps) => {
-  const { activeMenuItem } = props
+  const { user, router, onUpdateUser } = props
+  const activeMenuItem = (router.query.activeMenuItem as string)
   const [isNavOpen, setNavOpen] = React.useState(false)
   
   const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
@@ -21,7 +23,9 @@ export const Layout = withRouter((props: TLayoutProps) => {
     <MainWrapper>
       <LayoutWrapper>
         <Content
+          user={user}
           activeMenuItem={activeMenuItem}
+          onUpdateUser={onUpdateUser}
         />
         <Nav
           isOpen={isNavOpen}
