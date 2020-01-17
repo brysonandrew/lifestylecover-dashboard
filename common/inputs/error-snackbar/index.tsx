@@ -1,17 +1,16 @@
 import { useStoreState, useStoreActions } from "easy-peasy"
 import React from "react"
 import { Model } from "./store"
-import { renderSwitch } from "../../../utils"
 import { Snackbar } from "@material-ui/core"
 import { Alert } from "@material-ui/lab"
 import { useRouter } from "next/router"
 
 export const ErrorSnackbar: React.FC<{}> = () => {
-  const { open, message, severity, redirect } = useStoreState<Model, any>(
-    state => state.snackbar
-  )
   const handleClose = useStoreActions<any, any>(
     actions => actions.snackbar.handleClose
+  )
+  const { open, message, severity, redirect } = useStoreState<Model, any>(
+    state => state.snackbar
   )
   if (redirect) {
     const router = useRouter()
@@ -20,7 +19,14 @@ export const ErrorSnackbar: React.FC<{}> = () => {
   return (
     <Snackbar open={open}>
       <Alert onClose={handleClose} severity={severity}>
-        {renderSwitch(
+        {message}
+      </Alert>
+    </Snackbar>
+  )
+}
+
+export * from "./store"
+        {/* {renderSwitch(
           message,
           {
             "Sorry, that email address is already used!": () =>
@@ -31,10 +37,4 @@ export const ErrorSnackbar: React.FC<{}> = () => {
             incorrect_password: () => "Incorrect password",
           },
           () => "Something went wrong"
-        )}
-      </Alert>
-    </Snackbar>
-  )
-}
-
-export * from "./store"
+        )} */}

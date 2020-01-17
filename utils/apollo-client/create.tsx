@@ -37,6 +37,7 @@ const authLink = setContext((_, { headers }) => {
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) => {
+      console.dir(locations)
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       )
@@ -46,15 +47,18 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
           severity: "info",
           redirect: LOGIN_ROUTE,
         })
+      } else if (message.includes("invalid username") || message.includes("invalid_username")) {
+        snackbarStore.dispatch.snackbar.handleOpen({message: 'Username doesn\'t exist', severity: 'error' });
+      } else if (message.includes("incorrect_password")) {
+        snackbarStore.dispatch.snackbar.handleOpen({message: 'Incorrect password', severity: 'error'});
+      } else {
+        snackbarStore.dispatch.snackbar.handleOpen({message, severity: 'warning'});
       }
-      // else {
-      //   snackbarStore.dispatch.snackbar.handleOpen({message, severity: 'error'});
-      // }
     })
   } else if (networkError) {
     if (networkError["statusCode"] && networkError["statusCode"] === 403) {
       snackbarStore.dispatch.snackbar.handleOpen({
-        message: "Forbidden",
+        message: "Please log in",
         severity: "info",
         redirect: LOGIN_ROUTE,
       })

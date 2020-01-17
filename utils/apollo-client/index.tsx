@@ -17,12 +17,14 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
     const client = apolloClient || initApolloClient(apolloState)
     return (
-      <ApolloProvider client={client}>
-        <PageComponent {...pageProps} />
+      <>
+        <ApolloProvider client={client}>
+          <PageComponent {...pageProps} />
+        </ApolloProvider>
         <StoreProvider store={snackbarStore}>
           <ErrorSnackbar />
         </StoreProvider>
-      </ApolloProvider>
+      </>
     )
   }
 

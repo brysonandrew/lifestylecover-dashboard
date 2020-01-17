@@ -1,16 +1,15 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Formik, Form } from "formik"
-import { LoginInputs } from "./login-inputs"
-import { LOGIN_FORM_INIT } from "../../data-initial-values"
+import { LoginInputs } from "./forgot-password-inputs"
 import { loginValidationSchema } from "../../data-validation"
 import { useMutation } from "@apollo/react-hooks"
-import { USER_LOGIN_MUTATION } from "../../utils/graphql/user-login.mutation"
 import { NextRouter } from "next/router"
 import { Button, CircularProgress } from "@material-ui/core"
 import { ButtonWrapper } from "../../common/buttons/button-wrapper"
-import { Help } from "@material-ui/icons"
-import Link from "next/link"
+import { USER_SEND_PASSWORD_RESET_EMAIL_MUTATION } from "../../utils/graphql/user-send-password-reset-email.mutation"
+import { snackbarStore } from "../../common"
+import { LOGIN_ROUTE } from "../../data"
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,37 +30,27 @@ type TProps = {
   onUpdateUser(user: any): void
 }
 
-export const Login = (props: TProps) => {
-  const { onUpdateUser } = props
+export default (props: TProps) => {
   const [
-    handleLogin,
-    loginResult,
-  ] = useMutation(USER_LOGIN_MUTATION);
-  const { loading, error, data } = loginResult
+    handleSend,
+    result,
+  ] = useMutation(USER_SEND_PASSWORD_RESET_EMAIL_MUTATION);
+  const { loading, error, data } = result
   useEffect(() => {
     if (data) {
-      onUpdateUser(data.login)
+      snackbarStore.dispatch.snackbar.handleOpen({message: 'Email sent!', severity: 'info'});
     }
   }, [data])
   return (
     <Wrapper>
       <FormWrapper>
-        <h2>Dashboard Login</h2>
+        <h2>Forgot Password</h2>
         <Formik
-          validateOnChange={true}
-          initialValues={LOGIN_FORM_INIT}
+          initialValues={{username: ""}}
           validationSchema={loginValidationSchema}
-          onSubmit={(data) => {
-            const { username, password } = data
-            handleLogin({
-              variables: {
-                username,
-                password
-              }
-            });
-          }}
+          onSubmit={null}
         >
-          {() => (
+          {({values}) => (
             <Form>
               <LoginInputs />
               <ButtonWrapper>
@@ -71,27 +60,19 @@ export const Login = (props: TProps) => {
                   size="large"
                   type="submit"
                   disabled={loading}
+                  onClick={() => handleSend({
+                    variables: {
+                      username: values.username,
+                    }
+                  })}
                   startIcon={loading ? <CircularProgress size={18} color="inherit" /> : null}
                 >
-                  Login
+                  Send Reset Email
                 </Button>
               </ButtonWrapper>
             </Form>
           )}
         </Formik>
-        <ButtonWrapper>
-          <Link href="/forgot-password">
-            <a>
-              <Button
-                color="inherit"
-                size="large"
-                startIcon={<Help />}
-              >
-                Forgot password
-            </Button>
-            </a>
-          </Link>
-        </ButtonWrapper>
       </FormWrapper>
     </Wrapper>
   )

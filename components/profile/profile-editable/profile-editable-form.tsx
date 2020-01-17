@@ -32,7 +32,7 @@ export const ProfileEditableForm = (props: TProps) => {
         onSubmit={null}
       >
         {({ values }) => {
-          const { mobile, phone, address, email, firstName, lastName } = values
+          const { mobile, phone, address, email } = values
           console.log(email)
           return (
             <Form>
