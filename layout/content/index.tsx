@@ -1,11 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { color, layoutSizes, GRADIENT, AUTH_TOKEN_KEY } from "../../data"
-import { fromKebabCase, renderSwitch, isBrowser, store } from "../../utils"
+import { color, layoutSizes } from "../../data"
+import { fromKebabCase, renderSwitch } from "../../utils"
 import { Users } from "../../components"
 import { Policies } from "../../components/policies"
-import { Button, Paper } from "@material-ui/core"
+import { Paper } from "@material-ui/core"
 import { Header } from "./header"
+import { Profile } from "../../components/profile"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -27,24 +28,28 @@ const Inner = styled.div`
 `
 
 type TProps = {
-  user: any
+  userProfile: any
   activeMenuItem: string
   onUpdateUser(user: any): void
 }
 
 export const Content = (props: TProps) => {
-  const { user, activeMenuItem, onUpdateUser } = props
-  console.log(user)
+  const { userProfile, activeMenuItem, onUpdateUser } = props
   return (
     <Wrapper>
       <Paper square={false}>
         <Header
-          user={user}
+          userProfile={userProfile}
           onUpdateUser={onUpdateUser}
         />
       </Paper>
       <Inner>
         {renderSwitch(fromKebabCase(activeMenuItem), {
+          'Profile': () => (
+            <Profile
+              userProfile={userProfile}
+            />
+          ),
           'Users': () => (
             <Users />
           ),

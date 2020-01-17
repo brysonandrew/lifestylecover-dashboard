@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { USER_FRAGMENTS } from './user.fragments';
 
 /**
  * Login User
@@ -25,14 +26,9 @@ export const USER_LOGIN_MUTATION = gql`
     ) {
       authToken
       user {
-        id
-        username
-        roles {
-          nodes {
-            name
-          }
-        }
+        ...USER_INFO
       }
     }
   }
+  ${USER_FRAGMENTS.USER_INFO}
 `

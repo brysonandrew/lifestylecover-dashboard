@@ -41,16 +41,18 @@ export const Nav = (props: TProps) => {
         isOpen={isOpen}
         onSetOpen={onSetOpen}
       />
-      <List>
-        {children.map((item: string) => (
-          <NavItem
-            key={item}
-            item={item}
-            activeMenuItem={activeMenuItem}
-            onSetOpen={onSetOpen}
-          />
-        ))}
-      </List>
+      {children && (
+        <List>
+          {children.map((item: string) => (
+            <NavItem
+              key={item}
+              item={item}
+              activeMenuItem={activeMenuItem}
+              onSetOpen={onSetOpen}
+            />
+          ))}
+        </List>
+      )}
     </Wrapper>
   )
 }

@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useField } from "formik"
 import { TextField as MaterialTextField } from "@material-ui/core"
 import { color } from "../../data"
-import { TTextFieldProps } from "../../models/inputs"
 
 const Wrapper = styled.div`
   margin-top: 12px;
@@ -18,7 +17,7 @@ const Label = styled.div`
 
 const MaterialTextFieldStyled = styled(MaterialTextField)`
   width: 100%;
-  & input[type="text"], & input[type="password"] {
+  & input, & textarea {
     position: relative;
     font-size: 28px;
   }
@@ -27,7 +26,9 @@ const MaterialTextFieldStyled = styled(MaterialTextField)`
   }
 `
 
-export const TextField: React.FC<TTextFieldProps> = ({
+export const TextField: React.FC<any> = ({
+  rows,
+  multiline,
   label,
   placeholder,
   ...props
@@ -43,6 +44,8 @@ export const TextField: React.FC<TTextFieldProps> = ({
         helperText={errorText}
         error={!!errorText}
         type={props.type || "text"}
+        multiline={multiline}
+        rows={rows}
       />
     </Wrapper>
   )

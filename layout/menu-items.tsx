@@ -1,26 +1,27 @@
 import React from 'react'
-import {People, Info, AccountCircle, RecentActors, Description} from '@material-ui/icons';
+import {People, Info, AccountCircle, RecentActors, Description, FileCopy} from '@material-ui/icons';
 
 export const menuItems = {
-  "Administrator": [
+  "administrator": [
+    "Profile",
     "Policies",
     "Users"
   ],
-  "Advisor": [
+  "advisor": [
+    "Profile",
     "Clients",
     "Policies",
-    "Profile"
   ],
-  "Client": [
-    "Policies",
+  "client": [
     "Profile",
+    "Policies",
     "Your Advisor"
   ],  
 }
 
 export const ICONS = {
   "Policies": (
-    <Description/>
+    <FileCopy/>
   ),
   "Users": (
     <RecentActors/>

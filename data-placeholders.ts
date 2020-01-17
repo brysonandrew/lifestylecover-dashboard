@@ -22,6 +22,7 @@ export const placeholder = {
     username: 'Username',
     name: 'Name',
     password: 'Password',
-    email: 'Email'
+    email: 'Email',
+    unknown: 'Unknown'
   }
 }

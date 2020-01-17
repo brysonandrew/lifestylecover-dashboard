@@ -6,12 +6,12 @@ import gql from 'graphql-tag';
  * need to have a Reset Password email sent.
  */
 const USER_SEND_PASSWORD_RESET_EMAIL_MUTATION = gql`
-  type SendPasswordResetEmailInput {
-    clientMutationId: String!
-    username: String!
-  }
-  mutation USER_SEND_PASSWORD_RESET_EMAIL($input: SendPasswordResetEmailInput!) {
-    sendPasswordResetEmail(input: $input) {
+  mutation USER_SEND_PASSWORD_RESET_EMAIL($username: String!) {
+    sendPasswordResetEmail(
+      input: {
+        clientMutationId: "USER_SEND_PASSWORD_RESET_EMAIL"
+        username: $username
+      }) {
       user {
         id
         email
@@ -19,9 +19,4 @@ const USER_SEND_PASSWORD_RESET_EMAIL_MUTATION = gql`
     }
   }
 `
-// {
-//   "input": {
-//     "clientMutationId": "SendResetPasswordEmail",
-//     "username": "billybob"
-//   }
-// }
+ 

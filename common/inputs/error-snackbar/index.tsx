@@ -21,6 +21,7 @@ export const ErrorSnackbar: React.FC<{}> = () => {
     >
       <Alert onClose={handleClose} severity={severity}>
         {renderSwitch(message, {
+          'Sorry, that email address is already used!': () => 'Email already in use.',
           'Sorry, you are not allowed to create a new user.': () => 'Not allowed to create a new user',
           'invalid_username': () => 'Username doesn\'t exist',
           'incorrect_password': () => 'Incorrect password'

@@ -35,7 +35,7 @@ const ItemIcon = styled.div`
 `
 
 const ItemText = styled.h4`
-  padding-left: 12px;
+  padding-left: 6px;
   width: ${layoutSizes.nav.width - layoutSizes.nav.row}px;
   overflow: hidden;
   white-space: nowrap;
