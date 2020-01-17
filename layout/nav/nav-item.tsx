@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { color, layoutSizes, GRADIENT } from "../../data"
 import { ICONS } from "../menu-items"
 import { toKebabCase } from "../../utils"
-import Link from 'next/link'
+import Link from "next/link"
 
 const Wrapper = styled.li`
   position: relative;
@@ -60,18 +60,12 @@ export const NavItem = (props: TProps) => {
           whileHover={{ backgroundColor: `rgba(255,255,255,0.1)` }}
           style={{
             backgroundImage:
-              toKebabCase(item) === activeMenuItem
-                ? GRADIENT
-                : 'none'
+              toKebabCase(item) === activeMenuItem ? GRADIENT : "none",
           }}
           onClick={() => onSetOpen(false)}
         >
-          <ItemIcon>
-            {ICONS[item]}
-          </ItemIcon>
-          <ItemText>
-            {item}
-          </ItemText>
+          <ItemIcon>{ICONS[item]}</ItemIcon>
+          <ItemText>{item}</ItemText>
         </ItemLink>
       </Link>
     </Wrapper>

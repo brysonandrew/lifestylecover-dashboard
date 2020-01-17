@@ -33,7 +33,7 @@ const titleText = (userProfile: TUserProfile) => {
       return `Hi there, ${username}`
     }
   } else {
-    return 'Hi there!'
+    return "Hi there!"
   }
 }
 
@@ -44,12 +44,8 @@ export const Header = (props: TProps) => {
   }
   return (
     <Wrapper>
-      <h2>
-        {titleText(userProfile)}
-      </h2>
-      <Button onClick={handleLogout}>
-        Logout
-      </Button>
+      <h2>{titleText(userProfile)}</h2>
+      <Button onClick={handleLogout}>Logout</Button>
     </Wrapper>
   )
 }

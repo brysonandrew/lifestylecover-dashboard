@@ -8,6 +8,7 @@
     "dev": "next -p 8000",
     "build": "next build",
     "start": "next start",
+    "format": "prettier --write common/**/**/*.{ts,tsx} components/**/**/*.{ts,tsx} layout/**/**/*.{ts,tsx} models/*.{ts,tsx} pages/**/**/*.{ts,tsx} utils/**/**/*.{ts,tsx}",
     "export": "next export",
     "clean": "rm -r .next",
     "test": "echo \"Error: no test specified\" && exit 1"

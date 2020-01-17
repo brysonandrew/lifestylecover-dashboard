@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag"
 
 export const USER_FRAGMENTS = {
   USER_INFO: gql`
@@ -19,4 +19,4 @@ export const USER_FRAGMENTS = {
       }
     }
   `,
-};
+}

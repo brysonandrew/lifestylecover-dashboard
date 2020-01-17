@@ -38,24 +38,13 @@ export const Content = (props: TProps) => {
   return (
     <Wrapper>
       <Paper square={false}>
-        <Header
-          userProfile={userProfile}
-          onUpdateUser={onUpdateUser}
-        />
+        <Header userProfile={userProfile} onUpdateUser={onUpdateUser} />
       </Paper>
       <Inner>
         {renderSwitch(fromKebabCase(activeMenuItem), {
-          'Profile': () => (
-            <Profile
-              userProfile={userProfile}
-            />
-          ),
-          'Users': () => (
-            <Users />
-          ),
-          'Policies': () => (
-            <Policies />
-          )
+          Profile: () => <Profile userProfile={userProfile} />,
+          Users: () => <Users />,
+          Policies: () => <Policies />,
         })}
       </Inner>
     </Wrapper>

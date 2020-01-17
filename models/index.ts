@@ -7,19 +7,19 @@ export interface IDimensions {
 }
 
 export enum EAction {
-  Add = 'Add',
-  Edit = 'Edit',
-  Delete = 'Delete',
-  Save = 'Save',
+  Add = "Add",
+  Edit = "Edit",
+  Delete = "Delete",
+  Save = "Save",
 }
 
 export interface IActionConfig {
-  action: EAction,
+  action: EAction
   userInfo: any
 }
 
 export interface IActionControlConfig {
-  action: EAction,
+  action: EAction
   callback(): void
   icon: JSX.Element
 }

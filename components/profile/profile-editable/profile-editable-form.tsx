@@ -16,15 +16,12 @@ type TProps = {
 
 export const ProfileEditableForm = (props: TProps) => {
   const { userProfile } = props
-  const [
-    handleUpdateUser,
-    mutationResult,
-  ] = useMutation(USER_UPDATE_MUTATION);
+  const [handleUpdateUser, mutationResult] = useMutation(USER_UPDATE_MUTATION)
   const { loading, error, data } = mutationResult
 
   if (userProfile) {
     let initValues = USER_PROFILE
-    Object.keys(USER_PROFILE).forEach((key) => {
+    Object.keys(USER_PROFILE).forEach(key => {
       initValues[key] = userProfile[key] || USER_PROFILE[key]
     })
     return (
@@ -34,7 +31,7 @@ export const ProfileEditableForm = (props: TProps) => {
         validationSchema={userProfileEditableValidationSchema}
         onSubmit={null}
       >
-        {({values}) => {
+        {({ values }) => {
           const { mobile, phone, address, email, firstName, lastName } = values
           console.log(email)
           return (
@@ -47,19 +44,27 @@ export const ProfileEditableForm = (props: TProps) => {
                   size="large"
                   type="submit"
                   disabled={loading}
-                  onClick={() => handleUpdateUser({
-                    variables: {
-                      id: userProfile.id,
-                      email,
-                      mobile,
-                      phone,
-                      address
-                    }
-                  })}
-                  startIcon={loading ? <CircularProgress size={18} color="inherit" /> : <Save />}
+                  onClick={() =>
+                    handleUpdateUser({
+                      variables: {
+                        id: userProfile.id,
+                        email,
+                        mobile,
+                        phone,
+                        address,
+                      },
+                    })
+                  }
+                  startIcon={
+                    loading ? (
+                      <CircularProgress size={18} color="inherit" />
+                    ) : (
+                      <Save />
+                    )
+                  }
                 >
                   Save
-                  </Button>
+                </Button>
               </ButtonWrapper>
             </Form>
           )

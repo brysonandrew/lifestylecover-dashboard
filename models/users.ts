@@ -1,8 +1,7 @@
-
 export enum EUserType {
-  administrator = 'administrator',
-  client = 'client',
-  advisor = 'advisor',
+  administrator = "administrator",
+  client = "client",
+  advisor = "advisor",
 }
 
 export type TUserProfile = {

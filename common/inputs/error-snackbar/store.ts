@@ -1,6 +1,6 @@
-import { createStore, action, Action } from "easy-peasy";
+import { createStore, action, Action } from "easy-peasy"
 
-export type TSeverity = 'success' | 'info' | 'warning' | 'error';
+export type TSeverity = "success" | "info" | "warning" | "error"
 
 export type TPayload = {
   message: string
@@ -9,16 +9,16 @@ export type TPayload = {
 }
 
 export interface SnackbarModel {
-  open: boolean;
-  message: string;
-  handleClose: Action<SnackbarModel, void>;
-  handleOpen: Action<SnackbarModel, TPayload>;
+  open: boolean
+  message: string
+  handleClose: Action<SnackbarModel, void>
+  handleOpen: Action<SnackbarModel, TPayload>
   severity?: TSeverity
   redirect?: string
 }
 
 export interface Model {
-  snackbar: SnackbarModel;
+  snackbar: SnackbarModel
 }
 
 const model: Model = {
@@ -26,16 +26,15 @@ const model: Model = {
     open: false,
     message: "",
     handleClose: action(s => {
-      s.open = false;
+      s.open = false
     }),
     handleOpen: action((s, p: TPayload) => {
-      s.open = true;
-      s.message = p.message;
+      s.open = true
+      s.message = p.message
       s.severity = p.severity
       s.redirect = p.redirect
-    })
-  }
-};
+    }),
+  },
+}
 
-export const snackbarStore = createStore(model);
-
+export const snackbarStore = createStore(model)

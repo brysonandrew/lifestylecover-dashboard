@@ -1,5 +1,5 @@
 import { fromKebabCase } from "."
-import { ROOT_URL } from "../data" 
+import { ROOT_URL } from "../data"
 
 export enum ESendingStatus {
   None = "None",

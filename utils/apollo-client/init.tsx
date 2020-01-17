@@ -1,5 +1,5 @@
-import { isBrowser } from "../browser";
-import { createApolloClient } from './create';
+import { isBrowser } from "../browser"
+import { createApolloClient } from "./create"
 
 let globalApolloClient = null
 /**

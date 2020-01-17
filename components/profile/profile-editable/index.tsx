@@ -21,7 +21,7 @@ export const ProfileEditable = (props: TProps) => {
   return (
     <div>
       <h2>Profile</h2>
-      <ProfileEditableForm userProfile={props.userProfile}/>
+      <ProfileEditableForm userProfile={props.userProfile} />
     </div>
   )
 }

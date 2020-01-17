@@ -1,8 +1,8 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag"
 
 /**
  * Send Password Reset Email
- * When a user needs to reset their password, they'll 
+ * When a user needs to reset their password, they'll
  * need to have a Reset Password email sent.
  */
 const USER_SEND_PASSWORD_RESET_EMAIL_MUTATION = gql`
@@ -11,7 +11,8 @@ const USER_SEND_PASSWORD_RESET_EMAIL_MUTATION = gql`
       input: {
         clientMutationId: "USER_SEND_PASSWORD_RESET_EMAIL"
         username: $username
-      }) {
+      }
+    ) {
       user {
         id
         email
@@ -19,4 +20,3 @@ const USER_SEND_PASSWORD_RESET_EMAIL_MUTATION = gql`
     }
   }
 `
- 

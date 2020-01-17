@@ -37,10 +37,7 @@ export const Nav = (props: TProps) => {
       animate={{ width: isOpen ? layoutSizes.nav.width : layoutSizes.nav.row }}
       transition={TRANSITION_LINEAR_CONFIG}
     >
-      <NavToggle
-        isOpen={isOpen}
-        onSetOpen={onSetOpen}
-      />
+      <NavToggle isOpen={isOpen} onSetOpen={onSetOpen} />
       {children && (
         <List>
           {children.map((item: string) => (

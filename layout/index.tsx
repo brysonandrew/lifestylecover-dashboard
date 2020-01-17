@@ -6,10 +6,20 @@ import { LayoutWrapper } from "./wrapper"
 import { menuItems } from "./menu-items"
 import { Content } from "./content"
 
-const userProfileFrom = (user) => {
+const userProfileFrom = user => {
   if (user) {
-    const { id, username, firstName, lastName, email, mobile, phone, address, roles } = user
-    const role = roles?.nodes[0]?.name;
+    const {
+      id,
+      username,
+      firstName,
+      lastName,
+      email,
+      mobile,
+      phone,
+      address,
+      roles,
+    } = user
+    const role = roles?.nodes[0]?.name
     return {
       id,
       username,
@@ -34,9 +44,9 @@ export type TLayoutProps = {
 
 export const Layout = withRouter((props: TLayoutProps) => {
   const { user, router, onUpdateUser } = props
-  const activeMenuItem = (router.query.activeMenuItem as string)
+  const activeMenuItem = router.query.activeMenuItem as string
   const [isNavOpen, setNavOpen] = React.useState(false)
-  
+
   const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
 
   const userProfile = userProfileFrom(user)
