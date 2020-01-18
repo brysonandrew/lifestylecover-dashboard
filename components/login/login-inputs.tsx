@@ -1,11 +1,24 @@
-import * as React from "react"
+import React from "react"
+import styled from "styled-components"
 import { TextField } from "../../common/inputs"
-import { FormWrapper } from "../../common/form-wrapper"
 import { LOGIN_PLACEHOLDER_LOOKUP } from "../../data-placeholders"
+import { color } from "../../data"
+
+const Wrapper = styled.div`
+  position: relative;
+  background-color: ${color.offWhite};
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 4px;
+  color: ${color.black};
+  text-align: left;
+  box-shadow: inset 0 0 2px 1px ${color.black};
+  font-size: 28px;
+`
 
 export const LoginInputs = () => {
   return (
-    <FormWrapper>
+    <Wrapper>
       <TextField
         label="username"
         placeholder={LOGIN_PLACEHOLDER_LOOKUP.username}
@@ -17,6 +30,6 @@ export const LoginInputs = () => {
         name="password"
         type="password"
       />
-    </FormWrapper>
+    </Wrapper>
   )
 }

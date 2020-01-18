@@ -44,8 +44,8 @@ export const Policies = (props: TProps) => {
                   {edge.node.title}
                 </div>
               ),
-              editComponent: (info: TPolicy) => (
-                <PolicyEditable {...info} />
+              editComponent: (
+                <PolicyEditable {...edge.node} />
               )
             }))}
           </List>

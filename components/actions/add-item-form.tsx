@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Save } from "@material-ui/icons"
 import { Formik, Form } from "formik"
 import { addUserValidationSchema } from "../../data-validation"
-import { TextFieldSmall } from "../../common/inputs/text-field-small"
+import { TextField } from "../../common/inputs/text-field"
 import { placeholder } from "../../data-placeholders"
 import { motion } from "framer-motion"
 import { Button, CircularProgress } from "@material-ui/core"
@@ -35,7 +35,7 @@ export const AddItemForm = (props: TProps) => {
         <Form>
           <FormInner>
             {inputs.map((inputKey) => (
-              <TextFieldSmall
+              <TextField
                 key={inputKey}
                 label={inputKey}
                 placeholder={placeholder.user[inputKey]}

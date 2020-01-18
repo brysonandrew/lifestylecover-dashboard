@@ -2,8 +2,6 @@ import * as React from "react"
 import styled from "styled-components"
 import { color } from "../../data"
 import { Modal, Button } from "@material-ui/core"
-import { useMutation } from "@apollo/react-hooks"
-import { USER_DELETE_MUTATION } from "../../utils/graphql/user-delete.mutation"
 
 // const Wrapper = styled.div`
 //   position: fixed;
@@ -34,17 +32,13 @@ const Buttons = styled.div`
 `
 
 type TProps = {
-  id: string
-  name: string
-  isEditing: boolean
-  onSetEdit(): void
+  onCloseClick(): void
+  onDeleteClick(): void
+  children: React.ReactNode
 }
 
-export const DeleteModal = (props: any) => {
-  const { id, name, isEditing } = props
-  const handleClick = () => {
-    const { } = useMutation(USER_DELETE_MUTATION, { variables: {id}})
-  }
+export const DeleteModal = (props: TProps) => {
+  const { children, onCloseClick, onDeleteClick } = props
   return (
     <Modal
       disablePortal
@@ -56,12 +50,12 @@ export const DeleteModal = (props: any) => {
       container={() => document.body}
     >
       <Content>
-        <h2 id="server-modal-title">{`Are you sure you want to delete user ${name}?`}</h2>
+        {children}
         <Buttons>
-          <Button>
+          <Button onClick={onCloseClick}>
             Cancel
           </Button>
-          <Button onClick={handleClick}>
+          <Button onClick={onDeleteClick}>
             Ok
           </Button>
         </Buttons>

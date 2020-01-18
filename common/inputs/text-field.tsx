@@ -15,11 +15,11 @@ const Label = styled.div`
   font-size: 14px;
 `
 
-const MaterialTextFieldStyled = styled(MaterialTextField)`
+const TextFieldStyled = styled(MaterialTextField)`
   width: 100%;
   & input, & textarea {
     position: relative;
-    font-size: 28px;
+    font-size: 18px;
   }
   & .MuiInput-underline:after {
     border-bottom: 2px solid ${color.green};
@@ -38,7 +38,7 @@ export const TextField: React.FC<any> = ({
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
-      <MaterialTextFieldStyled
+      <TextFieldStyled
         placeholder={placeholder}
         {...field}
         helperText={errorText}

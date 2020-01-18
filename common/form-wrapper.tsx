@@ -11,10 +11,6 @@ const Wrapper = styled.div`
   color: ${color.black};
   text-align: left;
   box-shadow: inset 0 0 2px 1px ${color.black};
-  & h2 {
-    font-size: 40px;
-    text-transform: capitalize;
-  }
 `
 
 type TProps = {
