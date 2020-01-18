@@ -24,6 +24,7 @@ export const USER_PROFILE: TUserProfile = {
   ext_mobile: ""
 }
 
-export const CREATE_POLICY_INIT = {
-  referenceNumber: "",
+export const POLICY = {
+  id: "",
+  title: "",
 }

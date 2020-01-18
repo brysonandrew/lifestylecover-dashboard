@@ -16,3 +16,9 @@ export type TUserProfile = {
   role: string
   ext_mobile: string
 }
+
+export type TPolicy = {
+  id: string
+  title: string
+}
+

@@ -2,7 +2,6 @@ import * as React from "react"
 import styled from "styled-components"
 import { IActionControlConfig } from "../../models"
 import { layoutSizes } from "../../data"
-import { ButtonSquare } from "../../common/buttons/button-square"
 import { Fab } from "@material-ui/core"
 
 const Wrapper = styled.div`
@@ -24,7 +23,7 @@ type TProps = {
   children: IActionControlConfig[]
 }
 
-export const UserItemControls = (props: TProps) => {
+export const ItemControls = (props: TProps) => {
   return (
     <Wrapper>
       {props.children.map((control: IActionControlConfig) => (

@@ -55,3 +55,20 @@ export const userProfileEditableValidationSchema = yup.object({
     .string()
     .max(20),
 })
+
+export const policyEditableValidationSchema = yup.object({
+  username: yup
+    .string()
+    .required()
+    .max(20),
+  email: yup
+    .string()
+    .required()
+    .max(40),
+  firstName: yup
+    .string()
+    .max(20),
+  lastName: yup
+    .string()
+    .max(20),
+})

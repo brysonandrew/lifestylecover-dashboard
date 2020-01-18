@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { layoutSizes } from "../../data"
-import { UserItemControls } from "../users/user-item-controls"
+import { ItemControls } from "./item-controls"
 import { EAction, IActionConfig } from "../../models"
 import { Add, Cancel } from "@material-ui/icons"
 import { motion, AnimatePresence } from "framer-motion"
@@ -56,7 +56,7 @@ export const AddItemWithControls = (props: TProps) => {
           </Info>
         )}
       </AnimatePresence>
-      <UserItemControls {...props}>
+      <ItemControls {...props}>
         {[
           isAddOpen
             ? {
@@ -70,7 +70,7 @@ export const AddItemWithControls = (props: TProps) => {
               icon: <Add />,
             }
         ]}
-      </UserItemControls>
+      </ItemControls>
     </Wrapper>
   )
 }
