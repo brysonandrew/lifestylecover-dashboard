@@ -1,8 +1,8 @@
 import { TUserProfile } from "./models/users"
 
 export const LOGIN_FORM_INIT = {
-  username: "",
-  password: "",
+  username: "admin",
+  password: "xGje2yy7qe&prDNUn)!9R5qm",
 }
 
 export const CREATE_USER_INIT = {
@@ -21,10 +21,10 @@ export const USER_PROFILE: TUserProfile = {
   address: "",
   email: "",
   role: "",
-  ext_mobile: ""
 }
 
 export const POLICY = {
   id: "",
+  policyId: "",
   title: "",
 }

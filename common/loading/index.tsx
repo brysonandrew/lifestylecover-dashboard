@@ -4,10 +4,12 @@ import { CircularProgress } from "@material-ui/core"
 import { color } from "../../data"
 
 const Wrapper = styled.div`
-  position: absolute;
+  text-align: center;
+  padding: 200px 0;
+  /* position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 `
 
 type TProps = {}

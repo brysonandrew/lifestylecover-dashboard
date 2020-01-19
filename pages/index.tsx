@@ -43,8 +43,8 @@ export default (props: TIndexProps) => {
     }
   }, [error])
 
-  if (activeMenuItem || user) {
-    if (loading) {
+  if (activeMenuItem) {
+    if (!user || loading) {
       return (
         <LoadingCentered/>
       )

@@ -4,9 +4,10 @@ import styled from "styled-components"
 import { color, TRANSITION_LINEAR_CONFIG, layoutSizes } from "../../data"
 import { NavToggle } from "./nav-toggle"
 import { NavItem } from "./nav-item"
+import { ListDivider } from "../../common/list-divider"
 
 const Wrapper = styled(motion.nav)`
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: ${layoutSizes.nav.row}px;
@@ -40,13 +41,15 @@ export const Nav = (props: TProps) => {
       <NavToggle isOpen={isOpen} onSetOpen={onSetOpen} />
       {children && (
         <List>
-          {children.map((item: string) => (
-            <NavItem
-              key={item}
-              item={item}
-              activeMenuItem={activeMenuItem}
-              onSetOpen={onSetOpen}
-            />
+          {children.map((item: string, index: number) => (
+            <React.Fragment key={item}>
+              {index !== 0 && <ListDivider/>}
+              <NavItem
+                item={item}
+                activeMenuItem={activeMenuItem}
+                onSetOpen={onSetOpen}
+              />
+            </React.Fragment>
           ))}
         </List>
       )}

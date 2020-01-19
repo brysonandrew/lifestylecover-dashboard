@@ -32,3 +32,4 @@ export const USER_UPDATE_MUTATION = gql`
   }
   ${USER_FRAGMENTS.USER_INFO}
 `
+

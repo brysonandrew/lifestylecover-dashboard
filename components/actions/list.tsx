@@ -3,13 +3,12 @@ import styled from "styled-components"
 import { Item } from "./item"
 import { IActionConfig, EAction } from "../../models"
 import { AddItemWithControls } from "./add-item-with-controls"
-import { layoutSizes } from "../../data"
 import { DeleteModal } from "./delete-modal"
 import { EMPTY_CONFIG } from "."
+import { PaperWrapper } from "../../common/paper-wrapper"
+import { ListDivider } from "../../common/list-divider"
 
-const Wrapper = styled.ul`
-  width: calc(100% - 80px);
-  margin: ${layoutSizes.nav.row + 40}px auto 0;
+const ListWrapper = styled.ul`
 `
 
 type TAddConfig = {
@@ -47,52 +46,57 @@ export const List = (props: TProps) => {
   )
 
   const renderItemChildren = (isEditing, itemInfo) => (
-    isEditing
-      ? itemInfo.editComponent
-      : itemInfo.displayComponent
+    itemInfo.component(isEditing)
   )
 
   return (
-    <Wrapper>
-      {addConfig && (
-        <AddItemWithControls
-          inputs={addConfig.inputs}
-          actionConfig={actionConfig}
-          onUnsetAdd={() => handleReset()}
-          onSetAdd={handleSetAdd}
-          onSubmitClick={addConfig.onAdd}
-        />
-      )}
-      {children && children.map(itemInfo => {
-        const isEditing = action === EAction.Edit && info.id === itemInfo.id
-        return (
-          <Item
-            key={itemInfo.id}
-            id={itemInfo.id}
-            actionConfig={actionConfig}
-            editConfig={{
-              isEditing, 
-              onSet: () => handleSetEdit(itemInfo),
-            }}
-            onSetDelete={handleSetDelete}
-          >
-            {renderItemChildren(isEditing, itemInfo)}
-          </Item>
-        )
-      })}
-      <>
-        {deleteConfig && action === EAction.Delete && (
-          <DeleteModal
-            onDeleteClick={() => {
-              deleteConfig.onDelete(info)
-              handleReset()
-            }}
-            onCloseClick={() => handleReset()}
-          >
-            {deleteConfig.component(info)}
-          </DeleteModal>
+    <>
+      <ListWrapper>
+        {addConfig && (
+          <>
+            <AddItemWithControls
+              inputs={addConfig.inputs}
+              actionConfig={actionConfig}
+              onUnsetAdd={() => handleReset()}
+              onSetAdd={handleSetAdd}
+              onSubmitClick={addConfig.onAdd}
+            />
+            <ListDivider />
+          </>
         )}
-      </>
-    </Wrapper>
+        {children && children.map((itemInfo, index) => {
+          const isEditing = action === EAction.Edit && info.id === itemInfo.id
+          return (
+            <React.Fragment key={itemInfo.id}>
+              {index !== 0 && <ListDivider />}
+              <Item
+                id={itemInfo.id}
+                actionConfig={actionConfig}
+                editConfig={{
+                  isEditing,
+                  onSet: () => handleSetEdit(itemInfo),
+                }}
+                onSetDelete={handleSetDelete}
+              >
+                {renderItemChildren(isEditing, itemInfo)}
+              </Item>
+            </React.Fragment>
+          )
+        })}
+        <>
+          {deleteConfig && action === EAction.Delete && (
+            <DeleteModal
+              onDeleteClick={() => {
+                deleteConfig.onDelete(info)
+                handleReset()
+              }}
+              onCloseClick={() => handleReset()}
+            >
+              {deleteConfig.component(info)}
+            </DeleteModal>
+          )}
+        </>
+      </ListWrapper>
+    </>
   )
 }

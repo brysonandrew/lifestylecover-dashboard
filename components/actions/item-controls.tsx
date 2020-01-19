@@ -28,7 +28,7 @@ export const ItemControls = (props: TProps) => {
     <Wrapper>
       {props.children.map((control: IActionControlConfig) => (
         <ButtonWrapper key={control.action}>
-          <Fab size="medium" onClick={control.callback}>
+          <Fab size="small" onClick={control.callback}>
             {control.icon}
           </Fab>
         </ButtonWrapper>

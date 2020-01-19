@@ -1,18 +1,24 @@
 import React from "react"
 import styled from "styled-components"
 import { color, layoutSizes } from "../../data"
-import { Button } from "@material-ui/core"
-import { renderSwitch } from "../../utils"
+import { Button, Paper } from "@material-ui/core"
 import { TUserProfile } from "../../models/users"
 
 const Wrapper = styled.header`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: ${layoutSizes.nav.row}px;
+`
+
+const Inner = styled(Paper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px 0 ${layoutSizes.nav.row + 24}px;
   width: 100%;
-  height: ${layoutSizes.nav.row}px;
-  background-color: ${color.white};
+  height: 100%;
 `
 
 type TProps = {
@@ -44,8 +50,10 @@ export const Header = (props: TProps) => {
   }
   return (
     <Wrapper>
-      <h2>{titleText(userProfile)}</h2>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Inner>
+        <h2>{titleText(userProfile)}</h2>
+        <Button onClick={handleLogout}>Log out</Button>
+      </Inner>
     </Wrapper>
   )
 }

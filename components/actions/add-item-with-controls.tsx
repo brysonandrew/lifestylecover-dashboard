@@ -13,7 +13,7 @@ const Wrapper = styled(motion.li)`
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  padding-right: 8px;
+  padding-bottom: 12px;
 `
 
 const Info = styled(motion.div)`

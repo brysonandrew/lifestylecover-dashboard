@@ -6,7 +6,10 @@ import { LoadingCentered } from "../../common"
 import { List } from ".."
 import { POLICY_CREATE_MUTATION } from "../../utils/graphql/policy-create.mutation"
 import { PolicyEditable } from "./policy-editable"
+import { POLICY_DELETE_MUTATION } from "../../utils/graphql/policy-delete.mutation"
+import { POLICY_UPDATE_MUTATION } from "../../utils/graphql/policy-update.mutation"
 import { TPolicy } from "../../models/users"
+import { PageWrapper } from "../../common/page-wrapper"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -18,12 +21,13 @@ type TProps = {
 }
 
 export const Policies = (props: TProps) => {
-  const { loading, error, data } = useQuery(POLICY_GET_LIST_QUERY, {});
-  const [onSaveNewPolicy, updateConfig] = useMutation(POLICY_CREATE_MUTATION);
-  console.log(data)
+  const { loading, error, data: getListData } = useQuery(POLICY_GET_LIST_QUERY, {});
+  const [onCreatePolicy, createMutation] = useMutation(POLICY_CREATE_MUTATION);
+  const [onDeletePolicy, deleteMutation] = useMutation(POLICY_DELETE_MUTATION);
+  console.log(getListData)
 
   return (
-    <Wrapper>
+    <PageWrapper title="Policies">
       {loading
         ? (
           <LoadingCentered />
@@ -34,22 +38,23 @@ export const Policies = (props: TProps) => {
               inputs: [
                 'title',
               ],
-              onAdd: (values) => onSaveNewPolicy({ variables: { title: values.title } })
+              onAdd: (values) => onCreatePolicy({ variables: { title: values.title } })
+            }}
+            deleteConfig={{
+              component: (values: TPolicy) => (
+                <h2>{`Are you sure you want to delete policy ${values.title}?`}</h2>
+              ),
+              onDelete: () => onDeletePolicy
             }}
           >
-            {data.policies.edges.map(edge => ({
-              id: edge.node.id,
-              displayComponent: (
-                <div>
-                  {edge.node.title}
-                </div>
-              ),
-              editComponent: (
-                <PolicyEditable {...edge.node} />
+            {getListData && getListData.policies.edges.map(edge => ({
+              id: edge.node.policyId,
+              component: (isEditing: boolean) => (
+                <PolicyEditable isEditing={isEditing} policyInfo={edge.node} />
               )
             }))}
           </List>
         )}
-    </Wrapper>
+    </PageWrapper>
   )
 }

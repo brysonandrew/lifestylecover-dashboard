@@ -5,7 +5,6 @@ export type TSeverity = "success" | "info" | "warning" | "error"
 export type TPayload = {
   message: string
   severity?: TSeverity
-  redirect?: string
 }
 
 export interface SnackbarModel {
@@ -14,7 +13,6 @@ export interface SnackbarModel {
   handleClose: Action<SnackbarModel, void>
   handleOpen: Action<SnackbarModel, TPayload>
   severity?: TSeverity
-  redirect?: string
 }
 
 export interface Model {
@@ -32,7 +30,7 @@ const model: Model = {
       s.open = true
       s.message = p.message
       s.severity = p.severity
-      s.redirect = p.redirect
+      // s.redirect = p.redirect
     }),
   },
 }

@@ -34,6 +34,16 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
+const redirectToLogin = () => {
+  if (isBrowser) {
+    window.history.replaceState(null, "login", "")
+  }
+  snackbarStore.dispatch.snackbar.handleOpen({
+    message: "Please log in",
+    severity: "info",
+  })
+}
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) => {
@@ -42,11 +52,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       )
       if (message.includes("not authenticated")) {
-        snackbarStore.dispatch.snackbar.handleOpen({
-          message: "Please log in",
-          severity: "info",
-          redirect: LOGIN_ROUTE,
-        })
+        redirectToLogin()
       } else if (message.includes("invalid username") || message.includes("invalid_username")) {
         snackbarStore.dispatch.snackbar.handleOpen({message: 'Username doesn\'t exist', severity: 'error' });
       } else if (message.includes("incorrect_password")) {
@@ -57,11 +63,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     })
   } else if (networkError) {
     if (networkError["statusCode"] && networkError["statusCode"] === 403) {
-      snackbarStore.dispatch.snackbar.handleOpen({
-        message: "Please log in",
-        severity: "info",
-        redirect: LOGIN_ROUTE,
-      })
+      redirectToLogin()
     }
     console.log(JSON.stringify(networkError))
     console.log(`[Network error]: ${networkError}`)

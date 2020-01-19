@@ -14,11 +14,11 @@ export type TUserProfile = {
   address: string
   email: string
   role: string
-  ext_mobile: string
 }
 
 export type TPolicy = {
   id: string
+  policyId: string
   title: string
 }
 

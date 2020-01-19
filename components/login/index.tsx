@@ -19,11 +19,14 @@ const Wrapper = styled.div`
   padding-top: 100px;
   height: 100vh;
   width: 100%;
-  font-size: 28px;
 `
 
 const FormWrapper = styled.div`
   width: 400px;
+`
+
+const TitleWrapper = styled.div`
+  text-align: center;
 `
 
 type TProps = {
@@ -46,7 +49,9 @@ export const Login = (props: TProps) => {
   return (
     <Wrapper>
       <FormWrapper>
-        <h2>Dashboard Login</h2>
+        <TitleWrapper>
+          <h2>Dashboard Login</h2>
+        </TitleWrapper>
         <Formik
           validateOnChange={true}
           initialValues={LOGIN_FORM_INIT}

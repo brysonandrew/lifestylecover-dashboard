@@ -1,10 +1,15 @@
 import * as React from "react"
-import { FormWrapper, TextField } from "../../../common"
+import styled from "styled-components"
+import { TextField } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
+
+const Wrapper = styled.div`
+  text-align: left;
+`
 
 export const ProfileEditableInputs = () => {
   return (
-    <FormWrapper>
+    <Wrapper>
       {/* <TextField
         label="First Name"
         placeholder={placeholder.user.unknown}
@@ -37,6 +42,6 @@ export const ProfileEditableInputs = () => {
         placeholder={placeholder.user.unknown}
         name="email"
       />
-    </FormWrapper>
+    </Wrapper>
   )
 }

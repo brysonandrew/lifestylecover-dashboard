@@ -7,6 +7,7 @@ import { USER_CREATE_MUTATION } from "../../utils/graphql/user-create.mutation"
 import { List } from "../actions/list"
 import { USER_DELETE_MUTATION } from "../../utils"
 import { TUserProfile } from "../../models/users"
+import { PageWrapper } from "../../common/page-wrapper"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -18,11 +19,11 @@ type TProps = {}
 
 export const Users = (props: TProps) => {
   const { loading, error, data: getListData } = useQuery(USER_GET_LIST_QUERY, {});
-  const [onSaveNewUser, userCreateMutation] = useMutation(USER_CREATE_MUTATION);
+  const [onCreateUser, userCreateMutation] = useMutation(USER_CREATE_MUTATION);
   const [onDeleteUser, userDeleteMutation] = useMutation(USER_DELETE_MUTATION);
 
   return (
-    <Wrapper>
+    <PageWrapper title="Users">
       {loading
         ? (
           <LoadingCentered />
@@ -34,7 +35,7 @@ export const Users = (props: TProps) => {
                 'username',
                 'email'
               ],
-              onAdd: (values: TUserProfile) => onSaveNewUser({ variables: { username: values.username, email: values.email } })
+              onAdd: (values: TUserProfile) => onCreateUser({ variables: { username: values.username, email: values.email } })
             }}
             deleteConfig={{
               component: (values: TUserProfile) => (
@@ -43,23 +44,16 @@ export const Users = (props: TProps) => {
               onDelete: () => onDeleteUser
             }}
           >
-            {getListData.users.edges.map(edge => ({
+            {getListData && getListData.users.edges.map(edge => ({
               id: edge.node.id,
-              displayComponent: (
+              component: (isEditing: boolean) => (
                 <div>
-                  display
-                    {edge.node.id}
-                </div>
-              ),
-              editComponent: (
-                <div>
-                  edit
-                    {edge.node.id}
+                  {isEditing ? edge.node.id : 'hey'}
                 </div>
               )
             }))}
           </List>
         )}
-    </Wrapper>
+    </PageWrapper>
   )
 }

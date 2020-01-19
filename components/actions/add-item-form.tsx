@@ -10,7 +10,6 @@ import { Button, CircularProgress } from "@material-ui/core"
 import { ErrorDisplay } from "../../common/inputs/error-display"
 
 const FormInner = styled(motion.div)`
-  padding-bottom: 8px;
 `
 
 type TProps = {

@@ -12,10 +12,6 @@ export const ErrorSnackbar: React.FC<{}> = () => {
   const { open, message, severity, redirect } = useStoreState<Model, any>(
     state => state.snackbar
   )
-  if (redirect) {
-    const router = useRouter()
-    router.replace(redirect)
-  }
   return (
     <Snackbar open={open}>
       <Alert onClose={handleClose} severity={severity}>

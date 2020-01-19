@@ -30,12 +30,6 @@ const theme = createMuiTheme({
 })
 
 const Wrapper = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: ${color.black};
 `
 
 let Main = styled.div`

@@ -4,26 +4,24 @@ import { color, layoutSizes } from "../../data"
 import { fromKebabCase, renderSwitch } from "../../utils"
 import { Users } from "../../components"
 import { Policies } from "../../components/policies"
-import { Paper } from "@material-ui/core"
-import { Header } from "./header"
 import { Profile } from "../../components/profile"
 
 const Wrapper = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  position: relative;
   text-align: center;
-  background-color: ${color.darkGreen};
+  left: ${layoutSizes.nav.row}px;
+  min-height: 100vh;
+  height: 100%;
+  width: calc(100% - ${layoutSizes.nav.row}px);
 `
+
 const DARK_PADDING = 6
 const Inner = styled.div`
   position: absolute;
-  left: ${layoutSizes.nav.row + DARK_PADDING}px;
+  left: ${DARK_PADDING}px;
   top: ${layoutSizes.nav.row + DARK_PADDING}px;
-  width: calc(100% - ${layoutSizes.nav.row + DARK_PADDING * 2}px);
-  height: calc(100% - ${layoutSizes.nav.row + DARK_PADDING * 2}px);
+  width: calc(100% - ${DARK_PADDING * 2}px);
+  min-height: calc(100% - ${layoutSizes.nav.row + DARK_PADDING * 2}px);
   background-color: ${color.lightCyan};
 `
 
@@ -37,9 +35,6 @@ export const Content = (props: TProps) => {
   const { userProfile, activeMenuItem, onUpdateUser } = props
   return (
     <Wrapper>
-      <Paper square={false}>
-        <Header userProfile={userProfile} onUpdateUser={onUpdateUser} />
-      </Paper>
       <Inner>
         {renderSwitch(fromKebabCase(activeMenuItem), {
           Profile: () => <Profile userProfile={userProfile} />,

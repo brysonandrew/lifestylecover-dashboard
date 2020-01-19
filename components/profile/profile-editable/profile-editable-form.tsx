@@ -9,13 +9,16 @@ import { Save } from "@material-ui/icons"
 import { ProfileEditableInputs } from "./profile-editable-inputs"
 import { USER_UPDATE_MUTATION } from "../../../utils/graphql/user-update.mutation"
 import { USER_PROFILE } from "../../../data-initial-values"
+import { FieldSet } from "../../../common/inputs/field-set"
+import { changedValues } from "../../../utils/forms"
 
 type TProps = {
+  isEditing: boolean
   userProfile: TUserProfile
 }
 
 export const ProfileEditableForm = (props: TProps) => {
-  const { userProfile } = props
+  const { isEditing, userProfile } = props
   const [handleUpdateUser, mutationResult] = useMutation(USER_UPDATE_MUTATION)
   const { loading, error, data } = mutationResult
 
@@ -32,40 +35,40 @@ export const ProfileEditableForm = (props: TProps) => {
         onSubmit={null}
       >
         {({ values }) => {
-          const { mobile, phone, address, email } = values
-          console.log(email)
           return (
             <Form>
-              <ProfileEditableInputs />
-              <ButtonWrapper>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  type="submit"
-                  disabled={loading}
-                  onClick={() =>
-                    handleUpdateUser({
-                      variables: {
-                        id: userProfile.id,
-                        email,
-                        mobile,
-                        phone,
-                        address,
-                      },
-                    })
-                  }
-                  startIcon={
-                    loading ? (
-                      <CircularProgress size={18} color="inherit" />
-                    ) : (
-                      <Save />
-                    )
-                  }
-                >
-                  Save
-                </Button>
-              </ButtonWrapper>
+              <FieldSet isDisabled={!isEditing}>
+                <ProfileEditableInputs />
+              </FieldSet>
+              {isEditing && (
+                <ButtonWrapper>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    type="submit"
+                    disabled={loading}
+                    onClick={() =>
+                      handleUpdateUser({
+                        variables: {
+                          id: userProfile.id,
+                          ...changedValues(initValues, values)
+                        },
+                      })
+                    }
+                    startIcon={
+                      loading
+                        ? (
+                          <CircularProgress size={18} color="inherit" />
+                        ) : (
+                          <Save />
+                        )
+                    }
+                  >
+                    Save
+                  </Button>
+                </ButtonWrapper>
+              )}
             </Form>
           )
         }}

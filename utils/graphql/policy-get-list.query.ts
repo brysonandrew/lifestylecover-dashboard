@@ -6,6 +6,7 @@ export const POLICY_GET_LIST_QUERY = gql`
       edges {
         node {
           id
+          policyId
           title
         }
       }

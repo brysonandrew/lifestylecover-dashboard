@@ -1,10 +1,20 @@
 import * as React from "react"
+import styled from "styled-components"
 import { NextRouter, withRouter } from "next/router"
 import { MainWrapper } from "../components"
 import { Nav } from "./nav"
-import { LayoutWrapper } from "./wrapper"
 import { menuItems } from "./menu-items"
 import { Content } from "./content"
+import { Paper } from "@material-ui/core"
+import { Header } from "./content/header"
+
+const HeaderAndNav = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+`
 
 const userProfileFrom = user => {
   if (user) {
@@ -53,20 +63,19 @@ export const Layout = withRouter((props: TLayoutProps) => {
 
   return (
     <MainWrapper>
-      <LayoutWrapper>
-        <Content
-          userProfile={userProfile}
-          activeMenuItem={activeMenuItem}
-          onUpdateUser={onUpdateUser}
-        />
-        <Nav
-          isOpen={isNavOpen}
-          onSetOpen={handleNavToggle}
-          activeMenuItem={activeMenuItem}
-        >
-          {userProfile && menuItems[userProfile.role]}
-        </Nav>
-      </LayoutWrapper>
+      <Content
+        userProfile={userProfile}
+        activeMenuItem={activeMenuItem}
+        onUpdateUser={onUpdateUser}
+      />
+      <Header userProfile={userProfile} onUpdateUser={onUpdateUser} />
+      <Nav
+        isOpen={isNavOpen}
+        onSetOpen={handleNavToggle}
+        activeMenuItem={activeMenuItem}
+      >
+        {userProfile && menuItems[userProfile.role]}
+      </Nav>
     </MainWrapper>
   )
 })
