@@ -1,28 +1,26 @@
 import gql from "graphql-tag"
 import { USER_FRAGMENTS } from "./user.fragments"
 
-export const USER_UPDATE_CONTACT_MUTATION = gql`
-  mutation USER_UPDATE_CONTACT_MUTATION(
+export const USER_UPDATE_DETAILS_MUTATION = gql`
+  mutation USER_UPDATE_DETAILS(
     $id: ID!
-    # $email: String
-    $phone: String
-    $mobile: String
-    $address: String
+    $dateOfBirth: String
+    $occupationRating: String
+    $smoker: Boolean
   ) {
     updateUser(
       input: {
-        clientMutationId: "USER_UPDATE_ADVISOR"
+        clientMutationId: "USER_UPDATE_DETAILS"
         id: $id
-        # email: $email
-        phone: $phone
-        mobile: $mobile
-        address: $address
+        dateOfBirth: $dateOfBirth
+        occupationRating: $occupationRating
+        smoker: $smoker
       }
     ) {
       user {
-        ...CONTACT
+        ...CLIENT_DETAILS
       }
     }
   }
-  ${USER_FRAGMENTS.CONTACT}
+  ${USER_FRAGMENTS.CLIENT_DETAILS}
 `

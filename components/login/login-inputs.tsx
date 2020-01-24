@@ -19,6 +19,18 @@ const Wrapper = styled.div`
 export const LoginInputs = () => {
   return (
     <Wrapper>
+      <div>
+      advisor
+      </div>
+      <div>
+      QYclifyw%2^OCMbUJcaG4M!r
+      </div>
+      <div>
+      client
+      </div>
+      <div>
+      Y0sgitjVovA@sD)EeRUJmReb
+      </div>
       <TextField
         label="username"
         placeholder={LOGIN_PLACEHOLDER_LOOKUP.username}

@@ -1,4 +1,4 @@
-import { TUserProfile } from "./models/users"
+import { TUserProfile, TClientProfile } from "./models/users"
 
 export const LOGIN_FORM_INIT = {
   username: "admin",
@@ -27,6 +27,12 @@ export const USER_CONTACT_FORM: Partial<TUserProfile> = {
   mobile: "",
   phone: "",
   address: "",
+}
+
+export const USER_DETAILS_FORM: Partial<TClientProfile> = {
+  dateOfBirth: "",
+  occupationRating: "",
+  smoker: false,
 }
 
 export const POLICY = {

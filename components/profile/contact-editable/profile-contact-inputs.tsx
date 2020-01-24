@@ -7,19 +7,9 @@ const Wrapper = styled.div`
   text-align: left;
 `
 
-export const ProfileEditableInputs = () => {
+export const ProfileContactInputs = () => {
   return (
     <Wrapper>
-      {/* <TextField
-        label="First Name"
-        placeholder={placeholder.user.unknown}
-        name="firstName"
-      />
-      <TextField
-        label="Last Name"
-        placeholder={placeholder.user.unknown}
-        name="lastName"
-      /> */}
       <TextField
         label="Mobile"
         placeholder={placeholder.user.unknown}
@@ -37,11 +27,11 @@ export const ProfileEditableInputs = () => {
         multiline
         rows={3}
       />
-      <TextField
+      {/* <TextField
         label="Email"
         placeholder={placeholder.user.unknown}
         name="email"
-      />
+      /> */}
     </Wrapper>
   )
 }

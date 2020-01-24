@@ -1,25 +1,28 @@
 import * as React from "react"
-import { TUserProfile } from "../../../models/users"
 import { Formik, Form } from "formik"
-import { userProfileEditableValidationSchema } from "../../../data-validation"
-import { ButtonWrapper } from "../../../common/buttons/button-wrapper"
+import { userProfileEditableValidationSchema } from "../../data-validation"
 import { Button, CircularProgress } from "@material-ui/core"
 import { Save } from "@material-ui/icons"
-import { ProfileEditableInputs } from "./profile-editable-inputs"
-import { FieldSet } from "../../../common/inputs/field-set"
-import { changedValues } from "../../../utils/forms"
+import { ProfileDetailsInputs } from "./details-editable/profile-details-inputs"
+import { FieldSet, ButtonWrapper } from "../../common"
+import { EInputType } from "../../models"
+import { renderSwitch, changedValues } from "../../utils"
+import { ProfileContactInputs } from "./contact-editable/profile-contact-inputs"
+import { TUserProfile } from "../../models/users"
 
 type TProps = {
   isEditing: boolean
   userProfile: TUserProfile
   mutation: any
   initFormValues: any
+  inputType: EInputType
 }
 
 export const ProfileEditableForm = (props: TProps) => {
-  const { isEditing, userProfile, mutation, initFormValues } = props
+  const { isEditing, userProfile, mutation, initFormValues, inputType } = props
   const [handleUpdateUser, mutationResult] = mutation
   const { loading, error, data } = mutationResult
+  console.log(userProfile)
 
   if (userProfile) {
     let initValues = initFormValues
@@ -34,10 +37,18 @@ export const ProfileEditableForm = (props: TProps) => {
         onSubmit={null}
       >
         {({ values }) => {
+          // console.log(values)
           return (
             <Form>
               <FieldSet isDisabled={!isEditing}>
-                <ProfileEditableInputs />
+                {renderSwitch(inputType, {
+                  [EInputType.Contact]: () => (
+                    <ProfileContactInputs />
+                  ),
+                  [EInputType.Details]: () => (
+                    <ProfileDetailsInputs />
+                  ),
+                })}
               </FieldSet>
               {isEditing && (
                 <ButtonWrapper>

@@ -2,9 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { color, layoutSizes } from "../../data"
 import { fromKebabCase, renderSwitch } from "../../utils"
-import { Users } from "../../components"
-import { Policies } from "../../components/policies"
-import { Profile } from "../../components/profile"
+import { Users, Profile, Policies } from "../../components"
 
 const Wrapper = styled.div`
   position: relative;
@@ -45,3 +43,5 @@ export const Content = (props: TProps) => {
     </Wrapper>
   )
 }
+
+export * from "./header"

@@ -1,28 +1,17 @@
 import * as React from "react"
 import styled from "styled-components"
 import { NextRouter, withRouter } from "next/router"
+import { useQuery } from "@apollo/react-hooks"
 import { MainWrapper } from "../components"
 import { Nav } from "./nav"
 import { menuItems } from "./menu-items"
-import { Content } from "./content"
-import { Paper } from "@material-ui/core"
-import { Header } from "./content/header"
-import { useLazyQuery, useQuery } from "@apollo/react-hooks"
-import { VIEWER_ADMIN_QUERY, VIEWER_CLIENT_QUERY, VIEWER_ADVISOR_QUERY } from "../utils"
+import { Header, Content } from "./content"
+import { VIEWER_ADMIN_QUERY, VIEWER_CLIENT_QUERY, VIEWER_ADVISOR_QUERY, formatDate } from "../utils"
 import { LoadingCentered } from "../common"
-import { ApolloQueryResult } from "apollo-client"
-
-const HeaderAndNav = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-`
 
 const userProfileFrom = user => {
   if (user) {
-    const {
+    let {
       id,
       username,
       firstName,
@@ -31,9 +20,15 @@ const userProfileFrom = user => {
       mobile,
       phone,
       address,
+      dateOfBirth,
+      occupationRating,
+      smoker,
       roles,
     } = user
     const role = roles?.nodes[0]?.name
+    console.log(dateOfBirth)
+    dateOfBirth = formatDate(dateOfBirth)
+    console.log(dateOfBirth)
     return {
       id,
       username,
@@ -42,6 +37,9 @@ const userProfileFrom = user => {
       mobile,
       phone,
       address,
+      dateOfBirth,
+      occupationRating,
+      smoker,
       email,
       role,
     }
@@ -64,12 +62,16 @@ export const Layout = withRouter((props: TLayoutProps) => {
   const role = user.roles?.nodes[0]?.name
 
   let userQuery: any = {loading: false, data: null, error: 'Invalid user role'}
-  userQuery = useQuery(VIEWER_CLIENT_QUERY, {skip: role !== 'client'});
-  userQuery = useQuery(VIEWER_ADVISOR_QUERY, {skip: role !== 'advisor'});
-  userQuery = useQuery(VIEWER_ADMIN_QUERY, {skip: role !== 'administrator'});
-
-  console.log(userQuery.loading)
-  console.log(userQuery.data)
+  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, {skip: role !== 'client'});
+  const advisorQuery = useQuery(VIEWER_ADVISOR_QUERY, {skip: role !== 'advisor'});
+  const adminQuery = useQuery(VIEWER_ADMIN_QUERY, {skip: role !== 'administrator'});
+  if (role === 'client') {
+    userQuery = clientQuery
+  } else if (role === 'advisor') {
+    userQuery = advisorQuery
+  } else if (role === 'administrator') {
+    userQuery = adminQuery
+  }
 
   const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
 
@@ -91,7 +93,6 @@ export const Layout = withRouter((props: TLayoutProps) => {
     )
   } else {
     const userProfile = userProfileFrom(user)
-
     return (
       <MainWrapper>
         <Content

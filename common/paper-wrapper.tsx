@@ -5,7 +5,7 @@ import { Paper } from "@material-ui/core"
 
 const Wrapper = styled(Paper)`
   width: calc(100% - 80px);
-  margin: ${layoutSizes.nav.row}px auto;
+  margin: ${layoutSizes.nav.row * 0.5}px auto;
   padding: 12px;
 `
 

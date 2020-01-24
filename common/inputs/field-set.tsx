@@ -3,11 +3,22 @@ import styled from "styled-components"
 
 const Wrapper = styled.fieldset`
   text-align: left;
-  &&:disabled div.MuiInput-underline:before {
-    border-bottom: 1px solid currentColor;
-  }
-  && input, && textarea {
+  && input[type="text"], && input[type="password"], && textarea {
     cursor: text;
+  }
+  && input[type="checkbox"] {
+    cursor: pointer
+  }
+  &&:disabled {
+    div.MuiInput-underline:before {
+      border-bottom: 1px solid currentColor;
+    }
+    span:hover {
+      background-color: transparent
+    }
+    && input, && textarea {
+      cursor: default
+    }
   }
 `
 

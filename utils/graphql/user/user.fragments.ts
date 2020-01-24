@@ -51,6 +51,11 @@ export const USER_FRAGMENTS = {
           }
         }
       }
+      roles {
+        nodes {
+          name
+        }
+      }
     }
   `,
   ADVISOR: gql`
@@ -61,6 +66,11 @@ export const USER_FRAGMENTS = {
       mobile
       phone
       address
+      roles {
+        nodes {
+          name
+        }
+      }
     }
   `,
   ADMIN: gql`
@@ -71,6 +81,11 @@ export const USER_FRAGMENTS = {
       mobile
       phone
       address
+      roles {
+        nodes {
+          name
+        }
+      }
     }
   `,
   CONTACT: gql`
