@@ -4,28 +4,27 @@ import { Formik, Form } from "formik"
 import { userProfileEditableValidationSchema } from "../../../data-validation"
 import { ButtonWrapper } from "../../../common/buttons/button-wrapper"
 import { Button, CircularProgress } from "@material-ui/core"
-import { useMutation } from "@apollo/react-hooks"
 import { Save } from "@material-ui/icons"
 import { ProfileEditableInputs } from "./profile-editable-inputs"
-import { USER_UPDATE_MUTATION } from "../../../utils/graphql/user-update.mutation"
-import { USER_PROFILE } from "../../../data-initial-values"
 import { FieldSet } from "../../../common/inputs/field-set"
 import { changedValues } from "../../../utils/forms"
 
 type TProps = {
   isEditing: boolean
   userProfile: TUserProfile
+  mutation: any
+  initFormValues: any
 }
 
 export const ProfileEditableForm = (props: TProps) => {
-  const { isEditing, userProfile } = props
-  const [handleUpdateUser, mutationResult] = useMutation(USER_UPDATE_MUTATION)
+  const { isEditing, userProfile, mutation, initFormValues } = props
+  const [handleUpdateUser, mutationResult] = mutation
   const { loading, error, data } = mutationResult
 
   if (userProfile) {
-    let initValues = USER_PROFILE
-    Object.keys(USER_PROFILE).forEach(key => {
-      initValues[key] = userProfile[key] || USER_PROFILE[key]
+    let initValues = initFormValues
+    Object.keys(initFormValues).forEach(key => {
+      initValues[key] = userProfile[key] || initFormValues[key]
     })
     return (
       <Formik

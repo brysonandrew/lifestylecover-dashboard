@@ -26,9 +26,9 @@ export const USER_LOGIN_MUTATION = gql`
     ) {
       authToken
       user {
-        ...USER_INFO
+        ...LOGIN
       }
     }
   }
-  ${USER_FRAGMENTS.USER_INFO}
+  ${USER_FRAGMENTS.LOGIN}
 `

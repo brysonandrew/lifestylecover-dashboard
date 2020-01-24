@@ -23,6 +23,6 @@ export const placeholder = {
     name: 'Name',
     password: 'Password',
     email: 'Email',
-    unknown: 'Unknown'
+    unknown: 'Empty'
   }
 }

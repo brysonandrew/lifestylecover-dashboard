@@ -23,6 +23,12 @@ export const USER_PROFILE: TUserProfile = {
   role: "",
 }
 
+export const USER_CONTACT_FORM: Partial<TUserProfile> = {
+  mobile: "",
+  phone: "",
+  address: "",
+}
+
 export const POLICY = {
   id: "",
   policyId: "",

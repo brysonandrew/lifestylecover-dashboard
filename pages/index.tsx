@@ -3,7 +3,7 @@ import { NextRouter } from "next/router"
 import { Login } from "../components"
 import { Layout } from "../layout"
 import { useLazyQuery } from "@apollo/react-hooks"
-import { USER_GET_VIEWER_QUERY } from "../utils/graphql/user-get-viewer.query"
+import { VIEWER_CLIENT_QUERY, VIEWER_ADVISOR_QUERY, VIEWER_ADMIN_QUERY, VIEWER_INIT_QUERY } from "../utils"
 import { isBrowser, store } from '../utils';
 import { AUTH_TOKEN_KEY } from '../data';
 import { LoadingCentered } from "../common"
@@ -17,34 +17,35 @@ export type TIndexProps = {
 export default (props: TIndexProps) => {
   const { user, router, onUpdateUser } = props
   const activeMenuItem = (router.query.activeMenuItem as string)
-  const [getViewer, { called, loading, error, data }] = useLazyQuery(
-    USER_GET_VIEWER_QUERY,
+  const [getViewerInit, viewerInit] = useLazyQuery(
+    VIEWER_INIT_QUERY,
     {}
   );
+  // const handleGetViewer()
 
   React.useEffect(() => {
-    if (isBrowser && !called) {
+    if (isBrowser && !viewerInit.called) {
       const token = store(AUTH_TOKEN_KEY)
       if (token) {
-        getViewer()
+        getViewerInit()
       }
     }
   }, [])
 
   React.useEffect(() => {
-    if (data) {
-      onUpdateUser({user: data.viewer})
+    if (viewerInit.data) {
+      onUpdateUser({user: viewerInit.data.viewer})
     }
-  }, [data])
+  }, [viewerInit.data])
 
   React.useEffect(() => {
-    if (error) {
+    if (viewerInit.error) {
       onUpdateUser(null)
     }
-  }, [error])
+  }, [viewerInit.error])
 
   if (activeMenuItem) {
-    if (!user || loading) {
+    if (!user || viewerInit.loading) {
       return (
         <LoadingCentered/>
       )

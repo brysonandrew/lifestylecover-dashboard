@@ -16,6 +16,12 @@ export type TUserProfile = {
   role: string
 }
 
+export type TClientProfile = {
+  dateOfBirth: string
+  occupationRating: string
+  smoker: boolean
+} & TUserProfile
+
 export type TPolicy = {
   id: string
   policyId: string

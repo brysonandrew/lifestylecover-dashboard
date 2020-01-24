@@ -10,7 +10,7 @@ import { PolicyEditableInputs } from "./policy-editable-inputs"
 import { POLICY } from "../../../data-initial-values"
 import { FieldSet } from "../../../common/inputs/field-set"
 import { changedValues } from "../../../utils/forms"
-import { POLICY_UPDATE_MUTATION } from "../../../utils/graphql/policy-update.mutation"
+import { POLICY_UPDATE_MUTATION } from "../../../utils/graphql/policy/policy-update.mutation"
 
 type TProps = {
   isEditing: boolean

@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/react-hooks"
 import { NextRouter } from "next/router"
 import { Button, CircularProgress } from "@material-ui/core"
 import { ButtonWrapper } from "../../common/buttons/button-wrapper"
-import { USER_SEND_PASSWORD_RESET_EMAIL_MUTATION } from "../../utils/graphql/user-send-password-reset-email.mutation"
+import { USER_SEND_PASSWORD_RESET_EMAIL_MUTATION } from "../../utils/graphql/user/user-send-password-reset-email.mutation"
 import { snackbarStore } from "../../common"
 import { LOGIN_ROUTE } from "../../data"
 
