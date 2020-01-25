@@ -43,7 +43,7 @@ export const Nav = (props: TProps) => {
         <List>
           {children.map((item: string, index: number) => (
             <React.Fragment key={item}>
-              {index !== 0 && <ListDivider/>}
+              {index !== 0 && <ListDivider />}
               <NavItem
                 item={item}
                 activeMenuItem={activeMenuItem}

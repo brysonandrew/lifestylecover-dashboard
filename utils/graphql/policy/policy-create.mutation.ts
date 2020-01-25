@@ -4,10 +4,7 @@ import { POLICY_FRAGMENTS } from "./policy.fragments"
 export const POLICY_CREATE_RISK_MUTATION = gql`
   mutation POLICY_CREATE_RISK($title: String!) {
     createPolicyRisk(
-      input: {
-        clientMutationId: "POLICY_CREATE_RISK"
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_CREATE_RISK", title: $title }
     ) {
       policyRisk {
         ...RISK
@@ -20,10 +17,7 @@ export const POLICY_CREATE_RISK_MUTATION = gql`
 export const POLICY_CREATE_ASSET_MUTATION = gql`
   mutation POLICY_CREATE_ASSET($title: String!) {
     createPolicyAsset(
-      input: {
-        clientMutationId: "POLICY_CREATE_ASSET"
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_CREATE_ASSET", title: $title }
     ) {
       policyAsset {
         ...ASSET
@@ -36,10 +30,7 @@ export const POLICY_CREATE_ASSET_MUTATION = gql`
 export const POLICY_CREATE_KIWISAVER_MUTATION = gql`
   mutation POLICY_CREATE_KIWISAVER($title: String!) {
     createPolicyKiwisaver(
-      input: {
-        clientMutationId: "POLICY_CREATE_KIWISAVER"
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_CREATE_KIWISAVER", title: $title }
     ) {
       policyKiwisaver {
         ...KIWISAVER
@@ -52,10 +43,7 @@ export const POLICY_CREATE_KIWISAVER_MUTATION = gql`
 export const POLICY_CREATE_PET_MUTATION = gql`
   mutation POLICY_CREATE_PET($title: String!) {
     createPolicyPet(
-      input: {
-        clientMutationId: "POLICY_CREATE_PET"
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_CREATE_PET", title: $title }
     ) {
       policyPet {
         ...PET

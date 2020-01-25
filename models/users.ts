@@ -27,4 +27,3 @@ export type TPolicy = {
   policyId: string
   title: string
 }
-

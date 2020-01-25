@@ -3,10 +3,7 @@ import gql from "graphql-tag"
 export const POLICY_DELETE_RISK_MUTATION = gql`
   mutation POLICY_DELETE_RISK($id: ID!) {
     deletePolicyRisk(
-      input: {
-        clientMutationId: "POLICY_DELETE_RISK"
-        id: $id
-      }
+      input: { clientMutationId: "POLICY_DELETE_RISK", id: $id }
     ) {
       deletedId
       policyRisk {
@@ -20,10 +17,7 @@ export const POLICY_DELETE_RISK_MUTATION = gql`
 export const POLICY_DELETE_ASSET_MUTATION = gql`
   mutation POLICY_DELETE_ASSET($id: ID!) {
     deletePolicyAsset(
-      input: {
-        clientMutationId: "POLICY_DELETE_ASSET"
-        id: $id
-      }
+      input: { clientMutationId: "POLICY_DELETE_ASSET", id: $id }
     ) {
       deletedId
       policyAsset {
@@ -37,10 +31,7 @@ export const POLICY_DELETE_ASSET_MUTATION = gql`
 export const POLICY_DELETE_KIWISAVER_MUTATION = gql`
   mutation POLICY_DELETE_KIWISAVER($id: ID!) {
     deleteKiwisaverAsset(
-      input: {
-        clientMutationId: "POLICY_DELETE_KIWISAVER"
-        id: $id
-      }
+      input: { clientMutationId: "POLICY_DELETE_KIWISAVER", id: $id }
     ) {
       deletedId
       policyKiwisaver {
@@ -53,12 +44,7 @@ export const POLICY_DELETE_KIWISAVER_MUTATION = gql`
 
 export const POLICY_DELETE_PET_MUTATION = gql`
   mutation POLICY_DELETE_PET($id: ID!) {
-    deletePolicyPet(
-      input: {
-        clientMutationId: "POLICY_DELETE_PET"
-        id: $id
-      }
-    ) {
+    deletePolicyPet(input: { clientMutationId: "POLICY_DELETE_PET", id: $id }) {
       deletedId
       policyPet {
         id

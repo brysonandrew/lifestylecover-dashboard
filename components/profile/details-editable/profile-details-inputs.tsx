@@ -32,12 +32,8 @@ export const ProfileDetailsInputs = () => {
         name="occupationRating"
       />
       <CheckboxWrapper>
-        <CheckboxLabel>
-          Smoker
-        </CheckboxLabel>
-        <Checkbox
-          name="smoker"
-        />
+        <CheckboxLabel>Smoker</CheckboxLabel>
+        <Checkbox name="smoker" />
       </CheckboxWrapper>
 
       {/* <TextField

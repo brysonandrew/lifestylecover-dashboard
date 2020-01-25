@@ -26,4 +26,3 @@ export const USER_UPDATE_CONTACT_MUTATION = gql`
   }
   ${USER_FRAGMENTS.CONTACT}
 `
-

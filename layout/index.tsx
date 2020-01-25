@@ -6,7 +6,12 @@ import { MainWrapper } from "../components"
 import { Nav } from "./nav"
 import { menuItems } from "./menu-items"
 import { Header, Content } from "./content"
-import { VIEWER_ADMIN_QUERY, VIEWER_CLIENT_QUERY, VIEWER_ADVISOR_QUERY, formatDate } from "../utils"
+import {
+  VIEWER_ADMIN_QUERY,
+  VIEWER_CLIENT_QUERY,
+  VIEWER_ADVISOR_QUERY,
+  formatDate,
+} from "../utils"
 import { LoadingCentered } from "../common"
 
 const userProfileFrom = user => {
@@ -59,15 +64,23 @@ export const Layout = withRouter((props: TLayoutProps) => {
 
   const role = user.roles?.nodes[0]?.name
 
-  let userQuery: any = {loading: false, data: null, error: 'Invalid user role'}
-  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, {skip: role !== 'client'});
-  const advisorQuery = useQuery(VIEWER_ADVISOR_QUERY, {skip: role !== 'advisor'});
-  const adminQuery = useQuery(VIEWER_ADMIN_QUERY, {skip: role !== 'administrator'});
-  if (role === 'client') {
+  let userQuery: any = {
+    loading: false,
+    data: null,
+    error: "Invalid user role",
+  }
+  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, { skip: role !== "client" })
+  const advisorQuery = useQuery(VIEWER_ADVISOR_QUERY, {
+    skip: role !== "advisor",
+  })
+  const adminQuery = useQuery(VIEWER_ADMIN_QUERY, {
+    skip: role !== "administrator",
+  })
+  if (role === "client") {
     userQuery = clientQuery
-  } else if (role === 'advisor') {
+  } else if (role === "advisor") {
     userQuery = advisorQuery
-  } else if (role === 'administrator') {
+  } else if (role === "administrator") {
     userQuery = adminQuery
   }
 
@@ -75,7 +88,7 @@ export const Layout = withRouter((props: TLayoutProps) => {
 
   React.useEffect(() => {
     if (userQuery.data) {
-      onUpdateUser({user: userQuery.data.viewer})
+      onUpdateUser({ user: userQuery.data.viewer })
     }
   }, [userQuery.data])
 
@@ -86,9 +99,7 @@ export const Layout = withRouter((props: TLayoutProps) => {
   }, [userQuery.error])
 
   if (userQuery.loading) {
-    return (
-      <LoadingCentered/>
-    )
+    return <LoadingCentered />
   } else {
     const userProfile = userProfileFrom(user)
     return (

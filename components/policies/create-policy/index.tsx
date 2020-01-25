@@ -4,9 +4,9 @@ import { FormWrapper } from "../../../common/form-wrapper"
 import { CREATE_POLICY_PLACEHOLDER_LOOKUP } from "../../../data-placeholders"
 
 enum EUserType {
-  administrator = 'administrator',
-  client = 'client',
-  advisor = 'advisor',
+  administrator = "administrator",
+  client = "client",
+  advisor = "advisor",
 }
 
 type TProps = {

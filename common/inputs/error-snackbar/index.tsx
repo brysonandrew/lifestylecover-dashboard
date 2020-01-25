@@ -22,7 +22,8 @@ export const ErrorSnackbar: React.FC<{}> = () => {
 }
 
 export * from "./store"
-        {/* {renderSwitch(
+{
+  /* {renderSwitch(
           message,
           {
             "Sorry, that email address is already used!": () =>
@@ -33,4 +34,5 @@ export * from "./store"
             incorrect_password: () => "Incorrect password",
           },
           () => "Something went wrong"
-        )} */}
+        )} */
+}

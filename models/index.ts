@@ -24,5 +24,5 @@ export interface IActionControlConfig {
   icon: JSX.Element
 }
 
-export * from './inputs'
-export * from './users'
+export * from "./inputs"
+export * from "./users"

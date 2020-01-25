@@ -13,7 +13,9 @@ type TProps = {
 
 export const ContactEditable = (props: TProps) => {
   const { userProfile } = props
-  const [actionConfig, onSetActionConfig] = React.useState<IActionConfig>(EMPTY_ACTION_CONFIG)
+  const [actionConfig, onSetActionConfig] = React.useState<IActionConfig>(
+    EMPTY_ACTION_CONFIG
+  )
   const { action } = actionConfig
   const isEditing = action === EAction.Edit
   console.log(userProfile)
@@ -25,31 +27,26 @@ export const ContactEditable = (props: TProps) => {
           actionConfig={actionConfig}
           editConfig={{
             isEditing,
-            onSet: () => (
+            onSet: () =>
               onSetActionConfig(
                 isEditing
                   ? EMPTY_ACTION_CONFIG
                   : { action: EAction.Edit, actionInfo: userProfile }
-              )
-            ),
+              ),
           }}
         >
-          {isEditing
-            ? (
-              <ProfileContactUpdateForm
-                userProfile={userProfile}
-              />
-            )
-            : (
-              <FormDisabled>
-                {initializeFormValues(USER_CONTACT_FORM, userProfile)}
-              </FormDisabled>
-            )}
+          {isEditing ? (
+            <ProfileContactUpdateForm userProfile={userProfile} />
+          ) : (
+            <FormDisabled>
+              {initializeFormValues(USER_CONTACT_FORM, userProfile)}
+            </FormDisabled>
+          )}
         </Item>
       </ul>
     </PageWrapper>
   )
 }
 
-export * from './profile-contact-inputs'
-export * from './profile-contact-update-form'
+export * from "./profile-contact-inputs"
+export * from "./profile-contact-update-form"

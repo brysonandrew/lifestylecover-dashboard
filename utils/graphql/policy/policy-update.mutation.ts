@@ -4,11 +4,7 @@ import { POLICY_FRAGMENTS } from "./policy.fragments"
 export const POLICY_UPDATE_RISK_MUTATION = gql`
   mutation POLICY_UPDATE_RISK($id: ID!, $title: String!) {
     updatePolicyRisk(
-      input: {
-        clientMutationId: "POLICY_UPDATE_RISK"
-        id: $id
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_UPDATE_RISK", id: $id, title: $title }
     ) {
       policyRisk {
         ...RISK
@@ -21,11 +17,7 @@ export const POLICY_UPDATE_RISK_MUTATION = gql`
 export const POLICY_UPDATE_ASSET_MUTATION = gql`
   mutation POLICY_UPDATE_ASSET($id: ID!, $title: String!) {
     updatePolicyAsset(
-      input: {
-        clientMutationId: "POLICY_UPDATE_ASSET"
-        id: $id
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_UPDATE_ASSET", id: $id, title: $title }
     ) {
       policyAsset {
         ...ASSET
@@ -55,11 +47,7 @@ export const POLICY_UPDATE_KIWISAVER_MUTATION = gql`
 export const POLICY_UPDATE_PET_MUTATION = gql`
   mutation POLICY_UPDATE_PET($id: ID!, $title: String!) {
     updatePolicyPet(
-      input: {
-        clientMutationId: "POLICY_UPDATE_PET"
-        id: $id
-        title: $title
-      }
+      input: { clientMutationId: "POLICY_UPDATE_PET", id: $id, title: $title }
     ) {
       policyPet {
         ...PET

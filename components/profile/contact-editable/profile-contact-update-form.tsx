@@ -16,6 +16,6 @@ export const ProfileContactUpdateForm = (props: TProps) => (
     mutation={useMutation(USER_UPDATE_CONTACT_MUTATION)}
     initFormValues={USER_CONTACT_FORM}
   >
-    <ProfileContactInputs/>
+    <ProfileContactInputs />
   </ProfileEditableForm>
 )

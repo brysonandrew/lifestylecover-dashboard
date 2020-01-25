@@ -116,5 +116,5 @@ export const USER_FRAGMENTS = {
       occupationRating
       smoker
     }
-  `
+  `,
 }
