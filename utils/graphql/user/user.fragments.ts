@@ -12,6 +12,20 @@ export const USER_FRAGMENTS = {
       }
     }
   `,
+  BASIC: gql`
+    fragment BASIC on User {
+      id
+      username
+      firstName
+      lastName
+      email
+      roles {
+        nodes {
+          name
+        }
+      }
+    }
+  `,
   CLIENT: gql`
     fragment CLIENT on User {
       id

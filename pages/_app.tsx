@@ -27,7 +27,9 @@ const MyApp = (props: TProps) => {
       if (userConfig.authToken) {
         handleSetAuthToken(userConfig.authToken)
       }
-      router.push('/?activeMenuItem=profile', '/profile')
+      if (router.pathname === '/') {
+        router.push('/?activeMenuItem=profile', '/profile')
+      }
       setUser(userConfig.user)
     } else {
       handleSetAuthToken(null)

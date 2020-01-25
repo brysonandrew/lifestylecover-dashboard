@@ -1,31 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 import { Item } from "./item"
-import { IActionConfig, EAction } from "../../models"
+import { IActionConfig, EAction, TAddConfig, TDeleteConfig, TItem } from "../../models"
 import { AddItemWithControls } from "./add-item-with-controls"
 import { DeleteModal } from "./delete-modal"
 import { EMPTY_CONFIG } from "."
-import { PaperWrapper } from "../../common/paper-wrapper"
-import { ListDivider } from "../../common/list-divider"
+import { ListDivider } from "../../common"
+import { DeleteContent } from "./delete-content"
 
 const ListWrapper = styled.ul`
 `
-
-type TAddConfig = {
-  inputs: string[]
-  onAdd(values: any): void
-}
-
-type TDeleteConfig = {
-  component(values: any): JSX.Element
-  onDelete(values: any): void
-}
-
-type TItem = {
-  id: string
-  displayComponent: JSX.Element
-  editComponent: JSX.Element
-}
 
 type TProps = {
   addConfig: TAddConfig
@@ -55,11 +39,10 @@ export const List = (props: TProps) => {
         {addConfig && (
           <>
             <AddItemWithControls
-              inputs={addConfig.inputs}
+              addConfig={addConfig}
               actionConfig={actionConfig}
               onUnsetAdd={() => handleReset()}
               onSetAdd={handleSetAdd}
-              onSubmitClick={addConfig.onAdd}
             />
             <ListDivider />
           </>
@@ -76,7 +59,7 @@ export const List = (props: TProps) => {
                   isEditing,
                   onSet: () => handleSetEdit(item),
                 }}
-                onSetDelete={() => handleSetDelete(item)}
+                onSetDelete={handleSetDelete ? (() => handleSetDelete(item)) : null}
               >
                 {renderItemChildren(isEditing, item)}
               </Item>
@@ -86,14 +69,13 @@ export const List = (props: TProps) => {
         <>
           {deleteConfig && action === EAction.Delete && (
             <DeleteModal
-              onDeleteClick={() => {
-                console.log(info)
-                deleteConfig.onDelete(info)
-                handleReset()
-              }}
-              onCloseClick={() => handleReset()}
+              info={info}
+              deleteConfig={deleteConfig}
+              onClose={() => handleReset()}
             >
-              {deleteConfig.component(info)}
+              <DeleteContent>
+                {deleteConfig.deleteText(info)}
+              </DeleteContent>
             </DeleteModal>
           )}
         </>

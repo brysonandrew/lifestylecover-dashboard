@@ -13,3 +13,20 @@ export enum EPolicyInputType {
   Kiwisaver = 'Kiwisaver',
   Pet = 'Pet',
 }
+
+export type TAddConfig = {
+  inputs: Record<string,string>
+  createMutation: any
+  createVariables(values: any): any
+}
+
+export type TDeleteConfig = {
+  deleteMutation: any
+  deleteText(values: any): string
+}
+
+export type TItem = {
+  id: string
+  displayComponent: JSX.Element
+  editComponent: JSX.Element
+}

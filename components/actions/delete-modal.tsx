@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { color } from "../../data"
-import { Modal, Button } from "@material-ui/core"
+import { Modal, Button, Paper } from "@material-ui/core"
 
 // const Wrapper = styled.div`
 //   position: fixed;
@@ -19,9 +19,13 @@ import { Modal, Button } from "@material-ui/core"
 //   min-width: 280px;
 // `
 
-const Content = styled.div`
+const Content = styled(Paper)`
+  position: absolute;
+  left: 50%;
+  top: 50%;
   padding: 20px 28px;
   background-color: ${color.offWhite};
+  transform: translate(-50%,-50%);
 `
 
 const Buttons = styled.div`
@@ -29,16 +33,25 @@ const Buttons = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  margin-top: 24px;
 `
 
 type TProps = {
-  onCloseClick(): void
-  onDeleteClick(): void
+  info: any
+  onClose(): void
+  deleteConfig: any
   children: React.ReactNode
 }
 
 export const DeleteModal = (props: TProps) => {
-  const { children, onCloseClick, onDeleteClick } = props
+  const { info, children, onClose, deleteConfig } = props
+  console.log(info)
+  const [handleDeletePolicy, { loading, error, data, called }] = deleteConfig.deleteMutation
+  React.useEffect(() => {
+    if (!loading && called) {
+      onClose()
+    }
+  }, [loading])
   return (
     <Modal
       disablePortal
@@ -52,10 +65,16 @@ export const DeleteModal = (props: TProps) => {
       <Content>
         {children}
         <Buttons>
-          <Button onClick={onCloseClick}>
+          <Button onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={onDeleteClick}>
+          <Button onClick={() => {
+              handleDeletePolicy({
+                variables: {
+                  id: info.id,
+                },
+              })
+            }}>
             Ok
           </Button>
         </Buttons>

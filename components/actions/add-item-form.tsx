@@ -13,27 +13,26 @@ const FormInner = styled(motion.div)`
 `
 
 type TProps = {
-  formStateInit?: any
-  inputs: string[]
+  inputs: Record<string,string>
   updateConfig: any
   onSubmitClick(values: any): void
 }
 
 export const AddItemForm = (props: TProps) => {
-  const { formStateInit, inputs, updateConfig, onSubmitClick } = props
+  const { inputs, updateConfig, onSubmitClick } = props
   const { loading, data, error } = updateConfig
 
   return (
     <Formik
       validateOnChange={true}
-      initialValues={formStateInit || {}}
+      initialValues={inputs}
       validationSchema={addUserValidationSchema}
       onSubmit={null}
     >
       {({ values }) => (
         <Form>
           <FormInner>
-            {inputs.map((inputKey) => (
+            {Object.keys(inputs).map((inputKey) => (
               <TextField
                 key={inputKey}
                 label={inputKey}

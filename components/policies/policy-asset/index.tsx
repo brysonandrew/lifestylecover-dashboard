@@ -2,26 +2,22 @@ import * as React from "react"
 import styled from "styled-components"
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import { PageWrapper, LoadingCentered } from "../../../common"
-import { List } from "../.."
 import { POLICY_GET_ASSET_LIST_QUERY, POLICY_CREATE_ASSET_MUTATION, POLICY_DELETE_ASSET_MUTATION, POLICY_UPDATE_ASSET_MUTATION } from "../../../utils"
-import { TPolicy, TUserProfile } from "../../../models"
-import { PolicyEditableForm } from "../policy-editable-form"
+import { TUserProfile } from "../../../models"
 import { PolicyAssetInputs } from "./policy-asset-inputs"
-import { PolicyDeleteContent } from "../policy-delete-content"
-
-const INPUTS = {
-  title: ""
-}
+import { PolicyController } from "../policy-controller"
 
 type TProps = {
   userProfile: TUserProfile
 }
 
 export const PolicyAsset = (props: TProps) => {
-  const { loading, error, data: getListData } = useQuery(POLICY_GET_ASSET_LIST_QUERY, {});
-  const [onCreatePolicy, createMutation] = useMutation(POLICY_CREATE_ASSET_MUTATION);
-  const [handleDeletePolicy, deleteMutation] = useMutation(POLICY_DELETE_ASSET_MUTATION);
-
+  const { userProfile } = props
+  const { loading, error, data } = useQuery(POLICY_GET_ASSET_LIST_QUERY, {});
+  const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
+  const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
+  const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
+  
   return (
     <PageWrapper title="Policy Asset">
       {loading
@@ -29,44 +25,18 @@ export const PolicyAsset = (props: TProps) => {
           <LoadingCentered />
         )
         : (
-          <List
-            addConfig={{
-              inputs: Object.keys(INPUTS),
-              onAdd: (values) => onCreatePolicy({ variables: { title: values.title } })
+          <PolicyController
+            inputs={{
+              title: ""
             }}
-            deleteConfig={{
-              component: (values: TPolicy) => {
-                console.log(values)
-                return (
-                  <PolicyDeleteContent
-                    title={values.title}
-                  />
-                )
-              },
-              onDelete: (info) => {
-                handleDeletePolicy({
-                  variables: {
-                    id: info.id,
-                  },
-                })
-              }
-            }}
+            userProfile={userProfile}
+            updateMutation={updateMutation}
+            createMutation={createMutation}
+            deleteMutation={deleteMutation}
+            edges={data.policiesAsset.edges}
           >
-            {getListData && getListData.policiesAsset.edges.map(edge => ({
-              ...edge.node,
-              component: (isEditing: boolean) => (
-                <PolicyEditableForm
-                  key={edge.node.id}
-                  isEditing={isEditing}
-                  policyInfo={edge.node}
-                  initValues={INPUTS}
-                  mutation={useMutation(POLICY_UPDATE_ASSET_MUTATION)}
-                >
-                  <PolicyAssetInputs />
-                </PolicyEditableForm>
-              )
-            }))}
-          </List>
+            <PolicyAssetInputs />
+          </PolicyController>
         )}
     </PageWrapper>
   )

@@ -2,7 +2,7 @@ import * as React from "react"
 import styled from "styled-components"
 import { layoutSizes } from "../../data"
 import { ItemControls } from "./item-controls"
-import { EAction, IActionConfig } from "../../models"
+import { EAction, IActionConfig, TAddConfig } from "../../models"
 import { Add, Cancel } from "@material-ui/icons"
 import { motion, AnimatePresence } from "framer-motion"
 import { Paper } from "@material-ui/core"
@@ -24,15 +24,17 @@ const Info = styled(motion.div)`
 `
 
 type TProps = {
-  inputs: string[]
+  addConfig: TAddConfig
   actionConfig: IActionConfig
   onSetAdd(): void
   onUnsetAdd(): void
-  onSubmitClick(formValues): void
 }
 
 export const AddItemWithControls = (props: TProps) => {
-  const { inputs, actionConfig, onSetAdd, onUnsetAdd, onSubmitClick } = props
+  const { addConfig, actionConfig, onSetAdd, onUnsetAdd } = props
+  const { createMutation, inputs, createVariables } = addConfig
+  const [handleCreatePolicy, mutation] = createMutation
+
   const isAddOpen = actionConfig.action === EAction.Add
 
   return (
@@ -50,7 +52,7 @@ export const AddItemWithControls = (props: TProps) => {
               <AddItemForm
                 updateConfig
                 inputs={inputs}
-                onSubmitClick={onSubmitClick}
+                onSubmitClick={(values) => handleCreatePolicy({ variables: createVariables(values) })}
               />
             </Paper>
           </Info>
