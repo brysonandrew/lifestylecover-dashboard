@@ -1,6 +1,7 @@
 export * from "./buttons"
 export * from "./inputs"
 export * from "./loading"
+export * from "./form-disabled"
 export * from "./form-wrapper"
 export * from "./list-divider"
 export * from "./page-wrapper"

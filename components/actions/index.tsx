@@ -1,3 +1,3 @@
 export * from "./list"
 export * from "./item"
-export const EMPTY_CONFIG = { action: null, info: {} }
+export const EMPTY_ACTION_CONFIG = { action: null, actionInfo: {} }

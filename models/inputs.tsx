@@ -1,4 +1,5 @@
 import { FieldAttributes } from "formik"
+import { ReactNode } from "react"
 
 export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
@@ -26,7 +27,6 @@ export type TDeleteConfig = {
 }
 
 export type TItem = {
-  id: string
-  displayComponent: JSX.Element
-  editComponent: JSX.Element
+  itemInfo: any
+  component(isEditing: boolean): JSX.Element
 }

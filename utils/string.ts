@@ -21,6 +21,16 @@ export function fromKebabCase(name) {
   }
 }
 
+export const fromCamelCase = (camelCase) => {
+  if (camelCase) {
+    return camelCase
+    .replace(/([A-Z])/g, (match) => ` ${match}`)
+    .replace(/^./, (match) => match.toUpperCase())
+  } else {
+    return ""
+  }
+};
+
 export function titleCase(str) {
   var splitStr = str.toLowerCase().split(" ")
   for (var i = 0; i < splitStr.length; i++) {

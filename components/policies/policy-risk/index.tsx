@@ -6,6 +6,7 @@ import { POLICY_GET_RISK_LIST_QUERY, POLICY_UPDATE_RISK_MUTATION, POLICY_CREATE_
 import { TUserProfile } from "../../../models"
 import { PolicyRiskInputs } from "./policy-risk-inputs"
 import { PolicyController } from "../policy-controller"
+import { POLICY_RISK } from "../../../data-initial-values"
 
 type TProps = {
   userProfile: TUserProfile
@@ -26,9 +27,7 @@ export const PolicyRisk = (props: TProps) => {
         )
         : (
           <PolicyController
-            inputs={{
-              title: ""
-            }}
+            inputs={POLICY_RISK}
             userProfile={userProfile}
             updateMutation={updateMutation}
             createMutation={createMutation}

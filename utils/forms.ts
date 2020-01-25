@@ -6,3 +6,11 @@ export const changedValues = (initValues, currentValues) => {
     return changed
   }, {})
 }
+
+export const initializeFormValues = (initFormValues, compareValues) => {
+  let values = {}
+  Object.keys(initFormValues).forEach(key => {
+    values[key] = compareValues[key] || initFormValues[key]
+  })
+  return values
+}

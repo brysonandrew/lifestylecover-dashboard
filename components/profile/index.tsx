@@ -21,3 +21,6 @@ export const Profile = (props: TProps) => {
     </div>
   )
 }
+
+export * from './contact-editable'
+export * from './details-editable'

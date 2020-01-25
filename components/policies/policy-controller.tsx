@@ -1,10 +1,10 @@
 import * as React from "react"
 import styled from "styled-components"
-import { useQuery } from "@apollo/react-hooks"
 import { List } from ".."
-import { POLICY_GET_RISK_LIST_QUERY } from "../../utils"
 import { TUserProfile } from "../../models"
 import { PolicyEditableForm } from "./policy-editable-form"
+import { FormDisabled } from "../../common/form-disabled"
+import { initializeFormValues } from "../../utils"
 
 
 type TProps = {
@@ -39,18 +39,27 @@ export const PolicyController = (props: TProps) => {
           : null}
     >
       {edges.map(edge => ({
-        ...edge.node,
-        component: (isEditing: boolean) => (
-          <PolicyEditableForm
-            key={edge.node.id}
-            isEditing={isEditing}
-            policyInfo={edge.node}
-            initValues={inputs}
-            mutation={updateMutation}
-          >
-            {children}
-          </PolicyEditableForm>
-        )
+        itemInfo: edge.node,
+        component: (isEditing: boolean) => {
+          if (isEditing) {
+            return (
+              <PolicyEditableForm
+                key={edge.node.id}
+                policyInfo={edge.node}
+                initFormValues={inputs}
+                mutation={updateMutation}
+              >
+                {children}
+              </PolicyEditableForm>
+            )
+          } else {
+            return (
+              <FormDisabled>
+                {initializeFormValues(inputs, edge.node)}
+              </FormDisabled>
+            )
+          }
+        }
       }))}
     </List>
   )

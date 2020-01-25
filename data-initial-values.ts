@@ -35,8 +35,15 @@ export const USER_DETAILS_FORM: Partial<TClientProfile> = {
   smoker: false,
 }
 
-export const POLICY = {
+export const POLICY_RISK = {
   id: "",
-  policyId: "",
   title: "",
+  ownersNameText: "",
+  insuredText: "",
+  commencementDate: "",
+  premiumAmount: "",
+  premiumFrequency: "",
+  isPolicyFee: false,
+  policyAmount: "",
+  benefits: "",
 }

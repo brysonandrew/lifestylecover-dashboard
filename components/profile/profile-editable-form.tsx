@@ -1,14 +1,11 @@
 import * as React from "react"
 import { Formik, Form } from "formik"
-import { Button, CircularProgress } from "@material-ui/core"
-import { Save } from "@material-ui/icons"
 import { userProfileEditableValidationSchema } from "../../data-validation"
-import { FieldSet, ButtonWrapper } from "../../common"
-import { changedValues } from "../../utils"
+import { SubmitButton } from "../../common"
 import { TUserProfile } from "../../models"
+import { changedValues, initializeFormValues } from "../../utils"
 
 type TProps = {
-  isEditing: boolean
   userProfile: TUserProfile
   mutation: any
   initFormValues: any
@@ -16,15 +13,12 @@ type TProps = {
 }
 
 export const ProfileEditableForm = (props: TProps) => {
-  const { isEditing, userProfile, mutation, initFormValues, children } = props
+  const { userProfile, mutation, initFormValues, children } = props
   const [handleUpdateUser, mutationResult] = mutation
   const { loading, error, data } = mutationResult
 
   if (userProfile) {
-    let initValues = initFormValues
-    Object.keys(initFormValues).forEach(key => {
-      initValues[key] = userProfile[key] || initFormValues[key]
-    })
+    let initValues = initializeFormValues(initFormValues, userProfile)
     return (
       <Formik
         validateOnChange={true}
@@ -35,38 +29,18 @@ export const ProfileEditableForm = (props: TProps) => {
         {({ values }) => {
           return (
             <Form>
-              <FieldSet isDisabled={!isEditing}>
-                {children}
-              </FieldSet>
-              {isEditing && (
-                <ButtonWrapper>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    type="submit"
-                    disabled={loading}
-                    onClick={() =>
-                      handleUpdateUser({
-                        variables: {
-                          id: userProfile.id,
-                          ...changedValues(initValues, values)
-                        },
-                      })
-                    }
-                    startIcon={
-                      loading
-                        ? (
-                          <CircularProgress size={18} color="inherit" />
-                        ) : (
-                          <Save />
-                        )
-                    }
-                  >
-                    Save
-                  </Button>
-                </ButtonWrapper>
-              )}
+              {children}
+              <SubmitButton
+                isLoading={loading}
+                onClick={() =>
+                  handleUpdateUser({
+                    variables: {
+                      id: userProfile.id,
+                      ...changedValues(initValues, values)
+                    },
+                  })
+                }
+              />
             </Form>
           )
         }}

@@ -3,13 +3,20 @@ import { useQuery, useMutation } from "@apollo/react-hooks"
 import { List } from "../actions/list"
 import { USER_GET_LIST_QUERY, USER_CREATE_MUTATION, USER_DELETE_MUTATION } from "../../utils"
 import { LoadingCentered, PageWrapper } from "../../common"
+import { UserController } from "./user-controller"
+import { TUserProfile } from "../../models"
 
-type TProps = {}
+type TProps = {
+  userProfile: TUserProfile
+}
 
 export const Users = (props: TProps) => {
-  const { loading, error, data: getListData } = useQuery(USER_GET_LIST_QUERY, {});
+  const { userProfile } = props
+  const { loading, error, data } = useQuery(USER_GET_LIST_QUERY, {});
   const createMutation = useMutation(USER_CREATE_MUTATION)
   const deleteMutation = useMutation(USER_DELETE_MUTATION)
+
+  console.log(data)
 
   return (
     <PageWrapper title="Users">
@@ -18,29 +25,17 @@ export const Users = (props: TProps) => {
           <LoadingCentered />
         )
         : (
-          <List
-            addConfig={{
-              inputs: {
-                username: '',
-                email: ''
-              },
-              createVariables: (values) => ({ username: values.username, email: values.email }),
-              createMutation
+          <UserController
+            inputs={{
+              username: '',
+              email: ''
             }}
-            deleteConfig={{
-              deleteText: (values) => `user ${values.username}`,
-              deleteMutation
-            }}
-          >
-            {getListData && getListData.users.edges.map(edge => ({
-              ...edge.node,
-              component: (isEditing: boolean) => (
-                <div>
-                  {isEditing ? edge.node.id : 'hey'}
-                </div>
-              )
-            }))}
-          </List>
+            userProfile={userProfile}
+            updateMutation={null}
+            createMutation={createMutation}
+            deleteMutation={deleteMutation}
+            edges={data.users.edges}
+          />
         )}
     </PageWrapper>
   )

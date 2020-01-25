@@ -4,7 +4,7 @@ import { Item } from "./item"
 import { IActionConfig, EAction, TAddConfig, TDeleteConfig, TItem } from "../../models"
 import { AddItemWithControls } from "./add-item-with-controls"
 import { DeleteModal } from "./delete-modal"
-import { EMPTY_CONFIG } from "."
+import { EMPTY_ACTION_CONFIG } from "."
 import { ListDivider } from "../../common"
 import { DeleteContent } from "./delete-content"
 
@@ -19,19 +19,16 @@ type TProps = {
 
 export const List = (props: TProps) => {
   const { addConfig, deleteConfig, children } = props
-  const [actionConfig, onSetActionConfig] = React.useState<IActionConfig>({ action: null, info: null })
-  const { action, info } = actionConfig
+  const [actionConfig, onSetActionConfig] = React.useState<IActionConfig>(EMPTY_ACTION_CONFIG)
+  const { action, actionInfo } = actionConfig
 
-  const handleReset = () => onSetActionConfig(EMPTY_CONFIG)
-  const handleSetAdd = () => onSetActionConfig(action === EAction.Add ? EMPTY_CONFIG : { action: EAction.Add, info: {} })
-  const handleSetEdit = (itemInfo) => onSetActionConfig(action === EAction.Edit ? EMPTY_CONFIG : { action: EAction.Edit, info: itemInfo })
+  const handleReset = () => onSetActionConfig(EMPTY_ACTION_CONFIG)
+  const handleSetAdd = () => onSetActionConfig(action === EAction.Add ? EMPTY_ACTION_CONFIG : { action: EAction.Add, actionInfo: {} })
+  const handleSetEdit = (itemInfo) => onSetActionConfig(action === EAction.Edit ? EMPTY_ACTION_CONFIG : { action: EAction.Edit, actionInfo: itemInfo })
   const handleSetDelete = deleteConfig && (
-    (itemInfo) => onSetActionConfig(action === EAction.Add ? EMPTY_CONFIG : { action: EAction.Delete, info: itemInfo })
+    (itemInfo) => onSetActionConfig(action === EAction.Add ? EMPTY_ACTION_CONFIG : { action: EAction.Delete, actionInfo: itemInfo })
   )
-
-  const renderItemChildren = (isEditing, item) => (
-    item.component(isEditing)
-  )
+  console.log(action)
 
   return (
     <>
@@ -47,21 +44,22 @@ export const List = (props: TProps) => {
             <ListDivider />
           </>
         )}
-        {children && children.map((item, index) => {
-          const isEditing = action === EAction.Edit && info.id === item.id
+        {children && children.map((child, index) => {
+          const { component, itemInfo } = child
+          const isEditing = action === EAction.Edit && itemInfo.id === actionInfo.id
           return (
-            <React.Fragment key={item.id}>
+            <React.Fragment key={itemInfo.id}>
               {index !== 0 && <ListDivider />}
               <Item
-                id={item.id}
+                id={itemInfo.id}
                 actionConfig={actionConfig}
                 editConfig={{
                   isEditing,
-                  onSet: () => handleSetEdit(item),
+                  onSet: () => handleSetEdit(itemInfo),
                 }}
-                onSetDelete={handleSetDelete ? (() => handleSetDelete(item)) : null}
+                onSetDelete={handleSetDelete ? (() => handleSetDelete(itemInfo)) : null}
               >
-                {renderItemChildren(isEditing, item)}
+                {component(isEditing)}
               </Item>
             </React.Fragment>
           )
@@ -69,12 +67,12 @@ export const List = (props: TProps) => {
         <>
           {deleteConfig && action === EAction.Delete && (
             <DeleteModal
-              info={info}
+              info={actionInfo}
               deleteConfig={deleteConfig}
               onClose={() => handleReset()}
             >
               <DeleteContent>
-                {deleteConfig.deleteText(info)}
+                {deleteConfig.deleteText(actionInfo)}
               </DeleteContent>
             </DeleteModal>
           )}

@@ -15,7 +15,7 @@ export const Policies = (props: TProps) => {
       <PolicyRisk
         {...props}
       />
-      <PolicyAsset
+      {/* <PolicyAsset
         {...props}
       />
       <PolicyKiwisaver
@@ -23,7 +23,7 @@ export const Policies = (props: TProps) => {
       />
       <PolicyPet
         {...props}
-      />
+      /> */}
     </div>
   )
 }

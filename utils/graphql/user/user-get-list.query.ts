@@ -3,13 +3,13 @@ import { USER_FRAGMENTS } from "./user.fragments"
 
 export const USER_GET_LIST_QUERY = gql`
   query USER_GET_LIST {
-    users {
+    users(first: 7) {
       edges {
         node {
-          ...BASIC
+          ...ADMIN
         }
       }
     }
   }
-  ${USER_FRAGMENTS.BASIC}
+  ${USER_FRAGMENTS.ADMIN}
 `

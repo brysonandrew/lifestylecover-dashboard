@@ -15,7 +15,7 @@ export enum EAction {
 
 export interface IActionConfig {
   action: EAction
-  info: any
+  actionInfo: any
 }
 
 export interface IActionControlConfig {

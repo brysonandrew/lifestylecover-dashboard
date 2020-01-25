@@ -7,6 +7,8 @@ const Wrapper = styled.div`
   text-align: left;
 `
 
+type TProps = {}
+
 export const ProfileContactInputs = () => {
   return (
     <Wrapper>

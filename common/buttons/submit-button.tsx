@@ -1,17 +1,36 @@
 import React from "react"
 import { CircularProgress, Button } from "@material-ui/core"
+import { ButtonWrapper } from "."
+import { Save } from "@material-ui/icons"
 
-export const SubmitButton = (props: any) => {
-  const { isLoading, children, ...buttonProps } = props
+type TProps = {
+  isLoading: boolean
+  onClick(): void
+}
+
+export const SubmitButton = (props: TProps) => {
+  const { isLoading, onClick } = props
   return (
-    <Button     
-      {...buttonProps}
-      disabled={isLoading}
-    >
-      {isLoading
-        ? <CircularProgress/>
-        : children}
-    </Button>
+    <ButtonWrapper>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        type="submit"
+        disabled={isLoading}
+        onClick={onClick}
+        startIcon={
+          isLoading
+            ? (
+              <CircularProgress size={18} color="inherit" />
+            ) : (
+              <Save />
+            )
+        }
+      >
+        Save
+      </Button>
+    </ButtonWrapper>
   )
 }
 
