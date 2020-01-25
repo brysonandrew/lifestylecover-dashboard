@@ -37,7 +37,7 @@ export const Content = (props: TProps) => {
         {renderSwitch(fromKebabCase(activeMenuItem), {
           Profile: () => <Profile userProfile={userProfile} />,
           Users: () => <Users />,
-          Policies: () => <Policies/>,
+          Policies: () => <Policies userProfile={userProfile} />,
         })}
       </Inner>
     </Wrapper>

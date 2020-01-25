@@ -1,9 +1,9 @@
-import React, { ReactNode } from "react"
+import React from "react"
 import { NextRouter } from "next/router"
 import { Login } from "../components"
 import { Layout } from "../layout"
 import { useLazyQuery } from "@apollo/react-hooks"
-import { VIEWER_CLIENT_QUERY, VIEWER_ADVISOR_QUERY, VIEWER_ADMIN_QUERY, VIEWER_INIT_QUERY } from "../utils"
+import { VIEWER_INIT_QUERY } from "../utils"
 import { isBrowser, store } from '../utils';
 import { AUTH_TOKEN_KEY } from '../data';
 import { LoadingCentered } from "../common"
@@ -21,7 +21,6 @@ export default (props: TIndexProps) => {
     VIEWER_INIT_QUERY,
     {}
   );
-  // const handleGetViewer()
 
   React.useEffect(() => {
     if (isBrowser && !viewerInit.called) {

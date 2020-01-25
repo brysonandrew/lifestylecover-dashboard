@@ -1,7 +1,7 @@
 import * as React from "react"
-import { TextField, Radio } from "../../common/inputs"
-import { FormWrapper } from "../../common/form-wrapper"
-import { CREATE_POLICY_PLACEHOLDER_LOOKUP } from "../../data-placeholders"
+import { TextField, Radio } from "../../../common/inputs"
+import { FormWrapper } from "../../../common/form-wrapper"
+import { CREATE_POLICY_PLACEHOLDER_LOOKUP } from "../../../data-placeholders"
 
 enum EUserType {
   administrator = 'administrator',

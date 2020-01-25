@@ -26,9 +26,7 @@ const userProfileFrom = user => {
       roles,
     } = user
     const role = roles?.nodes[0]?.name
-    console.log(dateOfBirth)
     dateOfBirth = formatDate(dateOfBirth)
-    console.log(dateOfBirth)
     return {
       id,
       username,

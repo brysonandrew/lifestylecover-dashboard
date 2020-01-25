@@ -40,13 +40,13 @@ export const List = (props: TProps) => {
 
   const handleReset = () => onSetActionConfig(EMPTY_CONFIG)
   const handleSetAdd = () => onSetActionConfig(action === EAction.Add ? EMPTY_CONFIG : { action: EAction.Add, info: {} })
-  const handleSetEdit = (info) => onSetActionConfig(action === EAction.Edit ? EMPTY_CONFIG : { action: EAction.Edit, info })
+  const handleSetEdit = (itemInfo) => onSetActionConfig(action === EAction.Edit ? EMPTY_CONFIG : { action: EAction.Edit, info: itemInfo })
   const handleSetDelete = deleteConfig && (
-    () => onSetActionConfig(action === EAction.Add ? EMPTY_CONFIG : { action: EAction.Delete, info })
+    (itemInfo) => onSetActionConfig(action === EAction.Add ? EMPTY_CONFIG : { action: EAction.Delete, info: itemInfo })
   )
 
-  const renderItemChildren = (isEditing, itemInfo) => (
-    itemInfo.component(isEditing)
+  const renderItemChildren = (isEditing, item) => (
+    item.component(isEditing)
   )
 
   return (
@@ -64,21 +64,21 @@ export const List = (props: TProps) => {
             <ListDivider />
           </>
         )}
-        {children && children.map((itemInfo, index) => {
-          const isEditing = action === EAction.Edit && info.id === itemInfo.id
+        {children && children.map((item, index) => {
+          const isEditing = action === EAction.Edit && info.id === item.id
           return (
-            <React.Fragment key={itemInfo.id}>
+            <React.Fragment key={item.id}>
               {index !== 0 && <ListDivider />}
               <Item
-                id={itemInfo.id}
+                id={item.id}
                 actionConfig={actionConfig}
                 editConfig={{
                   isEditing,
-                  onSet: () => handleSetEdit(itemInfo),
+                  onSet: () => handleSetEdit(item),
                 }}
-                onSetDelete={handleSetDelete}
+                onSetDelete={() => handleSetDelete(item)}
               >
-                {renderItemChildren(isEditing, itemInfo)}
+                {renderItemChildren(isEditing, item)}
               </Item>
             </React.Fragment>
           )
@@ -87,6 +87,7 @@ export const List = (props: TProps) => {
           {deleteConfig && action === EAction.Delete && (
             <DeleteModal
               onDeleteClick={() => {
+                console.log(info)
                 deleteConfig.onDelete(info)
                 handleReset()
               }}

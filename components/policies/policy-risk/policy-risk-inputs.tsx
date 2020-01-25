@@ -1,10 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { FormWrapper, TextField } from "../../../common"
+import { TextField } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
-import { Paper } from "@material-ui/core"
 
-export const PolicyEditableInputs = () => {
+export const PolicyRiskInputs = () => {
   return (
     <>
       <TextField

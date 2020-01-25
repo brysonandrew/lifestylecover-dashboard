@@ -1,25 +1,26 @@
 import * as React from "react"
-import { TPolicy } from "../../../models/users"
 import { Formik, Form } from "formik"
-import { policyEditableValidationSchema } from "../../../data-validation"
-import { ButtonWrapper } from "../../../common/buttons/button-wrapper"
-import { Button, CircularProgress } from "@material-ui/core"
 import { useMutation } from "@apollo/react-hooks"
 import { Save } from "@material-ui/icons"
-import { PolicyEditableInputs } from "./policy-editable-inputs"
-import { POLICY } from "../../../data-initial-values"
-import { FieldSet } from "../../../common/inputs/field-set"
-import { changedValues } from "../../../utils/forms"
-import { POLICY_UPDATE_MUTATION } from "../../../utils/graphql/policy/policy-update.mutation"
+import { Button, CircularProgress } from "@material-ui/core"
+import { TPolicy } from "../../models"
+import { policyEditableValidationSchema } from "../../data-validation"
+import { ButtonWrapper } from "../../common/buttons/button-wrapper"
+import { POLICY } from "../../data-initial-values"
+import { FieldSet } from "../../common"
+import { POLICY_UPDATE_RISK_MUTATION, changedValues } from "../../utils"
 
 type TProps = {
   isEditing: boolean
   policyInfo: TPolicy
+  initValues: any
+  mutation: any
+  children: React.ReactNode
 }
 
 export const PolicyEditableForm = (props: TProps) => {
-  const { isEditing, policyInfo } = props
-  const [handleUpdatePolicy, updateMutation] = useMutation(POLICY_UPDATE_MUTATION);
+  const { isEditing, policyInfo, children, mutation } = props
+  const [handleUpdatePolicy, updateMutation] = mutation;
   const { loading, error, data } = updateMutation
 
   if (policyInfo) {
@@ -38,7 +39,7 @@ export const PolicyEditableForm = (props: TProps) => {
           return (
             <Form>
               <FieldSet isDisabled={!isEditing}>
-                <PolicyEditableInputs />
+                {children}
               </FieldSet>
               {isEditing && (
                 <ButtonWrapper>
@@ -57,9 +58,10 @@ export const PolicyEditableForm = (props: TProps) => {
                       })
                     }
                     startIcon={
-                      loading ? (
-                        <CircularProgress size={18} color="inherit" />
-                      ) : (
+                      loading
+                        ? (
+                          <CircularProgress size={18} color="inherit" />
+                        ) : (
                           <Save />
                         )
                     }

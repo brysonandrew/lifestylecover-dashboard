@@ -1,28 +1,24 @@
 import * as React from "react"
 import { Formik, Form } from "formik"
-import { userProfileEditableValidationSchema } from "../../data-validation"
 import { Button, CircularProgress } from "@material-ui/core"
 import { Save } from "@material-ui/icons"
-import { ProfileDetailsInputs } from "./details-editable/profile-details-inputs"
+import { userProfileEditableValidationSchema } from "../../data-validation"
 import { FieldSet, ButtonWrapper } from "../../common"
-import { EInputType } from "../../models"
-import { renderSwitch, changedValues } from "../../utils"
-import { ProfileContactInputs } from "./contact-editable/profile-contact-inputs"
-import { TUserProfile } from "../../models/users"
+import { changedValues } from "../../utils"
+import { TUserProfile } from "../../models"
 
 type TProps = {
   isEditing: boolean
   userProfile: TUserProfile
   mutation: any
   initFormValues: any
-  inputType: EInputType
+  children: React.ReactNode
 }
 
 export const ProfileEditableForm = (props: TProps) => {
-  const { isEditing, userProfile, mutation, initFormValues, inputType } = props
+  const { isEditing, userProfile, mutation, initFormValues, children } = props
   const [handleUpdateUser, mutationResult] = mutation
   const { loading, error, data } = mutationResult
-  console.log(userProfile)
 
   if (userProfile) {
     let initValues = initFormValues
@@ -37,18 +33,10 @@ export const ProfileEditableForm = (props: TProps) => {
         onSubmit={null}
       >
         {({ values }) => {
-          // console.log(values)
           return (
             <Form>
               <FieldSet isDisabled={!isEditing}>
-                {renderSwitch(inputType, {
-                  [EInputType.Contact]: () => (
-                    <ProfileContactInputs />
-                  ),
-                  [EInputType.Details]: () => (
-                    <ProfileDetailsInputs />
-                  ),
-                })}
+                {children}
               </FieldSet>
               {isEditing && (
                 <ButtonWrapper>
