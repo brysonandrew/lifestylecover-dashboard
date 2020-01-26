@@ -13,13 +13,13 @@ export const PolicyKiwisaverInputs = () => {
         placeholder={placeholder.user.unknown}
         name="title"
       />
-      {Object.keys(POLICY_KIWISAVER_INIT).map((key) => (
+      {Object.keys(POLICY_KIWISAVER_INIT).map(key => (
         <div key={key}>
           <TextField
             label={fromCamelCase(key)}
             placeholder={placeholder.user.unknown}
             name={key}
-            type={key.indexOf('date') > -1 ? 'date' : null}
+            type={key.indexOf("date") > -1 ? "date" : null}
           />
         </div>
       ))}

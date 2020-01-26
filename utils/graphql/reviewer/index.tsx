@@ -1,1 +1,1 @@
-export * from './reviewer-list-all.query'
+export * from "./reviewer-list-all.query"

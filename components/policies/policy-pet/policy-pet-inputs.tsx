@@ -6,7 +6,7 @@ import { PET_INIT } from "../../../data-initial-values"
 import { fromCamelCase } from "../../../utils"
 const name = "pet"
 
-export const PolicyPetInputs = (props) => {
+export const PolicyPetInputs = props => {
   return (
     <div>
       <TextField
@@ -22,13 +22,13 @@ export const PolicyPetInputs = (props) => {
       >
         {(_, index) => (
           <div>
-            {Object.keys(PET_INIT).map((key) => (
+            {Object.keys(PET_INIT).map(key => (
               <div key={key}>
                 <TextField
                   label={fromCamelCase(key)}
                   placeholder={placeholder.user.unknown}
                   name={`${name}s.${index}.${key}`}
-                  type={key.indexOf('date') > -1 ? 'date' : null}
+                  type={key.indexOf("date") > -1 ? "date" : null}
                 />
               </div>
             ))}

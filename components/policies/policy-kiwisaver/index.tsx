@@ -26,10 +26,7 @@ export const PolicyKiwisaver = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_KIWISAVER_MUTATION)
 
   return (
-    <PageWrapper
-      title="Kiwisaver"
-      icon={<AccountBalance/>}
-    >
+    <PageWrapper title="Kiwisaver" icon={<AccountBalance />}>
       {loading ? (
         <LoadingCentered />
       ) : (

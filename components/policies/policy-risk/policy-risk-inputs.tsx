@@ -6,7 +6,7 @@ import { BENEFIT_RISK_INIT } from "../../../data-initial-values"
 import { fromCamelCase } from "../../../utils"
 const name = "benefit"
 
-export const PolicyRiskInputs = (props) => {
+export const PolicyRiskInputs = props => {
   return (
     <div>
       <TextField
@@ -22,13 +22,13 @@ export const PolicyRiskInputs = (props) => {
       >
         {(_, index) => (
           <div>
-            {Object.keys(BENEFIT_RISK_INIT).map((key) => (
+            {Object.keys(BENEFIT_RISK_INIT).map(key => (
               <div key={key}>
                 <TextField
                   label={fromCamelCase(key)}
                   placeholder={placeholder.user.unknown}
                   name={`${name}s.${index}.${key}`}
-                  type={key.indexOf('date') > -1 ? 'date' : null}
+                  type={key.indexOf("date") > -1 ? "date" : null}
                 />
               </div>
             ))}
