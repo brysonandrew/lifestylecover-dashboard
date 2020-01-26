@@ -9,7 +9,7 @@ type TProps = {
   policyInfo: TPolicy
   initFormValues: any
   mutation: any
-  children: React.ReactNode
+  children: JSX.Element
 }
 
 export const PolicyEditableForm = (props: TProps) => {
@@ -29,7 +29,7 @@ export const PolicyEditableForm = (props: TProps) => {
         {({ values }) => {
           return (
             <Form>
-              {children}
+              {React.cloneElement(children, {values})}
               <SubmitButton
                 isLoading={loading}
                 onClick={() =>

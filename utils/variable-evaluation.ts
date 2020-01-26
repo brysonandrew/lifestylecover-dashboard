@@ -6,4 +6,6 @@ export const isString = x => typeof x === "string"
 
 export const isNumber = x => typeof x === "number"
 
+export const isBoolean = x => typeof x === "boolean"
+
 export const isArray = x => x.constructor === Array

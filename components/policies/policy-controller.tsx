@@ -13,7 +13,7 @@ type TProps = {
   updateMutation: any
   createMutation?: any
   deleteMutation?: any
-  children: React.ReactNode
+  children: JSX.Element
   edges: any[]
 }
 

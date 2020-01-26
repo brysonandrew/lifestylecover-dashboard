@@ -11,6 +11,8 @@ import {
 import { TUserProfile } from "../../../models"
 import { PolicyKiwisaverInputs } from "./policy-kiwisaver-inputs"
 import { PolicyController } from "../policy-controller"
+import { AccountBalance } from "@material-ui/icons"
+import { POLICY_KIWISAVER_INIT } from "../../../data-initial-values"
 
 type TProps = {
   userProfile: TUserProfile
@@ -24,14 +26,15 @@ export const PolicyKiwisaver = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_KIWISAVER_MUTATION)
 
   return (
-    <PageWrapper title="Policy Kiwisaver">
+    <PageWrapper
+      title="Policy Kiwisaver"
+      icon={<AccountBalance/>}
+    >
       {loading ? (
         <LoadingCentered />
       ) : (
         <PolicyController
-          inputs={{
-            title: "",
-          }}
+          inputs={POLICY_KIWISAVER_INIT}
           userProfile={userProfile}
           updateMutation={updateMutation}
           createMutation={createMutation}

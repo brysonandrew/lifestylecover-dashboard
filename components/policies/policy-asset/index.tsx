@@ -11,6 +11,8 @@ import {
 import { TUserProfile } from "../../../models"
 import { PolicyAssetInputs } from "./policy-asset-inputs"
 import { PolicyController } from "../policy-controller"
+import { Home } from "@material-ui/icons"
+import { POLICY_ASSET_INIT } from "../../../data-initial-values"
 
 type TProps = {
   userProfile: TUserProfile
@@ -24,14 +26,12 @@ export const PolicyAsset = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
 
   return (
-    <PageWrapper title="Policy Asset">
+    <PageWrapper title="Policy Home and Contents" icon={<Home/>}>
       {loading ? (
         <LoadingCentered />
       ) : (
         <PolicyController
-          inputs={{
-            title: "",
-          }}
+          inputs={POLICY_ASSET_INIT}
           userProfile={userProfile}
           updateMutation={updateMutation}
           createMutation={createMutation}

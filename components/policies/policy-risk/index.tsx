@@ -11,7 +11,8 @@ import {
 import { TUserProfile } from "../../../models"
 import { PolicyRiskInputs } from "./policy-risk-inputs"
 import { PolicyController } from "../policy-controller"
-import { POLICY_RISK } from "../../../data-initial-values"
+import { POLICY_RISK_INIT } from "../../../data-initial-values"
+import { Timeline } from "@material-ui/icons"
 
 type TProps = {
   userProfile: TUserProfile
@@ -25,12 +26,12 @@ export const PolicyRisk = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_RISK_MUTATION)
 
   return (
-    <PageWrapper title="Policy Risk">
+    <PageWrapper title="Policy Risk" icon={<Timeline/>}>
       {loading ? (
         <LoadingCentered />
       ) : (
         <PolicyController
-          inputs={POLICY_RISK}
+          inputs={POLICY_RISK_INIT}
           userProfile={userProfile}
           updateMutation={updateMutation}
           createMutation={createMutation}

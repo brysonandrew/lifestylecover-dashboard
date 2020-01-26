@@ -35,15 +35,79 @@ export const USER_DETAILS_FORM: Partial<TClientProfile> = {
   smoker: false,
 }
 
-export const POLICY_RISK = {
+export const BENEFIT_RISK_INIT = {
+  benefitType: "",
+  benefitDescription: "",
+  productName: "",
+  excess: "",
+  additionalFeatures: "",
+  exclusionsOrLoadings: "",
+  individualBenefitPremiums: ""
+}
+
+export const POLICY_RISK_INIT = {
   id: "",
   title: "",
-  ownersNameText: "",
-  insuredText: "",
+  ownersName: "",
+  insured: "",
   commencementDate: "",
   premiumAmount: "",
   premiumFrequency: "",
-  isPolicyFee: false,
-  policyAmount: "",
-  benefits: "",
+  policyFee: "",
+  benefits: [],
+}
+
+export const BENEFIT_ASSET_INIT = {
+  insuredPartyName: "",
+  premiumAmount: "",
+  premiumFrequency: "",
+  policyNumber: "",
+  commencementDate: "",
+  benefitType: "",
+  benefitDescription: "",
+  sumInsured: "",
+  excess: "",
+  situationOfRisk: "",
+  additionalFeatures: "",
+}
+
+export const POLICY_ASSET_INIT = {
+  id: "",
+  title: "",
+  benefits: []
+}
+
+export const POLICY_KIWISAVER_INPUTS_INIT = {
+  memberNumber: "",
+  dateJoined: "",
+  pir: "",
+  fundType: "",
+  fundDescription: "",
+  balance: "",
+}
+
+export const POLICY_KIWISAVER_INIT = {
+  id: "",
+  title: "",
+  ...POLICY_KIWISAVER_INPUTS_INIT
+}
+
+
+export const PET_INIT = {
+  petName: "",
+  policyNumber: "",
+  premiumAmount: "",
+  premiumFrequency: "",
+  commencementDate: "",
+  productType: "",
+  productDescription: "",
+  sumInsured: "",
+  excess: "",
+  additionalFeatures: "",
+}
+
+export const POLICY_PET_INIT = {
+  id: "",
+  title: "",
+  pets: []
 }
