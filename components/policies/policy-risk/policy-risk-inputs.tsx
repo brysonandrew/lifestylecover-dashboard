@@ -4,6 +4,7 @@ import { TextField, TextFieldArray } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import { BENEFIT_RISK_INIT } from "../../../data-initial-values"
 import { fromCamelCase } from "../../../utils"
+const name = "benefit"
 
 export const PolicyRiskInputs = (props) => {
   return (
@@ -17,7 +18,7 @@ export const PolicyRiskInputs = (props) => {
         name={name}
         title={name}
         initialItem={BENEFIT_RISK_INIT}
-        values={props.values.educations}
+        values={props.values.benefits}
       >
         {(_, index) => (
           <div>
@@ -26,7 +27,7 @@ export const PolicyRiskInputs = (props) => {
                 <TextField
                   label={fromCamelCase(key)}
                   placeholder={placeholder.user.unknown}
-                  name={`risks.${index}.${key}`}
+                  name={`${name}s.${index}.${key}`}
                   type={key.indexOf('date') > -1 ? 'date' : null}
                 />
               </div>

@@ -5,6 +5,7 @@ import { TUserProfile } from "../../models"
 import { PolicyEditableForm } from "./policy-editable-form"
 import { FormDisabled } from "../../common/form-disabled"
 import { initializeFormValues } from "../../utils"
+import { PolicyNoneFound } from "./policy-none-found"
 
 
 type TProps = {
@@ -18,49 +19,58 @@ type TProps = {
 }
 
 export const PolicyController = (props: TProps) => {
-  const { inputs, edges, children, createMutation, deleteMutation, updateMutation } = props
+  const { inputs, edges, children, createMutation, deleteMutation, updateMutation, userProfile } = props
 
-  return (
-    <List
-      addConfig={
-        createMutation
-          ? {
-            inputs,
-            createVariables: (values) => ({ title: values.title }),
-            createMutation
+  if (edges.length === 0) {
+    return (
+      <PolicyNoneFound />
+    )
+  } else {
+    return (
+      <List
+        addConfig={
+          createMutation
+            ? {
+              inputs,
+              createVariables: (values) => ({ title: values.title }),
+              createMutation
+            }
+            : null}
+        deleteConfig={
+          deleteMutation
+            ? {
+              deleteText: (values) => `policy ${values.title}`,
+              deleteMutation
+            }
+            : null}
+      >
+        {edges.map(edge => ({
+          itemInfo: edge.node,
+          component: (isEditing: boolean) => {
+            if (isEditing) {
+              return (
+                <PolicyEditableForm
+                  key={edge.node.id}
+                  policyInfo={edge.node}
+                  userProfile={userProfile}
+                  initFormValues={inputs}
+                  mutation={updateMutation}
+                >
+                  {children}
+                </PolicyEditableForm>
+              )
+            } else {
+              return (
+                <FormDisabled>
+                  {initializeFormValues(inputs, edge.node)}
+                </FormDisabled>
+              )
+            }
           }
-          : null}
-      deleteConfig={
-        deleteMutation
-          ? {
-            deleteText: (values) => `policy ${values.title}`,
-            deleteMutation
-          }
-          : null}
-    >
-      {edges.map(edge => ({
-        itemInfo: edge.node,
-        component: (isEditing: boolean) => {
-          if (isEditing) {
-            return (
-              <PolicyEditableForm
-                key={edge.node.id}
-                policyInfo={edge.node}
-                initFormValues={inputs}
-                mutation={updateMutation}
-              >
-                {children}
-              </PolicyEditableForm>
-            )
-          } else {
-            return (
-              <FormDisabled>
-                {initializeFormValues(inputs, edge.node)}
-              </FormDisabled>
-            )
-          }
-        }
-      }))}
-    </List>
-  )
+        }))}
+      </List>
+    )
+  }
+
+
 }

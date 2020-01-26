@@ -20,9 +20,9 @@ export const PolicyAssetInputs = (props: TProps) => {
       />
       <TextFieldArray
         name={name}
-        title={name}
+        title={`${name}s`}
         initialItem={BENEFIT_ASSET_INIT}
-        values={props.values.educations}
+        values={props.values.benefits}
       >
         {(_, index) => (
           <div>
@@ -31,7 +31,7 @@ export const PolicyAssetInputs = (props: TProps) => {
                 <TextField
                   label={fromCamelCase(key)}
                   placeholder={placeholder.user.unknown}
-                  name={`benefits.${index}.${key}`}
+                  name={`${name}s.${index}.${key}`}
                   type={key.indexOf('date') > -1 ? 'date' : null}
                 />
               </div>

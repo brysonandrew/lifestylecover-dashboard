@@ -27,7 +27,7 @@ export const PolicyKiwisaver = (props: TProps) => {
 
   return (
     <PageWrapper
-      title="Policy Kiwisaver"
+      title="Kiwisaver"
       icon={<AccountBalance/>}
     >
       {loading ? (

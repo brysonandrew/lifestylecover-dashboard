@@ -1,8 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
-import { PaperWrapper } from "./paper-wrapper"
 
-const Wrapper = styled.h2`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;

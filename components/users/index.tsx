@@ -5,6 +5,7 @@ import { USER_GET_LIST_QUERY, USER_CREATE_MUTATION, USER_DELETE_MUTATION } from 
 import { LoadingCentered, PageWrapper } from "../../common"
 import { UserController } from "./user-controller"
 import { TUserProfile } from "../../models"
+import { USER_CONTACT_FORM } from "../../data-initial-values"
 
 type TProps = {
   userProfile: TUserProfile
@@ -16,8 +17,6 @@ export const Users = (props: TProps) => {
   const createMutation = useMutation(USER_CREATE_MUTATION)
   const deleteMutation = useMutation(USER_DELETE_MUTATION)
 
-  console.log(data)
-
   return (
     <PageWrapper title="Users">
       {loading
@@ -26,10 +25,7 @@ export const Users = (props: TProps) => {
         )
         : (
           <UserController
-            inputs={{
-              username: '',
-              email: ''
-            }}
+            inputs={USER_CONTACT_FORM}
             userProfile={userProfile}
             updateMutation={null}
             createMutation={createMutation}

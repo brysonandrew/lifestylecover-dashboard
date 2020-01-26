@@ -26,7 +26,7 @@ export const PolicyPet = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_PET_MUTATION)
 
   return (
-    <PageWrapper title="Policy Pet" icon={<Pets/>}>
+    <PageWrapper title="Pet" icon={<Pets/>}>
       {loading ? (
         <LoadingCentered />
       ) : (

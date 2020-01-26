@@ -26,7 +26,7 @@ export const PolicyRisk = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_RISK_MUTATION)
 
   return (
-    <PageWrapper title="Policy Risk" icon={<Timeline/>}>
+    <PageWrapper title="Risk" icon={<Timeline/>}>
       {loading ? (
         <LoadingCentered />
       ) : (

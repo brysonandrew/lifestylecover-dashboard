@@ -9,6 +9,7 @@ import { ListDivider } from "../../common"
 import { DeleteContent } from "./delete-content"
 
 const ListWrapper = styled.ul`
+  text-align: left;
 `
 
 type TProps = {

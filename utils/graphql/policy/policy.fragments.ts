@@ -63,17 +63,19 @@ export const POLICY_FRAGMENTS = {
     fragment PET on PolicyPet {
       id
       title
-      pets {
-        petName
-        policyNumber
-        premiumAmount
-        premiumFrequency
-        commencementDate
-        productType
-        productDescription
-        sumInsured
-        excess
-        additionalFeatures
+      policyPet {
+        pets {
+          petName
+          policyNumber
+          premiumAmount
+          premiumFrequency
+          commencementDate
+          productType
+          productDescription
+          sumInsured
+          excess
+          additionalFeatures
+        }
       }
     }
   `,

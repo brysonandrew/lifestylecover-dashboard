@@ -56,3 +56,16 @@ export const POLICY_UPDATE_PET_MUTATION = gql`
   }
   ${POLICY_FRAGMENTS.PET}
 `
+
+export const POLICY_UPDATE_REVIEW_CONFIG_MUTATION = gql`
+  mutation POLICY_UPDATE_REVIEW_CONFIG($id: ID!, $reviewerConfig: String!) {
+    updatePolicyPet(
+      input: { clientMutationId: "POLICY_UPDATE_PET", id: $id, title: $title }
+    ) {
+      policyPet {
+        ...PET
+      }
+    }
+  }
+  ${POLICY_FRAGMENTS.PET}
+`

@@ -26,7 +26,10 @@ export const PolicyAsset = (props: TProps) => {
   const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
 
   return (
-    <PageWrapper title="Policy Home and Contents" icon={<Home/>}>
+    <PageWrapper
+      title="Home and Contents"
+      icon={<Home/>}
+    >
       {loading ? (
         <LoadingCentered />
       ) : (

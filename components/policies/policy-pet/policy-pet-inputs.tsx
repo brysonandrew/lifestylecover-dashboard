@@ -4,6 +4,7 @@ import { TextField, TextFieldArray } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import { PET_INIT } from "../../../data-initial-values"
 import { fromCamelCase } from "../../../utils"
+const name = "pet"
 
 export const PolicyPetInputs = (props) => {
   return (
@@ -15,9 +16,9 @@ export const PolicyPetInputs = (props) => {
       />
       <TextFieldArray
         name={name}
-        title={name}
+        title={`${name}s`}
         initialItem={PET_INIT}
-        values={props.values.educations}
+        values={props.values.pets}
       >
         {(_, index) => (
           <div>
@@ -26,7 +27,7 @@ export const PolicyPetInputs = (props) => {
                 <TextField
                   label={fromCamelCase(key)}
                   placeholder={placeholder.user.unknown}
-                  name={`pets.${index}.${key}`}
+                  name={`${name}s.${index}.${key}`}
                   type={key.indexOf('date') > -1 ? 'date' : null}
                 />
               </div>
