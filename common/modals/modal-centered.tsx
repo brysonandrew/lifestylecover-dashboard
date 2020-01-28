@@ -12,10 +12,10 @@ const Wrapper = styled(Paper)`
   overflow-y: scroll;
   background-color: ${color.offWhite};
   ${sizes.tablet`
-    width: 520px;
+    width: 680px;
  `}
   ${sizes.laptop`
-    width: 750px;
+    width: 980px;
  `}
 `
 

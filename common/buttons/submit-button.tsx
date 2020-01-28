@@ -1,15 +1,15 @@
 import React from "react"
-import { CircularProgress, Button } from "@material-ui/core"
+import { Button } from "@material-ui/core"
 import { ButtonWrapper } from "."
-import { Save } from "@material-ui/icons"
+import { AsyncStartIcon, TAsyncStartIconProps } from "./async-start-icon"
 
 type TProps = {
-  isLoading: boolean
+  startIconConfig?: TAsyncStartIconProps
   onClick(): void
 }
 
 export const SubmitButton = (props: TProps) => {
-  const { isLoading, onClick } = props
+  const { startIconConfig, onClick } = props
   return (
     <ButtonWrapper>
       <Button
@@ -17,16 +17,13 @@ export const SubmitButton = (props: TProps) => {
         color="primary"
         size="large"
         type="submit"
-        disabled={isLoading}
+        disabled={startIconConfig.isLoading || startIconConfig.isSuccess}
         onClick={onClick}
-        startIcon={
-          isLoading
-            ? (
-              <CircularProgress size={18} color="inherit" />
-            ) : (
-              <Save />
-            )
-        }
+        startIcon={(
+          <AsyncStartIcon
+            {...startIconConfig}
+          />
+        )}
       >
         Save
       </Button>

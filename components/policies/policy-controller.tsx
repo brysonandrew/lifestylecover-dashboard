@@ -63,6 +63,7 @@ export const PolicyController = (props: TProps) => {
                 initArrayValues={arrayInputs}
                 mutation={updateMutation}
                 createVariables={createVariables}
+                refetch={refetch}
               >
                 {children}
               </PolicyEditableForm>

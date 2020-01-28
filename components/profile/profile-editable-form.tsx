@@ -3,8 +3,8 @@ import { Formik, Form } from "formik"
 import { userProfileEditableValidationSchema } from "../../data-validation"
 import { SubmitButton } from "../../common"
 import { TUserProfile } from "../../models"
-import { changedValues, initializeFormValues } from "../../utils"
-
+import { changedValues, initializeFormValues, defined, useDataToSeeIfSuccess } from "../../utils"
+ 
 type TProps = {
   userProfile: TUserProfile
   mutation: any
@@ -15,7 +15,10 @@ type TProps = {
 export const ProfileEditableForm = (props: TProps) => {
   const { userProfile, mutation, initFormValues, children } = props
   const [handleUpdateUser, mutationResult] = mutation
-  const { loading, error, data } = mutationResult
+  const { loading: isLoading, error, data } = mutationResult
+
+  const isSuccess = useDataToSeeIfSuccess(data?.updateUserProfile?.userProfile?.id)
+
 
   if (userProfile) {
     let initValues = initializeFormValues(userProfile, initFormValues)
@@ -31,7 +34,11 @@ export const ProfileEditableForm = (props: TProps) => {
             <Form>
               {children}
               <SubmitButton
-                isLoading={loading}
+                startIconConfig={{
+                  isLoading,
+                  isSuccess,
+                  isError: defined(error)
+                }}
                 onClick={() =>
                   handleUpdateUser({
                     variables: {

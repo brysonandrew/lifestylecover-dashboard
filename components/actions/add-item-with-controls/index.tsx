@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { ItemControls } from "../item-controls"
 import { EAction, IActionConfig, TAddConfig } from "../../../models"
 import { Add, Cancel } from "@material-ui/icons"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { AddItemForm } from "./add-item-form"
 import { ModalCentered } from "../../../common"
 
@@ -12,7 +12,7 @@ const Wrapper = styled(motion.li)`
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  padding-bottom: 12px;
+  padding: 12px 0;
 `
 
 type TProps = {

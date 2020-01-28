@@ -1,11 +1,10 @@
 import * as React from "react"
 import styled from "styled-components"
-import { Save } from "@material-ui/icons"
 import { Formik, Form } from "formik"
 import { addUserValidationSchema } from "../../../data-validation"
-import { CircularProgress } from "@material-ui/core"
-import { ErrorDisplay, ModalButtons } from "../../../common"
+import { ErrorDisplay, ModalButtons, AsyncStartIcon } from "../../../common"
 import { TAddConfig } from "../../../models"
+import { useDataToSeeIfSuccess, useRefetch } from "../../../utils"
 
 type TProps = {
   addConfig: TAddConfig
@@ -17,12 +16,13 @@ export const AddItemForm = (props: TProps) => {
   const { refetch, inputs, componentInputs, createVariables, createMutation } = addConfig
   const [handleCreatePolicy, { loading, data, error }] = createMutation
 
-  React.useEffect(() => {
-    if (data && !error) {
-      refetch()
-      onUnsetAdd()
-    }
-  }, [data])
+  const handleRefetch = () => {
+    refetch()
+    onUnsetAdd()
+  }
+
+  const isSuccess = useDataToSeeIfSuccess(data?.createPolicyAsset?.policyAsset?.id)
+  const isRefetchTriggered = useRefetch(isSuccess, handleRefetch)
 
   return (
     <Formik
@@ -39,13 +39,13 @@ export const AddItemForm = (props: TProps) => {
             <ModalButtons
               onClose={() => onUnsetAdd()}
               onOk={() => handleCreatePolicy({ variables })}
-              okIcon={
-                loading ? (
-                  <CircularProgress size={18} color="inherit" />
-                ) : (
-                  <Save />
-                )
-              }
+              okIcon={(
+                <AsyncStartIcon
+                  isLoading={loading}
+                  isSuccess={isSuccess}
+                  isError={error}
+                />
+              )}
             >
               Save
             </ModalButtons>

@@ -3,10 +3,11 @@ import { Formik, Form } from "formik"
 import { TPolicy, TUserProfile, EUserType } from "../../models"
 import { policyEditableValidationSchema } from "../../data-validation"
 import { SubmitButton } from "../../common"
-import { changedValues, initializeFormValues } from "../../utils"
+import { defined, useRefetch, useDataToSeeIfSuccess } from "../../utils"
 import { PolicyReviewers } from "./policy-reviewers"
 
 type TProps = {
+  refetch: any
   policyInfo: TPolicy
   userProfile: TUserProfile
   initValues: any
@@ -17,9 +18,12 @@ type TProps = {
 }
 
 export const PolicyEditableForm = (props: TProps) => {
-  const { policyInfo, userProfile, children, mutation, initValues, initArrayValues, createVariables } = props
+  const { refetch, policyInfo, userProfile, children, mutation, initValues, createVariables } = props
   const [handleUpdatePolicy, updateMutation] = mutation;
-  const { loading, error, data } = updateMutation
+  const { loading: isLoading, error, data } = updateMutation
+
+  const isSuccess = useDataToSeeIfSuccess(data?.deletePolicyAsset?.deletedId)
+  const isRefetchTriggered = useRefetch(isSuccess, refetch)
 
   if (policyInfo) {
     return (
@@ -38,7 +42,11 @@ export const PolicyEditableForm = (props: TProps) => {
               )}
               {React.cloneElement(children, {values})}
               <SubmitButton
-                isLoading={loading}
+                startIconConfig={{
+                  isLoading,
+                  isSuccess,
+                  isError: defined(error)
+                }}
                 onClick={() => {
                   const variables = {
                     id: policyInfo.id,

@@ -1,9 +1,9 @@
 import * as React from "react"
 import styled from "styled-components"
-import { CircularProgress } from "@material-ui/core"
 import { ModalCentered } from "../../../common/modals"
 import { ModalButtons } from "../../../common/modals/modal-buttons"
-import { Delete } from "@material-ui/icons"
+import { AsyncStartIcon } from "../../../common/buttons/async-start-icon"
+import { useDataToSeeIfSuccess, useRefetch } from "../../../utils/custom-hooks"
 
 type TProps = {
   info: any
@@ -17,14 +17,17 @@ export const DeleteModal = (props: TProps) => {
   const { refetch, deleteMutation } = deleteConfig
   const [
     handleDeletePolicy,
-    { loading, error, data, called },
+    { loading, error, data },
   ] = deleteMutation
-  React.useEffect(() => {
-    if (data && !error) {
-      refetch()
-      onClose()
-    }
-  }, [data])
+
+  const handleRefetch = () => {
+    onClose()
+    refetch()
+  }
+
+  const isSuccess = useDataToSeeIfSuccess(data?.deletePolicyAsset?.deletedId)
+  const isRefetchTriggered = useRefetch(isSuccess, handleRefetch)
+
   return (
     <ModalCentered
       onBackdropClick={onClose}
@@ -39,9 +42,13 @@ export const DeleteModal = (props: TProps) => {
             },
           })
         }}
-        okIcon={
-          loading ? <CircularProgress size={18} color="inherit" /> : <Delete />
-        }
+        okIcon={(
+          <AsyncStartIcon
+            isLoading={loading}
+            isSuccess={isSuccess}
+            isError={error}
+          />
+        )}
       >
         Delete
       </ModalButtons>

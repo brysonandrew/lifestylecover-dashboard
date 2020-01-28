@@ -3,10 +3,9 @@ import styled from "styled-components"
 import { Item } from "./item"
 import { IActionConfig, EAction, TAddConfig, TDeleteConfig, TItem } from "../../models"
 import { AddItemWithControls } from "./add-item-with-controls"
-import { DeleteModal } from "./delete/delete-modal"
+import { DeleteModal, DeleteContent } from "./delete"
 import { EMPTY_ACTION_CONFIG } from "."
 import { ListDivider } from "../../common"
-import { DeleteContent } from "./delete/delete-content"
 import { NoneFound } from "./none-found"
 
 const ListWrapper = styled.ul`

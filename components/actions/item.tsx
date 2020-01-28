@@ -4,13 +4,12 @@ import { UserItemInfoWrapper } from "./item-info-wrapper"
 import { EAction, IActionConfig } from "../../models"
 import { ItemControls } from "./item-controls"
 import { Edit, Delete, Close } from "@material-ui/icons"
-import { color } from "../../data"
 
 const Wrapper = styled.li`
   display: flex;
   flex-direction: row;
   position: relative;
-  margin-top: 12px;
+  padding: 12px 0;
   &:first-child {
     margin-top: 0;
   }
@@ -30,7 +29,7 @@ type TProps = {
 }
 
 export const Item = (props: TProps) => {
-  const { id, children, actionConfig, editConfig, onSetDelete } = props
+  const { children, editConfig, onSetDelete } = props
   return (
     <Wrapper>
       <UserItemInfoWrapper>
