@@ -1,10 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { TextField, TextFieldArray } from "../../../common"
+import { TextField, TextFieldArray, SubItemWrapper } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import { BENEFIT_ASSET_INIT } from "../../../data-initial-values-policy"
 import { fromCamelCase } from "../../../utils"
-import { SubItemWrapper } from "../../../common/sub-item-wrapper"
 const name = "benefit"
 
 type TProps = {

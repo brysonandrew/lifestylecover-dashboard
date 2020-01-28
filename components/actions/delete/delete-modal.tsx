@@ -14,17 +14,21 @@ type TProps = {
 
 export const DeleteModal = (props: TProps) => {
   const { info, children, onClose, deleteConfig } = props
+  const { refetch, deleteMutation } = deleteConfig
   const [
     handleDeletePolicy,
     { loading, error, data, called },
-  ] = deleteConfig.deleteMutation
+  ] = deleteMutation
   React.useEffect(() => {
-    if (!loading && called) {
+    if (data && !error) {
+      refetch()
       onClose()
     }
-  }, [loading])
+  }, [data])
   return (
-    <ModalCentered>
+    <ModalCentered
+      onBackdropClick={onClose}
+    >
       {children}
       <ModalButtons
         onClose={onClose}

@@ -14,8 +14,15 @@ type TProps = {
 
 export const AddItemForm = (props: TProps) => {
   const { addConfig, onUnsetAdd } = props
-  const { inputs, componentInputs, createVariables, createMutation } = addConfig
+  const { refetch, inputs, componentInputs, createVariables, createMutation } = addConfig
   const [handleCreatePolicy, { loading, data, error }] = createMutation
+
+  React.useEffect(() => {
+    if (data && !error) {
+      refetch()
+      onUnsetAdd()
+    }
+  }, [data])
 
   return (
     <Formik

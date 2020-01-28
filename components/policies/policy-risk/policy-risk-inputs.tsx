@@ -1,14 +1,13 @@
 import React from "react"
 import id from "uniqid"
 import styled from "styled-components"
-import { TextField, TextFieldArray } from "../../../common"
+import { TextField, TextFieldArray, SubItemWrapper } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import {
   BENEFIT_RISK_INIT,
   POLICY_RISK_TEXT_INPUTS,
 } from "../../../data-initial-values-policy"
-import { fromCamelCase, initializeFormValues } from "../../../utils"
-import { SubItemWrapper } from "../../../common/sub-item-wrapper"
+import { fromCamelCase } from "../../../utils"
 const name = "benefit"
 
 export const PolicyRiskInputs = props => {
@@ -50,3 +49,4 @@ export const PolicyRiskInputs = props => {
     return null
   }
 }
+ 

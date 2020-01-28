@@ -20,7 +20,7 @@ type TProps = {
 
 export const PolicyKiwisaver = (props: TProps) => {
   const { userProfile } = props
-  const { loading, error, data } = useQuery(POLICY_GET_KIWISAVER_LIST_QUERY, {})
+  const { loading, error, data, refetch } = useQuery(POLICY_GET_KIWISAVER_LIST_QUERY, {})
   const updateMutation = useMutation(POLICY_UPDATE_KIWISAVER_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_KIWISAVER_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_KIWISAVER_MUTATION)
@@ -31,6 +31,7 @@ export const PolicyKiwisaver = (props: TProps) => {
         <LoadingCentered />
       ) : (
         <PolicyController
+          refetch={refetch}
           inputs={POLICY_KIWISAVER_INIT}
           userProfile={userProfile}
           updateMutation={updateMutation}

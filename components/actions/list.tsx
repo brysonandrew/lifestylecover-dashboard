@@ -48,7 +48,8 @@ export const List = (props: TProps) => {
         {children.length === 0
           ? (
             <NoneFound/>
-          ) : null}
+          )
+          : null}
         {children.map((child, index) => {
           const { component, itemInfo } = child
           const isEditing = action === EAction.Edit && itemInfo.id === actionInfo.id

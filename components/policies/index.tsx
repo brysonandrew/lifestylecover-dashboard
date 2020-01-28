@@ -17,8 +17,8 @@ export const Policies = (props: TProps) => {
       />
       {/* <PolicyAsset
         {...props}
-      />
-      <PolicyKiwisaver
+      /> */}
+      {/* <PolicyKiwisaver
         {...props}
       />
       <PolicyPet

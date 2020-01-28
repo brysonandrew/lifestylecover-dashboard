@@ -20,20 +20,23 @@ const Wrapper = styled(Paper)`
 `
 
 type TProps = {
+  onBackdropClick(): void
   children: ReactNode
 }
 
 export const ModalCentered = (props: TProps) => {
+  const {children, onBackdropClick} = props
   return (
     <Modal
       disablePortal
       disableEnforceFocus
       disableAutoFocus
       open
+      onBackdropClick={onBackdropClick}
       container={() => document.body}
     >
       <Wrapper>
-        {props.children}
+        {children}
       </Wrapper>
     </Modal>
   )

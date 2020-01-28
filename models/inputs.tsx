@@ -15,6 +15,7 @@ export enum EPolicyInputType {
 }
 
 export type TAddConfig = {
+  refetch(): void
   inputs: Record<string, string>
   createMutation: any
   createVariables(values: any): any
@@ -22,6 +23,7 @@ export type TAddConfig = {
 }
 
 export type TDeleteConfig = {
+  refetch(): void
   deleteMutation: any
   deleteText(values: any): string
 }

@@ -8,6 +8,7 @@ import { initializeFormValues } from "../../utils"
 
 
 type TProps = {
+  refetch(): void
   inputs: any
   arrayInputs?: any
   userProfile: TUserProfile
@@ -19,14 +20,22 @@ type TProps = {
 }
 
 export const PolicyController = (props: TProps) => {
-  const { inputs, arrayInputs, edges, children, createMutation, deleteMutation, updateMutation, userProfile } = props
+  const { refetch, inputs, arrayInputs, edges, children, createMutation, deleteMutation, updateMutation, userProfile } = props
+  const createVariables = (values) => {
+    const { title, ...meta } = values
+    return {
+      title,
+      meta: JSON.stringify(meta)
+    }
+  }
   return (
     <List
       addConfig={
         createMutation
           ? {
+            refetch,
             inputs,
-            createVariables: (values) => ({ title: values.title }),
+            createVariables,
             createMutation,
             componentInputs: children
           }
@@ -34,6 +43,7 @@ export const PolicyController = (props: TProps) => {
       deleteConfig={
         deleteMutation
           ? {
+            refetch,
             deleteText: (values) => `policy ${values.title}`,
             deleteMutation
           }
@@ -42,15 +52,17 @@ export const PolicyController = (props: TProps) => {
       {edges.map(edge => ({
         itemInfo: edge.node,
         component: (isEditing: boolean) => {
+          const initValues = initializeFormValues(edge.node, inputs, arrayInputs)
           if (isEditing) {
             return (
               <PolicyEditableForm
                 key={edge.node.id}
                 policyInfo={edge.node}
                 userProfile={userProfile}
-                initFormValues={inputs}
+                initValues={initValues}
                 initArrayValues={arrayInputs}
                 mutation={updateMutation}
+                createVariables={createVariables}
               >
                 {children}
               </PolicyEditableForm>
@@ -58,7 +70,7 @@ export const PolicyController = (props: TProps) => {
           } else {
             return (
               <FormText arrayInputs={arrayInputs}>
-                {initializeFormValues(edge.node, inputs, arrayInputs)}
+                {initValues}
               </FormText>
             )
           }
@@ -66,4 +78,4 @@ export const PolicyController = (props: TProps) => {
       }))}
     </List>
   )
-}
+} 

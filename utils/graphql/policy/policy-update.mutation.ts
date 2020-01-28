@@ -2,21 +2,22 @@ import gql from "graphql-tag"
 import { POLICY_FRAGMENTS } from "./policy.fragments"
 
 export const POLICY_UPDATE_RISK_MUTATION = gql`
-  mutation POLICY_UPDATE_RISK($id: ID!, $clientChanges: String!) {
+  mutation POLICY_UPDATE_RISK($id: ID!, $meta: String!) {
     updatePolicyRisk(
       input: {
         clientMutationId: "POLICY_UPDATE_RISK"
         id: $id
-        clientChanges: $clientChanges
+        meta: $meta
       }
     ) {
       policyRisk {
-        ...RISK
+        id
+        title
       }
     }
   }
-  ${POLICY_FRAGMENTS.RISK}
 `
+// # ${POLICY_FRAGMENTS.RISK}
 
 export const POLICY_UPDATE_ASSET_MUTATION = gql`
   mutation POLICY_UPDATE_ASSET($id: ID!, $title: String!) {

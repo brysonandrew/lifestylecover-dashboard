@@ -1,5 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
+import { Home } from "@material-ui/icons"
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import { PageWrapper, LoadingCentered } from "../../../common"
 import {
@@ -11,7 +12,6 @@ import {
 import { TUserProfile } from "../../../models"
 import { PolicyAssetInputs } from "./policy-asset-inputs"
 import { PolicyController } from "../policy-controller"
-import { Home } from "@material-ui/icons"
 import {
   POLICY_ASSET_INIT,
   BENEFIT_ASSET_INIT,
@@ -23,7 +23,7 @@ type TProps = {
 
 export const PolicyAsset = (props: TProps) => {
   const { userProfile } = props
-  const { loading, error, data } = useQuery(POLICY_GET_ASSET_LIST_QUERY, {})
+  const { loading, error, data, refetch } = useQuery(POLICY_GET_ASSET_LIST_QUERY, {})
   const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
@@ -34,6 +34,7 @@ export const PolicyAsset = (props: TProps) => {
         <LoadingCentered />
       ) : (
         <PolicyController
+          refetch={refetch}
           inputs={POLICY_ASSET_INIT}
           arrayInputs={BENEFIT_ASSET_INIT}
           userProfile={userProfile}

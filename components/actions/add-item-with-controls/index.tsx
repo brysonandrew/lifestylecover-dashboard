@@ -30,7 +30,7 @@ export const AddItemWithControls = (props: TProps) => {
   return (
     <Wrapper>
       {isAddOpen && (
-        <ModalCentered>
+        <ModalCentered onBackdropClick={onUnsetAdd}>
           <AddItemForm addConfig={addConfig} onUnsetAdd={onUnsetAdd} />
         </ModalCentered>
       )}

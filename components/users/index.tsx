@@ -12,7 +12,7 @@ type TProps = {
 
 export const Users = (props: TProps) => {
   const { userProfile } = props
-  const { loading, error, data } = useQuery(USER_GET_LIST_QUERY, {});
+  const { loading, error, data, refetch } = useQuery(USER_GET_LIST_QUERY, {});
   const createMutation = useMutation(USER_CREATE_MUTATION)
   const deleteMutation = useMutation(USER_DELETE_MUTATION)
 
@@ -24,6 +24,7 @@ export const Users = (props: TProps) => {
         )
         : (
           <UserController
+            refetch={refetch}
             inputs={USER_CONTACT_FORM}
             userProfile={userProfile}
             updateMutation={null}

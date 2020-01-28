@@ -2,11 +2,12 @@ import gql from "graphql-tag"
 import { POLICY_FRAGMENTS } from "./policy.fragments"
 
 export const POLICY_CREATE_RISK_MUTATION = gql`
-  mutation POLICY_CREATE_RISK($title: String!) {
+  mutation POLICY_CREATE_RISK($title: String!, $meta: String!) {
     createPolicyRisk(
       input: {
         clientMutationId: "POLICY_CREATE_RISK"
         title: $title
+        meta: $meta
         status: PUBLISH
       }
     ) {

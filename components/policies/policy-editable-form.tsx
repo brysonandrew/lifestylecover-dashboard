@@ -9,23 +9,23 @@ import { PolicyReviewers } from "./policy-reviewers"
 type TProps = {
   policyInfo: TPolicy
   userProfile: TUserProfile
-  initFormValues: any
+  initValues: any
   initArrayValues?: any
   mutation: any
   children: JSX.Element
+  createVariables: any
 }
 
 export const PolicyEditableForm = (props: TProps) => {
-  const { policyInfo, userProfile, children, mutation, initFormValues, initArrayValues } = props
+  const { policyInfo, userProfile, children, mutation, initValues, initArrayValues, createVariables } = props
   const [handleUpdatePolicy, updateMutation] = mutation;
   const { loading, error, data } = updateMutation
 
   if (policyInfo) {
-    let initValues = initializeFormValues(policyInfo, initFormValues, initArrayValues)
     return (
       <Formik
         validateOnChange={true}
-        initialValues={initValues as any}
+        initialValues={initValues}
         validationSchema={policyEditableValidationSchema}
         onSubmit={null}
       >
@@ -40,20 +40,11 @@ export const PolicyEditableForm = (props: TProps) => {
               <SubmitButton
                 isLoading={loading}
                 onClick={() => {
-                  const nextValues = isClient
-                    ? {
-                      values: JSON.stringify(changedValues(initValues, values))
-                      // reviewers:
-                    }
-                    : changedValues(initValues, values)
-                  console.log(JSON.stringify(values))
-                  const { id, title, ...policyRisk } = values
-                  handleUpdatePolicy({
-                    variables: {
-                      id: policyInfo.id,
-                      clientChanges: JSON.stringify(values)
-                    },
-                  })
+                  const variables = {
+                    id: policyInfo.id,
+                    ...createVariables(values)
+                  }
+                  handleUpdatePolicy({variables})
                 }}
               />
             </Form>
