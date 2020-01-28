@@ -14,9 +14,9 @@ import gql from "graphql-tag"
 // }
 export const USER_CREATE_MUTATION = gql`
   mutation USER_CREATE(
-    $username: String!,
-    $password: String!,
-    $email: String!,
+    $username: String!
+    $password: String!
+    $email: String!
     $roles: [String]
   ) {
     createUser(

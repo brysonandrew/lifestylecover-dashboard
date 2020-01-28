@@ -4,7 +4,11 @@ import { POLICY_FRAGMENTS } from "./policy.fragments"
 export const POLICY_CREATE_RISK_MUTATION = gql`
   mutation POLICY_CREATE_RISK($title: String!) {
     createPolicyRisk(
-      input: { clientMutationId: "POLICY_CREATE_RISK", title: $title, status: PUBLISH }
+      input: {
+        clientMutationId: "POLICY_CREATE_RISK"
+        title: $title
+        status: PUBLISH
+      }
     ) {
       policyRisk {
         ...RISK

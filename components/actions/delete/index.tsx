@@ -1,2 +1,2 @@
-export * from './delete-content'
-export * from './delete-modal'
+export * from "./delete-content"
+export * from "./delete-modal"

@@ -3,7 +3,10 @@ import id from "uniqid"
 import styled from "styled-components"
 import { TextField, TextFieldArray } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
-import { BENEFIT_RISK_INIT, POLICY_RISK_TEXT_INPUTS } from "../../../data-initial-values-policy"
+import {
+  BENEFIT_RISK_INIT,
+  POLICY_RISK_TEXT_INPUTS,
+} from "../../../data-initial-values-policy"
 import { fromCamelCase, initializeFormValues } from "../../../utils"
 import { SubItemWrapper } from "../../../common/sub-item-wrapper"
 const name = "benefit"

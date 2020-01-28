@@ -11,7 +11,10 @@ import {
 import { TUserProfile } from "../../../models"
 import { PolicyRiskInputs } from "./policy-risk-inputs"
 import { PolicyController } from "../policy-controller"
-import { POLICY_RISK_INIT, BENEFIT_RISK_INIT } from "../../../data-initial-values-policy"
+import {
+  POLICY_RISK_INIT,
+  BENEFIT_RISK_INIT,
+} from "../../../data-initial-values-policy"
 import { Timeline } from "@material-ui/icons"
 
 type TProps = {

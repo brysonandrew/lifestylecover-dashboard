@@ -14,7 +14,10 @@ type TProps = {
 
 export const DeleteModal = (props: TProps) => {
   const { info, children, onClose, deleteConfig } = props
-  const [handleDeletePolicy, { loading, error, data, called }] = deleteConfig.deleteMutation
+  const [
+    handleDeletePolicy,
+    { loading, error, data, called },
+  ] = deleteConfig.deleteMutation
   React.useEffect(() => {
     if (!loading && called) {
       onClose()
@@ -32,9 +35,9 @@ export const DeleteModal = (props: TProps) => {
             },
           })
         }}
-        okIcon={loading
-          ? <CircularProgress size={18} color="inherit" />
-          : <Delete />}
+        okIcon={
+          loading ? <CircularProgress size={18} color="inherit" /> : <Delete />
+        }
       >
         Delete
       </ModalButtons>

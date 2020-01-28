@@ -12,7 +12,10 @@ import { TUserProfile } from "../../../models"
 import { PolicyAssetInputs } from "./policy-asset-inputs"
 import { PolicyController } from "../policy-controller"
 import { Home } from "@material-ui/icons"
-import { POLICY_ASSET_INIT, BENEFIT_ASSET_INIT } from "../../../data-initial-values-policy"
+import {
+  POLICY_ASSET_INIT,
+  BENEFIT_ASSET_INIT,
+} from "../../../data-initial-values-policy"
 
 type TProps = {
   userProfile: TUserProfile

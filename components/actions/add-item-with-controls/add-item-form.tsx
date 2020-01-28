@@ -28,19 +28,21 @@ export const AddItemForm = (props: TProps) => {
         const variables = createVariables(values)
         return (
           <Form>
-            {React.cloneElement(componentInputs, {values})}
+            {React.cloneElement(componentInputs, { values })}
             <ModalButtons
               onClose={() => onUnsetAdd()}
               onOk={() => handleCreatePolicy({ variables })}
-              okIcon={(loading
-                ? <CircularProgress size={18} color="inherit" />
-                : <Save />)}
+              okIcon={
+                loading ? (
+                  <CircularProgress size={18} color="inherit" />
+                ) : (
+                  <Save />
+                )
+              }
             >
               Save
-              </ModalButtons>
-            <ErrorDisplay>
-              {error}
-            </ErrorDisplay>
+            </ModalButtons>
+            <ErrorDisplay>{error}</ErrorDisplay>
           </Form>
         )
       }}

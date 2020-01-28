@@ -5,7 +5,7 @@ export const POLICY_UPDATE_RISK_MUTATION = gql`
   mutation POLICY_UPDATE_RISK($id: ID!, $clientChanges: String!) {
     updatePolicyRisk(
       input: {
-        clientMutationId: "POLICY_UPDATE_RISK",
+        clientMutationId: "POLICY_UPDATE_RISK"
         id: $id
         clientChanges: $clientChanges
       }

@@ -31,25 +31,22 @@ export const AddItemWithControls = (props: TProps) => {
     <Wrapper>
       {isAddOpen && (
         <ModalCentered>
-          <AddItemForm
-            addConfig={addConfig}
-            onUnsetAdd={onUnsetAdd}
-          />
+          <AddItemForm addConfig={addConfig} onUnsetAdd={onUnsetAdd} />
         </ModalCentered>
       )}
       <ItemControls>
         {[
           isAddOpen
             ? {
-              action: EAction.Save,
-              callback: onUnsetAdd,
-              icon: <Cancel />,
-            }
+                action: EAction.Save,
+                callback: onUnsetAdd,
+                icon: <Cancel />,
+              }
             : {
-              action: EAction.Add,
-              callback: onSetAdd,
-              icon: <Add />,
-            }
+                action: EAction.Add,
+                callback: onSetAdd,
+                icon: <Add />,
+              },
         ]}
       </ItemControls>
     </Wrapper>
