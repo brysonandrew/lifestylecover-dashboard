@@ -12,7 +12,7 @@ import { TUserProfile } from "../../../models"
 import { PolicyPetInputs } from "./policy-pet-inputs"
 import { PolicyController } from "../policy-controller"
 import { Pets } from "@material-ui/icons"
-import { POLICY_PET_INIT } from "../../../data-initial-values"
+import { POLICY_PET_INIT, PET_INIT } from "../../../data-initial-values-policy"
 
 type TProps = {
   userProfile: TUserProfile
@@ -32,6 +32,7 @@ export const PolicyPet = (props: TProps) => {
       ) : (
         <PolicyController
           inputs={POLICY_PET_INIT}
+          arrayInputs={PET_INIT}
           userProfile={userProfile}
           updateMutation={updateMutation}
           createMutation={createMutation}

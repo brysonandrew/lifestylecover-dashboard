@@ -12,7 +12,7 @@ import { TUserProfile } from "../../../models"
 import { PolicyKiwisaverInputs } from "./policy-kiwisaver-inputs"
 import { PolicyController } from "../policy-controller"
 import { AccountBalance } from "@material-ui/icons"
-import { POLICY_KIWISAVER_INIT } from "../../../data-initial-values"
+import { POLICY_KIWISAVER_INIT } from "../../../data-initial-values-policy"
 
 type TProps = {
   userProfile: TUserProfile

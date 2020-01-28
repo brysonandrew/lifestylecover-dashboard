@@ -13,16 +13,22 @@ import gql from "graphql-tag"
 //   email: String!
 // }
 export const USER_CREATE_MUTATION = gql`
-  mutation USER_CREATE($username: String!, $email: String!) {
+  mutation USER_CREATE(
+    $username: String!,
+    $password: String!,
+    $email: String!,
+    $roles: [String]
+  ) {
     createUser(
       input: {
         clientMutationId: "USER_CREATE"
         username: $username
+        password: $password
         email: $email
+        roles: $roles
       }
     ) {
       user {
-        id
         name
       }
     }

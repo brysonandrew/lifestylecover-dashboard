@@ -4,7 +4,7 @@ import { USER_FRAGMENTS } from "./user.fragments"
 export const USER_UPDATE_CONTACT_MUTATION = gql`
   mutation USER_UPDATE_CONTACT(
     $id: ID!
-    # $email: String
+    $email: String
     $phone: String
     $mobile: String
     $address: String
@@ -13,7 +13,7 @@ export const USER_UPDATE_CONTACT_MUTATION = gql`
       input: {
         clientMutationId: "USER_UPDATE_CONTACT"
         id: $id
-        # email: $email
+        email: $email
         phone: $phone
         mobile: $mobile
         address: $address

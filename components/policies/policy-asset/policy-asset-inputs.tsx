@@ -4,9 +4,9 @@ import { TextField, TextFieldArray } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import {
   BENEFIT_ASSET_INIT,
-  BENEFIT_RISK_INIT,
-} from "../../../data-initial-values"
+} from "../../../data-initial-values-policy"
 import { fromCamelCase } from "../../../utils"
+import { SubItemWrapper } from "../../../common/sub-item-wrapper"
 const name = "benefit"
 
 type TProps = {
@@ -28,18 +28,17 @@ export const PolicyAssetInputs = (props: TProps) => {
         values={props.values.benefits}
       >
         {(_, index) => (
-          <div>
-            {Object.keys(BENEFIT_RISK_INIT).map(key => (
-              <div key={key}>
-                <TextField
-                  label={fromCamelCase(key)}
-                  placeholder={placeholder.user.unknown}
-                  name={`${name}s.${index}.${key}`}
-                  type={key.indexOf("date") > -1 ? "date" : null}
-                />
-              </div>
+          <SubItemWrapper key={`${name}-${index}`}>
+            {Object.keys(BENEFIT_ASSET_INIT).map(key => (
+              <TextField
+                key={key}
+                label={fromCamelCase(key)}
+                placeholder={placeholder.user.unknown}
+                name={`${name}s.${index}.${key}`}
+                type={key.indexOf("date") > -1 ? "date" : null}
+              />
             ))}
-          </div>
+          </SubItemWrapper>
         )}
       </TextFieldArray>
     </div>

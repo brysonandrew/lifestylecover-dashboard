@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
-import { layoutSizes } from "../data"
-import { PaperWrapper } from "./paper-wrapper"
+import { layoutSizes } from "../../data"
+import { PaperWrapper } from "../paper-wrapper"
 import { PageWrapperTitle } from "./page-wrapper-title"
 
 const Wrapper = styled.div`
@@ -28,3 +28,5 @@ export const PageWrapper = (props: TProps) => {
     </Wrapper>
   )
 }
+
+export * from './page-wrapper-title'

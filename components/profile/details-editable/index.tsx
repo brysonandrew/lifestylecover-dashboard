@@ -3,8 +3,8 @@ import { TUserProfile, IActionConfig, EAction } from "../../../models"
 import { PageWrapper } from "../../../common"
 import { Item, EMPTY_ACTION_CONFIG } from "../.."
 import { ProfileDetailsUpdateForm } from "./profile-details-update-form"
-import { FormDisabled } from "../../../common/form-disabled"
-import { USER_DETAILS_FORM } from "../../../data-initial-values"
+import { FormText } from "../../../common/text-ui/form-text"
+import { USER_DETAILS_FORM } from "../../../data-initial-values-policy"
 import { initializeFormValues } from "../../../utils"
 
 type TProps = {
@@ -40,9 +40,9 @@ export const DetailsEditable = (props: TProps) => {
               userProfile={userProfile}
             />
           ) : (
-            <FormDisabled>
-              {initializeFormValues(USER_DETAILS_FORM, userProfile)}
-            </FormDisabled>
+            <FormText>
+              {initializeFormValues(userProfile, USER_DETAILS_FORM)}
+            </FormText>
           )}
         </Item>
       </ul>

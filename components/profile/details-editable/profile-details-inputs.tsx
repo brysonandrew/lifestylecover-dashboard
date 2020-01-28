@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
-import { TextField, Radio, Checkbox } from "../../../common"
+import { TextField, Checkbox } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 
 const Wrapper = styled.div`
@@ -11,6 +11,7 @@ const CheckboxWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 12px;
 `
 
 const CheckboxLabel = styled.div`

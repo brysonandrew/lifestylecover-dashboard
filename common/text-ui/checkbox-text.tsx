@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { CheckBox, CheckBoxOutlineBlank } from "@material-ui/icons"
-import { TextFieldDisabled } from "./text-field-disabled"
+import { TextFieldText } from "./text-field-text"
 import { fromKebabCase, fromCamelCase } from "../../utils"
 
 const Wrapper = styled.div`
@@ -22,16 +22,16 @@ type TProps = {
   children: React.ReactNode
 }
 
-export const CheckboxDisabled = (props: TProps) => {
+export const CheckboxText = (props: TProps) => {
   const { children, isChecked } = props
   return (
-    <TextFieldDisabled>
+    <TextFieldText>
       <Wrapper>
         <Text>
           {fromCamelCase(children)}
         </Text>
         {isChecked ? <CheckBox /> : <CheckBoxOutlineBlank/>}
       </Wrapper>
-    </TextFieldDisabled>
+    </TextFieldText>
   )
 }

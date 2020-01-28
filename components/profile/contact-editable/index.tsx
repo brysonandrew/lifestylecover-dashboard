@@ -3,8 +3,8 @@ import { TUserProfile, IActionConfig, EAction } from "../../../models"
 import { PageWrapper, LoadingCentered } from "../../../common"
 import { Item, EMPTY_ACTION_CONFIG } from "../.."
 import { ProfileContactUpdateForm } from "./profile-contact-update-form"
-import { FormDisabled } from "../../../common"
-import { USER_CONTACT_FORM } from "../../../data-initial-values"
+import { FormText } from "../../../common"
+import { USER_CONTACT_FORM } from "../../../data-initial-values-policy"
 import { initializeFormValues } from "../../../utils"
 
 type TProps = {
@@ -18,7 +18,6 @@ export const ContactEditable = (props: TProps) => {
   )
   const { action } = actionConfig
   const isEditing = action === EAction.Edit
-  console.log(userProfile)
   return (
     <PageWrapper title="Contact info">
       <ul>
@@ -38,9 +37,9 @@ export const ContactEditable = (props: TProps) => {
           {isEditing ? (
             <ProfileContactUpdateForm userProfile={userProfile} />
           ) : (
-            <FormDisabled>
-              {initializeFormValues(USER_CONTACT_FORM, userProfile)}
-            </FormDisabled>
+            <FormText>
+              {initializeFormValues(userProfile, USER_CONTACT_FORM)}
+            </FormText>
           )}
         </Item>
       </ul>

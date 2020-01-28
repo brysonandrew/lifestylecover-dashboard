@@ -3,10 +3,11 @@ import styled from "styled-components"
 import { Item } from "./item"
 import { IActionConfig, EAction, TAddConfig, TDeleteConfig, TItem } from "../../models"
 import { AddItemWithControls } from "./add-item-with-controls"
-import { DeleteModal } from "./delete-modal"
+import { DeleteModal } from "./delete/delete-modal"
 import { EMPTY_ACTION_CONFIG } from "."
 import { ListDivider } from "../../common"
-import { DeleteContent } from "./delete-content"
+import { DeleteContent } from "./delete/delete-content"
+import { NoneFound } from "./none-found"
 
 const ListWrapper = styled.ul`
   text-align: left;
@@ -29,7 +30,6 @@ export const List = (props: TProps) => {
   const handleSetDelete = deleteConfig && (
     (itemInfo) => onSetActionConfig(action === EAction.Add ? EMPTY_ACTION_CONFIG : { action: EAction.Delete, actionInfo: itemInfo })
   )
-  console.log(action)
 
   return (
     <>
@@ -45,7 +45,11 @@ export const List = (props: TProps) => {
             <ListDivider />
           </>
         )}
-        {children && children.map((child, index) => {
+        {children.length === 0
+          ? (
+            <NoneFound/>
+          ) : null}
+        {children.map((child, index) => {
           const { component, itemInfo } = child
           const isEditing = action === EAction.Edit && itemInfo.id === actionInfo.id
           return (

@@ -2,8 +2,10 @@ import React from "react"
 import { List } from "../actions/list"
 import { TUserProfile } from "../../models"
 import { ProfileContactUpdateForm } from "../profile"
-import { FormDisabled } from "../../common/form-disabled"
-import { initializeFormValues } from "../../utils"
+import { FormText } from "../../common"
+import { initializeFormValues, createVariablesCreateUser } from "../../utils"
+import { UserCreateInputs } from "./user-create-inputs"
+import { CREATE_USER_INIT } from "../../data-initial-values-policy"
 
 type TProps = {
   inputs: any
@@ -19,9 +21,12 @@ export const UserController = (props: TProps) => {
   return (
     <List
       addConfig={{
-        inputs,
-        createVariables: (values) => ({ username: values.username, email: values.email }),
-        createMutation
+        inputs: CREATE_USER_INIT,
+        createVariables: (values) => createVariablesCreateUser(values),
+        createMutation,
+        componentInputs: (
+          <UserCreateInputs/>
+        )
       }}
       deleteConfig={{
         deleteText: (values) => `user ${values.username}`,
@@ -40,9 +45,9 @@ export const UserController = (props: TProps) => {
                 />
               )
               : (
-                <FormDisabled>
-                  {initializeFormValues(inputs, edge.node)}
-                </FormDisabled>
+                <FormText>
+                  {initializeFormValues(edge.node, inputs)}
+                </FormText>
               )}
           </div>
         )

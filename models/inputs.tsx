@@ -1,5 +1,4 @@
 import { FieldAttributes } from "formik"
-import { ReactNode } from "react"
 
 export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
@@ -19,6 +18,7 @@ export type TAddConfig = {
   inputs: Record<string, string>
   createMutation: any
   createVariables(values: any): any
+  componentInputs?: JSX.Element
 }
 
 export type TDeleteConfig = {

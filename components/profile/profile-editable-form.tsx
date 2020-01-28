@@ -18,7 +18,7 @@ export const ProfileEditableForm = (props: TProps) => {
   const { loading, error, data } = mutationResult
 
   if (userProfile) {
-    let initValues = initializeFormValues(initFormValues, userProfile)
+    let initValues = initializeFormValues(userProfile, initFormValues)
     return (
       <Formik
         validateOnChange={true}

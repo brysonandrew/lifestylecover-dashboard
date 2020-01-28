@@ -21,8 +21,12 @@ export function fromKebabCase(name) {
   }
 }
 
+export const isUpperCase = (str) => str === str.toUpperCase();
+
 export const fromCamelCase = (camelCase) => {
-  if (camelCase) {
+  if (camelCase === 'pir') {
+    return 'PIR'
+  } else if (camelCase) {
     return camelCase
     .replace(/([A-Z])/g, (match) => ` ${match}`)
     .replace(/^./, (match) => match.toUpperCase())

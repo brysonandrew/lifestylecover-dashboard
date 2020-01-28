@@ -5,7 +5,7 @@ export enum EUserType {
 }
 
 export type TUserProfile = {
-  id: string
+  id?: string
   username: string
   firstName: string
   lastName: string

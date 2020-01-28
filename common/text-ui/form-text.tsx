@@ -1,8 +1,8 @@
 import * as React from "react"
 import styled from "styled-components"
-import { TextFieldDisabled } from "./inputs/text-field-disabled"
-import { CheckboxDisabled } from "./inputs/checkbox-disabled"
-import { ArrayDisabled } from "./inputs/array-disabled"
+import { TextFieldText } from "./text-field-text"
+import { CheckboxText } from "./checkbox-text"
+import { ArrayText } from "./array-text"
 import { isBoolean, isArray } from "util"
 
 const Wrapper = styled.div`
@@ -11,30 +11,31 @@ const Wrapper = styled.div`
 
 type TProps = {
   children: any
+  arrayInputs?: any
 }
 
-export const FormDisabled = (props: TProps) => {
-  const { children } = props
+export const FormText = (props: TProps) => {
+  const { children, arrayInputs } = props
   return (
     <Wrapper>
       {Object.keys(children).map((label: any) => {
         if (isArray(children[label])) {
           return (
-            <ArrayDisabled key={label}>
+            <ArrayText key={label} arrayInputs={arrayInputs}>
               {children[label]}
-            </ArrayDisabled>
+            </ArrayText>
           )
         } else if (isBoolean(children[label])) {
           return (
-            <CheckboxDisabled key={label} isChecked={children[label] as boolean}>
+            <CheckboxText key={label} isChecked={children[label] as boolean}>
               {label}
-            </CheckboxDisabled>
+            </CheckboxText>
           )
         } else {
           return (
-            <TextFieldDisabled key={label} label={label}>
+            <TextFieldText key={label} label={label}>
               {children[label]}
-            </TextFieldDisabled>
+            </TextFieldText>
           )
         }
       })}

@@ -1,11 +1,10 @@
 import React from "react"
 import { useQuery, useMutation } from "@apollo/react-hooks"
-import { List } from "../actions/list"
 import { USER_GET_LIST_QUERY, USER_CREATE_MUTATION, USER_DELETE_MUTATION } from "../../utils"
 import { LoadingCentered, PageWrapper } from "../../common"
 import { UserController } from "./user-controller"
 import { TUserProfile } from "../../models"
-import { USER_CONTACT_FORM } from "../../data-initial-values"
+import { USER_CONTACT_FORM } from "../../data-initial-values-policy"
 
 type TProps = {
   userProfile: TUserProfile

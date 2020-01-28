@@ -13,6 +13,11 @@ export const ProfileContactInputs = () => {
   return (
     <Wrapper>
       <TextField
+        label="Email"
+        placeholder={placeholder.user.unknown}
+        name="email"
+      />
+      <TextField
         label="Mobile"
         placeholder={placeholder.user.unknown}
         name="mobile"

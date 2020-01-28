@@ -27,7 +27,7 @@ type TProps = {
   children: React.ReactNode
 }
 
-export const TextFieldDisabled: React.FC<TProps> = ({
+export const TextFieldText: React.FC<TProps> = ({
   label,
   children,
 }) => {

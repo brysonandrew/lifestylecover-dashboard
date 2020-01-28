@@ -1,40 +1,49 @@
 import React from "react"
+import id from "uniqid"
 import styled from "styled-components"
 import { TextField, TextFieldArray } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
-import { BENEFIT_RISK_INIT } from "../../../data-initial-values"
-import { fromCamelCase } from "../../../utils"
+import { BENEFIT_RISK_INIT, POLICY_RISK_TEXT_INPUTS } from "../../../data-initial-values-policy"
+import { fromCamelCase, initializeFormValues } from "../../../utils"
+import { SubItemWrapper } from "../../../common/sub-item-wrapper"
 const name = "benefit"
 
 export const PolicyRiskInputs = props => {
-  return (
-    <div>
-      <TextField
-        label="Title"
-        placeholder={placeholder.user.unknown}
-        name="title"
-      />
-      <TextFieldArray
-        name={name}
-        title={name}
-        initialItem={BENEFIT_RISK_INIT}
-        values={props.values.benefits}
-      >
-        {(_, index) => (
-          <div>
-            {Object.keys(BENEFIT_RISK_INIT).map(key => (
-              <div key={key}>
+  if (props.values) {
+    return (
+      <>
+        {Object.keys(POLICY_RISK_TEXT_INPUTS).map(key => (
+          <TextField
+            key={key}
+            label={fromCamelCase(key)}
+            placeholder={placeholder.user.unknown}
+            name={key}
+            type={key.indexOf("date") > -1 ? "date" : null}
+          />
+        ))}
+        <TextFieldArray
+          name={name}
+          title={name}
+          initialItem={BENEFIT_RISK_INIT}
+          values={props.values.benefits}
+        >
+          {(_, index) => (
+            <SubItemWrapper key={`${name}-${index}`}>
+              {Object.keys(BENEFIT_RISK_INIT).map(key => (
                 <TextField
+                  key={key}
                   label={fromCamelCase(key)}
                   placeholder={placeholder.user.unknown}
                   name={`${name}s.${index}.${key}`}
                   type={key.indexOf("date") > -1 ? "date" : null}
                 />
-              </div>
-            ))}
-          </div>
-        )}
-      </TextFieldArray>
-    </div>
-  )
+              ))}
+            </SubItemWrapper>
+          )}
+        </TextFieldArray>
+      </>
+    )
+  } else {
+    return null
+  }
 }

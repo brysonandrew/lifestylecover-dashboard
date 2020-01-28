@@ -7,12 +7,12 @@ export const LOGIN_FORM_INIT = {
 
 export const CREATE_USER_INIT = {
   username: "",
+  email: "",
   password: "",
-  'user-type': "client"
+  role: "client"
 }
 
 export const USER_PROFILE: TUserProfile = {
-  id: "",
   username: "",
   firstName: "",
   lastName: "",
@@ -24,36 +24,40 @@ export const USER_PROFILE: TUserProfile = {
 }
 
 export const USER_CONTACT_FORM: Partial<TUserProfile> = {
-  mobile: "",
-  phone: "",
-  address: "",
+  email: "EMPTY",
+  mobile: "EMPTY",
+  phone: "EMPTY",
+  address: "EMPTY",
 }
 
 export const USER_DETAILS_FORM: Partial<TClientProfile> = {
-  dateOfBirth: "",
-  occupationRating: "",
+  dateOfBirth: "EMPTY",
+  occupationRating: "EMPTY",
   smoker: false,
 }
 
 export const BENEFIT_RISK_INIT = {
-  benefitType: "",
-  benefitDescription: "",
-  productName: "",
-  excess: "",
-  additionalFeatures: "",
-  exclusionsOrLoadings: "",
-  individualBenefitPremiums: ""
+  benefitType: "EMPTY",
+  benefitDescription: "EMPTY",
+  productName: "EMPTY",
+  excess: "0",
+  additionalFeatures: "EMPTY",
+  exclusionsOrLoadings: "EMPTY",
+  individualBenefitPremiums: "EMPTY"
+}
+
+export const POLICY_RISK_TEXT_INPUTS = {
+  title: "EMPTY",
+  ownersName: "EMPTY",
+  insured: "EMPTY",
+  commencementDate: "EMPTY",
+  premiumAmount: "0",
+  premiumFrequency: "EMPTY",
+  policyFee: "0",
 }
 
 export const POLICY_RISK_INIT = {
-  id: "",
-  title: "",
-  ownersName: "",
-  insured: "",
-  commencementDate: "",
-  premiumAmount: "",
-  premiumFrequency: "",
-  policyFee: "",
+  ...POLICY_RISK_TEXT_INPUTS,
   benefits: [],
 }
 
@@ -72,7 +76,6 @@ export const BENEFIT_ASSET_INIT = {
 }
 
 export const POLICY_ASSET_INIT = {
-  id: "",
   title: "",
   benefits: []
 }
@@ -87,11 +90,9 @@ export const POLICY_KIWISAVER_INPUTS_INIT = {
 }
 
 export const POLICY_KIWISAVER_INIT = {
-  id: "",
   title: "",
   ...POLICY_KIWISAVER_INPUTS_INIT
 }
-
 
 export const PET_INIT = {
   petName: "",
@@ -107,7 +108,6 @@ export const PET_INIT = {
 }
 
 export const POLICY_PET_INIT = {
-  id: "",
   title: "",
   pets: []
 }

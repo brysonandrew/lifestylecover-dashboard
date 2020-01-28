@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { Button as MaterialButton } from "@material-ui/core"
-import { color, layoutSizes } from "../../data"
+import { color } from "../../data"
 
 const MaterialButtonStyled = styled(MaterialButton)`
   && {

@@ -10,7 +10,10 @@ const Wrapper = styled.li`
   display: flex;
   flex-direction: row;
   position: relative;
-  padding: 12px 0;
+  margin-top: 12px;
+  &:first-child {
+    margin-top: 0;
+  }
 `
 
 type TEditConfig = {

@@ -31,6 +31,7 @@ export const USER_FRAGMENTS = {
       id
       username
       name
+      email
       mobile
       phone
       address
@@ -77,6 +78,7 @@ export const USER_FRAGMENTS = {
       id
       username
       name
+      email
       mobile
       phone
       address
@@ -92,6 +94,7 @@ export const USER_FRAGMENTS = {
       id
       username
       name
+      email
       mobile
       phone
       address

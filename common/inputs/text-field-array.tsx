@@ -1,14 +1,9 @@
 import * as React from "react"
 import styled from "styled-components"
 import { FieldArray } from "formik"
-import { Remove } from "@material-ui/icons"
+import { Add, Delete } from "@material-ui/icons"
 import { Button } from "@material-ui/core"
-
-const Heading = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-`
+import { ListDivider } from ".."
 
 const Item = styled.div`
   position: relative;
@@ -42,9 +37,7 @@ type TTextFieldArrayProps = {
 }
 
 export const TextFieldArray = ({
-  title,
   name,
-  buttonText,
   initialItem,
   values,
   children,
@@ -53,22 +46,30 @@ export const TextFieldArray = ({
     <FieldArray name={`${name}s`}>
       {arrayHelpers => (
         <div>
-          {title && (
-            <Heading>
-              <h2>{title}</h2>
-            </Heading>
-          )}
-          {values.map((item, index) => (
-            <Item key={item.id}>
-              <Controls>
-                <Remove onClick={() => arrayHelpers.remove(index)} />
-              </Controls>
-              {children(item, index)}
-            </Item>
-          ))}
+          {values.map((item, index) => {
+            return (
+              <React.Fragment key={`${name}-${index}`}>
+                {index !== 0 && <ListDivider />}
+                <Item>
+                  <Controls>
+                    <Button
+                      onClick={() => arrayHelpers.remove(index)}
+                      startIcon={(<Delete />)}
+                    >
+                      {`remove ${name}`}
+                    </Button>
+                  </Controls>
+                  {children(item, index)}
+                </Item>
+              </React.Fragment>
+            )
+          })}
           <AddWrapper>
-            <Button onClick={() => arrayHelpers.push(initialItem)}>
-              {buttonText || `add ${name}`}
+            <Button
+              onClick={() => arrayHelpers.push(initialItem)}
+              startIcon={(<Add />)}
+            >
+              {`add ${name}`}
             </Button>
           </AddWrapper>
         </div>

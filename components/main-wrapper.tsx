@@ -1,8 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { color } from "../data"
-import { sizes } from "../utils"
 import { blue, teal } from "@material-ui/core/colors"
 
 const theme = createMuiTheme({
@@ -41,9 +39,6 @@ let Main = styled.div`
 
 Main = styled(Main)`
   width: 100%;
-  /* ${sizes.laptop`
-    width: 1200px;
- `} */
 `
 
 type TProps = {

@@ -11,7 +11,7 @@ import {
 import { TUserProfile } from "../../../models"
 import { PolicyRiskInputs } from "./policy-risk-inputs"
 import { PolicyController } from "../policy-controller"
-import { POLICY_RISK_INIT } from "../../../data-initial-values"
+import { POLICY_RISK_INIT, BENEFIT_RISK_INIT } from "../../../data-initial-values-policy"
 import { Timeline } from "@material-ui/icons"
 
 type TProps = {
@@ -32,6 +32,7 @@ export const PolicyRisk = (props: TProps) => {
       ) : (
         <PolicyController
           inputs={POLICY_RISK_INIT}
+          arrayInputs={BENEFIT_RISK_INIT}
           userProfile={userProfile}
           updateMutation={updateMutation}
           createMutation={createMutation}
