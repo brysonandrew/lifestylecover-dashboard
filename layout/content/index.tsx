@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { color, layoutSizes } from "../../data"
 import { fromKebabCase, renderSwitch } from "../../utils"
 import { Users, Profile, PolicyAll } from "../../components"
+import { EMenuItem } from "../../models/layout"
+import { PolicyClientAsset } from "../../components/policy/policy-client-asset"
 
 const Wrapper = styled.div`
   position: relative;
@@ -35,9 +37,10 @@ export const Content = (props: TProps) => {
     <Wrapper>
       <Inner>
         {renderSwitch(fromKebabCase(activeMenuItem), {
-          Profile: () => <Profile userProfile={userProfile} />,
-          Users: () => <Users userProfile={userProfile} />,
-          "Policies All": () => <PolicyAll userProfile={userProfile} />,
+          [EMenuItem.Profile]: () => <Profile userProfile={userProfile} />,
+          [EMenuItem.Users]: () => <Users userProfile={userProfile} />,
+          [EMenuItem.PoliciesAll]: () => <PolicyAll userProfile={userProfile} />,
+          [EMenuItem.PolicyAsset]: () => <PolicyClientAsset userProfile={userProfile}/>
         })}
       </Inner>
     </Wrapper>

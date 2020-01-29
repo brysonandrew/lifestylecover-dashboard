@@ -4,26 +4,29 @@ import styled from "styled-components"
 import { color, TRANSITION_LINEAR_CONFIG, layoutSizes } from "../../data"
 import { NavToggle } from "./nav-toggle"
 import { NavList } from "./nav-list"
-import { TUserProfile, EUserRole } from "../../models"
+import { TUserProfile, EMenuItem, EPolicyFetchKey } from "../../models"
 import { STATIC_MENU_ITEMS } from "../menu-items"
 
 const menuItems = (userProfile: TUserProfile) => {
-  let items = STATIC_MENU_ITEMS[userProfile.role]
+  let items = []
+  console.log(userProfile)
   Object.keys(userProfile).forEach((key) => {
-    if (key === 'policyRisk') {
-      items.push('ClientPolicyRisk')
-    }
-    if (key === 'policyAsset') {
-      items.push('ClientPolicyAsset')
-    }
-    if (key === 'policyKiwisaver') {
-      items.push('ClientPolicyKiwisaver')
-    }
-    if (key === 'policyPet') {
-      items.push('ClientPolicyPet')
+    if (userProfile[key]?.edges?.length > 0) {
+      if (key === EPolicyFetchKey.policiesRisk) {
+        items = [...items, EMenuItem.PolicyRisk]
+      }
+      if (key === EPolicyFetchKey.policiesAsset) {
+        items = [...items, EMenuItem.PolicyAsset]
+      }
+      if (key === EPolicyFetchKey.policiesKiwisaver) {
+        items = [...items, EMenuItem.PolicyKiwisaver]
+      }
+      if (key === EPolicyFetchKey.policiesPet) {
+        items = [...items, EMenuItem.PolicyPet]
+      }
     }
   })
-  return items
+  return [...items, ...STATIC_MENU_ITEMS[userProfile.role]]
 }
 
 const Wrapper = styled(motion.nav)`

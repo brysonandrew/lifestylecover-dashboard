@@ -4,7 +4,7 @@ import { PageWrapper } from "../../../common"
 import { Item, EMPTY_ACTION_CONFIG } from "../.."
 import { ProfileDetailsUpdateForm } from "./profile-details-update-form"
 import { FormText } from "../../../common/text-ui/form-text"
-import { USER_DETAILS_FORM } from "../../../data-initial-values-policy"
+import { USER_DETAILS_FORM } from "../../../data-initial-values-user"
 import { initializeFormValues } from "../../../utils"
 
 type TProps = {

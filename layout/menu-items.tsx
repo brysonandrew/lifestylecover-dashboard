@@ -4,28 +4,39 @@ import {
   Info,
   AccountCircle,
   RecentActors,
-  Description,
   FileCopy,
   Pets,
   AccountBalance,
   Home,
   Timeline,
 } from "@material-ui/icons"
+import { EMenuItem } from "../models/layout"
 
 export const STATIC_MENU_ITEMS = {
-  administrator: ["Profile", "Policies All", "Users"],
-  advisor: ["Profile", "Clients", "Policies All"],
-  client: ["Profile", "Your Advisor"],
+  administrator: [
+    EMenuItem.Profile,
+    EMenuItem.PoliciesAll,
+    EMenuItem.Users
+  ],
+  advisor: [
+    EMenuItem.Profile,
+    EMenuItem.Clients,
+    EMenuItem.PoliciesAll
+  ],
+  client: [
+    EMenuItem.Profile,
+    EMenuItem.YourAdvisor
+  ],
 }
 
 export const MENU_ITEM_ICONS = {
-  "Policies All": <FileCopy />,
-  PolicyRisk: <Timeline />,
-  PolicyAsset: <Home />,
-  PolicyKiwisaver: <AccountBalance />,
-  PolicyPet: <Pets />,
-  Users: <RecentActors />,
-  Clients: <People />,
-  Profile: <AccountCircle />,
-  "Your Advisor": <Info />,
+  [EMenuItem.PoliciesAll]: <FileCopy />,
+  [EMenuItem.PolicyRisk]: <Timeline />,
+  [EMenuItem.PolicyAsset]: <Home />,
+  [EMenuItem.PolicyKiwisaver]: <AccountBalance />,
+  [EMenuItem.PolicyPet]: <Pets />,
+  [EMenuItem.Users]: <RecentActors />,
+  [EMenuItem.Clients]: <People />,
+  [EMenuItem.Profile]: <AccountCircle />,
+  [EMenuItem.YourAdvisor]: <Info />,
 }

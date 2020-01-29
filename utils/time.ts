@@ -17,7 +17,6 @@ export function throttle(fn: any, ms?: number) {
 
 export const formatDate = (date: string) => {
   if (date) {
-    console.log(date.substring(8, 10))
     return `${date.substring(0, 4)}-${date.substring(4, 6)}-${date.substring(6, 8)}`
   } else {
     return date

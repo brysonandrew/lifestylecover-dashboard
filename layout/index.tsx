@@ -1,5 +1,4 @@
 import * as React from "react"
-import styled from "styled-components"
 import { NextRouter, withRouter } from "next/router"
 import { useQuery } from "@apollo/react-hooks"
 import { MainWrapper } from "../components"
@@ -9,47 +8,10 @@ import {
   VIEWER_ADMIN_QUERY,
   VIEWER_CLIENT_QUERY,
   VIEWER_ADVISOR_QUERY,
-  formatDate,
+  createUserProfile,
 } from "../utils"
 import { LoadingCentered } from "../common"
 import { EUserRole } from "../models"
-
-const userProfileFrom = user => {
-  if (user) {
-    let {
-      id,
-      username,
-      firstName,
-      lastName,
-      email,
-      mobile,
-      phone,
-      address,
-      dateOfBirth,
-      occupationRating,
-      smoker,
-      roles,
-    } = user
-    const role = roles?.nodes[0]?.name
-    dateOfBirth = formatDate(dateOfBirth)
-    return {
-      id,
-      username,
-      firstName,
-      lastName,
-      mobile,
-      phone,
-      address,
-      dateOfBirth,
-      occupationRating,
-      smoker,
-      email,
-      role,
-    }
-  } else {
-    return null
-  }
-}
 
 export type TLayoutProps = {
   user: any
@@ -101,7 +63,7 @@ export const Layout = withRouter((props: TLayoutProps) => {
   if (userQuery.loading) {
     return <LoadingCentered />
   } else {
-    const userProfile = userProfileFrom(user)
+    const userProfile = createUserProfile(user)
     return (
       <MainWrapper>
         <Content

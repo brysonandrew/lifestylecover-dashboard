@@ -1,8 +1,10 @@
 import { TUserProfile, TClientProfile } from "./models/users"
 
 export const LOGIN_FORM_INIT = {
-  username: "admin",
-  password: "xGje2yy7qe&prDNUn)!9R5qm",
+  // username: "admin",
+  // password: "xGje2yy7qe&prDNUn)!9R5qm",
+  username: "client",
+  password: "Y0sgitjVovA@sD)EeRUJmReb",
 }
 
 export const CREATE_USER_INIT = {
@@ -13,7 +15,6 @@ export const CREATE_USER_INIT = {
 }
 
 export const USER_PROFILE: TUserProfile = {
-  id: "",
   username: "",
   firstName: "",
   lastName: "",

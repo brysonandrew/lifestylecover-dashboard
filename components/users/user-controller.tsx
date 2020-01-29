@@ -5,7 +5,7 @@ import { ProfileContactUpdateForm } from "../profile"
 import { FormText } from "../../common"
 import { initializeFormValues, createVariablesCreateUser } from "../../utils"
 import { UserCreateInputs } from "./user-create-inputs"
-import { CREATE_USER_INIT } from "../../data-initial-values-policy"
+import { CREATE_USER_INIT } from "../../data-initial-values-user"
 
 type TProps = {
   refetch(): void

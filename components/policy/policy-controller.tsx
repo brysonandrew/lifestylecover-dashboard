@@ -15,7 +15,6 @@ type TProps = {
 export const PolicyController = (props: TProps) => {
   const { children, inputs, arrayInputs, edgesKey, title, icon, userProfile, fetchQuery, updateMutation, createMutation, deleteMutation } = props
   const { loading, error, data, refetch } = fetchQuery
-  console.log(edgesKey)
 
   return (
     <PageWrapper title={title} icon={icon}>

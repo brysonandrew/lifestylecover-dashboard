@@ -4,7 +4,7 @@ import { PageWrapper, LoadingCentered } from "../../../common"
 import { Item, EMPTY_ACTION_CONFIG } from "../.."
 import { ProfileContactUpdateForm } from "./profile-contact-update-form"
 import { FormText } from "../../../common"
-import { USER_CONTACT_FORM } from "../../../data-initial-values-policy"
+import { USER_CONTACT_FORM } from "../../../data-initial-values-user"
 import { initializeFormValues } from "../../../utils"
 
 type TProps = {

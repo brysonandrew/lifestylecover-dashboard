@@ -1,8 +1,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
-import { color, TRANSITION_LINEAR_CONFIG, layoutSizes } from "../../data"
-import { NavToggle } from "./nav-toggle"
+import { color, layoutSizes } from "../../data"
 import { NavItem } from "./nav-item"
 import { ListDivider } from "../../common/list-divider"
 

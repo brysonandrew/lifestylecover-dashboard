@@ -2,12 +2,12 @@ import { FieldAttributes } from "formik"
 
 export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
-export enum EProfileInputType {
+export enum EProfileInput {
   Contact = "Contact",
   Details = "Details",
 }
 
-export enum EPolicyInputType {
+export enum EPolicy {
   Risk = "Risk",
   Asset = "Asset",
   Kiwisaver = "Kiwisaver",

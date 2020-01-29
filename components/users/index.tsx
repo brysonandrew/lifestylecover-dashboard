@@ -4,7 +4,7 @@ import { USER_GET_LIST_QUERY, USER_CREATE_MUTATION, USER_DELETE_MUTATION } from 
 import { LoadingCentered, PageWrapper } from "../../common"
 import { UserController } from "./user-controller"
 import { TUserProfile } from "../../models"
-import { USER_CONTACT_FORM } from "../../data-initial-values-policy"
+import { USER_CONTACT_FORM } from "../../data-initial-values-user"
 
 type TProps = {
   userProfile: TUserProfile

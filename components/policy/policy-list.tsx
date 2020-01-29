@@ -29,7 +29,6 @@ export const PolicyList = (props: TProps) => {
       meta: JSON.stringify(meta)
     }
   }
-  console.log(edges)
   return (
     <List
       addConfig={

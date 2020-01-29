@@ -7,3 +7,10 @@ export type TPolicyProps = {
   createMutation?: any
   deleteMutation?: any
 }
+
+export enum EPolicyFetchKey {
+  policiesAsset = "policiesAsset",
+  policiesRisk = "policiesRisk",
+  policiesKiwisaver = "policiesKiwisaver",
+  policiesPet = "policiesPet",
+}

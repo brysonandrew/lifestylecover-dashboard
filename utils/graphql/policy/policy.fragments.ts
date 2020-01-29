@@ -92,7 +92,7 @@ export const POLICIES_FRAGMENTS = {
         }
       }
     }
-    {POLICY_FRAGMENTS.RISK}
+    ${POLICY_FRAGMENTS.RISK}
   `,
   ASSET_POLICIES: gql`
     fragment ASSET_POLICIES on User {
@@ -103,7 +103,7 @@ export const POLICIES_FRAGMENTS = {
           }
         }      }
     }
-    {POLICY_FRAGMENTS.ASSET}
+    ${POLICY_FRAGMENTS.ASSET}
   `,
   KIWISAVER_POLICIES: gql`
     fragment KIWISAVER_POLICIES on User {
@@ -115,7 +115,7 @@ export const POLICIES_FRAGMENTS = {
         }      
       }
     }
-    {POLICY_FRAGMENTS.KIWISAVER}
+    ${POLICY_FRAGMENTS.KIWISAVER}
   `,
   PET_POLICIES: gql`
     fragment PET_POLICIES on User {
@@ -127,6 +127,6 @@ export const POLICIES_FRAGMENTS = {
         }      
       }
     }
-    {POLICY_FRAGMENTS.PET}
+    ${POLICY_FRAGMENTS.PET}
   `,
 }

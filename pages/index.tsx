@@ -32,7 +32,7 @@ export default (props: TIndexProps) => {
   }, [])
 
   React.useEffect(() => {
-    if (viewerInit.data) {
+    if (viewerInit.data && !viewerInit.called) {
       onUpdateUser({user: viewerInit.data.viewer})
     }
   }, [viewerInit.data])
