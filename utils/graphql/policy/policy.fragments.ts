@@ -80,3 +80,53 @@ export const POLICY_FRAGMENTS = {
     }
   `,
 }
+
+export const POLICIES_FRAGMENTS = {
+  RISK_POLICIES: gql`
+    fragment RISK_POLICIES on User {
+      policiesRisk {
+        edges {
+          node {
+            ...RISK
+          }
+        }
+      }
+    }
+    {POLICY_FRAGMENTS.RISK}
+  `,
+  ASSET_POLICIES: gql`
+    fragment ASSET_POLICIES on User {
+      policiesAsset {
+        edges {
+          node {
+            ...ASSET
+          }
+        }      }
+    }
+    {POLICY_FRAGMENTS.ASSET}
+  `,
+  KIWISAVER_POLICIES: gql`
+    fragment KIWISAVER_POLICIES on User {
+      policiesKiwisaver {
+        edges {
+          node {
+            ...KIWISAVER
+          }
+        }      
+      }
+    }
+    {POLICY_FRAGMENTS.KIWISAVER}
+  `,
+  PET_POLICIES: gql`
+    fragment PET_POLICIES on User {
+      policiesPet {
+        edges {
+          node {
+            ...PET
+          }
+        }      
+      }
+    }
+    {POLICY_FRAGMENTS.PET}
+  `,
+}
