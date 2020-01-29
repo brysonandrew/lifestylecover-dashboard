@@ -26,3 +26,4 @@ export interface IActionControlConfig {
 
 export * from "./inputs"
 export * from "./users"
+export * from "./policy"

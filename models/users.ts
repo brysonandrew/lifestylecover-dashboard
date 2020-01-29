@@ -1,4 +1,4 @@
-export enum EUserType {
+export enum EUserRole {
   administrator = "administrator",
   client = "client",
   advisor = "advisor",
@@ -13,7 +13,7 @@ export type TUserProfile = {
   phone: string
   address: string
   email: string
-  role: string
+  role: EUserRole
 }
 
 export type TClientProfile = {

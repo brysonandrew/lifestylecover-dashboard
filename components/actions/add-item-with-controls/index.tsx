@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
-import { ItemControls } from "../item-controls"
+import { ItemControls } from "../item/item-controls"
 import { EAction, IActionConfig, TAddConfig } from "../../../models"
 import { Add, Cancel } from "@material-ui/icons"
 import { motion } from "framer-motion"
@@ -45,7 +45,7 @@ export const AddItemWithControls = (props: TProps) => {
             : {
                 action: EAction.Add,
                 callback: onSetAdd,
-                icon: <Add />,
+                icon: <Add color="primary" />,
               },
         ]}
       </ItemControls>

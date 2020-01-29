@@ -6,16 +6,24 @@ import {
   RecentActors,
   Description,
   FileCopy,
+  Pets,
+  AccountBalance,
+  Home,
+  Timeline,
 } from "@material-ui/icons"
 
-export const menuItems = {
-  administrator: ["Profile", "Policies", "Users"],
-  advisor: ["Profile", "Clients", "Policies"],
-  client: ["Profile", "Policies", "Your Advisor"],
+export const STATIC_MENU_ITEMS = {
+  administrator: ["Profile", "Policies All", "Users"],
+  advisor: ["Profile", "Clients", "Policies All"],
+  client: ["Profile", "Your Advisor"],
 }
 
-export const ICONS = {
-  Policies: <FileCopy />,
+export const MENU_ITEM_ICONS = {
+  "Policies All": <FileCopy />,
+  PolicyRisk: <Timeline />,
+  PolicyAsset: <Home />,
+  PolicyKiwisaver: <AccountBalance />,
+  PolicyPet: <Pets />,
   Users: <RecentActors />,
   Clients: <People />,
   Profile: <AccountCircle />,

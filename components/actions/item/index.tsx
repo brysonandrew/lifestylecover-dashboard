@@ -1,13 +1,14 @@
 import * as React from "react"
 import styled from "styled-components"
-import { UserItemInfoWrapper } from "./item-info-wrapper"
-import { EAction, IActionConfig } from "../../models"
+import { ItemInfoWrapper } from "./item-info-wrapper"
+import { EAction, IActionConfig } from "../../../models"
 import { ItemControls } from "./item-controls"
 import { Edit, Delete, Close } from "@material-ui/icons"
+import { color } from "../../../data"
 
 const Wrapper = styled.li`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
   padding: 12px 0;
   &:first-child {
@@ -32,9 +33,6 @@ export const Item = (props: TProps) => {
   const { children, editConfig, onSetDelete } = props
   return (
     <Wrapper>
-      <UserItemInfoWrapper>
-        {children}
-      </UserItemInfoWrapper>
       {(editConfig || onSetDelete) && (
         <ItemControls>
           {[
@@ -42,20 +40,23 @@ export const Item = (props: TProps) => {
               ? [{
                 action: EAction.Edit,
                 callback: editConfig.onSet,
-                icon: editConfig.isEditing ? <Close /> : <Edit />,
+                icon: editConfig.isEditing ? <Close /> : <Edit color="primary" />,
               }]
               : []),
             ...(onSetDelete
               ? [{
                 action: EAction.Delete,
                 callback: onSetDelete,
-                icon: <Delete />,
+                icon: <Delete color="error" />,
               }]
               : []
             )
           ]}
         </ItemControls>
       )}
+      <ItemInfoWrapper>
+        {children}
+      </ItemInfoWrapper>
     </Wrapper>
   )
 }

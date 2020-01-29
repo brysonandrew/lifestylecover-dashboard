@@ -1,11 +1,13 @@
 import * as React from "react"
 import styled from "styled-components"
+import { color } from "../../data"
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  color: ${color.offBlack};
 `
 
 const Icon = styled.div`

@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
-import { layoutSizes } from "../../data"
+import { layoutSizes } from "../../../data"
 
 const Wrapper = styled.div`
   display: flex;

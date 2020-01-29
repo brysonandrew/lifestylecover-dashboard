@@ -2,7 +2,11 @@ import gql from "graphql-tag"
 import { POLICY_FRAGMENTS } from "./policy.fragments"
 
 export const POLICY_UPDATE_RISK_MUTATION = gql`
-  mutation POLICY_UPDATE_RISK($id: ID!, $meta: String!) {
+  mutation POLICY_UPDATE_RISK(
+    $id: ID!,
+    $title: String!,
+    $meta: String!
+  ) {
     updatePolicyRisk(
       input: {
         clientMutationId: "POLICY_UPDATE_RISK"
@@ -12,7 +16,6 @@ export const POLICY_UPDATE_RISK_MUTATION = gql`
     ) {
       policyRisk {
         id
-        title
       }
     }
   }
@@ -20,46 +23,65 @@ export const POLICY_UPDATE_RISK_MUTATION = gql`
 // # ${POLICY_FRAGMENTS.RISK}
 
 export const POLICY_UPDATE_ASSET_MUTATION = gql`
-  mutation POLICY_UPDATE_ASSET($id: ID!, $title: String!) {
+  mutation POLICY_UPDATE_ASSET(
+    $id: ID!,
+    $title: String!,
+    $meta: String!
+  ) {
     updatePolicyAsset(
-      input: { clientMutationId: "POLICY_UPDATE_ASSET", id: $id, title: $title }
+      input: {
+        clientMutationId: "POLICY_UPDATE_ASSET"
+        id: $id
+        title: $title
+        meta: $meta
+      }
     ) {
       policyAsset {
-        ...ASSET
+        id
       }
     }
   }
-  ${POLICY_FRAGMENTS.ASSET}
 `
 
 export const POLICY_UPDATE_KIWISAVER_MUTATION = gql`
-  mutation POLICY_UPDATE_KIWISAVER($id: ID!, $title: String!) {
+  mutation POLICY_UPDATE_KIWISAVER(
+    $id: ID!,
+    $title: String!,
+    $meta: String!
+  ) {
     updatePolicyKiwisaver(
       input: {
         clientMutationId: "POLICY_UPDATE_KIWISAVER"
         id: $id
         title: $title
+        meta: $meta
       }
     ) {
       policyKiwisaver {
-        ...KIWISAVER
+        id
       }
     }
   }
-  ${POLICY_FRAGMENTS.KIWISAVER}
 `
 
 export const POLICY_UPDATE_PET_MUTATION = gql`
-  mutation POLICY_UPDATE_PET($id: ID!, $title: String!) {
+  mutation POLICY_UPDATE_PET(
+    $id: ID!,
+    $title: String!,
+    $meta: String!
+  ) {
     updatePolicyPet(
-      input: { clientMutationId: "POLICY_UPDATE_PET", id: $id, title: $title }
+      input: {
+        clientMutationId: "POLICY_UPDATE_PET",
+        id: $id,
+        title: $title
+      }
     ) {
       policyPet {
-        ...PET
+        id
       }
     }
   }
-  ${POLICY_FRAGMENTS.PET}
 `
 
 // export const POLICY_UPDATE_REVIEW_CONFIG_MUTATION = gql`

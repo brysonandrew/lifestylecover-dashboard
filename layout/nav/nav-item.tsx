@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 import { color, layoutSizes, GRADIENT } from "../../data"
-import { ICONS } from "../menu-items"
+import { MENU_ITEM_ICONS } from "../menu-items"
 import { toKebabCase } from "../../utils"
 import Link from "next/link"
 
@@ -64,7 +64,7 @@ export const NavItem = (props: TProps) => {
           }}
           onClick={() => onSetOpen(false)}
         >
-          <ItemIcon>{ICONS[item]}</ItemIcon>
+          <ItemIcon>{MENU_ITEM_ICONS[item]}</ItemIcon>
           <ItemText>{item}</ItemText>
         </ItemLink>
       </Link>

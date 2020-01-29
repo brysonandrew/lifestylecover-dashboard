@@ -4,7 +4,6 @@ import { NextRouter, withRouter } from "next/router"
 import { useQuery } from "@apollo/react-hooks"
 import { MainWrapper } from "../components"
 import { Nav } from "./nav"
-import { menuItems } from "./menu-items"
 import { Header, Content } from "./content"
 import {
   VIEWER_ADMIN_QUERY,
@@ -13,6 +12,7 @@ import {
   formatDate,
 } from "../utils"
 import { LoadingCentered } from "../common"
+import { EUserRole } from "../models"
 
 const userProfileFrom = user => {
   if (user) {
@@ -69,18 +69,18 @@ export const Layout = withRouter((props: TLayoutProps) => {
     data: null,
     error: "Invalid user role",
   }
-  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, { skip: role !== "client" })
+  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, { skip: role !== EUserRole.client })
   const advisorQuery = useQuery(VIEWER_ADVISOR_QUERY, {
-    skip: role !== "advisor",
+    skip: role !== EUserRole.advisor,
   })
   const adminQuery = useQuery(VIEWER_ADMIN_QUERY, {
-    skip: role !== "administrator",
+    skip: role !== EUserRole.administrator,
   })
-  if (role === "client") {
+  if (role === EUserRole.client) {
     userQuery = clientQuery
-  } else if (role === "advisor") {
+  } else if (role === EUserRole.advisor) {
     userQuery = advisorQuery
-  } else if (role === "administrator") {
+  } else if (role === EUserRole.administrator) {
     userQuery = adminQuery
   }
 
@@ -114,9 +114,8 @@ export const Layout = withRouter((props: TLayoutProps) => {
           isOpen={isNavOpen}
           onSetOpen={handleNavToggle}
           activeMenuItem={activeMenuItem}
-        >
-          {userProfile && menuItems[userProfile.role]}
-        </Nav>
+          userProfile={userProfile}
+        />
       </MainWrapper>
     )
   }

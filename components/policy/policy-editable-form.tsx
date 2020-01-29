@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Formik, Form } from "formik"
-import { TPolicy, TUserProfile, EUserType } from "../../models"
+import { TPolicy, TUserProfile, EUserRole } from "../../models"
 import { policyEditableValidationSchema } from "../../data-validation"
 import { SubmitButton } from "../../common"
 import { defined, useRefetch, useDataToSeeIfSuccess } from "../../utils"
@@ -34,7 +34,7 @@ export const PolicyEditableForm = (props: TProps) => {
         onSubmit={null}
       >
         {({ values }) => {
-          const isClient = userProfile.role === EUserType.client
+          const isClient = userProfile.role === EUserRole.client
           return (
             <Form>
               {isClient && (
@@ -48,6 +48,7 @@ export const PolicyEditableForm = (props: TProps) => {
                   isError: defined(error)
                 }}
                 onClick={() => {
+                  console.log(createVariables(values))
                   const variables = {
                     id: policyInfo.id,
                     ...createVariables(values)

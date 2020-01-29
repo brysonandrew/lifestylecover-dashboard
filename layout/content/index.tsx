@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { color, layoutSizes } from "../../data"
 import { fromKebabCase, renderSwitch } from "../../utils"
-import { Users, Profile, Policies } from "../../components"
+import { Users, Profile, PolicyAll } from "../../components"
 
 const Wrapper = styled.div`
   position: relative;
@@ -37,7 +37,7 @@ export const Content = (props: TProps) => {
         {renderSwitch(fromKebabCase(activeMenuItem), {
           Profile: () => <Profile userProfile={userProfile} />,
           Users: () => <Users userProfile={userProfile} />,
-          Policies: () => <Policies userProfile={userProfile} />,
+          "Policies All": () => <PolicyAll userProfile={userProfile} />,
         })}
       </Inner>
     </Wrapper>

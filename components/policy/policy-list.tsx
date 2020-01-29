@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import styled from "styled-components"
 import { List } from ".."
@@ -19,7 +20,7 @@ type TProps = {
   edges: any[]
 }
 
-export const PolicyController = (props: TProps) => {
+export const PolicyList = (props: TProps) => {
   const { refetch, inputs, arrayInputs, edges, children, createMutation, deleteMutation, updateMutation, userProfile } = props
   const createVariables = (values) => {
     const { title, ...meta } = values
@@ -28,6 +29,7 @@ export const PolicyController = (props: TProps) => {
       meta: JSON.stringify(meta)
     }
   }
+  console.log(edges)
   return (
     <List
       addConfig={

@@ -20,7 +20,7 @@ export const USER_PROFILE: TUserProfile = {
   phone: "",
   address: "",
   email: "",
-  role: "",
+  role: null,
 }
 
 export const USER_CONTACT_FORM: Partial<TUserProfile> = {

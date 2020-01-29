@@ -26,9 +26,8 @@ export const AddItemForm = (props: TProps) => {
 
   return (
     <Formik
-      validateOnChange={true}
       initialValues={inputs}
-      validationSchema={addUserValidationSchema}
+      // validationSchema={addUserValidationSchema}
       onSubmit={null}
     >
       {({ values }) => {
