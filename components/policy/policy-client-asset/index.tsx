@@ -25,8 +25,8 @@ export const PolicyClientAsset = (props: TProps) => {
         refetch={refetch}
         edges={data?.viewer.policiesAsset.edges}
         updateMutation={updateMutation}
-        createMutation={createMutation}
-        deleteMutation={deleteMutation}
+        // createMutation={createMutation}
+        // deleteMutation={deleteMutation}
         {...props}
       />
     </div>

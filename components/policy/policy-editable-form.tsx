@@ -3,11 +3,10 @@ import { Formik, Form } from "formik"
 import { TPolicy, TUserProfile, EUserRole } from "../../models"
 import { policyEditableValidationSchema } from "../../data-validation"
 import { SubmitButton } from "../../common"
-import { defined, useRefetch, useDataToSeeIfSuccess } from "../../utils"
-import { PolicyReviewers } from "./policy-reviewers"
+import { defined, useRefetch, useDataToSeeIfSuccess, changedValues, useErrorAndCalledToSeeIfSuccess } from "../../utils"
 
 type TProps = {
-  refetch: any
+  onRefetch(changedValues: any): any
   policyInfo: TPolicy
   userProfile: TUserProfile
   initValues: any
@@ -18,12 +17,15 @@ type TProps = {
 }
 
 export const PolicyEditableForm = (props: TProps) => {
-  const { refetch, policyInfo, userProfile, children, mutation, initValues, createVariables } = props
+  const { onRefetch, policyInfo, userProfile, children, mutation, initValues, createVariables } = props
   const [handleUpdatePolicy, updateMutation] = mutation;
-  const { loading: isLoading, error, data } = updateMutation
+  const { loading: isLoading, data, error, called } = updateMutation
+  const [changedValuesState, setChangedValues] = React.useState(null)
 
-  const isSuccess = useDataToSeeIfSuccess(data?.deletePolicyAsset?.deletedId)
-  const isRefetchTriggered = useRefetch(isSuccess, refetch)
+  const isSuccess = useErrorAndCalledToSeeIfSuccess(data, error, called)
+  const isRefetchTriggered = useRefetch(isSuccess, () => {
+    onRefetch(changedValuesState)
+  })
 
   if (policyInfo) {
     return (
@@ -37,10 +39,10 @@ export const PolicyEditableForm = (props: TProps) => {
           const isClient = userProfile.role === EUserRole.client
           return (
             <Form>
-              {isClient && (
+              {/* {isClient && (
                 <PolicyReviewers/>
-              )}
-              {React.cloneElement(children, {values})}
+              )} */}
+              {React.cloneElement(children, { values })}
               <SubmitButton
                 startIconConfig={{
                   isLoading,
@@ -48,12 +50,14 @@ export const PolicyEditableForm = (props: TProps) => {
                   isError: defined(error)
                 }}
                 onClick={() => {
-                  console.log(createVariables(values))
+                  const changed = changedValues(initValues, values)
+                  setChangedValues(changed)
                   const variables = {
                     id: policyInfo.id,
-                    ...createVariables(values)
+                    title: values.title,
+                    ...createVariables(changed)
                   }
-                  handleUpdatePolicy({variables})
+                  handleUpdatePolicy({ variables })
                 }}
               />
             </Form>

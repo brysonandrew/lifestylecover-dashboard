@@ -5,10 +5,12 @@ const Wrapper = styled.div`
   padding: 12px 0;
 `
 
-type TProps = {}
+type TProps = {
+  children?: string
+}
 
 export const NoneFound = (props: TProps) => (
   <Wrapper>
-    No items found.
+    {props.children || 'No items found.'}
   </Wrapper>
 )

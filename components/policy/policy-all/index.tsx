@@ -12,18 +12,18 @@ type TProps = {
 export const PolicyAll = (props: TProps) => {
   return (
     <div>
-      <PolicyAllRisk
+      {/* <PolicyAllRisk
         {...props}
-      />
+      /> */}
       <PolicyAllAsset
         {...props}
       />
-      <PolicyAllKiwisaver
+      {/* <PolicyAllKiwisaver
         {...props}
       />
       <PolicyAllPet
         {...props}
-      />
+      /> */}
     </div>
   )
 }

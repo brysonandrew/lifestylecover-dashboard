@@ -60,8 +60,6 @@ export const Layout = withRouter((props: TLayoutProps) => {
     }
   }, [userQuery.error])
 
-  console.log(user)
-
   if (userQuery.loading) {
     return <LoadingCentered />
   } else {

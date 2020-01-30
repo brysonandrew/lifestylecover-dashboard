@@ -17,7 +17,7 @@ export const PolicyRiskInputs = props => {
         {Object.keys(POLICY_RISK_TEXT_INPUTS).map(key => (
           <TextField
             key={key}
-            label={fromCamelCase(key)}
+            label={key==='title' ? 'Reference Number' : fromCamelCase(key)}
             placeholder={placeholder.user.unknown}
             name={key}
             type={key.indexOf("date") > -1 ? "date" : null}

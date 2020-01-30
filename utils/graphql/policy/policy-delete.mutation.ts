@@ -30,7 +30,7 @@ export const POLICY_DELETE_ASSET_MUTATION = gql`
 
 export const POLICY_DELETE_KIWISAVER_MUTATION = gql`
   mutation POLICY_DELETE_KIWISAVER($id: ID!) {
-    deleteKiwisaverAsset(
+    deletePolicyKiwisaver(
       input: { clientMutationId: "POLICY_DELETE_KIWISAVER", id: $id }
     ) {
       deletedId

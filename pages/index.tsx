@@ -32,7 +32,7 @@ export default (props: TIndexProps) => {
   }, [])
 
   React.useEffect(() => {
-    if (viewerInit.data && !viewerInit.called) {
+    if (viewerInit.data && !user) {
       onUpdateUser({user: viewerInit.data.viewer})
     }
   }, [viewerInit.data])
@@ -42,6 +42,7 @@ export default (props: TIndexProps) => {
       onUpdateUser(null)
     }
   }, [viewerInit.error])
+
 
   if (activeMenuItem) {
     if (!user || viewerInit.loading) {

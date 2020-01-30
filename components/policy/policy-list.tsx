@@ -5,7 +5,9 @@ import { List } from ".."
 import { TUserProfile } from "../../models"
 import { PolicyEditableForm } from "./policy-editable-form"
 import { FormText } from "../../common/text-ui/form-text"
-import { initializeFormValues } from "../../utils"
+import { initializeFormValues, defined } from "../../utils"
+import { NoneFound } from "../actions/none-found"
+import { PolicyEditable } from "./policy-editable"
 
 
 type TProps = {
@@ -29,55 +31,55 @@ export const PolicyList = (props: TProps) => {
       meta: JSON.stringify(meta)
     }
   }
-  return (
-    <List
-      addConfig={
-        createMutation
-          ? {
-            refetch,
-            inputs,
-            createVariables,
-            createMutation,
-            componentInputs: children
-          }
-          : null}
-      deleteConfig={
-        deleteMutation
-          ? {
-            refetch,
-            deleteText: (values) => `policy ${values.title}`,
-            deleteMutation
-          }
-          : null}
-    >
-      {edges.map(edge => ({
-        itemInfo: edge.node,
-        component: (isEditing: boolean) => {
-          const initValues = initializeFormValues(edge.node, inputs, arrayInputs)
-          if (isEditing) {
+  if (!defined(edges) && edges.length === 0) {
+    return (
+      <NoneFound>
+        Something went wrong and the items could not be fetched.
+      </NoneFound>
+    )
+  } else {
+    return (
+      <List
+        addConfig={
+          createMutation
+            ? {
+              refetch,
+              inputs,
+              createVariables,
+              createMutation,
+              componentInputs: children
+            }
+            : null}
+        deleteConfig={
+          deleteMutation
+            ? {
+              refetch,
+              deleteText: (values) => `policy ${values.title}`,
+              deleteMutation
+            }
+            : null}
+      >
+        {edges.map(edge => ({
+          itemInfo: edge.node,
+          component: (isEditing: boolean) => {
             return (
-              <PolicyEditableForm
+              <PolicyEditable
                 key={edge.node.id}
+                isEditing={isEditing}
+                inputs={inputs}
+                arrayInputs={arrayInputs}
                 policyInfo={edge.node}
                 userProfile={userProfile}
-                initValues={initValues}
-                initArrayValues={arrayInputs}
-                mutation={updateMutation}
+                updateMutation={updateMutation}
                 createVariables={createVariables}
                 refetch={refetch}
               >
                 {children}
-              </PolicyEditableForm>
-            )
-          } else {
-            return (
-              <FormText arrayInputs={arrayInputs}>
-                {initValues}
-              </FormText>
+              </PolicyEditable>
             )
           }
-        }
-      }))}
-    </List>
-  )
+        }))}
+      </List>
+    )
+  }
 } 
