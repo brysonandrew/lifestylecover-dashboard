@@ -32,7 +32,8 @@ export const layoutSizes = {
       height: 40,
       width: 40
     }
-  }
+  },
+  imageSize: 56
 }
 
 export const AUTH_TOKEN_KEY = "AUTH_TOKEN"

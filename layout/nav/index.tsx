@@ -5,11 +5,10 @@ import { color, TRANSITION_LINEAR_CONFIG, layoutSizes } from "../../data"
 import { NavToggle } from "./nav-toggle"
 import { NavList } from "./nav-list"
 import { TUserProfile, EMenuItem, EPolicyFetchKey } from "../../models"
-import { STATIC_MENU_ITEMS } from "../menu-items"
+import { STATIC_MENU_ITEMS } from "../../data-menu-items"
 
 const menuItems = (userProfile: TUserProfile) => {
   let items = []
-  console.log(userProfile)
   Object.keys(userProfile).forEach((key) => {
     if (userProfile[key]?.edges?.length > 0) {
       if (key === EPolicyFetchKey.policiesRisk) {
@@ -26,7 +25,7 @@ const menuItems = (userProfile: TUserProfile) => {
       }
     }
   })
-  return [...items, ...STATIC_MENU_ITEMS[userProfile.role]]
+  return [...STATIC_MENU_ITEMS[userProfile.role], ...items]
 }
 
 const Wrapper = styled(motion.nav)`

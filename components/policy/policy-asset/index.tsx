@@ -5,18 +5,19 @@ import {
   POLICY_ASSET_INIT,
   BENEFIT_ASSET_INIT,
 } from "../../../data-initial-values-policy"
-import { MENU_ITEM_ICONS } from "../../../layout/menu-items"
-import { TPolicyProps, EMenuItem, EPolicyFetchKey } from "../../../models"
+import { MENU_ITEM_ICONS } from "../../../data-menu-items"
+import { TPolicyProps, EMenuItem } from "../../../models"
 
-export const PolicyAsset = (props: TPolicyProps) => (
-  <PolicyController
-    title="Home and Contents"
-    icon={MENU_ITEM_ICONS[EMenuItem.PolicyAsset]}
-    inputs={POLICY_ASSET_INIT}
-    arrayInputs={BENEFIT_ASSET_INIT}
-    edgesKey={EPolicyFetchKey.policiesAsset}
-    {...props}
-  >
-    <PolicyAssetInputs />
-  </PolicyController>
-)
+export const PolicyAsset = (props: TPolicyProps) => {
+  return (
+    <PolicyController 
+      title="Home and Contents"
+      icon={MENU_ITEM_ICONS[EMenuItem.PolicyAsset]}
+      inputs={POLICY_ASSET_INIT}
+      arrayInputs={BENEFIT_ASSET_INIT}
+      {...props}
+    > 
+      <PolicyAssetInputs />
+    </PolicyController>
+  )
+}

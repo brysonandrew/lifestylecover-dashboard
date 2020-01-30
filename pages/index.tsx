@@ -1,12 +1,12 @@
 import React from "react"
 import { NextRouter } from "next/router"
 import { Login } from "../components"
-import { Layout } from "../layout"
 import { useLazyQuery } from "@apollo/react-hooks"
 import { VIEWER_INIT_QUERY } from "../utils"
 import { isBrowser, store } from '../utils';
 import { AUTH_TOKEN_KEY } from '../data';
 import { LoadingCentered } from "../common"
+import { Layout } from "../layout"
 
 export type TIndexProps = {
   user: any

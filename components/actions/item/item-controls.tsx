@@ -17,7 +17,7 @@ const ButtonWrapper = styled.div`
   width: ${layoutSizes.content.button.width}px;
   margin-right: 12px;
   &:last-child {
-    margin-top: 0;
+    margin-right: 0;
   }
 `
 

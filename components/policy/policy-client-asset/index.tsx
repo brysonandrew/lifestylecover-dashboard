@@ -14,20 +14,21 @@ type TProps = {
 }
 
 export const PolicyClientAsset = (props: TProps) => {
-  // const fetchQuery = useQuery(POLICY_GET_VIEWER_ASSET_QUERY, {})
-  // const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
-  // const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
-  // const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
-
+  const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
+  const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
+  const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
+  const { loading, error, data, refetch } = useQuery(POLICY_GET_VIEWER_ASSET_QUERY, {})
   return (
     <div>
-      {/* <PolicyAsset
-        fetchQuery={fetchQuery}
+      <PolicyAsset
+        isLoading={loading}
+        refetch={refetch}
+        edges={data?.viewer.policiesAsset.edges}
         updateMutation={updateMutation}
         createMutation={createMutation}
         deleteMutation={deleteMutation}
         {...props}
-      /> */}
+      />
     </div>
   )
 }

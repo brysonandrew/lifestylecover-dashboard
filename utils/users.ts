@@ -1,6 +1,7 @@
 import { formatDate } from "."
+import { TUserProfile, TClientProfile } from "../models"
 
-export const createUserProfile = (user) => {
+export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
   if (user) {
     let {
       id,
@@ -14,6 +15,8 @@ export const createUserProfile = (user) => {
       dateOfBirth,
       occupationRating,
       smoker,
+      profilePicture,
+      avatar,
       roles,
       policiesRisk,
       policiesAsset,
@@ -27,13 +30,15 @@ export const createUserProfile = (user) => {
       username,
       firstName,
       lastName,
+      email,
       mobile,
       phone,
       address,
       dateOfBirth,
       occupationRating,
       smoker,
-      email,
+      avatar,
+      profilePicture,
       role,
       policiesRisk,
       policiesAsset,

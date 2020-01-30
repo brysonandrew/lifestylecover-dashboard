@@ -4,6 +4,10 @@ export enum EUserRole {
   advisor = "advisor",
 }
 
+export type TAvatar = {
+  url: string
+}
+
 export type TUserProfile = {
   id?: string
   username: string
@@ -13,6 +17,8 @@ export type TUserProfile = {
   phone: string
   address: string
   email: string
+  profilePicture: string
+  avatar: TAvatar
   role: EUserRole
 }
 
@@ -20,6 +26,10 @@ export type TClientProfile = {
   dateOfBirth: string
   occupationRating: string
   smoker: boolean
+  policiesRisk?: any
+  policiesAsset?: any
+  policiesKiwisaver?: any
+  policiesPet?: any
 } & TUserProfile
 
 export type TPolicy = {

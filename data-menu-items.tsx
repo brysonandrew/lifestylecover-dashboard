@@ -10,7 +10,7 @@ import {
   Home,
   Timeline,
 } from "@material-ui/icons"
-import { EMenuItem } from "../models/layout"
+import { EMenuItem } from "./models/layout"
 
 export const STATIC_MENU_ITEMS = {
   administrator: [

@@ -1,8 +1,10 @@
 import { TUserProfile } from ".";
 
 export type TPolicyProps = {
+  isLoading: boolean
+  edges: any[]
+  refetch(): void
   userProfile: TUserProfile
-  fetchQuery: any
   updateMutation: any
   createMutation?: any
   deleteMutation?: any

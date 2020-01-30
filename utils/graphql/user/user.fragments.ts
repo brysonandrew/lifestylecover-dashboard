@@ -5,6 +5,13 @@ export const USER_FRAGMENTS = {
     fragment LOGIN on User {
       id
       username
+      profilePicture
+      avatar(size: 56) {
+        url
+        default
+        extraAttr
+        foundAvatar
+      }
       roles {
         nodes {
           name

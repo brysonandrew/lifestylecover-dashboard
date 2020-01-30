@@ -14,15 +14,17 @@ type TProps = {
 }
 
 export const PolicyAllAsset = (props: TProps) => {
-  const fetchQuery = useQuery(POLICY_GET_ASSET_LIST_QUERY, {})
   const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
+  const { loading, error, data, refetch } = useQuery(POLICY_GET_ASSET_LIST_QUERY, {})
 
   return (
     <div>
       <PolicyAsset
-        fetchQuery={fetchQuery}
+        isLoading={loading}
+        refetch={refetch}
+        edges={data?.policiesAsset?.edges}
         updateMutation={updateMutation}
         createMutation={createMutation}
         deleteMutation={deleteMutation}

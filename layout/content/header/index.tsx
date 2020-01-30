@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { color, layoutSizes } from "../../data"
+import { layoutSizes } from "../../../data"
 import { Button, Paper } from "@material-ui/core"
-import { TUserProfile } from "../../models/users"
+import { TUserProfile } from "../../../models/users"
+import { Avatar } from "./avatar"
 
 const Wrapper = styled.header`
   position: fixed;
@@ -16,9 +17,15 @@ const Inner = styled(Paper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px 0 ${layoutSizes.nav.row + 24}px;
+  padding: 0 0 0 ${layoutSizes.nav.row + 24}px;
   width: 100%;
   height: 100%;
+`
+
+const RightButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 type TProps = {
@@ -52,7 +59,14 @@ export const Header = (props: TProps) => {
     <Wrapper>
       <Inner>
         <h2>{titleText(userProfile)}</h2>
-        <Button onClick={handleLogout}>Log out</Button>
+        <RightButtons>
+          <Button onClick={handleLogout}>Log out</Button>
+          {userProfile?.avatar?.url && (
+            <Avatar
+              userProfile={userProfile}
+            />
+          )}
+        </RightButtons>
       </Inner>
     </Wrapper>
   )

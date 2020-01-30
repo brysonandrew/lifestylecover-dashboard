@@ -2,7 +2,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 import { color, layoutSizes, GRADIENT } from "../../data"
-import { MENU_ITEM_ICONS } from "../menu-items"
+import { MENU_ITEM_ICONS } from "../../data-menu-items"
 import { toKebabCase } from "../../utils"
 import Link from "next/link"
 

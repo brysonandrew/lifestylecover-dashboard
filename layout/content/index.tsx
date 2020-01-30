@@ -5,6 +5,9 @@ import { fromKebabCase, renderSwitch } from "../../utils"
 import { Users, Profile, PolicyAll } from "../../components"
 import { EMenuItem } from "../../models/layout"
 import { PolicyClientAsset } from "../../components/policy/policy-client-asset"
+import { PolicyClientRisk } from "../../components/policy/policy-client-risk"
+import { PolicyClientPet } from "../../components/policy/policy-client-pet"
+import { PolicyClientKiwisaver } from "../../components/policy/policy-client-kiwisaver"
 
 const Wrapper = styled.div`
   position: relative;
@@ -40,7 +43,10 @@ export const Content = (props: TProps) => {
           [EMenuItem.Profile]: () => <Profile userProfile={userProfile} />,
           [EMenuItem.Users]: () => <Users userProfile={userProfile} />,
           [EMenuItem.PoliciesAll]: () => <PolicyAll userProfile={userProfile} />,
-          [EMenuItem.PolicyAsset]: () => <PolicyClientAsset userProfile={userProfile}/>
+          [EMenuItem.PolicyAsset]: () => <PolicyClientAsset userProfile={userProfile}/>,
+          [EMenuItem.PolicyRisk]: () => <PolicyClientRisk userProfile={userProfile}/>,
+          [EMenuItem.PolicyPet]: () => <PolicyClientPet userProfile={userProfile}/>,
+          [EMenuItem.PolicyKiwisaver]: () => <PolicyClientKiwisaver userProfile={userProfile}/>
         })}
       </Inner>
     </Wrapper>

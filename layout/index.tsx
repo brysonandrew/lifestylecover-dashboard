@@ -2,8 +2,8 @@ import * as React from "react"
 import { NextRouter, withRouter } from "next/router"
 import { useQuery } from "@apollo/react-hooks"
 import { MainWrapper } from "../components"
-import { Nav } from "./nav"
-import { Header, Content } from "./content"
+import { Nav } from "../layout/nav"
+import { Header, Content } from "../layout/content"
 import {
   VIEWER_ADMIN_QUERY,
   VIEWER_CLIENT_QUERY,
@@ -50,7 +50,7 @@ export const Layout = withRouter((props: TLayoutProps) => {
 
   React.useEffect(() => {
     if (userQuery.data) {
-      onUpdateUser({ user: userQuery.data.viewer })
+      onUpdateUser({ user: {...user, ...userQuery.data.viewer}})
     }
   }, [userQuery.data])
 
@@ -59,6 +59,8 @@ export const Layout = withRouter((props: TLayoutProps) => {
       onUpdateUser(null)
     }
   }, [userQuery.error])
+
+  console.log(user)
 
   if (userQuery.loading) {
     return <LoadingCentered />

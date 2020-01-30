@@ -12,21 +12,27 @@ export const POLICY_GET_VIEWER_RISK_QUERY = gql`
 
 export const POLICY_GET_VIEWER_ASSET_QUERY = gql`
   query POLICY_GET_VIEWER_ASSET {
-    ...ASSET_POLICIES
+    viewer {
+      ...ASSET_POLICIES
+    }
   }
   ${POLICIES_FRAGMENTS.ASSET_POLICIES}
 `
 
 export const POLICY_GET_VIEWER_KIWISAVER_QUERY = gql`
   query POLICY_GET_VIEWER_KIWISAVER {
-    ...KIWISAVER_POLICIES
+    viewer {
+      ...KIWISAVER_POLICIES
+    }
   }
   ${POLICIES_FRAGMENTS.KIWISAVER_POLICIES}
 `
 
 export const POLICY_GET_VIEWER_PET_QUERY = gql`
   query POLICY_GET_VIEWER_PET {
-    ...PET_POLICIES
+    viewer {
+      ...PET_POLICIES
+    }
   }
   ${POLICIES_FRAGMENTS.PET_POLICIES}
 `

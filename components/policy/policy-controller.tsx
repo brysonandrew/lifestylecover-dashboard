@@ -8,32 +8,34 @@ type TProps = {
   icon: JSX.Element
   inputs: any
   arrayInputs?: any
-  edgesKey: string
+  edges: any[]
+  refetch(): any
+  isLoading: boolean
   children: JSX.Element
 } & TPolicyProps
 
 export const PolicyController = (props: TProps) => {
-  const { children, inputs, arrayInputs, edgesKey, title, icon, userProfile, fetchQuery, updateMutation, createMutation, deleteMutation } = props
-  const { loading, error, data, refetch } = fetchQuery
-
+  const { children, inputs, arrayInputs, isLoading, edges, refetch, title, icon, userProfile, updateMutation, createMutation, deleteMutation } = props
   return (
     <PageWrapper title={title} icon={icon}>
-      {loading ? (
-        <LoadingCentered />
-      ) : (
-        <PolicyList
-          refetch={refetch}
-          inputs={inputs}
-          arrayInputs={arrayInputs}
-          userProfile={userProfile}
-          updateMutation={updateMutation}
-          createMutation={createMutation}
-          deleteMutation={deleteMutation}
-          edges={data[edgesKey].edges}
-        >
-          {children}
-        </PolicyList>
-      )}
+      {isLoading
+        ? (
+          <LoadingCentered />
+        )
+        : ( 
+          <PolicyList
+            inputs={inputs}
+            arrayInputs={arrayInputs}
+            userProfile={userProfile}
+            updateMutation={updateMutation}
+            createMutation={createMutation}
+            deleteMutation={deleteMutation}
+            refetch={refetch}
+            edges={edges}
+          >
+            {children}
+          </PolicyList>
+        )}
     </PageWrapper>
   )
 }

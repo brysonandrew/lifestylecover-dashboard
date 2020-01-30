@@ -84,6 +84,7 @@ export const POLICY_FRAGMENTS = {
 export const POLICIES_FRAGMENTS = {
   RISK_POLICIES: gql`
     fragment RISK_POLICIES on User {
+      id
       policiesRisk {
         edges {
           node {
@@ -96,17 +97,20 @@ export const POLICIES_FRAGMENTS = {
   `,
   ASSET_POLICIES: gql`
     fragment ASSET_POLICIES on User {
+      id
       policiesAsset {
         edges {
           node {
             ...ASSET
           }
-        }      }
+        }      
+      }
     }
     ${POLICY_FRAGMENTS.ASSET}
   `,
   KIWISAVER_POLICIES: gql`
     fragment KIWISAVER_POLICIES on User {
+      id
       policiesKiwisaver {
         edges {
           node {
@@ -119,6 +123,7 @@ export const POLICIES_FRAGMENTS = {
   `,
   PET_POLICIES: gql`
     fragment PET_POLICIES on User {
+      id
       policiesPet {
         edges {
           node {
