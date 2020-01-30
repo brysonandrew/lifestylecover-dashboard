@@ -1,0 +1,17 @@
+User Roles
+
+Administrator
+  Create / Delete / Update
+    advisor
+    client
+    policy
+  Assign 
+    client to advisor
+
+Client
+  Request update / request apply
+    policy
+
+Advisor
+  Create / Delete / Update
+    client
