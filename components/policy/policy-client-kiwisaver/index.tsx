@@ -6,6 +6,7 @@ import {
   POLICY_CREATE_KIWISAVER_MUTATION,
   POLICY_DELETE_KIWISAVER_MUTATION,
   POLICY_UPDATE_KIWISAVER_MUTATION,
+  POLICY_UPDATE_REVIEW_KIWISAVER_MUTATION,
 } from "../../../utils"
 import { PolicyKiwisaver } from "../policy-kiwisaver"
 
@@ -14,7 +15,7 @@ type TProps = {
 }
 
 export const PolicyClientKiwisaver = (props: TProps) => {
-  const updateMutation = useMutation(POLICY_UPDATE_KIWISAVER_MUTATION)
+  const updateMutation = useMutation(POLICY_UPDATE_REVIEW_KIWISAVER_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_KIWISAVER_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_KIWISAVER_MUTATION)
   const { loading, error, data, refetch } = useQuery(POLICY_GET_VIEWER_KIWISAVER_QUERY, {})

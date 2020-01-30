@@ -4,6 +4,7 @@ import { TPolicy, TUserProfile, EUserRole } from "../../models"
 import { policyEditableValidationSchema } from "../../data-validation"
 import { SubmitButton } from "../../common"
 import { defined, useRefetch, useDataToSeeIfSuccess, changedValues, useErrorAndCalledToSeeIfSuccess } from "../../utils"
+import { PolicyReviewers } from "./policy-reviewers"
 
 type TProps = {
   onRefetch(changedValues: any): any
@@ -39,9 +40,9 @@ export const PolicyEditableForm = (props: TProps) => {
           const isClient = userProfile.role === EUserRole.client
           return (
             <Form>
-              {/* {isClient && (
-                <PolicyReviewers/>
-              )} */}
+              {isClient && (
+                <PolicyReviewers />
+              )}
               {React.cloneElement(children, { values })}
               <SubmitButton
                 startIconConfig={{
@@ -52,11 +53,18 @@ export const PolicyEditableForm = (props: TProps) => {
                 onClick={() => {
                   const changed = changedValues(initValues, values)
                   setChangedValues(changed)
-                  const variables = {
-                    id: policyInfo.id,
-                    title: values.title,
-                    ...createVariables(changed)
-                  }
+                  const variables =
+                    isClient
+                      ? {
+                        id: policyInfo.id,
+                        reviewMeta: JSON.stringify({ ...changed, ...{ reviewer: 'advisor', reviewerEmail: 'andrewbryson12@gmail.com' } })
+                      }
+                      : {
+                        id: policyInfo.id,
+                        title: values.title,
+                        ...createVariables(changed)
+                      }
+                  console.log(variables)
                   handleUpdatePolicy({ variables })
                 }}
               />

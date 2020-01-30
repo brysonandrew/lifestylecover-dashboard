@@ -1,5 +1,4 @@
 import gql from "graphql-tag"
-import { POLICY_FRAGMENTS } from "./policy.fragments"
 
 export const POLICY_UPDATE_RISK_MUTATION = gql`
   mutation POLICY_UPDATE_RISK(
@@ -20,7 +19,6 @@ export const POLICY_UPDATE_RISK_MUTATION = gql`
     }
   }
 `
-// # ${POLICY_FRAGMENTS.RISK}
 
 export const POLICY_UPDATE_ASSET_MUTATION = gql`
   mutation POLICY_UPDATE_ASSET(
@@ -83,16 +81,3 @@ export const POLICY_UPDATE_PET_MUTATION = gql`
     }
   }
 `
-
-// export const POLICY_UPDATE_REVIEW_CONFIG_MUTATION = gql`
-//   mutation POLICY_UPDATE_REVIEW_CONFIG($id: ID!, $reviewerConfig: String!) {
-//     updatePolicyPet(
-//       input: { clientMutationId: "POLICY_UPDATE_PET", id: $id, title: $title }
-//     ) {
-//       policyPet {
-//         ...PET
-//       }
-//     }
-//   }
-//   ${POLICY_FRAGMENTS.PET}
-// `

@@ -6,6 +6,7 @@ import {
   POLICY_CREATE_ASSET_MUTATION,
   POLICY_DELETE_ASSET_MUTATION,
   POLICY_UPDATE_ASSET_MUTATION,
+  POLICY_UPDATE_REVIEW_ASSET_MUTATION,
 } from "../../../utils"
 import { PolicyAsset } from "../policy-asset"
 
@@ -14,7 +15,7 @@ type TProps = {
 }
 
 export const PolicyClientAsset = (props: TProps) => {
-  const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
+  const updateMutation = useMutation(POLICY_UPDATE_REVIEW_ASSET_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
   const { loading, error, data, refetch } = useQuery(POLICY_GET_VIEWER_ASSET_QUERY, {})

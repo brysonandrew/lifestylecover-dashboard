@@ -51,7 +51,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       )
-      if (message.includes("not authenticated")) {
+      if (message.includes("not allowed")) {
         redirectToLogin()
       } else if (message.includes("invalid username") || message.includes("invalid_username")) {
         snackbarStore.dispatch.snackbar.handleOpen({message: 'Username doesn\'t exist', severity: 'error' });
