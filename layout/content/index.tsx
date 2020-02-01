@@ -8,6 +8,7 @@ import { PolicyClientAsset } from "../../components/policy/policy-client-asset"
 import { PolicyClientRisk } from "../../components/policy/policy-client-risk"
 import { PolicyClientPet } from "../../components/policy/policy-client-pet"
 import { PolicyClientKiwisaver } from "../../components/policy/policy-client-kiwisaver"
+import { MyAdvisor } from "../../components/advisor-note"
 
 const Wrapper = styled.div`
   position: relative;
@@ -46,7 +47,8 @@ export const Content = (props: TProps) => {
           [EMenuItem.PolicyAsset]: () => <PolicyClientAsset userProfile={userProfile}/>,
           [EMenuItem.PolicyRisk]: () => <PolicyClientRisk userProfile={userProfile}/>,
           [EMenuItem.PolicyPet]: () => <PolicyClientPet userProfile={userProfile}/>,
-          [EMenuItem.PolicyKiwisaver]: () => <PolicyClientKiwisaver userProfile={userProfile}/>
+          [EMenuItem.PolicyKiwisaver]: () => <PolicyClientKiwisaver userProfile={userProfile}/>,
+          [EMenuItem.MyAdvisor]: () => <MyAdvisor userProfile={userProfile}/>
         })}
       </Inner>
     </Wrapper>

@@ -10,6 +10,7 @@ export const POLICY_UPDATE_RISK_MUTATION = gql`
       input: {
         clientMutationId: "POLICY_UPDATE_RISK"
         id: $id
+        title: $title
         meta: $meta
       }
     ) {
@@ -73,6 +74,7 @@ export const POLICY_UPDATE_PET_MUTATION = gql`
         clientMutationId: "POLICY_UPDATE_PET",
         id: $id,
         title: $title
+        meta: $meta
       }
     ) {
       policyPet {

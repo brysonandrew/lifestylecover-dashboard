@@ -41,7 +41,7 @@ export const Avatar = (props: TProps) => {
   const { userProfile } = props
   const [handleUpload, { loading, data, error }] = useMutation(USER_UPDATE_AVATAR_MUTATION)
   const [uploadedAvatar, setUploadedAvater] = React.useState(null)
-  if (userProfile?.avatar?.url) {
+  if (userProfile && (userProfile?.avatar?.url || userProfile.profilePicture)) {
     const handleChange = (e) => {
       if (e.target.files && e.target.files.length > 0) {
         if (window) {
@@ -93,7 +93,7 @@ export const Avatar = (props: TProps) => {
                 src={
                   uploadedAvatar
                   || (userProfile.profilePicture !== "EMPTY" ? userProfile.profilePicture : null)
-                  || userProfile.avatar.url
+                  || userProfile?.avatar?.url
                 }
                 alt="User's avatar"
               />

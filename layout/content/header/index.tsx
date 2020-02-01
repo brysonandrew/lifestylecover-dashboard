@@ -4,6 +4,7 @@ import { layoutSizes } from "../../../data"
 import { Button, Paper } from "@material-ui/core"
 import { TUserProfile } from "../../../models/users"
 import { Avatar } from "./avatar"
+import { titleText } from "../../../utils"
 
 const Wrapper = styled.header`
   position: fixed;
@@ -31,23 +32,6 @@ const RightButtons = styled.div`
 type TProps = {
   userProfile: TUserProfile
   onUpdateUser(user: any): void
-}
-
-const titleText = (userProfile: TUserProfile) => {
-  if (userProfile) {
-    const { username, firstName, lastName } = userProfile
-    if (firstName) {
-      if (firstName && lastName) {
-        return `Hi there, ${firstName} ${lastName}`
-      } else {
-        return `Hi there, ${firstName}`
-      }
-    } else {
-      return `Hi there, ${username}`
-    }
-  } else {
-    return "Hi there!"
-  }
 }
 
 export const Header = (props: TProps) => {

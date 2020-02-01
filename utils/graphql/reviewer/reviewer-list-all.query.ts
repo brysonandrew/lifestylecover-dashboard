@@ -6,6 +6,7 @@ export const REVIEWER_LIST_ALL_QUERY = gql`
       edges {
         node {
           name
+          email
         }
       }
     }

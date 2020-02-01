@@ -18,6 +18,7 @@ export type TUserProfile = {
   address: string
   email: string
   profilePicture: string
+  advisor: string
   avatar: TAvatar
   role: EUserRole
 }
@@ -30,6 +31,10 @@ export type TClientProfile = {
   policiesAsset?: any
   policiesKiwisaver?: any
   policiesPet?: any
+} & TUserProfile
+
+export type TAdvisorProfile = {
+  advisorNotes?: any
 } & TUserProfile
 
 export type TPolicy = {

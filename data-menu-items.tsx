@@ -9,6 +9,7 @@ import {
   AccountBalance,
   Home,
   Timeline,
+  QuestionAnswer,
 } from "@material-ui/icons"
 import { EMenuItem } from "./models/layout"
 
@@ -25,7 +26,7 @@ export const STATIC_MENU_ITEMS = {
   ],
   client: [
     EMenuItem.Profile,
-    EMenuItem.YourAdvisor
+    EMenuItem.MyAdvisor
   ],
 }
 
@@ -38,5 +39,5 @@ export const MENU_ITEM_ICONS = {
   [EMenuItem.Users]: <RecentActors />,
   [EMenuItem.Clients]: <People />,
   [EMenuItem.Profile]: <AccountCircle />,
-  [EMenuItem.YourAdvisor]: <Info />,
+  [EMenuItem.MyAdvisor]: <QuestionAnswer />,
 }

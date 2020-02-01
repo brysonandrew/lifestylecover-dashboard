@@ -22,7 +22,7 @@ export const ProfileDetailsInputs = () => {
   return (
     <Wrapper>
       <TextField
-        label="Date of Birth"
+        label="Date Of Birth"
         placeholder={placeholder.user.unknown}
         type="date"
         name="dateOfBirth"

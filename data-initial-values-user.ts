@@ -25,6 +25,7 @@ export const USER_PROFILE: TUserProfile = {
   address: "",
   profilePicture: "",
   email: "",
+  advisor: "",
   avatar: {
     url: null
   },

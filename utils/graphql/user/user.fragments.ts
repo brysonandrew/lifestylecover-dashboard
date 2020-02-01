@@ -1,4 +1,5 @@
 import gql from "graphql-tag"
+import { ADVISOR_NOTE_FRAGMENTS } from "../advisor-note/advisor-note.fragments"
 
 export const USER_FRAGMENTS = {
   LOGIN: gql`
@@ -45,6 +46,7 @@ export const USER_FRAGMENTS = {
       dateOfBirth
       occupationRating
       smoker
+      advisor
       policiesRisk {
         edges {
           node {
@@ -89,6 +91,7 @@ export const USER_FRAGMENTS = {
       mobile
       phone
       address
+      profilePicture
       roles {
         nodes {
           name

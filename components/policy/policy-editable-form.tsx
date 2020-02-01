@@ -40,9 +40,6 @@ export const PolicyEditableForm = (props: TProps) => {
           const isClient = userProfile.role === EUserRole.client
           return (
             <Form>
-              {isClient && (
-                <PolicyReviewers />
-              )}
               {React.cloneElement(children, { values })}
               <SubmitButton
                 startIconConfig={{
@@ -57,14 +54,18 @@ export const PolicyEditableForm = (props: TProps) => {
                     isClient
                       ? {
                         id: policyInfo.id,
-                        reviewMeta: JSON.stringify({ ...changed, ...{ reviewer: 'advisor', reviewerEmail: 'andrewbryson12@gmail.com' } })
+                        reviewMeta: JSON.stringify(
+                          {
+                            ...changed,
+                            ...{ reviewer: 'advisor', reviewerEmail: 'andrewbryson12@gmail.com' }
+                          }
+                        )
                       }
                       : {
                         id: policyInfo.id,
                         title: values.title,
                         ...createVariables(changed)
                       }
-                  console.log(variables)
                   handleUpdatePolicy({ variables })
                 }}
               />

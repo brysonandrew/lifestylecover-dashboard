@@ -47,7 +47,6 @@ export const POLICY_UPDATE_REVIEW_KIWISAVER_MUTATION = gql`
       input: {
         clientMutationId: "POLICY_UPDATE_REVIEW_KIWISAVER"
         id: $id
-        title: $title
         reviewMeta: $reviewMeta
       }
     ) {
