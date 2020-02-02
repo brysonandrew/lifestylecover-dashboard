@@ -30,15 +30,11 @@ type TProps = {
 }
 
 export const Avatar = (props: TProps) => (
-  <Wrapper
-    boxShadow={defined(props.boxShadow) ? props.boxShadow : 4}
-  >
-    {props.src
-      ? (
-        <Img src={props.src} alt="User's avatar" />
-      )
-      : (
-        MENU_ITEM_ICONS.Profile
-      )}
+  <Wrapper boxShadow={defined(props.boxShadow) ? props.boxShadow : 4}>
+    {props.src ? (
+      <Img src={props.src} alt="User's avatar" />
+    ) : (
+      MENU_ITEM_ICONS.Profile
+    )}
   </Wrapper>
 )

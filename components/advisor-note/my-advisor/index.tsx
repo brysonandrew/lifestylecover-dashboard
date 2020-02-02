@@ -26,7 +26,7 @@ const AdvisorProfile = styled.div`
 const AdvisorInfo = styled.div`
   margin-left: 12px;
   padding-left: 24px;
-  border-left: 1px solid rgba(0,0,0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
 `
 
 type TProps = {

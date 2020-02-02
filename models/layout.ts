@@ -9,5 +9,5 @@ export enum EMenuItem {
   Clients = "Clients",
   Profile = "Profile",
   MyAdvisor = "My Advisor",
-  NotesToClients = "Notes To Clients"
+  NotesToClients = "Notes To Clients",
 }

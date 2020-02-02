@@ -2,7 +2,11 @@ import * as React from "react"
 import { TAdvisorProfile } from "../../../models"
 import { List } from "../.."
 import { useMutation } from "@apollo/react-hooks"
-import { ADVISOR_NOTE_UPDATE_MUTATION, ADVISOR_NOTE_CREATE_MUTATION, ADVISOR_NOTE_DELETE_MUTATION } from "../../../utils"
+import {
+  ADVISOR_NOTE_UPDATE_MUTATION,
+  ADVISOR_NOTE_CREATE_MUTATION,
+  ADVISOR_NOTE_DELETE_MUTATION,
+} from "../../../utils"
 import { AdvisorNoteInputs } from "./advisor-note-inputs"
 import {
   ADVISOR_NOTE_ITEM_INIT,
@@ -38,21 +42,21 @@ export const AdvisorNoteList = (props: TProps) => {
       addConfig={
         createMutation
           ? {
-            refetch,
-            inputs,
-            createVariables,
-            createMutation,
-            componentInputs: <AdvisorNoteInputs isUsername/>,
-          }
+              refetch,
+              inputs,
+              createVariables,
+              createMutation,
+              componentInputs: <AdvisorNoteInputs isUsername />,
+            }
           : null
       }
       deleteConfig={
         deleteMutation
           ? {
-            refetch,
-            deleteText: values => `note ${values.title}`,
-            deleteMutation,
-          }
+              refetch,
+              deleteText: values => `note ${values.title}`,
+              deleteMutation,
+            }
           : null
       }
     >

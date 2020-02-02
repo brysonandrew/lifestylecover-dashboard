@@ -53,10 +53,6 @@ export const AdvisorNoteEditable = (props: TProps) => {
       </AdvisorNoteEditableForm>
     )
   } else {
-    return (
-      <NotesText>
-        {formState}
-      </NotesText>
-    )
+    return <NotesText>{formState}</NotesText>
   }
 }

@@ -6,7 +6,7 @@ import { TUserProfile } from "../../../models"
 import { useMutation } from "@apollo/react-hooks"
 import { USER_UPDATE_AVATAR_MUTATION } from "../../../utils/graphql/user/user-update-avatar.mutation"
 import { fitSizesInFrame, profilePicture } from "../../../utils"
-import { Avatar } from './avatar'
+import { Avatar } from "./avatar"
 const MAX_SIZE = layoutSizes.imageSize
 
 const Wrapper = styled.div`
@@ -84,7 +84,7 @@ export const AvatarUpload = (props: TProps) => {
             type="file"
           />
           <IconButton
-            style={{ padding: 0, width: '100%', height: '100%' }}
+            style={{ padding: 0, width: "100%", height: "100%" }}
             color="primary"
             aria-label="upload picture"
             component="div"
@@ -94,7 +94,7 @@ export const AvatarUpload = (props: TProps) => {
                 <CircularProgress size={18} />
               </LoadingWrapper>
             )}
-              <Avatar src={uploadedAvatar || profilePicture(userProfile)} />
+            <Avatar src={uploadedAvatar || profilePicture(userProfile)} />
           </IconButton>
         </Label>
       </Wrapper>

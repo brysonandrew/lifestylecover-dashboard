@@ -20,13 +20,15 @@ export const NotesToClients = (props: TProps) => {
 
   return (
     <PageWrapper title="Notes to Clients">
-      {loading
-        ? (
-          <LoadingCentered/>
-        )
-        : (
-          <AdvisorNoteList userProfile={userProfile} edges={data.advisorNotes.edges} refetch={refetch}/>
-        )}
+      {loading ? (
+        <LoadingCentered />
+      ) : (
+        <AdvisorNoteList
+          userProfile={userProfile}
+          edges={data.advisorNotes.edges}
+          refetch={refetch}
+        />
+      )}
     </PageWrapper>
   )
 }

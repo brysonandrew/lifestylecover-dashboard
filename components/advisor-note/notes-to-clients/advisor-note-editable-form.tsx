@@ -64,20 +64,20 @@ export const AdvisorNoteEditableForm = (props: TProps) => {
                   setChangedValues(changed)
                   const variables = isClient
                     ? {
-                      id: policyInfo.id,
-                      reviewMeta: JSON.stringify({
-                        ...changed,
-                        ...{
-                          reviewer: "advisor",
-                          reviewerEmail: "andrewbryson12@gmail.com",
-                        },
-                      }),
-                    }
+                        id: policyInfo.id,
+                        reviewMeta: JSON.stringify({
+                          ...changed,
+                          ...{
+                            reviewer: "advisor",
+                            reviewerEmail: "andrewbryson12@gmail.com",
+                          },
+                        }),
+                      }
                     : {
-                      id: policyInfo.id,
-                      title: values.title,
-                      ...createVariables(changed),
-                    }
+                        id: policyInfo.id,
+                        title: values.title,
+                        ...createVariables(changed),
+                      }
                   handleUpdatePolicy({ variables })
                 }}
               />

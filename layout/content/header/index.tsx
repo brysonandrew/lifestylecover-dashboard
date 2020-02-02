@@ -43,7 +43,7 @@ export const Header = (props: TProps) => {
   return (
     <Wrapper>
       <Inner>
-        <h2>{text ? `Hi there, ${text}` : 'Welcome'}</h2>
+        <h2>{text ? `Hi there, ${text}` : "Welcome"}</h2>
         <RightButtons>
           <Button onClick={handleLogout}>Log out</Button>
           {userProfile?.avatar?.url && (

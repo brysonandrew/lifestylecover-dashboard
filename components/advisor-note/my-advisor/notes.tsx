@@ -16,14 +16,8 @@ export const Notes = (props: TProps) => {
     },
   })
   if (loading) {
-    return (
-      <LoadingCentered />
-    )
+    return <LoadingCentered />
   } else {
-    return (
-      <NotesText>
-        {data.advisorNoteBy.advisorNotes}
-      </NotesText>
-    )
+    return <NotesText>{data.advisorNoteBy.advisorNotes}</NotesText>
   }
 }
