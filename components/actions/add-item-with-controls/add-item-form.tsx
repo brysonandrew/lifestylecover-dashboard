@@ -39,6 +39,7 @@ export const AddItemForm = (props: TProps) => {
       onSubmit={null}
     >
       {({ values }) => {
+        console.log(values)
         const variables = createVariables(values)
         return (
           <Form>

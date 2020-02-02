@@ -3,6 +3,7 @@ export type TAdvisorNoteItem = {
 }
 
 export type TAdvisorNote = {
+  title: string
   recommendations: TAdvisorNoteItem[]
   priorities: TAdvisorNoteItem[]
   notes: string

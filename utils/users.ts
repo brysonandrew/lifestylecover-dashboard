@@ -5,6 +5,7 @@ export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
   if (user) {
     let {
       id,
+      userId,
       username,
       firstName,
       lastName,
@@ -28,6 +29,7 @@ export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
     dateOfBirth = formatDate(dateOfBirth)
     return {
       id,
+      userId,
       username,
       firstName,
       lastName,

@@ -25,6 +25,7 @@ export const PolicyRiskInputs = props => {
         ))}
         <TextFieldArray
           name={name}
+          namePlural={`${name}s`}
           title={name}
           initialItem={BENEFIT_RISK_INIT}
           values={props.values.benefits}

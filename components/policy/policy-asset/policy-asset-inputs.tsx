@@ -20,6 +20,7 @@ export const PolicyAssetInputs = (props: TProps) => {
       />
       <TextFieldArray
         name={name}
+        namePlural={`${name}s`}
         title={`${name}s`}
         initialItem={BENEFIT_ASSET_INIT}
         values={props.values.benefits}

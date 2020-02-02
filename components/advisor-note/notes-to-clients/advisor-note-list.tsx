@@ -1,28 +1,24 @@
 import * as React from "react"
 import { TAdvisorProfile } from "../../../models"
-import { PageWrapper } from "../../../common"
 import { List } from "../.."
-import { useMutation, useQuery } from "@apollo/react-hooks"
-import { ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY, ADVISOR_NOTE_UPDATE_MUTATION, ADVISOR_NOTE_CREATE_MUTATION, ADVISOR_NOTE_DELETE_MUTATION } from "../../../utils"
+import { useMutation } from "@apollo/react-hooks"
+import { ADVISOR_NOTE_UPDATE_MUTATION, ADVISOR_NOTE_CREATE_MUTATION, ADVISOR_NOTE_DELETE_MUTATION } from "../../../utils"
 import { AdvisorNoteInputs } from "./advisor-note-inputs"
 import {
   ADVISOR_NOTE_ITEM_INIT,
   ADVISOR_NOTE_INIT,
 } from "../../../data-initial-values-advisor-note"
 import { AdvisorNoteEditable } from "./advisor-note-editable"
+import { NotesSectionTitle } from "../notes-section-title"
 
 type TProps = {
   userProfile: TAdvisorProfile
+  edges: any[]
+  refetch(): void
 }
 
-export const MyAdvisorNotes = (props: TProps) => {
-  const { userProfile } = props
-  const { loading, error, data, refetch } = useQuery(
-    ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY,
-    {
-      variables: { id: userProfile.id },
-    }
-  )
+export const AdvisorNoteList = (props: TProps) => {
+  const { userProfile, edges, refetch } = props
 
   const updateMutation = useMutation(ADVISOR_NOTE_UPDATE_MUTATION)
   const createMutation = useMutation(ADVISOR_NOTE_CREATE_MUTATION)
@@ -38,33 +34,33 @@ export const MyAdvisorNotes = (props: TProps) => {
   }
 
   return (
-    <PageWrapper title="Notes to Clients">
-      <List
-        addConfig={
-          createMutation
-            ? {
-              refetch,
-              inputs,
-              createVariables,
-              createMutation,
-              componentInputs: <AdvisorNoteInputs />,
-            }
-            : null
-        }
-        deleteConfig={
-          deleteMutation
-            ? {
-              refetch,
-              deleteText: values => `policy ${values.title}`,
-              deleteMutation,
-            }
-            : null
-        }
-      >
-        {userProfile.advisorNotes.edges.map(edge => ({
-          itemInfo: edge.node,
-          component: isEditing => {
-            return (
+    <List
+      addConfig={
+        createMutation
+          ? {
+            refetch,
+            inputs,
+            createVariables,
+            createMutation,
+            componentInputs: <AdvisorNoteInputs isUsername/>,
+          }
+          : null
+      }
+      deleteConfig={
+        deleteMutation
+          ? {
+            refetch,
+            deleteText: values => `note ${values.title}`,
+            deleteMutation,
+          }
+          : null
+      }
+    >
+      {edges.map(edge => ({
+        itemInfo: edge.node,
+        component: isEditing => {
+          return (
+            <NotesSectionTitle title={`Client's username: ${edge.node.title}`}>
               <AdvisorNoteEditable
                 key={edge.node.id}
                 isEditing={isEditing}
@@ -78,10 +74,10 @@ export const MyAdvisorNotes = (props: TProps) => {
               >
                 <AdvisorNoteInputs />
               </AdvisorNoteEditable>
-            )
-          },
-        }))}
-      </List>
-    </PageWrapper>
+            </NotesSectionTitle>
+          )
+        },
+      }))}
+    </List>
   )
 }

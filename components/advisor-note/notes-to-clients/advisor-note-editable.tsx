@@ -3,6 +3,7 @@ import { TUserProfile } from "../../../models"
 import { initializeFormValues } from "../../../utils"
 import { AdvisorNoteEditableForm } from "./advisor-note-editable-form"
 import { FormText } from "../../../common"
+import { NotesText } from "../notes-text"
 
 type TProps = {
   isEditing: boolean
@@ -52,6 +53,10 @@ export const AdvisorNoteEditable = (props: TProps) => {
       </AdvisorNoteEditableForm>
     )
   } else {
-    return <FormText arrayInputs={arrayInputs}>{formState}</FormText>
+    return (
+      <NotesText>
+        {formState}
+      </NotesText>
+    )
   }
 }

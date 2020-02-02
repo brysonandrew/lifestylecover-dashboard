@@ -16,6 +16,7 @@ export const PolicyPetInputs = props => {
       />
       <TextFieldArray
         name={name}
+        namePlural={`${name}s`}
         title={`${name}s`}
         initialItem={PET_INIT}
         values={props.values.pets}

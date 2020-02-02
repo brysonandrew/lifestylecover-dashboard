@@ -5,7 +5,12 @@ export const USER_FRAGMENTS = {
   LOGIN: gql`
     fragment LOGIN on User {
       id
+      userId
       username
+      name
+      firstName
+      lastName
+      email
       profilePicture
       avatar(size: 56) {
         url
@@ -38,8 +43,6 @@ export const USER_FRAGMENTS = {
     fragment CLIENT on User {
       id
       username
-      name
-      email
       mobile
       phone
       address
@@ -86,8 +89,6 @@ export const USER_FRAGMENTS = {
     fragment ADVISOR on User {
       id
       username
-      name
-      email
       mobile
       phone
       address
@@ -102,9 +103,6 @@ export const USER_FRAGMENTS = {
   ADMIN: gql`
     fragment ADMIN on User {
       id
-      username
-      name
-      email
       mobile
       phone
       address

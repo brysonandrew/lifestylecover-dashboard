@@ -5,6 +5,7 @@ export const ADVISOR_NOTE_ITEM_INIT: TAdvisorNoteItem = {
 }
 
 export const ADVISOR_NOTE_INIT: TAdvisorNote = {
+  title: "",
   recommendations: [],
   priorities: [],
   notes: ""

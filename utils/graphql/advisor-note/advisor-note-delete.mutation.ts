@@ -6,7 +6,7 @@ export const ADVISOR_NOTE_DELETE_MUTATION = gql`
       input: { clientMutationId: "ADVISOR_NOTE_DELETE", id: $id }
     ) {
       deletedId
-      policyRisk {
+      advisorNote {
         id
         title
       }

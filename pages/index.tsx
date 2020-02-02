@@ -32,17 +32,16 @@ export default (props: TIndexProps) => {
   }, [])
 
   React.useEffect(() => {
-    if (viewerInit.data && !user) {
+    if (!viewerInit.loading && viewerInit.data) {
       onUpdateUser({user: viewerInit.data.viewer})
     }
-  }, [viewerInit.data])
+  }, [viewerInit.loading])
 
   React.useEffect(() => {
     if (viewerInit.error) {
       onUpdateUser(null)
     }
   }, [viewerInit.error])
-
 
   if (activeMenuItem) {
     if (!user || viewerInit.loading) {

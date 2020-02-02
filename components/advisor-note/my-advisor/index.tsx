@@ -10,6 +10,7 @@ import {
 } from "../../../utils"
 import { Avatar } from "../../../layout"
 import { Notes } from "./notes"
+import { NotesSectionTitle } from "../notes-section-title"
 
 const Wrapper = styled.div`
   padding: 12px 0;
@@ -18,12 +19,14 @@ const Wrapper = styled.div`
 const AdvisorProfile = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 `
 
 const AdvisorInfo = styled.div`
-  padding-left: 36px;
+  margin-left: 12px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(0,0,0, 0.1);
 `
 
 type TProps = {
@@ -42,22 +45,24 @@ export const MyAdvisor = (props: TProps) => {
   } else {
     const advisor = data.users.edges[0].node
     return (
-      <PageWrapper title={userName(advisor)}>
+      <PageWrapper title="My Advisor">
         <Wrapper>
-          <AdvisorProfile>
-            <Avatar boxShadow={1} src={profilePicture(advisor)} />
-            {data && (
-              <AdvisorInfo>
-                <FormText>
-                  {{
-                    Email: advisor.email,
-                    Phone: advisor.phone,
-                    Address: advisor.address,
-                  }}
-                </FormText>
-              </AdvisorInfo>
-            )}
-          </AdvisorProfile>
+          <NotesSectionTitle title={userName(advisor)}>
+            <AdvisorProfile>
+              <Avatar boxShadow={1} src={profilePicture(advisor)} />
+              {advisor && (
+                <AdvisorInfo>
+                  <FormText>
+                    {{
+                      ...(advisor.email ? { Email: advisor.email } : {}),
+                      ...(advisor.phone ? { Phone: advisor.phone } : {}),
+                      ...(advisor.address ? { Address: advisor.address } : {}),
+                    }}
+                  </FormText>
+                </AdvisorInfo>
+              )}
+            </AdvisorProfile>
+          </NotesSectionTitle>
           <Notes userProfile={userProfile} />
         </Wrapper>
       </PageWrapper>

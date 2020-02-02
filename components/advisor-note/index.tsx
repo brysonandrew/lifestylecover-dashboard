@@ -1,2 +1,2 @@
 export * from "./my-advisor"
-export * from "./my-advisor-notes"
+export * from "./notes-to-clients"

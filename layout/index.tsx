@@ -31,7 +31,9 @@ export const Layout = withRouter((props: TLayoutProps) => {
     data: null,
     error: "Invalid user role",
   }
-  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, { skip: role !== EUserRole.client })
+  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, {
+    skip: role !== EUserRole.client
+  })
   const advisorQuery = useQuery(VIEWER_ADVISOR_QUERY, {
     skip: role !== EUserRole.advisor,
   })

@@ -42,10 +42,10 @@ export const Login = (props: TProps) => {
   ] = useMutation(USER_LOGIN_MUTATION);
   const { loading, error, data } = loginResult
   useEffect(() => {
-    if (data) {
+    if (!loading && data) {
       onUpdateUser(data.login)
     }
-  }, [data])
+  }, [loading])
   return (
     <Wrapper>
       <FormWrapper>

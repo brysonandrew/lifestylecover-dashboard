@@ -10,6 +10,7 @@ export type TAvatar = {
 
 export type TUserProfile = {
   id?: string
+  userId: string
   username: string
   firstName: string
   lastName: string
