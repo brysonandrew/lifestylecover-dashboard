@@ -11,6 +11,7 @@ import { Button, CircularProgress } from "@material-ui/core"
 import { ButtonWrapper } from "../../common/buttons/button-wrapper"
 import { Help } from "@material-ui/icons"
 import Link from "next/link"
+import { sizes } from "../../utils-viewport"
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,7 +23,10 @@ const Wrapper = styled.div`
 `
 
 const FormWrapper = styled.div`
-  width: 400px;
+  width: 100%;
+  ${sizes.mobileLg`
+    width: 400px;
+ `}
 `
 
 const TitleWrapper = styled.div`

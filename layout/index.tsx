@@ -2,8 +2,7 @@ import * as React from "react"
 import { NextRouter, withRouter } from "next/router"
 import { useQuery } from "@apollo/react-hooks"
 import { MainWrapper } from "../components"
-import { Nav } from "../layout/nav"
-import { Header, Content } from "../layout/content"
+import { Header, Content, Nav } from "../layout"
 import {
   VIEWER_ADMIN_QUERY,
   VIEWER_CLIENT_QUERY,

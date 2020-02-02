@@ -22,6 +22,7 @@ export const LOGIN_ROUTE = `${INDEX_ROUTE}/`
 export const layoutSizes = {
   nav: {
     row: 68,
+    rowMobile: 50,
     width: 220,
     icon: 28,
     toggle: 80,

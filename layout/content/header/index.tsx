@@ -5,6 +5,7 @@ import { Button, Paper } from "@material-ui/core"
 import { TUserProfile } from "../../../models/users"
 import { AvatarUpload } from "./avatar-upload"
 import { userName } from "../../../utils"
+import { sizes } from "../../../utils-viewport"
 
 const Wrapper = styled.header`
   position: fixed;
@@ -18,9 +19,12 @@ const Inner = styled(Paper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0 0 ${layoutSizes.nav.row + 24}px;
+  padding: 0 0 0 6px;
   width: 100%;
   height: 100%;
+  ${sizes.mobileLg`
+    padding: 0 0 0 ${layoutSizes.nav.row + 24}px;
+  `}
 `
 
 const RightButtons = styled.div`
