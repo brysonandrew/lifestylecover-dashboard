@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { layoutSizes } from "../../../data"
 import { Button, Paper } from "@material-ui/core"
 import { TUserProfile } from "../../../models/users"
-import { Avatar } from "./avatar"
+import { AvatarUpload } from "./avatar-upload"
 import { titleText } from "../../../utils"
 
 const Wrapper = styled.header`
@@ -46,7 +46,7 @@ export const Header = (props: TProps) => {
         <RightButtons>
           <Button onClick={handleLogout}>Log out</Button>
           {userProfile?.avatar?.url && (
-            <Avatar
+            <AvatarUpload
               userProfile={userProfile}
             />
           )}
@@ -55,3 +55,6 @@ export const Header = (props: TProps) => {
     </Wrapper>
   )
 }
+
+export * from './avatar'
+export * from './avatar-upload'

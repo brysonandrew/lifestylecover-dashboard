@@ -16,7 +16,7 @@ export enum EPolicy {
 
 export type TAddConfig = {
   refetch(): void
-  inputs: Record<string, string>
+  inputs: Record<string, string | number | any[]>
   createMutation: any
   createVariables(values: any): any
   componentInputs?: JSX.Element

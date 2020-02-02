@@ -39,5 +39,5 @@ export const MENU_ITEM_ICONS = {
   [EMenuItem.Users]: <RecentActors />,
   [EMenuItem.Clients]: <People />,
   [EMenuItem.Profile]: <AccountCircle />,
-  [EMenuItem.MyAdvisor]: <QuestionAnswer />,
+  [EMenuItem.MyAdvisor]: <Info />,
 }

@@ -1,10 +1,9 @@
-import * as React from "react"
+import React from "react"
+import { useQuery } from "@apollo/react-hooks"
 import { TClientProfile } from "../../../models"
 import { LoadingCentered, PageWrapper, FormText } from "../../../common"
-import { USER_GET_ADVISOR_BY_USER_ID_QUERY, titleText } from "../../../utils"
-import { useQuery } from "@apollo/react-hooks"
-import { Avatar } from "../../../layout/content/header/avatar"
-import { TextField } from "@material-ui/core"
+import { USER_GET_ADVISOR_BY_USER_ID_QUERY, titleText, profilePicture } from "../../../utils"
+import { Avatar } from "../../../layout"
 import { Notes } from "./notes"
 
 type TProps = {
@@ -24,11 +23,10 @@ export const MyAdvisor = (props: TProps) => {
     )
   } else {
     const advisor = data.users.edges[0].node
-    console.log(data)
     return (
       <PageWrapper title={`Hi I'm ${titleText(userProfile)}`}>
         <Avatar
-          userProfile={advisor}
+          src={profilePicture(advisor)}
         />
         <div>
           If something is on your mind we would love to hear from you!
@@ -45,7 +43,7 @@ export const MyAdvisor = (props: TProps) => {
             }}
           </FormText>
         )}
-        <Notes/>
+        <Notes userProfile={userProfile}/>
       </PageWrapper>
     )
   }

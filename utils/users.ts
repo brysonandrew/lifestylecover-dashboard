@@ -63,3 +63,8 @@ export const createVariablesCreateUser = ({
   email,
   roles: [role]
 })
+
+
+export const profilePicture = (userProfile: TUserProfile): string =>
+  (userProfile.profilePicture !== "EMPTY" ? userProfile.profilePicture : null)
+  || userProfile?.avatar?.url

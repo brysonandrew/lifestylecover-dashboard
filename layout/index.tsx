@@ -82,3 +82,6 @@ export const Layout = withRouter((props: TLayoutProps) => {
     )
   }
 })
+
+export * from './content'
+export * from './nav'
