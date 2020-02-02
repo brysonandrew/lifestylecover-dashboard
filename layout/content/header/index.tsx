@@ -4,7 +4,7 @@ import { layoutSizes } from "../../../data"
 import { Button, Paper } from "@material-ui/core"
 import { TUserProfile } from "../../../models/users"
 import { AvatarUpload } from "./avatar-upload"
-import { titleText } from "../../../utils"
+import { userName } from "../../../utils"
 
 const Wrapper = styled.header`
   position: fixed;
@@ -39,10 +39,11 @@ export const Header = (props: TProps) => {
   const handleLogout = () => {
     onUpdateUser(null)
   }
+  const text = userName(userProfile)
   return (
     <Wrapper>
       <Inner>
-        <h2>{titleText(userProfile)}</h2>
+        <h2>{text ? `Hi there, ${text}` : 'Welcome'}</h2>
         <RightButtons>
           <Button onClick={handleLogout}>Log out</Button>
           {userProfile?.avatar?.url && (

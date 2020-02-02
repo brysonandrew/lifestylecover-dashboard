@@ -37,3 +37,4 @@ export const layoutSizes = {
 }
 
 export const AUTH_TOKEN_KEY = "AUTH_TOKEN"
+export const REPEATER_DEFAULT_KEY = 'text'

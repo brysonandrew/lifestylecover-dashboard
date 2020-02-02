@@ -4,7 +4,6 @@ import { fromKebabCase, fromCamelCase } from "../../utils"
 
 const Wrapper = styled.div`
   margin-top: 12px;
-  min-height: 50px;
   &:first-child {
     margin-top: 0;
   }
@@ -32,7 +31,7 @@ export const TextFieldText: React.FC<TProps> = ({
   children,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper style={{minHeight: label ? 50 : 0}}>
       {label && <Label>{label === 'title' ? 'Reference Number' : fromCamelCase(label)}</Label>}
       <Text>
         {children}

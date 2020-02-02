@@ -1,14 +1,30 @@
 import React from "react"
+import styled from "styled-components"
 import { useQuery } from "@apollo/react-hooks"
 import { TClientProfile } from "../../../models"
 import { LoadingCentered, PageWrapper, FormText } from "../../../common"
 import {
   USER_GET_ADVISOR_BY_USER_ID_QUERY,
-  titleText,
+  userName,
   profilePicture,
 } from "../../../utils"
 import { Avatar } from "../../../layout"
 import { Notes } from "./notes"
+
+const Wrapper = styled.div`
+  padding: 12px 0;
+`
+
+const AdvisorProfile = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+`
+
+const AdvisorInfo = styled.div`
+  padding-left: 36px;
+`
 
 type TProps = {
   userProfile: TClientProfile
@@ -26,20 +42,24 @@ export const MyAdvisor = (props: TProps) => {
   } else {
     const advisor = data.users.edges[0].node
     return (
-      <PageWrapper title={`Hi I'm ${titleText(userProfile)}`}>
-        <Avatar src={profilePicture(advisor)} />
-        <div>If something is on your mind we would love to hear from you!</div>
-        <div>You can contact us directly -</div>
-        {data && (
-          <FormText>
-            {{
-              Email: advisor.email,
-              Phone: advisor.phone,
-              Address: advisor.address,
-            }}
-          </FormText>
-        )}
-        <Notes userProfile={userProfile} />
+      <PageWrapper title={userName(advisor)}>
+        <Wrapper>
+          <AdvisorProfile>
+            <Avatar boxShadow={1} src={profilePicture(advisor)} />
+            {data && (
+              <AdvisorInfo>
+                <FormText>
+                  {{
+                    Email: advisor.email,
+                    Phone: advisor.phone,
+                    Address: advisor.address,
+                  }}
+                </FormText>
+              </AdvisorInfo>
+            )}
+          </AdvisorProfile>
+          <Notes userProfile={userProfile} />
+        </Wrapper>
       </PageWrapper>
     )
   }

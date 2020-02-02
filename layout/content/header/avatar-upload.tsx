@@ -1,11 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { IconButton, CircularProgress, Box, Avatar } from "@material-ui/core"
+import { IconButton, CircularProgress } from "@material-ui/core"
 import { layoutSizes } from "../../../data"
 import { TUserProfile } from "../../../models"
 import { useMutation } from "@apollo/react-hooks"
 import { USER_UPDATE_AVATAR_MUTATION } from "../../../utils/graphql/user/user-update-avatar.mutation"
 import { fitSizesInFrame, profilePicture } from "../../../utils"
+import { Avatar } from './avatar'
 const MAX_SIZE = layoutSizes.imageSize
 
 const Wrapper = styled.div`
@@ -17,13 +18,6 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   display: block;
-`
-
-const Img = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 `
 
 const LoadingWrapper = styled.div`
@@ -90,7 +84,7 @@ export const AvatarUpload = (props: TProps) => {
             type="file"
           />
           <IconButton
-            style={{ padding: 0 }}
+            style={{ padding: 0, width: '100%', height: '100%' }}
             color="primary"
             aria-label="upload picture"
             component="div"
@@ -100,18 +94,7 @@ export const AvatarUpload = (props: TProps) => {
                 <CircularProgress size={18} />
               </LoadingWrapper>
             )}
-            <Avatar src={uploadedAvatar || profilePicture(userProfile)} />
-            <Box
-              style={{
-                borderRadius: "50%",
-                overflow: "hidden",
-                width: MAX_SIZE,
-                height: MAX_SIZE,
-              }}
-              boxShadow={4}
-            >
-              <Img alt="User's avatar" />
-            </Box>
+              <Avatar src={uploadedAvatar || profilePicture(userProfile)} />
           </IconButton>
         </Label>
       </Wrapper>

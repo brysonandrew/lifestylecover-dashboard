@@ -4,6 +4,7 @@ import { TextFieldText } from "./text-field-text"
 import { CheckboxText } from "./checkbox-text"
 import { ArrayText } from "./array-text"
 import { isBoolean, isArray } from "util"
+import { REPEATER_DEFAULT_KEY } from "../../data"
 
 const Wrapper = styled.div`
   text-align: left;
@@ -32,11 +33,15 @@ export const FormText = (props: TProps) => {
             </CheckboxText>
           )
         } else {
-          return (
-            <TextFieldText key={label} label={label}>
-              {children[label]}
-            </TextFieldText>
-          )
+          if (label !== '__typename') {
+            return (
+              <TextFieldText key={label} label={label === REPEATER_DEFAULT_KEY ? null : label}>
+                {children[label]}
+              </TextFieldText>
+            )
+          } else {
+            return null
+          }
         }
       })}
     </Wrapper>

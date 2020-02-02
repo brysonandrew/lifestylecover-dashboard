@@ -1,12 +1,9 @@
 import * as React from "react"
 import { TAdvisorProfile } from "../../../models"
-import { PageWrapper, FormText } from "../../../common"
+import { PageWrapper } from "../../../common"
 import { List } from "../.."
 import { useMutation, useQuery } from "@apollo/react-hooks"
-import { ADVISOR_NOTE_UPDATE_MUTATION } from "../../../utils/graphql/advisor-note/advisor-note-update.mutation"
-import { ADVISOR_NOTE_CREATE_MUTATION } from "../../../utils/graphql/advisor-note/advisor-note-create.mutation"
-import { ADVISOR_NOTE_DELETE_MUTATION } from "../../../utils/graphql/advisor-note/advisor-note-delete.mutation"
-import { ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY } from "../../../utils/graphql/advisor-note/advisor-note-by-advisor.query"
+import { ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY, ADVISOR_NOTE_UPDATE_MUTATION, ADVISOR_NOTE_CREATE_MUTATION, ADVISOR_NOTE_DELETE_MUTATION } from "../../../utils"
 import { AdvisorNoteInputs } from "./advisor-note-inputs"
 import {
   ADVISOR_NOTE_ITEM_INIT,
@@ -46,21 +43,21 @@ export const MyAdvisorNotes = (props: TProps) => {
         addConfig={
           createMutation
             ? {
-                refetch,
-                inputs,
-                createVariables,
-                createMutation,
-                componentInputs: <AdvisorNoteInputs />,
-              }
+              refetch,
+              inputs,
+              createVariables,
+              createMutation,
+              componentInputs: <AdvisorNoteInputs />,
+            }
             : null
         }
         deleteConfig={
           deleteMutation
             ? {
-                refetch,
-                deleteText: values => `policy ${values.title}`,
-                deleteMutation,
-              }
+              refetch,
+              deleteText: values => `policy ${values.title}`,
+              deleteMutation,
+            }
             : null
         }
       >

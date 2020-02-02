@@ -23,13 +23,15 @@ export const dataToForm = (data: any) => {
 export const initializeFormValues = (compareValues, initFormValues, initArrayValues?) => {
   let values = {}
   Object.keys(initFormValues).forEach(key => {
-    const fromDb = dataToForm(compareValues)[key]
-    if (isArray(fromDb) && initArrayValues) {
-      values[key] = fromDb.length > 0
-        ? fromDb.map((values) => initializeFormValues(values, initArrayValues))
-        : initFormValues[key]
-    } else {
-      values[key] = fromDb || initFormValues[key]
+    if (key !== '__typename') {
+      const fromDb = dataToForm(compareValues)[key]
+      if (isArray(fromDb) && initArrayValues) {
+        values[key] = fromDb.length > 0
+          ? fromDb.map((values) => initializeFormValues(values, initArrayValues))
+          : initFormValues[key]
+      } else {
+        values[key] = fromDb || initFormValues[key]
+      }
     }
   })
   return values

@@ -66,5 +66,25 @@ export const createVariablesCreateUser = ({
 
 
 export const profilePicture = (userProfile: TUserProfile): string =>
-  (userProfile.profilePicture !== "EMPTY" ? userProfile.profilePicture : null)
+  (userProfile.profilePicture !== "EMPTY"
+    ? userProfile.profilePicture 
+    : null)
   || userProfile?.avatar?.url
+
+
+export const userName = (userProfile: TUserProfile) => {
+  if (userProfile) {
+    const { username, firstName, lastName } = userProfile
+    if (firstName) {
+      if (firstName && lastName) {
+        return `${firstName} ${lastName}`
+      } else {
+        return `${firstName}`
+      }
+    } else {
+      return `${username}`
+    }
+  } else {
+    return null
+  }
+}

@@ -44,20 +44,3 @@ export function titleCase(str) {
   }
   return splitStr.join(" ")
 }
-
-export const titleText = (userProfile: TUserProfile) => {
-  if (userProfile) {
-    const { username, firstName, lastName } = userProfile
-    if (firstName) {
-      if (firstName && lastName) {
-        return `Hi there, ${firstName} ${lastName}`
-      } else {
-        return `Hi there, ${firstName}`
-      }
-    } else {
-      return `Hi there, ${username}`
-    }
-  } else {
-    return "Hi there!"
-  }
-}
