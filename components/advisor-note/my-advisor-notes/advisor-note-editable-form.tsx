@@ -3,7 +3,12 @@ import { Formik, Form } from "formik"
 import { TPolicy, TUserProfile, EUserRole } from "../../../models"
 import { policyEditableValidationSchema } from "../../../data-validation"
 import { SubmitButton } from "../../../common"
-import { defined, useRefetch, changedValues, useErrorAndCalledToSeeIfSuccess } from "../../../utils"
+import {
+  defined,
+  useRefetch,
+  changedValues,
+  useErrorAndCalledToSeeIfSuccess,
+} from "../../../utils"
 
 type TProps = {
   onRefetch(changedValues: any): any
@@ -17,8 +22,16 @@ type TProps = {
 }
 
 export const AdvisorNoteEditableForm = (props: TProps) => {
-  const { onRefetch, policyInfo, userProfile, children, mutation, initValues, createVariables } = props
-  const [handleUpdatePolicy, updateMutation] = mutation;
+  const {
+    onRefetch,
+    policyInfo,
+    userProfile,
+    children,
+    mutation,
+    initValues,
+    createVariables,
+  } = props
+  const [handleUpdatePolicy, updateMutation] = mutation
   const { loading: isLoading, data, error, called } = updateMutation
   const [changedValuesState, setChangedValues] = React.useState(null)
 
@@ -44,26 +57,26 @@ export const AdvisorNoteEditableForm = (props: TProps) => {
                 startIconConfig={{
                   isLoading,
                   isSuccess,
-                  isError: defined(error)
+                  isError: defined(error),
                 }}
                 onClick={() => {
                   const changed = changedValues(initValues, values)
                   setChangedValues(changed)
-                  const variables =
-                    isClient
-                      ? {
+                  const variables = isClient
+                    ? {
                         id: policyInfo.id,
-                        reviewMeta: JSON.stringify(
-                          {
-                            ...changed,
-                            ...{ reviewer: 'advisor', reviewerEmail: 'andrewbryson12@gmail.com' }
-                          }
-                        )
+                        reviewMeta: JSON.stringify({
+                          ...changed,
+                          ...{
+                            reviewer: "advisor",
+                            reviewerEmail: "andrewbryson12@gmail.com",
+                          },
+                        }),
                       }
-                      : {
+                    : {
                         id: policyInfo.id,
                         title: values.title,
-                        ...createVariables(changed)
+                        ...createVariables(changed),
                       }
                   handleUpdatePolicy({ variables })
                 }}

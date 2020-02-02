@@ -13,7 +13,13 @@ type TProps = {
 
 export const AddItemForm = (props: TProps) => {
   const { addConfig, onUnsetAdd } = props
-  const { refetch, inputs, componentInputs, createVariables, createMutation } = addConfig
+  const {
+    refetch,
+    inputs,
+    componentInputs,
+    createVariables,
+    createMutation,
+  } = addConfig
   const [handleCreatePolicy, { loading, data, error }] = createMutation
 
   const handleRefetch = () => {
@@ -21,7 +27,9 @@ export const AddItemForm = (props: TProps) => {
     onUnsetAdd()
   }
 
-  const isSuccess = useDataToSeeIfSuccess(data?.createPolicyAsset?.policyAsset?.id)
+  const isSuccess = useDataToSeeIfSuccess(
+    data?.createPolicyAsset?.policyAsset?.id
+  )
   const isRefetchTriggered = useRefetch(isSuccess, handleRefetch)
 
   return (
@@ -38,13 +46,13 @@ export const AddItemForm = (props: TProps) => {
             <ModalButtons
               onClose={() => onUnsetAdd()}
               onOk={() => handleCreatePolicy({ variables })}
-              okIcon={(
+              okIcon={
                 <AsyncStartIcon
                   isLoading={loading}
                   isSuccess={isSuccess}
                   isError={error}
                 />
-              )}
+              }
             >
               Save
             </ModalButtons>

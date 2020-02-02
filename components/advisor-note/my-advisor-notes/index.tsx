@@ -8,7 +8,10 @@ import { ADVISOR_NOTE_CREATE_MUTATION } from "../../../utils/graphql/advisor-not
 import { ADVISOR_NOTE_DELETE_MUTATION } from "../../../utils/graphql/advisor-note/advisor-note-delete.mutation"
 import { ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY } from "../../../utils/graphql/advisor-note/advisor-note-by-advisor.query"
 import { AdvisorNoteInputs } from "./advisor-note-inputs"
-import { ADVISOR_NOTE_ITEM_INIT, ADVISOR_NOTE_INIT } from "../../../data-initial-values-advisor-note"
+import {
+  ADVISOR_NOTE_ITEM_INIT,
+  ADVISOR_NOTE_INIT,
+} from "../../../data-initial-values-advisor-note"
 import { AdvisorNoteEditable } from "./advisor-note-editable"
 
 type TProps = {
@@ -17,20 +20,23 @@ type TProps = {
 
 export const MyAdvisorNotes = (props: TProps) => {
   const { userProfile } = props
-  const { loading, error, data, refetch } = useQuery(ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY, {
-    variables: { id: userProfile.id }
-  })
+  const { loading, error, data, refetch } = useQuery(
+    ADVISOR_NOTE_LIST_BY_ADVISOR_QUERY,
+    {
+      variables: { id: userProfile.id },
+    }
+  )
 
   const updateMutation = useMutation(ADVISOR_NOTE_UPDATE_MUTATION)
   const createMutation = useMutation(ADVISOR_NOTE_CREATE_MUTATION)
   const deleteMutation = useMutation(ADVISOR_NOTE_DELETE_MUTATION)
 
   const inputs = ADVISOR_NOTE_INIT
-  const createVariables = (values) => {
+  const createVariables = values => {
     const { title, ...meta } = values
     return {
       title,
-      meta: JSON.stringify(meta)
+      meta: JSON.stringify(meta),
     }
   }
 
@@ -40,27 +46,27 @@ export const MyAdvisorNotes = (props: TProps) => {
         addConfig={
           createMutation
             ? {
-              refetch,
-              inputs,
-              createVariables,
-              createMutation,
-              componentInputs: (
-                <AdvisorNoteInputs />
-              )
-            }
-            : null}
+                refetch,
+                inputs,
+                createVariables,
+                createMutation,
+                componentInputs: <AdvisorNoteInputs />,
+              }
+            : null
+        }
         deleteConfig={
           deleteMutation
             ? {
-              refetch,
-              deleteText: (values) => `policy ${values.title}`,
-              deleteMutation
-            }
-            : null}
+                refetch,
+                deleteText: values => `policy ${values.title}`,
+                deleteMutation,
+              }
+            : null
+        }
       >
-        {userProfile.advisorNotes.edges.map((edge) => ({
+        {userProfile.advisorNotes.edges.map(edge => ({
           itemInfo: edge.node,
-          component: (isEditing) => {
+          component: isEditing => {
             return (
               <AdvisorNoteEditable
                 key={edge.node.id}
@@ -76,10 +82,9 @@ export const MyAdvisorNotes = (props: TProps) => {
                 <AdvisorNoteInputs />
               </AdvisorNoteEditable>
             )
-      }
-    }))}
+          },
+        }))}
       </List>
-    </PageWrapper >
+    </PageWrapper>
   )
 }
-

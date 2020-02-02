@@ -103,7 +103,7 @@ export const POLICIES_FRAGMENTS = {
           node {
             ...ASSET
           }
-        }      
+        }
       }
     }
     ${POLICY_FRAGMENTS.ASSET}
@@ -116,7 +116,7 @@ export const POLICIES_FRAGMENTS = {
           node {
             ...KIWISAVER
           }
-        }      
+        }
       }
     }
     ${POLICY_FRAGMENTS.KIWISAVER}
@@ -129,7 +129,7 @@ export const POLICIES_FRAGMENTS = {
           node {
             ...PET
           }
-        }      
+        }
       }
     }
     ${POLICY_FRAGMENTS.PET}

@@ -11,7 +11,7 @@ export const PolicyKiwisaverInputs = () => {
       {Object.keys(POLICY_KIWISAVER_INIT).map(key => (
         <TextField
           key={key}
-          label={key==='title' ? 'Reference Number' : fromCamelCase(key)}
+          label={key === "title" ? "Reference Number" : fromCamelCase(key)}
           placeholder={placeholder.user.unknown}
           name={key}
           type={key.indexOf("date") > -1 ? "date" : null}

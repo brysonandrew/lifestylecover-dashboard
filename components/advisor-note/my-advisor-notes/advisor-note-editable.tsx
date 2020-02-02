@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { TUserProfile } from "../../../models"
 import { initializeFormValues } from "../../../utils"
@@ -18,11 +17,23 @@ type TProps = {
 }
 
 export const AdvisorNoteEditable = (props: TProps) => {
-  const { isEditing, refetch, inputs, arrayInputs, info, children, updateMutation, userProfile, createVariables } = props
-  const [formState, setFormState] = React.useState(initializeFormValues(info, inputs, arrayInputs))
+  const {
+    isEditing,
+    refetch,
+    inputs,
+    arrayInputs,
+    info,
+    children,
+    updateMutation,
+    userProfile,
+    createVariables,
+  } = props
+  const [formState, setFormState] = React.useState(
+    initializeFormValues(info, inputs, arrayInputs)
+  )
 
-  const handleRefetch = (changedValues) => {
-    setFormState({...formState, ...changedValues})
+  const handleRefetch = changedValues => {
+    setFormState({ ...formState, ...changedValues })
   }
 
   if (isEditing) {
@@ -41,10 +52,6 @@ export const AdvisorNoteEditable = (props: TProps) => {
       </AdvisorNoteEditableForm>
     )
   } else {
-    return (
-      <FormText arrayInputs={arrayInputs}>
-        {formState}
-      </FormText>
-    )
+    return <FormText arrayInputs={arrayInputs}>{formState}</FormText>
   }
-} 
+}

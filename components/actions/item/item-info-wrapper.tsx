@@ -13,7 +13,5 @@ type TProps = {
 }
 
 export const ItemInfoWrapper = (props: TProps) => (
-  <Wrapper>
-    {props.children}
-  </Wrapper>
+  <Wrapper>{props.children}</Wrapper>
 )

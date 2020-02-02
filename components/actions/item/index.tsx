@@ -37,26 +37,31 @@ export const Item = (props: TProps) => {
         <ItemControls>
           {[
             ...(editConfig
-              ? [{
-                action: EAction.Edit,
-                callback: editConfig.onSet,
-                icon: editConfig.isEditing ? <Close /> : <Edit color="primary" />,
-              }]
+              ? [
+                  {
+                    action: EAction.Edit,
+                    callback: editConfig.onSet,
+                    icon: editConfig.isEditing ? (
+                      <Close />
+                    ) : (
+                      <Edit color="primary" />
+                    ),
+                  },
+                ]
               : []),
             ...(onSetDelete
-              ? [{
-                action: EAction.Delete,
-                callback: onSetDelete,
-                icon: <Delete color="error" />,
-              }]
-              : []
-            )
+              ? [
+                  {
+                    action: EAction.Delete,
+                    callback: onSetDelete,
+                    icon: <Delete color="error" />,
+                  },
+                ]
+              : []),
           ]}
         </ItemControls>
       )}
-      <ItemInfoWrapper>
-        {children}
-      </ItemInfoWrapper>
+      <ItemInfoWrapper>{children}</ItemInfoWrapper>
     </Wrapper>
   )
 }

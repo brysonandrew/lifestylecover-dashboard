@@ -46,9 +46,7 @@ export const Header = (props: TProps) => {
         <RightButtons>
           <Button onClick={handleLogout}>Log out</Button>
           {userProfile?.avatar?.url && (
-            <AvatarUpload
-              userProfile={userProfile}
-            />
+            <AvatarUpload userProfile={userProfile} />
           )}
         </RightButtons>
       </Inner>
@@ -56,5 +54,5 @@ export const Header = (props: TProps) => {
   )
 }
 
-export * from './avatar'
-export * from './avatar-upload'
+export * from "./avatar"
+export * from "./avatar-upload"

@@ -12,7 +12,7 @@ export const USER_GET_CLIENT_BY_ID_QUERY = gql`
 
 export const USER_GET_ADVISOR_BY_USER_ID_QUERY = gql`
   query USER_GET_ADVISOR_BY_USER_ID($userIds: [Int]!) {
-    users(where: {include: $userIds}) {
+    users(where: { include: $userIds }) {
       edges {
         node {
           ...ADVISOR

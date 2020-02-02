@@ -1,4 +1,4 @@
-import { TUserProfile } from ".";
+import { TUserProfile } from "."
 
 export type TPolicyProps = {
   isLoading: boolean

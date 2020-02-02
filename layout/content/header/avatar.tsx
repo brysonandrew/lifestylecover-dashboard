@@ -16,10 +16,15 @@ type TProps = {
 }
 
 export const Avatar = (props: TProps) => (
-  <Box style={{ borderRadius: "50%", overflow: 'hidden', width: MAX_SIZE, height: MAX_SIZE }} boxShadow={4}>
-    <Img
-      src={props.src}
-      alt="User's avatar"
-    />
+  <Box
+    style={{
+      borderRadius: "50%",
+      overflow: "hidden",
+      width: MAX_SIZE,
+      height: MAX_SIZE,
+    }}
+    boxShadow={4}
+  >
+    <Img src={props.src} alt="User's avatar" />
   </Box>
 )

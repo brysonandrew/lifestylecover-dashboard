@@ -10,22 +10,15 @@ type TProps = {
 export const Notes = (props: TProps) => {
   const { data, loading, error } = useQuery(ADVISOR_NOTE_BY_CLIENT_QUERY, {
     variables: {
-      client: props.userProfile.username.toLowerCase()
-    }
+      client: props.userProfile.username.toLowerCase(),
+    },
   })
   console.log(data)
   return (
     <div>
-      <div>
-        Future priorities
-      </div>
-      <div>
-        Recommendations
-      </div>
-      <div>
-        Notes
-      </div>        
+      <div>Future priorities</div>
+      <div>Recommendations</div>
+      <div>Notes</div>
     </div>
   )
 }
-

@@ -39,38 +39,40 @@ type TProps = {
 
 export const AvatarUpload = (props: TProps) => {
   const { userProfile } = props
-  const [handleUpload, { loading, data, error }] = useMutation(USER_UPDATE_AVATAR_MUTATION)
+  const [handleUpload, { loading, data, error }] = useMutation(
+    USER_UPDATE_AVATAR_MUTATION
+  )
   const [uploadedAvatar, setUploadedAvater] = React.useState(null)
   if (userProfile && (userProfile?.avatar?.url || userProfile.profilePicture)) {
-    const handleChange = (e) => {
+    const handleChange = e => {
       if (e.target.files && e.target.files.length > 0) {
         if (window) {
-          let img = new Image();
+          let img = new Image()
           const file = e.target.files[0]
-          const url = (window.URL || window.webkitURL)['createObjectURL'](file)
+          const url = (window.URL || window.webkitURL)["createObjectURL"](file)
           img.onload = (e: any) => {
             const loadedImage = e.currentTarget
-            let canvas = document.createElement('canvas');
-            canvas.width = MAX_SIZE;
-            canvas.height = MAX_SIZE;
+            let canvas = document.createElement("canvas")
+            canvas.width = MAX_SIZE
+            canvas.height = MAX_SIZE
             const [w, h] = fitSizesInFrame(
               [loadedImage.width, loadedImage.height],
               [MAX_SIZE, MAX_SIZE]
             )
-            const ctx = canvas.getContext('2d');
+            const ctx = canvas.getContext("2d")
             ctx.drawImage(
               e.currentTarget,
               (MAX_SIZE - w) * 0.5,
               (MAX_SIZE - h) * 0.5,
               w,
               h
-            );
+            )
             const base64 = canvas.toDataURL()
             setUploadedAvater(base64)
             handleUpload({
               variables: {
                 id: userProfile.id,
-                profilePicture: base64
+                profilePicture: base64,
               },
             })
           }
@@ -81,24 +83,34 @@ export const AvatarUpload = (props: TProps) => {
     return (
       <Wrapper>
         <Label>
-          <input style={{ display: 'none' }} onChange={handleChange} accept="image/*" type="file" />
-          <IconButton style={{ padding: 0 }} color="primary" aria-label="upload picture" component="div">
+          <input
+            style={{ display: "none" }}
+            onChange={handleChange}
+            accept="image/*"
+            type="file"
+          />
+          <IconButton
+            style={{ padding: 0 }}
+            color="primary"
+            aria-label="upload picture"
+            component="div"
+          >
             {loading && (
               <LoadingWrapper>
                 <CircularProgress size={18} />
               </LoadingWrapper>
             )}
-            <Avatar
-              src={
-                uploadedAvatar
-                || profilePicture(userProfile)
-              }
-            />
-            <Box style={{ borderRadius: "50%", overflow: 'hidden', width: MAX_SIZE, height: MAX_SIZE }} boxShadow={4}>
-              <Img
-
-                alt="User's avatar"
-              />
+            <Avatar src={uploadedAvatar || profilePicture(userProfile)} />
+            <Box
+              style={{
+                borderRadius: "50%",
+                overflow: "hidden",
+                width: MAX_SIZE,
+                height: MAX_SIZE,
+              }}
+              boxShadow={4}
+            >
+              <Img alt="User's avatar" />
             </Box>
           </IconButton>
         </Label>
