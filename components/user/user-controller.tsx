@@ -6,6 +6,7 @@ import { FormText } from "../../common"
 import { initializeFormValues, createVariablesCreateUser } from "../../utils"
 import { UserCreateInputs } from "./user-create-inputs"
 import { CREATE_USER_INIT } from "../../data-initial-values-user"
+import { UserEditable } from "./user-editable"
 
 type TProps = {
   refetch(): void
@@ -41,17 +42,10 @@ export const UserController = (props: TProps) => {
         component: (isEditing: boolean) => (
           <div>
             <h2>{edge.node.username}</h2>
-            {isEditing
-              ? (
-                <ProfileContactUpdateForm
-                  userProfile={edge.node}
-                />
-              )
-              : (
-                <FormText>
-                  {initializeFormValues(edge.node, inputs)}
-                </FormText>
-              )}
+            {/* <UserEditable
+              isEditing={isEditing}
+              user={edge.node}
+            /> */}
           </div>
         )
       }))}

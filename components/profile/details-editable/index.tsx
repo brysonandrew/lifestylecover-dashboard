@@ -36,7 +36,6 @@ export const DetailsEditable = (props: TProps) => {
         >
           {isEditing ? (
             <ProfileDetailsUpdateForm
-              isEditing={isEditing}
               userProfile={userProfile}
             />
           ) : (

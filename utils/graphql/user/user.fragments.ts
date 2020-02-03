@@ -25,8 +25,8 @@ export const USER_FRAGMENTS = {
       }
     }
   `,
-  BASIC: gql`
-    fragment BASIC on User {
+  USER_LIST_ITEM: gql`
+    fragment USER_LIST_ITEM on User {
       id
       username
       firstName
@@ -42,7 +42,6 @@ export const USER_FRAGMENTS = {
   CLIENT: gql`
     fragment CLIENT on User {
       id
-      username
       mobile
       phone
       address
@@ -88,7 +87,6 @@ export const USER_FRAGMENTS = {
   ADVISOR: gql`
     fragment ADVISOR on User {
       id
-      username
       mobile
       phone
       address

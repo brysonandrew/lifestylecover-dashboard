@@ -7,13 +7,12 @@ import { ProfileEditableForm } from "../profile-editable-form"
 import { ProfileDetailsInputs } from "./profile-details-inputs"
 
 type TProps = {
-  isEditing: boolean
   userProfile: TUserProfile
 }
 
-export const ProfileDetailsUpdateForm = (props: TProps) => (
+export const ProfileDetailsUpdateForm = ({userProfile}: TProps) => (
   <ProfileEditableForm
-    {...props}
+    userProfile={userProfile}
     mutation={useMutation(USER_UPDATE_DETAILS_MUTATION)}
     initFormValues={USER_DETAILS_FORM}
   >
