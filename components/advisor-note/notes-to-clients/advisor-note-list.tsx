@@ -64,7 +64,7 @@ export const AdvisorNoteList = (props: TProps) => {
         itemInfo: edge.node,
         component: (editConfig: TEditConfig) => {
           return (
-            <NotesSectionTitle title={`Client's username: ${edge.node.title}`}>
+            <NotesSectionTitle title={edge.node.title} isMain>
               <AdvisorNoteEditable
                 key={edge.node.id}
                 editConfig={editConfig}

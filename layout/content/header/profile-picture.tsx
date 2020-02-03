@@ -34,10 +34,10 @@ export const ProfilePicture = (props: TProps) => (
   <Wrapper boxShadow={defined(props.boxShadow) ? props.boxShadow : 4}>
     {props.src ? (
       <Img src={props.src} alt="User's avatar" />
-    ) : props.usersFirstLetterName
-        ? (
-          <Avatar>{props.usersFirstLetterName.toUpperCase()}</Avatar>
-        )
-        : MENU_ITEM_ICONS.Profile}
+    ) : props.usersFirstLetterName ? (
+      <Avatar>{props.usersFirstLetterName.toUpperCase()}</Avatar>
+    ) : (
+      MENU_ITEM_ICONS.Profile
+    )}
   </Wrapper>
 )

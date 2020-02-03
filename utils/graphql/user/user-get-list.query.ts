@@ -13,4 +13,3 @@ export const USER_GET_LIST_QUERY = gql`
   }
   ${USER_FRAGMENTS.ADMIN}
 `
- 

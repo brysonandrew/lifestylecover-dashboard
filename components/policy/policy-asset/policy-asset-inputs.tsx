@@ -14,12 +14,9 @@ type TProps = {
   formType?: EFormType
 }
 
-export const PolicyAssetInputs = ({isClient, values, formType}: TProps) => {
+export const PolicyAssetInputs = ({ isClient, values, formType }: TProps) => {
   return (
-    <PolicyFixedInputs
-      isClient={isClient}
-      formType={formType}
-    >
+    <PolicyFixedInputs isClient={isClient} formType={formType}>
       <TextFieldArray
         name={name}
         namePlural={`${name}s`}

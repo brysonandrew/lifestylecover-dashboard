@@ -38,11 +38,7 @@ export const Item = (props: TProps) => {
                   {
                     action: EAction.Edit,
                     callback: editConfig.onSet,
-                    icon: editConfig.isEditing ? (
-                      <Close />
-                    ) : (
-                      <Edit />
-                    ),
+                    icon: editConfig.isEditing ? <Close /> : <Edit />,
                   },
                 ]
               : []),

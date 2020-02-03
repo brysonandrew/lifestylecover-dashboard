@@ -42,7 +42,10 @@ export const AddItemForm = (props: TProps) => {
         const variables = createVariables(values)
         return (
           <Form>
-            {React.cloneElement(componentInputs, { values, formType: EFormType.Add })}
+            {React.cloneElement(componentInputs, {
+              values,
+              formType: EFormType.Add,
+            })}
             <ModalButtons
               onClose={() => onUnsetAdd()}
               onOk={() => handleCreatePolicy({ variables })}

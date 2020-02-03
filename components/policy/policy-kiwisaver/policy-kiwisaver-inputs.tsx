@@ -16,10 +16,7 @@ type TProps = {
 export const PolicyKiwisaverInputs = ({ formType, isClient }: TProps) => {
   const [title, ...nonFixedInputKeys] = Object.keys(POLICY_KIWISAVER_INIT)
   return (
-    <PolicyFixedInputs
-      isClient={isClient}
-      formType={formType}
-    >
+    <PolicyFixedInputs isClient={isClient} formType={formType}>
       <>
         {nonFixedInputKeys.map(key => (
           <TextField

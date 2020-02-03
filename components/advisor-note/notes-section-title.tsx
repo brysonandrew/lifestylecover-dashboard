@@ -12,11 +12,12 @@ const Title = styled.h4`
 type TProps = {
   title: string
   children: any
+  isMain?: boolean
 }
 
-export const NotesSectionTitle = ({title, children}: TProps) => (
+export const NotesSectionTitle = ({title, children, isMain}: TProps) => (
   <Wrapper>
-    <Title>{title}</Title>
+    <Title style={{fontWeight: isMain ? 'bold' : 'normal'}}>{title}</Title>
     {children}
   </Wrapper>
 )

@@ -41,7 +41,7 @@ export const MyAdvisor = (props: TProps) => {
     variables: {
       userIds: [userProfile.advisor],
     },
-    skip: !defined(userProfile.advisor)
+    skip: !defined(userProfile.advisor),
   })
   if (loading) {
     return <LoadingCentered />
@@ -62,7 +62,9 @@ export const MyAdvisor = (props: TProps) => {
                       {{
                         ...(advisor.email ? { Email: advisor.email } : {}),
                         ...(advisor.phone ? { Phone: advisor.phone } : {}),
-                        ...(advisor.address ? { Address: advisor.address } : {}),
+                        ...(advisor.address
+                          ? { Address: advisor.address }
+                          : {}),
                       }}
                     </FormText>
                   </AdvisorInfo>

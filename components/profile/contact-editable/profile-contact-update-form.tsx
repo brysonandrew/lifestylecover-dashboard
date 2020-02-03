@@ -11,7 +11,7 @@ type TProps = {
   refetch(): any
 }
 
-export const ProfileContactUpdateForm = ({userContact, refetch}: TProps) => (
+export const ProfileContactUpdateForm = ({ userContact, refetch }: TProps) => (
   <ProfileEditableForm
     userProfile={userContact}
     mutation={useMutation(USER_UPDATE_CONTACT_MUTATION)}

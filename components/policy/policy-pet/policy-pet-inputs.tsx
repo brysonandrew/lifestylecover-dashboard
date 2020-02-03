@@ -14,12 +14,9 @@ type TProps = {
   isClient?: boolean
 }
 
-export const PolicyPetInputs = ({values, isClient, formType}: TProps) => {
+export const PolicyPetInputs = ({ values, isClient, formType }: TProps) => {
   return (
-    <PolicyFixedInputs
-      isClient={isClient}
-      formType={formType}
-    >
+    <PolicyFixedInputs isClient={isClient} formType={formType}>
       <TextFieldArray
         name={name}
         namePlural={`${name}s`}

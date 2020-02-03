@@ -94,7 +94,12 @@ export const ProfilePictureUpload = (props: TProps) => {
                 <CircularProgress size={18} />
               </LoadingWrapper>
             )}
-            <ProfilePicture usersFirstLetterName={userProfile.username && userProfile.username[0]} src={uploadedAvatar || profilePicture(userProfile)} />
+            <ProfilePicture
+              usersFirstLetterName={
+                userProfile.username && userProfile.username[0]
+              }
+              src={uploadedAvatar || profilePicture(userProfile)}
+            />
           </IconButton>
         </Label>
       </Wrapper>

@@ -23,10 +23,7 @@ export const PolicyRiskInputs = ({ values, formType, isClient }: TProps) => {
 
   if (values) {
     return (
-      <PolicyFixedInputs
-        isClient={isClient}
-        formType={formType}
-      >
+      <PolicyFixedInputs isClient={isClient} formType={formType}>
         <>
           {nonFixedInputKeys.map(key => (
             <TextField

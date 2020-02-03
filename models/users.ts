@@ -40,7 +40,8 @@ export type TClientProfile = {
   policiesAsset?: any
   policiesKiwisaver?: any
   policiesPet?: any
-} & TUserProfile & TUserClientDetails
+} & TUserProfile &
+  TUserClientDetails
 
 export type TAdvisorProfile = {
   advisorNotes?: any

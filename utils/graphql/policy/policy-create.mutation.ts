@@ -21,7 +21,11 @@ export const POLICY_CREATE_RISK_MUTATION = gql`
 `
 
 export const POLICY_CREATE_ASSET_MUTATION = gql`
-  mutation POLICY_CREATE_ASSET($title: String!, $meta: String!, $author: String!) {
+  mutation POLICY_CREATE_ASSET(
+    $title: String!
+    $meta: String!
+    $author: String!
+  ) {
     createPolicyAsset(
       input: {
         clientMutationId: "POLICY_CREATE_ASSET"
@@ -40,7 +44,11 @@ export const POLICY_CREATE_ASSET_MUTATION = gql`
 `
 
 export const POLICY_CREATE_KIWISAVER_MUTATION = gql`
-  mutation POLICY_CREATE_KIWISAVER($title: String!, $meta: String!, $author: String!) {
+  mutation POLICY_CREATE_KIWISAVER(
+    $title: String!
+    $meta: String!
+    $author: String!
+  ) {
     createPolicyKiwisaver(
       input: {
         clientMutationId: "POLICY_CREATE_KIWISAVER"
@@ -59,7 +67,11 @@ export const POLICY_CREATE_KIWISAVER_MUTATION = gql`
 `
 
 export const POLICY_CREATE_PET_MUTATION = gql`
-  mutation POLICY_CREATE_PET($title: String!, $meta: String!, $author: String!) {
+  mutation POLICY_CREATE_PET(
+    $title: String!
+    $meta: String!
+    $author: String!
+  ) {
     createPolicyPet(
       input: {
         clientMutationId: "POLICY_CREATE_PET"

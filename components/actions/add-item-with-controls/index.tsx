@@ -13,7 +13,6 @@ const Wrapper = styled(motion.li)`
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  padding: 12px;
   background-color: ${color.offWhite};
 `
 

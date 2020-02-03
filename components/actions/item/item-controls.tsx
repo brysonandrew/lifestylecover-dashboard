@@ -47,28 +47,24 @@ type TProps = {
 export const ItemControls = ({ isReviewMeta, userRole, children }: TProps) => {
   const isClient = userRole === EUserRole.client
   return (
-    <Wrapper style={{ justifyContent: isReviewMeta ? 'space-between' : 'flex-end' }}>
-      {isReviewMeta
-        && (
-          <ChipWrapper>
-            <Chip
-              variant="outlined"
-              size="medium"
-              color="secondary"
-              avatar={(
-                isClient ? <CheckCircle /> : <Info />
-              )}
-              label={isClient ? 'PENDING REVIEW' : 'REVIEW REQUIRED'}
-            />
-          </ChipWrapper>
-        )}
+    <Wrapper
+      style={{ justifyContent: isReviewMeta ? "space-between" : "flex-end" }}
+    >
+      {isReviewMeta && (
+        <ChipWrapper>
+          <Chip
+            variant="outlined"
+            size="medium"
+            color="secondary"
+            avatar={isClient ? <CheckCircle /> : <Info />}
+            label={isClient ? "PENDING REVIEW" : "REVIEW REQUIRED"}
+          />
+        </ChipWrapper>
+      )}
       <Buttons>
         {children.map((control: IActionControlConfig) => (
           <ButtonWrapper key={control.action}>
-            <Fab
-              size="small"
-              onClick={control.callback}
-            >
+            <Fab size="small" onClick={control.callback}>
               {control.icon}
             </Fab>
           </ButtonWrapper>

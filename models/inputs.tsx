@@ -41,6 +41,6 @@ export type TItem = {
 }
 
 export enum EFormType {
-  Add = 'Add',
-  Edit = 'Edit'
+  Add = "Add",
+  Edit = "Edit",
 }

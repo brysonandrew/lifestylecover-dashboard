@@ -11,7 +11,10 @@ type TProps = {
   refetch(): void
 }
 
-export const ProfileDetailsUpdateForm = ({userClientDetails, refetch}: TProps) => (
+export const ProfileDetailsUpdateForm = ({
+  userClientDetails,
+  refetch,
+}: TProps) => (
   <ProfileEditableForm
     userProfile={userClientDetails}
     refetch={refetch}

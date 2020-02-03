@@ -22,42 +22,38 @@ export const ContactEditable = (props: TProps) => {
   const isEditing = action === EAction.Edit
   return (
     <PageWrapper title="Contact info">
-      {loading
-        ? (
-          <LoadingCentered />
-        )
-        : error
-          ? (
-            <PaperError>
-              An error occurred.
-            </PaperError>
-          )
-          : (
-              <ul>
-                <Item
-                  id="Contact"
-                  actionConfig={actionConfig}
-                  editConfig={{
-                    isEditing,
-                    onSet: () =>
-                      onSetActionConfig(
-                        isEditing
-                          ? EMPTY_ACTION_CONFIG
-                          : { action: EAction.Edit, actionInfo: data.viewer }
-                      ),
-                  }}
-                >
-                  {isEditing ? (
-                    <ProfileContactUpdateForm userContact={data.viewer} refetch={refetch} />
-                  ) : (
-                      <FormText>
-                        {initializeFormValues(data.viewer, USER_CONTACT_FORM)}
-                      </FormText>
-                    )}
-                </Item>
-              </ul>
-            )
-          }
+      {loading ? (
+        <LoadingCentered />
+      ) : error ? (
+        <PaperError>An error occurred.</PaperError>
+      ) : (
+        <ul>
+          <Item
+            id="Contact"
+            actionConfig={actionConfig}
+            editConfig={{
+              isEditing,
+              onSet: () =>
+                onSetActionConfig(
+                  isEditing
+                    ? EMPTY_ACTION_CONFIG
+                    : { action: EAction.Edit, actionInfo: data.viewer }
+                ),
+            }}
+          >
+            {isEditing ? (
+              <ProfileContactUpdateForm
+                userContact={data.viewer}
+                refetch={refetch}
+              />
+            ) : (
+              <FormText>
+                {initializeFormValues(data.viewer, USER_CONTACT_FORM)}
+              </FormText>
+            )}
+          </Item>
+        </ul>
+      )}
     </PageWrapper>
   )
 }
