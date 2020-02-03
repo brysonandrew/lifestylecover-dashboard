@@ -6,13 +6,15 @@ import { Add, Cancel } from "@material-ui/icons"
 import { motion } from "framer-motion"
 import { AddItemForm } from "./add-item-form"
 import { ModalCentered } from "../../../common"
+import { color } from "../../../data"
 
 const Wrapper = styled(motion.li)`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   position: relative;
-  padding: 12px 0;
+  padding: 12px;
+  background-color: ${color.offWhite};
 `
 
 type TProps = {

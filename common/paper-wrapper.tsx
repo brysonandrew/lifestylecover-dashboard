@@ -7,7 +7,6 @@ import { sizes } from "../utils-viewport"
 const Wrapper = styled(Paper)`
   width: 100%;
   margin: ${layoutSizes.nav.row * 0.5}px auto;
-  padding: 0 12px;
   ${sizes.mobileLg`
     width: calc(100% - 80px);
   `}

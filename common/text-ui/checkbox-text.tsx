@@ -9,12 +9,16 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  font-size: 14px;
 `
 
 const Text = styled.div`
   margin-right: 12px;
   line-height: 24px;
-  font-size: 14px;
+`
+
+const CheckedText = styled.div`
+  font-weight: bold;
 `
 
 type TProps = {
@@ -30,7 +34,11 @@ export const CheckboxText = (props: TProps) => {
         <Text>
           {fromCamelCase(children)}
         </Text>
-        {isChecked ? <CheckBox /> : <CheckBoxOutlineBlank/>}
+        <CheckedText>
+          {isChecked
+            ? "Yes"
+            : "No"}
+        </CheckedText>
       </Wrapper>
     </TextFieldText>
   )

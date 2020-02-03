@@ -36,3 +36,21 @@ export const VIEWER_ADMIN_QUERY = gql`
   }
   ${USER_FRAGMENTS.ADMIN}
 `
+
+export const VIEWER_CONTACT_QUERY = gql`
+  query VIEWER_CONTACT {
+    viewer {
+      ...CONTACT
+    }
+  }
+  ${USER_FRAGMENTS.CONTACT}
+`
+
+export const VIEWER_CLIENT_DETAILS_QUERY = gql`
+  query VIEWER_CLIENT_DETAILS {
+    viewer {
+      ...CLIENT_DETAILS
+    }
+  }
+  ${USER_FRAGMENTS.CLIENT_DETAILS}
+`

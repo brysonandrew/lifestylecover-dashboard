@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
-import { color, TRANSITION_LINEAR_CONFIG, layoutSizes } from "../../data"
+import { color, TRANSITION_LINEAR_CONFIG, layoutSizes, TRANSITION_SPRING_CONFIG } from "../../data"
 import { NavToggle } from "./nav-toggle"
 import { NavList } from "./nav-list"
 import { TUserProfile, EMenuItem, EPolicyFetchKey } from "../../models"
@@ -68,7 +68,7 @@ export const Nav = (props: TProps) => {
     <>
       <WrapperDesktop
         animate={{ width: isOpen ? layoutSizes.nav.width : layoutSizes.nav.row }}
-        transition={TRANSITION_LINEAR_CONFIG}
+        transition={TRANSITION_SPRING_CONFIG}
       >
         <NavToggle isOpen={isOpen} onSetOpen={onSetOpen} />
         {userProfile && (

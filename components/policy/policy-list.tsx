@@ -26,7 +26,9 @@ export const PolicyList = (props: TProps) => {
     const { title, author, ...meta } = values
     return {
       title,
-      author,
+      author: {
+        username: author
+      },
       meta: JSON.stringify(meta)
     }
   }

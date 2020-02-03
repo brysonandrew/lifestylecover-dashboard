@@ -1,21 +1,30 @@
 import gql from "graphql-tag"
 
-export const POLICY_FIXED = {
-  FIXED: gql`
-    fragment FIXED on PolicyRisk {
-      id
-      title
-      author
-      reviewMeta
-    }
-  `,
-}
+// export const POLICY_FIXED = {
+//   FIXED: gql`
+//     fragment FIXED on PolicyRisk {
+//       id
+//       title
+//       author {
+//         id
+//         username
+//       }
+//       reviewMeta
+//     }
+//   `,
+// }
 
 export const POLICY_FRAGMENTS = {
   RISK: gql`
     fragment RISK on PolicyRisk {
+      id
+      title
+      author {
+        id
+        username
+      }
+      reviewMeta
       policyRiskId
-      ...FIXED
       policyRisk {
         commencementDate
         insured
@@ -34,12 +43,17 @@ export const POLICY_FRAGMENTS = {
         }
       }
     }
-    ${POLICY_FIXED.FIXED}
   `,
   ASSET: gql`
     fragment ASSET on PolicyAsset {
+      id
+      title
+      author {
+        id
+        username
+      }
+      reviewMeta
       policyAssetId
-      ...FIXED
       policyAsset {
         benefits {
           insuredPartyName
@@ -56,12 +70,17 @@ export const POLICY_FRAGMENTS = {
         }
       }
     }
-    ${POLICY_FIXED.FIXED}
   `,
   KIWISAVER: gql`
     fragment KIWISAVER on PolicyKiwisaver {
+      id
+      title
+      author {
+        id
+        username
+      }
+      reviewMeta
       policyKiwisaverId
-      ...FIXED
       policyKiwisaver {
         memberNumber
         dateJoined
@@ -71,12 +90,17 @@ export const POLICY_FRAGMENTS = {
         balance
       }
     }
-    ${POLICY_FIXED.FIXED}
   `,
   PET: gql`
     fragment PET on PolicyPet {
+      id
+      title
+      author {
+        id
+        username
+      }
+      reviewMeta
       policyPetId
-      ...FIXED
       policyPet {
         pets {
           petName
@@ -92,7 +116,6 @@ export const POLICY_FRAGMENTS = {
         }
       }
     }
-    ${POLICY_FIXED.FIXED}
   `,
 }
 

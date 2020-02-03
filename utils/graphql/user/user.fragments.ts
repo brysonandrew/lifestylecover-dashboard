@@ -99,14 +99,16 @@ export const USER_FRAGMENTS = {
   `,
   CONTACT: gql`
     fragment CONTACT on User {
+      id
       mobile
       phone
       address
-      # email
+      email
     }
   `,
   CLIENT_DETAILS: gql`
     fragment CLIENT_DETAILS on User {
+      id
       dateOfBirth
       occupationRating
       smoker

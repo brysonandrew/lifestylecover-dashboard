@@ -11,6 +11,7 @@ import {
 } from "../utils"
 import { LoadingCentered } from "../common"
 import { EUserRole } from "../models"
+import { USER_FIXTURE } from "../data-initial-values-user"
 
 export type TLayoutProps = {
   user: any
@@ -22,6 +23,27 @@ export const Layout = withRouter((props: TLayoutProps) => {
   const { user, router, onUpdateUser } = props
   const activeMenuItem = router.query.activeMenuItem as string
   const [isNavOpen, setNavOpen] = React.useState(false)
+  const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
+
+
+  // const userProfile = createUserProfile(user)
+  // return (
+  //   <MainWrapper>
+  //     <Content
+  //       userProfile={userProfile}
+  //       activeMenuItem={activeMenuItem}
+  //       onUpdateUser={onUpdateUser}
+  //     />
+  //     <Header userProfile={userProfile} onUpdateUser={onUpdateUser} />
+  //     <Nav
+  //       isOpen={isNavOpen}
+  //       onSetOpen={handleNavToggle}
+  //       activeMenuItem={activeMenuItem}
+  //       userProfile={userProfile}
+  //     />
+  //   </MainWrapper>
+  // )
+
 
   const role = user.roles?.nodes[0]?.name
 
@@ -46,8 +68,6 @@ export const Layout = withRouter((props: TLayoutProps) => {
   } else if (role === EUserRole.administrator) {
     userQuery = adminQuery
   }
-
-  const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
 
   React.useEffect(() => {
     if (userQuery.data) {

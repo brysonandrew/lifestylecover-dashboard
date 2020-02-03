@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 12px;
+  padding: 0 12px 12px;
 `
 
 type TProps = {

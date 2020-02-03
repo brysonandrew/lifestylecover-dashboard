@@ -7,13 +7,15 @@ import { TUserProfile } from "../../../models"
 import { ProfileContactInputs } from "./profile-contact-inputs"
 
 type TProps = {
-  userProfile: TUserProfile
+  userContact: TUserProfile
+  refetch(): any
 }
 
-export const ProfileContactUpdateForm = (props: TProps) => (
+export const ProfileContactUpdateForm = ({userContact, refetch}: TProps) => (
   <ProfileEditableForm
-    userProfile={props.userProfile}
+    userProfile={userContact}
     mutation={useMutation(USER_UPDATE_CONTACT_MUTATION)}
+    refetch={refetch}
     initFormValues={USER_CONTACT_FORM}
   >
     <ProfileContactInputs />

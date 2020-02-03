@@ -9,10 +9,6 @@ const Wrapper = styled.li`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 12px 0;
-  &:first-child {
-    margin-top: 0;
-  }
 `
 
 type TEditConfig = {
@@ -45,7 +41,7 @@ export const Item = (props: TProps) => {
                     icon: editConfig.isEditing ? (
                       <Close />
                     ) : (
-                      <Edit color="primary" />
+                      <Edit />
                     ),
                   },
                 ]

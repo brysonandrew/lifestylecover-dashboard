@@ -13,10 +13,10 @@ export const AsyncStartIcon = (props: TAsyncStartIconProps) => {
   if (isLoading) {
     return <CircularProgress size={18} color="inherit" />
   } else if (isError) {
-    return <ErrorOutline/>
+    return <ErrorOutline color="inherit"/>
   } else if (isSuccess) {
-    return <CheckCircle />
+    return <CheckCircle  color="inherit"/>
   } else {
-    return <Save />
+    return <Save  color="inherit"/>
   }
 }

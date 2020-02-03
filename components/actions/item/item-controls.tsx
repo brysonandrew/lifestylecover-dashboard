@@ -10,6 +10,8 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: ${color.offWhite};
+  padding: 12px;
   width: 100%;
 `
 
@@ -54,7 +56,7 @@ export const ItemControls = ({ isReviewMeta, userRole, children }: TProps) => {
               size="medium"
               color="secondary"
               avatar={(
-                isClient ? <CheckCircle/> : <Info/>
+                isClient ? <CheckCircle /> : <Info />
               )}
               label={isClient ? 'PENDING REVIEW' : 'REVIEW REQUIRED'}
             />
@@ -63,7 +65,10 @@ export const ItemControls = ({ isReviewMeta, userRole, children }: TProps) => {
       <Buttons>
         {children.map((control: IActionControlConfig) => (
           <ButtonWrapper key={control.action}>
-            <Fab size="small" onClick={control.callback}>
+            <Fab
+              size="small"
+              onClick={control.callback}
+            >
               {control.icon}
             </Fab>
           </ButtonWrapper>
