@@ -61,6 +61,7 @@ export const PolicyList = (props: TProps) => {
       >
         {edges.map(edge => ({
           itemInfo: edge.node,
+          userRole: userProfile.role,
           component: (isEditing: boolean) => {
             return (
               <PolicyEditable

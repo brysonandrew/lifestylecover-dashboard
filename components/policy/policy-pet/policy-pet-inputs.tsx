@@ -6,12 +6,18 @@ import { PET_INIT } from "../../../data-initial-values-policy"
 import { fromCamelCase } from "../../../utils"
 const name = "pet"
 
-export const PolicyPetInputs = props => {
+type TProps = {
+  values?: any
+  isClient?: boolean
+}
+
+export const PolicyPetInputs = ({values, isClient}: TProps) => {
   return (
     <div>
       <TextField
         label="Reference Number"
         placeholder={placeholder.user.unknown}
+        disabled={isClient}
         name="title"
       />
       <TextFieldArray
@@ -19,7 +25,7 @@ export const PolicyPetInputs = props => {
         namePlural={`${name}s`}
         title={`${name}s`}
         initialItem={PET_INIT}
-        values={props.values.pets}
+        values={values.pets}
       >
         {(_, index) => (
           <SubItemWrapper key={`${name}-${index}`}>

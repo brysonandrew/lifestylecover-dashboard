@@ -40,7 +40,7 @@ export const PolicyEditableForm = (props: TProps) => {
           const isClient = userProfile.role === EUserRole.client
           return (
             <Form>
-              {React.cloneElement(children, { values })}
+              {React.cloneElement(children, { values, isClient })}
               <SubmitButton
                 startIconConfig={{
                   isLoading,
@@ -63,9 +63,10 @@ export const PolicyEditableForm = (props: TProps) => {
                       }
                       : {
                         id: policyInfo.id,
+                        ...createVariables(changed),
                         title: values.title,
-                        ...createVariables(changed)
                       }
+                      console.log(variables)
                   handleUpdatePolicy({ variables })
                 }}
               />

@@ -1,4 +1,5 @@
 import { FieldAttributes } from "formik"
+import { EUserRole } from "./users"
 
 export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
@@ -29,6 +30,7 @@ export type TDeleteConfig = {
 }
 
 export type TItem = {
+  userRole?: EUserRole
   itemInfo: any
   component(isEditing: boolean): JSX.Element
 }

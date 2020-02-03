@@ -4,7 +4,9 @@ export const POLICY_FRAGMENTS = {
   RISK: gql`
     fragment RISK on PolicyRisk {
       id
+      policyRiskId
       title
+      reviewMeta
       policyRisk {
         commencementDate
         insured
@@ -27,7 +29,9 @@ export const POLICY_FRAGMENTS = {
   ASSET: gql`
     fragment ASSET on PolicyAsset {
       id
+      policyAssetId
       title
+      reviewMeta
       policyAsset {
         benefits {
           insuredPartyName
@@ -48,7 +52,9 @@ export const POLICY_FRAGMENTS = {
   KIWISAVER: gql`
     fragment KIWISAVER on PolicyKiwisaver {
       id
+      policyKiwisaverId
       title
+      reviewMeta
       policyKiwisaver {
         memberNumber
         dateJoined
@@ -62,7 +68,9 @@ export const POLICY_FRAGMENTS = {
   PET: gql`
     fragment PET on PolicyPet {
       id
+      policyPetId
       title
+      reviewMeta
       policyPet {
         pets {
           petName

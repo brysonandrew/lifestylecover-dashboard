@@ -2,7 +2,7 @@ import * as React from "react"
 import styled from "styled-components"
 import { CheckBox, CheckBoxOutlineBlank } from "@material-ui/icons"
 import { TextFieldText } from "./text-field-text"
-import { fromKebabCase, fromCamelCase } from "../../utils"
+import { fromCamelCase } from "../../utils"
 
 const Wrapper = styled.div`
   display: flex;

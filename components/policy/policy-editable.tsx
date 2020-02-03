@@ -25,13 +25,15 @@ export const PolicyEditable = (props: TProps) => {
     setFormState({...formState, ...changedValues})
   }
 
+  const reviewMetaObj = policyInfo.reviewMeta ? JSON.parse(policyInfo.reviewMeta) : null
+
   if (isEditing) {
     return (
       <PolicyEditableForm
         key={policyInfo.id}
         policyInfo={policyInfo}
         userProfile={userProfile}
-        initValues={formState}
+        initValues={reviewMetaObj ? {...formState, ...reviewMetaObj} : formState}
         initArrayValues={arrayInputs}
         mutation={updateMutation}
         createVariables={createVariables}
@@ -42,7 +44,7 @@ export const PolicyEditable = (props: TProps) => {
     )
   } else {
     return (
-      <FormText arrayInputs={arrayInputs}>
+      <FormText isPolicy arrayInputs={arrayInputs} reviewMetaObj={reviewMetaObj}>
         {formState}
       </FormText>
     )

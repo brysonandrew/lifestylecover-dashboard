@@ -6,7 +6,7 @@ import { TUserProfile } from "../../../models"
 import { useMutation } from "@apollo/react-hooks"
 import { USER_UPDATE_AVATAR_MUTATION } from "../../../utils/graphql/user/user-update-avatar.mutation"
 import { fitSizesInFrame, profilePicture } from "../../../utils"
-import { Avatar } from "./avatar"
+import { ProfilePicture } from "./profile-picture"
 const MAX_SIZE = layoutSizes.imageSize
 
 const Wrapper = styled.div`
@@ -31,7 +31,7 @@ type TProps = {
   userProfile: TUserProfile
 }
 
-export const AvatarUpload = (props: TProps) => {
+export const ProfilePictureUpload = (props: TProps) => {
   const { userProfile } = props
   const [handleUpload, { loading, data, error }] = useMutation(
     USER_UPDATE_AVATAR_MUTATION
@@ -94,7 +94,7 @@ export const AvatarUpload = (props: TProps) => {
                 <CircularProgress size={18} />
               </LoadingWrapper>
             )}
-            <Avatar src={uploadedAvatar || profilePicture(userProfile)} />
+            <ProfilePicture usersFirstLetterName={userProfile.username && userProfile.username[0]} src={uploadedAvatar || profilePicture(userProfile)} />
           </IconButton>
         </Label>
       </Wrapper>

@@ -1,14 +1,15 @@
 import * as React from "react"
 import styled from "styled-components"
-import { IActionControlConfig } from "../../../models"
-import { layoutSizes } from "../../../data"
-import { Fab } from "@material-ui/core"
+import { IActionControlConfig, EUserRole } from "../../../models"
+import { layoutSizes, color } from "../../../data"
+import { Fab, Chip } from "@material-ui/core"
+import { CheckCircle, Info } from "@material-ui/icons"
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
 `
 
@@ -21,20 +22,53 @@ const ButtonWrapper = styled.div`
   }
 `
 
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`
+
+const ChipWrapper = styled.div`
+  && svg {
+    fill: ${color.green};
+    background-color: transparent;
+  }
+`
+
 type TProps = {
+  isReviewMeta?: boolean
+  userRole?: EUserRole
   children: IActionControlConfig[]
 }
 
-export const ItemControls = (props: TProps) => {
+export const ItemControls = ({ isReviewMeta, userRole, children }: TProps) => {
+  const isClient = userRole === EUserRole.client
   return (
-    <Wrapper>
-      {props.children.map((control: IActionControlConfig) => (
-        <ButtonWrapper key={control.action}>
-          <Fab size="small" onClick={control.callback}>
-            {control.icon}
-          </Fab>
-        </ButtonWrapper>
-      ))}
+    <Wrapper style={{ justifyContent: isReviewMeta ? 'space-between' : 'flex-end' }}>
+      {isReviewMeta
+        && (
+          <ChipWrapper>
+            <Chip
+              variant="outlined"
+              size="medium"
+              color="secondary"
+              avatar={(
+                isClient ? <CheckCircle/> : <Info/>
+              )}
+              label={isClient ? 'REVIEW SUBMITTED' : 'REVIEW REQUIRED'}
+            />
+          </ChipWrapper>
+        )}
+      <Buttons>
+        {children.map((control: IActionControlConfig) => (
+          <ButtonWrapper key={control.action}>
+            <Fab size="small" onClick={control.callback}>
+              {control.icon}
+            </Fab>
+          </ButtonWrapper>
+        ))}
+      </Buttons>
     </Wrapper>
   )
 }

@@ -11,6 +11,7 @@ export const color = {
   grey: "#9E9E9E",
   black: "#1d2432",
   offBlack: "#424242",
+  yellow: "#FFFF00",
   red: red[800],
 }
 export const GRADIENT = `linear-gradient(45deg, ${color.teal}, ${color.green})`

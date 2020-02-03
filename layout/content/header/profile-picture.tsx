@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Box } from "@material-ui/core"
+import { Box, Avatar } from "@material-ui/core"
 import { layoutSizes } from "../../../data"
 import { MENU_ITEM_ICONS } from "../../../data-menu-items"
 import { defined } from "../../../utils"
@@ -26,15 +26,18 @@ const Img = styled.img`
 
 type TProps = {
   src: string
+  usersFirstLetterName?: string
   boxShadow?: number
 }
 
-export const Avatar = (props: TProps) => (
+export const ProfilePicture = (props: TProps) => (
   <Wrapper boxShadow={defined(props.boxShadow) ? props.boxShadow : 4}>
     {props.src ? (
       <Img src={props.src} alt="User's avatar" />
-    ) : (
-      MENU_ITEM_ICONS.Profile
-    )}
+    ) : props.usersFirstLetterName
+        ? (
+          <Avatar>{props.usersFirstLetterName.toUpperCase()}</Avatar>
+        )
+        : MENU_ITEM_ICONS.Profile}
   </Wrapper>
 )

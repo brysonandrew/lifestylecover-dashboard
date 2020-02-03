@@ -10,19 +10,36 @@ const Wrapper = styled.div`
   text-align: left;
 `
 
+const resolveLabel = (label: string, isPolicy?: boolean) => {
+  if (isPolicy && label.toLowerCase() === 'title') {
+    return 'Reference Number'
+  } else if (label === REPEATER_DEFAULT_KEY) {
+    return null
+  } else {
+    return label
+  }
+}
+
 type TProps = {
   children: any
+  isPolicy?: boolean
   arrayInputs?: any
+  reviewMetaObj?: any
 }
 
 export const FormText = (props: TProps) => {
-  const { children, arrayInputs } = props
+  const { children, arrayInputs, reviewMetaObj, isPolicy } = props
   return (
     <Wrapper>
       {Object.keys(children).map((label: any) => {
+        const reviewValue = reviewMetaObj
+          && reviewMetaObj[label]
+          && JSON.stringify(reviewMetaObj[label]) !== JSON.stringify(children[label])
+            ? reviewMetaObj[label]
+            : null
         if (isArray(children[label])) {
           return (
-            <ArrayText key={label} arrayInputs={arrayInputs}>
+            <ArrayText key={label} arrayInputs={arrayInputs} reviewPairs={reviewValue}>
               {children[label]}
             </ArrayText>
           )
@@ -35,7 +52,7 @@ export const FormText = (props: TProps) => {
         } else {
           if (label !== '__typename') {
             return (
-              <TextFieldText key={label} label={label === REPEATER_DEFAULT_KEY ? null : label}>
+              <TextFieldText key={label} label={resolveLabel(label, isPolicy)} reviewValue={reviewValue}>
                 {children[label]}
               </TextFieldText>
             )

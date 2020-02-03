@@ -1,5 +1,5 @@
 import gql from "graphql-tag"
-import { USER_FRAGMENTS } from "./user.fragments"
+import { USER_FRAGMENTS, FULL_USER_FRAGMENTS } from "./user.fragments"
 
 export const USER_GET_CLIENT_BY_ID_QUERY = gql`
   query USER_GET_CLIENT_BY_ID($id: ID!) {
@@ -15,12 +15,12 @@ export const USER_GET_ADVISOR_BY_USER_ID_QUERY = gql`
     users(where: { include: $userIds }) {
       edges {
         node {
-          ...ADVISOR
+          ...ADVISOR_FULL
         }
       }
     }
   }
-  ${USER_FRAGMENTS.ADVISOR}
+  ${FULL_USER_FRAGMENTS.ADVISOR_FULL}
 `
 
 export const USER_GET_ADVISOR_BY_ID_QUERY = gql`

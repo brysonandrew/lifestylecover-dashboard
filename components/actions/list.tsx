@@ -50,7 +50,7 @@ export const List = (props: TProps) => {
           )
           : null}
         {children.map((child, index) => {
-          const { component, itemInfo } = child
+          const { component, itemInfo, userRole } = child
           const isEditing = action === EAction.Edit && itemInfo.id === actionInfo.id
           return (
             <React.Fragment key={itemInfo.id}>
@@ -58,6 +58,8 @@ export const List = (props: TProps) => {
               <Item
                 id={itemInfo.id}
                 actionConfig={actionConfig}
+                userRole={userRole}
+                isReviewMeta={Boolean(itemInfo.reviewMeta)}
                 editConfig={{
                   isEditing,
                   onSet: () => handleSetEdit(itemInfo),

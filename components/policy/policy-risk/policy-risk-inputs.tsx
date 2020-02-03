@@ -10,14 +10,20 @@ import {
 import { fromCamelCase } from "../../../utils"
 const name = "benefit"
 
-export const PolicyRiskInputs = props => {
-  if (props.values) {
+type TProps = {
+  values?: any
+  isClient?: boolean
+}
+
+export const PolicyRiskInputs = ({values, isClient}: TProps) => {
+  if (values) {
     return (
       <>
         {Object.keys(POLICY_RISK_TEXT_INPUTS).map(key => (
           <TextField
             key={key}
             label={key === "title" ? "Reference Number" : fromCamelCase(key)}
+            disabled={key === "title" && isClient}
             placeholder={placeholder.user.unknown}
             name={key}
             type={key.indexOf("date") > -1 ? "date" : null}
@@ -28,7 +34,7 @@ export const PolicyRiskInputs = props => {
           namePlural={`${name}s`}
           title={name}
           initialItem={BENEFIT_RISK_INIT}
-          values={props.values.benefits}
+          values={values.benefits}
         >
           {(_, index) => (
             <SubItemWrapper key={`${name}-${index}`}>

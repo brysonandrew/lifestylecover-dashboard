@@ -25,20 +25,6 @@ export const USER_FRAGMENTS = {
       }
     }
   `,
-  USER_LIST_ITEM: gql`
-    fragment USER_LIST_ITEM on User {
-      id
-      username
-      firstName
-      lastName
-      email
-      roles {
-        nodes {
-          name
-        }
-      }
-    }
-  `,
   CLIENT: gql`
     fragment CLIENT on User {
       id
@@ -125,5 +111,16 @@ export const USER_FRAGMENTS = {
       occupationRating
       smoker
     }
+  `,
+}
+
+export const FULL_USER_FRAGMENTS = {
+  ADVISOR_FULL: gql`
+    fragment ADVISOR_FULL on User {
+      ...LOGIN
+      ...ADVISOR
+    }
+    ${USER_FRAGMENTS.LOGIN}
+    ${USER_FRAGMENTS.ADVISOR}
   `,
 }

@@ -4,18 +4,21 @@ import { TextField, TextFieldArray, SubItemWrapper } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import { BENEFIT_ASSET_INIT } from "../../../data-initial-values-policy"
 import { fromCamelCase } from "../../../utils"
+import { EUserRole } from "../../../models"
 const name = "benefit"
 
 type TProps = {
   values?: any
+  isClient?: boolean
 }
 
-export const PolicyAssetInputs = (props: TProps) => {
+export const PolicyAssetInputs = ({isClient, values}: TProps) => {
   return (
     <div>
       <TextField
         label="Reference Number"
         placeholder={placeholder.user.unknown}
+        disabled={isClient}
         name="title"
       />
       <TextFieldArray
@@ -23,7 +26,7 @@ export const PolicyAssetInputs = (props: TProps) => {
         namePlural={`${name}s`}
         title={`${name}s`}
         initialItem={BENEFIT_ASSET_INIT}
-        values={props.values.benefits}
+        values={values.benefits}
       >
         {(_, index) => (
           <SubItemWrapper key={`${name}-${index}`}>

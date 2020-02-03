@@ -7,10 +7,12 @@ import {
   USER_GET_ADVISOR_BY_USER_ID_QUERY,
   userName,
   profilePicture,
+  defined,
 } from "../../../utils"
-import { Avatar } from "../../../layout"
+import { ProfilePicture } from "../../../layout"
 import { Notes } from "./notes"
 import { NotesSectionTitle } from "../notes-section-title"
+import { PaperError } from "../../../common/paper-error"
 
 const Wrapper = styled.div`
   padding: 12px 0;
@@ -37,35 +39,40 @@ export const MyAdvisor = (props: TProps) => {
   const { userProfile } = props
   const { data, loading, error } = useQuery(USER_GET_ADVISOR_BY_USER_ID_QUERY, {
     variables: {
-      userIds: [3],
+      userIds: [userProfile.advisor],
     },
+    skip: !defined(userProfile.advisor)
   })
   if (loading) {
     return <LoadingCentered />
   } else {
-    const advisor = data.users.edges[0].node
-    return (
-      <PageWrapper title="My Advisor">
-        <Wrapper>
-          <NotesSectionTitle title={userName(advisor)}>
-            <AdvisorProfile>
-              <Avatar boxShadow={1} src={profilePicture(advisor)} />
-              {advisor && (
-                <AdvisorInfo>
-                  <FormText>
-                    {{
-                      ...(advisor.email ? { Email: advisor.email } : {}),
-                      ...(advisor.phone ? { Phone: advisor.phone } : {}),
-                      ...(advisor.address ? { Address: advisor.address } : {}),
-                    }}
-                  </FormText>
-                </AdvisorInfo>
-              )}
-            </AdvisorProfile>
-          </NotesSectionTitle>
-          <Notes userProfile={userProfile} />
-        </Wrapper>
-      </PageWrapper>
-    )
+    if (error) {
+      return <PaperError>An error occured.</PaperError>
+    } else {
+      const advisor = data.users.edges[0].node
+      return (
+        <PageWrapper title="My Advisor">
+          <Wrapper>
+            <NotesSectionTitle title={userName(advisor)}>
+              <AdvisorProfile>
+                <ProfilePicture boxShadow={1} src={profilePicture(advisor)} />
+                {advisor && (
+                  <AdvisorInfo>
+                    <FormText>
+                      {{
+                        ...(advisor.email ? { Email: advisor.email } : {}),
+                        ...(advisor.phone ? { Phone: advisor.phone } : {}),
+                        ...(advisor.address ? { Address: advisor.address } : {}),
+                      }}
+                    </FormText>
+                  </AdvisorInfo>
+                )}
+              </AdvisorProfile>
+            </NotesSectionTitle>
+            <Notes userProfile={userProfile} />
+          </Wrapper>
+        </PageWrapper>
+      )
+    }
   }
 }
