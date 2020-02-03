@@ -1,12 +1,12 @@
 import * as React from "react"
-import { TUserProfile } from "../../../models"
+import { TUserProfile, TEditConfig } from "../../../models"
 import { initializeFormValues } from "../../../utils"
 import { AdvisorNoteEditableForm } from "./advisor-note-editable-form"
 import { FormText } from "../../../common"
 import { NotesText } from "../notes-text"
 
 type TProps = {
-  isEditing: boolean
+  editConfig: TEditConfig
   refetch(): void
   inputs: any
   arrayInputs?: any
@@ -19,7 +19,7 @@ type TProps = {
 
 export const AdvisorNoteEditable = (props: TProps) => {
   const {
-    isEditing,
+    editConfig,
     refetch,
     inputs,
     arrayInputs,
@@ -35,9 +35,10 @@ export const AdvisorNoteEditable = (props: TProps) => {
 
   const handleRefetch = changedValues => {
     setFormState({ ...formState, ...changedValues })
+    editConfig.onSetEdit()
   }
 
-  if (isEditing) {
+  if (editConfig.isEditing) {
     return (
       <AdvisorNoteEditableForm
         key={info.id}

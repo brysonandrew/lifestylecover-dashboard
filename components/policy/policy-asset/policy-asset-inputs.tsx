@@ -4,23 +4,22 @@ import { TextField, TextFieldArray, SubItemWrapper } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import { BENEFIT_ASSET_INIT } from "../../../data-initial-values-policy"
 import { fromCamelCase } from "../../../utils"
-import { EUserRole } from "../../../models"
+import { EUserRole, EFormType } from "../../../models"
+import { PolicyFixedInputs } from "../policy-fixed-inputs"
 const name = "benefit"
 
 type TProps = {
   values?: any
   isClient?: boolean
+  formType?: EFormType
 }
 
-export const PolicyAssetInputs = ({isClient, values}: TProps) => {
+export const PolicyAssetInputs = ({isClient, values, formType}: TProps) => {
   return (
-    <div>
-      <TextField
-        label="Reference Number"
-        placeholder={placeholder.user.unknown}
-        disabled={isClient}
-        name="title"
-      />
+    <PolicyFixedInputs
+      isClient={isClient}
+      formType={formType}
+    >
       <TextFieldArray
         name={name}
         namePlural={`${name}s`}
@@ -42,6 +41,6 @@ export const PolicyAssetInputs = ({isClient, values}: TProps) => {
           </SubItemWrapper>
         )}
       </TextFieldArray>
-    </div>
+    </PolicyFixedInputs>
   )
 }

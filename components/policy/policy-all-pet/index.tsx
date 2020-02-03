@@ -25,6 +25,7 @@ export const PolicyAllPet = (props: TProps) => {
   return (
     <PolicyPet
       isLoading={loading}
+      error={error}
       refetch={refetch}
       edges={data?.policiesPet?.edges}
       updateMutation={updateMutation}

@@ -29,8 +29,18 @@ export type TDeleteConfig = {
   deleteText(values: any): string
 }
 
+export type TEditConfig = {
+  isEditing: boolean
+  onSetEdit(): void
+}
+
 export type TItem = {
   userRole?: EUserRole
   itemInfo: any
-  component(isEditing: boolean): JSX.Element
+  component(editConfig: TEditConfig): JSX.Element
+}
+
+export enum EFormType {
+  Add = 'Add',
+  Edit = 'Edit'
 }

@@ -26,6 +26,7 @@ export const PolicyClientPet = (props: TProps) => {
     <div>
       <PolicyPet
         isLoading={loading}
+        error={error}
         refetch={refetch}
         edges={data?.viewer.policiesPet.edges}
         updateMutation={updateMutation}

@@ -20,11 +20,12 @@ export const POLICY_CREATE_RISK_MUTATION = gql`
 `
 
 export const POLICY_CREATE_ASSET_MUTATION = gql`
-  mutation POLICY_CREATE_ASSET($title: String!) {
+  mutation POLICY_CREATE_ASSET($title: String!, $meta: String!) {
     createPolicyAsset(
       input: {
         clientMutationId: "POLICY_CREATE_ASSET"
         title: $title
+        meta: $meta
         status: PUBLISH
       }
     ) {

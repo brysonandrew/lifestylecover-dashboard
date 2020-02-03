@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TAdvisorProfile } from "../../../models"
+import { TAdvisorProfile, TEditConfig } from "../../../models"
 import { List } from "../.."
 import { useMutation } from "@apollo/react-hooks"
 import {
@@ -62,12 +62,12 @@ export const AdvisorNoteList = (props: TProps) => {
     >
       {edges.map(edge => ({
         itemInfo: edge.node,
-        component: isEditing => {
+        component: (editConfig: TEditConfig) => {
           return (
             <NotesSectionTitle title={`Client's username: ${edge.node.title}`}>
               <AdvisorNoteEditable
                 key={edge.node.id}
-                isEditing={isEditing}
+                editConfig={editConfig}
                 inputs={inputs}
                 arrayInputs={ADVISOR_NOTE_ITEM_INIT}
                 info={edge.node}

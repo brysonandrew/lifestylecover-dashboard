@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Formik, Form } from "formik"
 import { addUserValidationSchema } from "../../../data-validation"
 import { ErrorDisplay, ModalButtons, AsyncStartIcon } from "../../../common"
-import { TAddConfig } from "../../../models"
+import { TAddConfig, EFormType } from "../../../models"
 import { useDataToSeeIfSuccess, useRefetch } from "../../../utils"
 
 type TProps = {
@@ -39,11 +39,10 @@ export const AddItemForm = (props: TProps) => {
       onSubmit={null}
     >
       {({ values }) => {
-        console.log(values)
         const variables = createVariables(values)
         return (
           <Form>
-            {React.cloneElement(componentInputs, { values })}
+            {React.cloneElement(componentInputs, { values, formType: EFormType.Add })}
             <ModalButtons
               onClose={() => onUnsetAdd()}
               onOk={() => handleCreatePolicy({ variables })}

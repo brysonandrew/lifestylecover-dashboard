@@ -26,6 +26,7 @@ export const PolicyClientRisk = (props: TProps) => {
     <div>
       <PolicyRisk
         isLoading={loading}
+        error={error}
         refetch={refetch}
         edges={data?.viewer.policiesRisk.edges}
         updateMutation={updateMutation}

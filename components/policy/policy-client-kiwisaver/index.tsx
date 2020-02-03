@@ -26,6 +26,7 @@ export const PolicyClientKiwisaver = (props: TProps) => {
     <div>
       <PolicyKiwisaver
         isLoading={loading}
+        error={error}
         refetch={refetch}
         edges={data?.viewer.policiesKiwisaver.edges}
         updateMutation={updateMutation}

@@ -3,10 +3,10 @@ import { TUserProfile, TClientProfile } from "./models/users"
 export const LOGIN_FORM_INIT = {
   // username: "admin",
   // password: "xGje2yy7qe&prDNUn)!9R5qm",
-  username: "client",
-  password: "Y0sgitjVovA@sD)EeRUJmReb",
-  // username: "advisor",
-  // password: "QYclifyw%2^OCMbUJcaG4M!r",
+  // username: "client",
+  // password: "Y0sgitjVovA@sD)EeRUJmReb",
+  username: "advisor",
+  password: "QYclifyw%2^OCMbUJcaG4M!r",
   // username: "client2",
   // password: "#YVbseNQ8wwO(46Z4sU%szgr",
 }

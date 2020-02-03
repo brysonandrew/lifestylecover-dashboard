@@ -55,7 +55,7 @@ export const TextFieldText: React.FC<TProps> = ({
         {reviewValue || children}
       </Text>
       {defined(reviewValue) && (
-        <Tooltip title={`previously ${children}`} placement="bottom-start">
+        <Tooltip title={`Currently "${children}"`} placement="bottom-start">
           <BackgroundShade/>
         </Tooltip>
       )}

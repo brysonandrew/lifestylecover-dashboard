@@ -1,12 +1,9 @@
 import React from "react"
 import { List } from "../actions/list"
-import { TUserProfile } from "../../models"
-import { ProfileContactUpdateForm } from "../profile"
-import { FormText } from "../../common"
-import { initializeFormValues, createVariablesCreateUser } from "../../utils"
+import { TUserProfile, TEditConfig } from "../../models"
+import { createVariablesCreateUser } from "../../utils"
 import { UserCreateInputs } from "./user-create-inputs"
 import { CREATE_USER_INIT } from "../../data-initial-values-user"
-import { UserEditable } from "./user-editable"
 
 type TProps = {
   refetch(): void
@@ -39,7 +36,7 @@ export const UserController = (props: TProps) => {
     >
       {edges.map(edge => ({
         itemInfo: edge.node,
-        component: (isEditing: boolean) => (
+        component: (editConfig: TEditConfig) => (
           <div>
             <h2>{edge.node.username}</h2>
             {/* <UserEditable

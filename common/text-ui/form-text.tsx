@@ -20,9 +20,20 @@ const resolveLabel = (label: string, isPolicy?: boolean) => {
   }
 }
 
+const resolveReviewValue = (reviewMetaObj, label, children) => {
+  return (
+    reviewMetaObj
+      && reviewMetaObj[label]
+      && reviewMetaObj[label] != children[label] // loose equality ok here
+      ? reviewMetaObj[label]
+      : null
+  )
+}
+
 type TProps = {
   children: any
   isPolicy?: boolean
+  isClient?: boolean
   arrayInputs?: any
   reviewMetaObj?: any
 }
@@ -32,11 +43,7 @@ export const FormText = (props: TProps) => {
   return (
     <Wrapper>
       {Object.keys(children).map((label: any) => {
-        const reviewValue = reviewMetaObj
-          && reviewMetaObj[label]
-          && JSON.stringify(reviewMetaObj[label]) !== JSON.stringify(children[label])
-            ? reviewMetaObj[label]
-            : null
+        const reviewValue = resolveReviewValue(reviewMetaObj, label, children)
         if (isArray(children[label])) {
           return (
             <ArrayText key={label} arrayInputs={arrayInputs} reviewPairs={reviewValue}>

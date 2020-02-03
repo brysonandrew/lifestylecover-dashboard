@@ -26,6 +26,7 @@ export const PolicyAllAsset = (props: TProps) => {
     <div>
       <PolicyAsset
         isLoading={loading}
+        error={error}
         refetch={refetch}
         edges={data?.policiesAsset?.edges}
         updateMutation={updateMutation}

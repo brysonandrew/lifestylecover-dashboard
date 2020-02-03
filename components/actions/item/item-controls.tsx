@@ -56,7 +56,7 @@ export const ItemControls = ({ isReviewMeta, userRole, children }: TProps) => {
               avatar={(
                 isClient ? <CheckCircle/> : <Info/>
               )}
-              label={isClient ? 'REVIEW SUBMITTED' : 'REVIEW REQUIRED'}
+              label={isClient ? 'PENDING REVIEW' : 'REVIEW REQUIRED'}
             />
           </ChipWrapper>
         )}

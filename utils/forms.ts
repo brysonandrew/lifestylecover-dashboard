@@ -1,11 +1,15 @@
 import { isArray } from 'util';
 export const changedValues = (initValues, currentValues) => {
-  return Object.keys(currentValues).reduce((changed, key) => {
-    if (initValues[key] !== currentValues[key]) {
-      changed[key] = currentValues[key]
-    }
-    return changed
-  }, {})
+  if (currentValues) {
+    return Object.keys(currentValues).reduce((changed, key) => {
+      if (initValues[key] !== currentValues[key]) {
+        changed[key] = currentValues[key]
+      }
+      return changed
+    }, {})
+  } else {
+    return null
+  }
 }
 
 export const dataToForm = (data: any) => {
