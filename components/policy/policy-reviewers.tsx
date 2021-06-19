@@ -7,8 +7,6 @@ type TProps = {}
 
 export const PolicyReviewers = (props: TProps) => {
   const { loading, error, data } = useQuery(REVIEWER_LIST_ALL_QUERY)
-  console.log(loading)
-  console.log(data)
 
   return (
     <Select

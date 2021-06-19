@@ -15,10 +15,7 @@ type TProps = {
 export const DeleteModal = (props: TProps) => {
   const { info, children, onClose, deleteConfig } = props
   const { refetch, deleteMutation } = deleteConfig
-  const [
-    handleDeletePolicy,
-    { loading, error, data },
-  ] = deleteMutation
+  const [handleDeletePolicy, { loading, error, data }] = deleteMutation
 
   const handleRefetch = () => {
     onClose()
@@ -29,9 +26,7 @@ export const DeleteModal = (props: TProps) => {
   const isRefetchTriggered = useRefetch(isSuccess, handleRefetch)
 
   return (
-    <ModalCentered
-      onBackdropClick={onClose}
-    >
+    <ModalCentered onBackdropClick={onClose}>
       {children}
       <ModalButtons
         onClose={onClose}
@@ -42,13 +37,13 @@ export const DeleteModal = (props: TProps) => {
             },
           })
         }}
-        okIcon={(
+        okIcon={
           <AsyncStartIcon
             isLoading={loading}
             isSuccess={isSuccess}
             isError={error}
           />
-        )}
+        }
       >
         Delete
       </ModalButtons>

@@ -25,7 +25,7 @@ export const List = (props: TProps) => {
 
   const handleReset = () => onSetActionConfig(EMPTY_ACTION_CONFIG)
   const handleSetAdd = () => onSetActionConfig(action === EAction.Add ? EMPTY_ACTION_CONFIG : { action: EAction.Add, actionInfo: {} })
-  const handleSetEdit = (itemInfo) => onSetActionConfig(action === EAction.Edit ? EMPTY_ACTION_CONFIG : { action: EAction.Edit, actionInfo: itemInfo })
+  const handleSetEdit = (itemInfo?) => onSetActionConfig(action === EAction.Edit ? EMPTY_ACTION_CONFIG : { action: EAction.Edit, actionInfo: itemInfo })
   const handleSetDelete = deleteConfig && (
     (itemInfo) => onSetActionConfig(action === EAction.Add ? EMPTY_ACTION_CONFIG : { action: EAction.Delete, actionInfo: itemInfo })
   )
@@ -50,21 +50,24 @@ export const List = (props: TProps) => {
           )
           : null}
         {children.map((child, index) => {
-          const { component, itemInfo } = child
+          const { component, itemInfo, userRole } = child
           const isEditing = action === EAction.Edit && itemInfo.id === actionInfo.id
+          // console.log(itemInfo)
           return (
             <React.Fragment key={itemInfo.id}>
               {index !== 0 && <ListDivider />}
               <Item
                 id={itemInfo.id}
                 actionConfig={actionConfig}
+                userRole={userRole}
+                isReviewMeta={Boolean(itemInfo.reviewMeta)}
                 editConfig={{
                   isEditing,
                   onSet: () => handleSetEdit(itemInfo),
                 }}
                 onSetDelete={handleSetDelete ? (() => handleSetDelete(itemInfo)) : null}
               >
-                {component(isEditing)}
+                {component({isEditing, onSetEdit: handleSetEdit})}
               </Item>
             </React.Fragment>
           )

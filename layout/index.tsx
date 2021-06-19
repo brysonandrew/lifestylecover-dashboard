@@ -2,8 +2,7 @@ import * as React from "react"
 import { NextRouter, withRouter } from "next/router"
 import { useQuery } from "@apollo/react-hooks"
 import { MainWrapper } from "../components"
-import { Nav } from "../layout/nav"
-import { Header, Content } from "../layout/content"
+import { Header, Content, Nav } from "../layout"
 import {
   VIEWER_ADMIN_QUERY,
   VIEWER_CLIENT_QUERY,
@@ -12,6 +11,7 @@ import {
 } from "../utils"
 import { LoadingCentered } from "../common"
 import { EUserRole } from "../models"
+import { USER_FIXTURE } from "../data-initial-values-user"
 
 export type TLayoutProps = {
   user: any
@@ -23,6 +23,27 @@ export const Layout = withRouter((props: TLayoutProps) => {
   const { user, router, onUpdateUser } = props
   const activeMenuItem = router.query.activeMenuItem as string
   const [isNavOpen, setNavOpen] = React.useState(false)
+  const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
+
+
+  // const userProfile = createUserProfile(user)
+  // return (
+  //   <MainWrapper>
+  //     <Content
+  //       userProfile={userProfile}
+  //       activeMenuItem={activeMenuItem}
+  //       onUpdateUser={onUpdateUser}
+  //     />
+  //     <Header userProfile={userProfile} onUpdateUser={onUpdateUser} />
+  //     <Nav
+  //       isOpen={isNavOpen}
+  //       onSetOpen={handleNavToggle}
+  //       activeMenuItem={activeMenuItem}
+  //       userProfile={userProfile}
+  //     />
+  //   </MainWrapper>
+  // )
+
 
   const role = user.roles?.nodes[0]?.name
 
@@ -31,7 +52,9 @@ export const Layout = withRouter((props: TLayoutProps) => {
     data: null,
     error: "Invalid user role",
   }
-  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, { skip: role !== EUserRole.client })
+  const clientQuery = useQuery(VIEWER_CLIENT_QUERY, {
+    skip: role !== EUserRole.client
+  })
   const advisorQuery = useQuery(VIEWER_ADVISOR_QUERY, {
     skip: role !== EUserRole.advisor,
   })
@@ -45,8 +68,6 @@ export const Layout = withRouter((props: TLayoutProps) => {
   } else if (role === EUserRole.administrator) {
     userQuery = adminQuery
   }
-
-  const handleNavToggle = (nextIsNavOpen: boolean) => setNavOpen(nextIsNavOpen)
 
   React.useEffect(() => {
     if (userQuery.data) {
@@ -82,3 +103,6 @@ export const Layout = withRouter((props: TLayoutProps) => {
     )
   }
 })
+
+export * from './content'
+export * from './nav'

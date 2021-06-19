@@ -17,12 +17,16 @@ export const PolicyAllAsset = (props: TProps) => {
   const updateMutation = useMutation(POLICY_UPDATE_ASSET_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_ASSET_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_ASSET_MUTATION)
-  const { loading, error, data, refetch } = useQuery(POLICY_GET_ASSET_LIST_QUERY, {})
+  const { loading, error, data, refetch } = useQuery(
+    POLICY_GET_ASSET_LIST_QUERY,
+    {}
+  )
 
   return (
     <div>
       <PolicyAsset
         isLoading={loading}
+        error={error}
         refetch={refetch}
         edges={data?.policiesAsset?.edges}
         updateMutation={updateMutation}

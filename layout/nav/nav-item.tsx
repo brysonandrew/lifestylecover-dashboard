@@ -5,11 +5,16 @@ import { color, layoutSizes, GRADIENT } from "../../data"
 import { MENU_ITEM_ICONS } from "../../data-menu-items"
 import { toKebabCase } from "../../utils"
 import Link from "next/link"
+import { sizes } from "../../utils-viewport"
 
 const Wrapper = styled.li`
   position: relative;
-  height: ${layoutSizes.nav.row}px;
-  width: ${layoutSizes.nav.width}px;
+  height: ${layoutSizes.nav.rowMobile}px;
+  width: ${layoutSizes.nav.rowMobile}px;
+  ${sizes.mobileLg`
+    width: ${layoutSizes.nav.width}px;
+    height: ${layoutSizes.nav.row}px;
+  `}
 `
 
 const ItemLink = styled(motion.a)`
@@ -35,11 +40,15 @@ const ItemIcon = styled.div`
 `
 
 const ItemText = styled.h4`
+  display: none;
   padding-left: 6px;
   width: ${layoutSizes.nav.width - layoutSizes.nav.row}px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  ${sizes.mobileLg`
+    display: block;
+  `}
 `
 
 type TProps = {

@@ -31,6 +31,7 @@ type TTextFieldArrayProps = {
   title?: string
   buttonText?: string
   name: string
+  namePlural: string
   initialItem: any
   values: any
   children(item: any, index: number): JSX.Element
@@ -38,12 +39,13 @@ type TTextFieldArrayProps = {
 
 export const TextFieldArray = ({
   name,
+  namePlural,
   initialItem,
   values,
   children,
 }: TTextFieldArrayProps) => {
   return (
-    <FieldArray name={`${name}s`}>
+    <FieldArray name={namePlural}>
       {arrayHelpers => (
         <div>
           {values.map((item, index) => {

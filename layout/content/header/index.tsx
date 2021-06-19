@@ -3,7 +3,9 @@ import styled from "styled-components"
 import { layoutSizes } from "../../../data"
 import { Button, Paper } from "@material-ui/core"
 import { TUserProfile } from "../../../models/users"
-import { Avatar } from "./avatar"
+import { ProfilePictureUpload } from "./profile-picture-upload"
+import { userName } from "../../../utils"
+import { sizes } from "../../../utils-viewport"
 
 const Wrapper = styled.header`
   position: fixed;
@@ -17,9 +19,12 @@ const Inner = styled(Paper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0 0 ${layoutSizes.nav.row + 24}px;
+  padding: 0 0 0 6px;
   width: 100%;
   height: 100%;
+  ${sizes.mobileLg`
+    padding: 0 0 0 ${layoutSizes.nav.row + 24}px;
+  `}
 `
 
 const RightButtons = styled.div`
@@ -33,41 +38,26 @@ type TProps = {
   onUpdateUser(user: any): void
 }
 
-const titleText = (userProfile: TUserProfile) => {
-  if (userProfile) {
-    const { username, firstName, lastName } = userProfile
-    if (firstName) {
-      if (firstName && lastName) {
-        return `Hi there, ${firstName} ${lastName}`
-      } else {
-        return `Hi there, ${firstName}`
-      }
-    } else {
-      return `Hi there, ${username}`
-    }
-  } else {
-    return "Hi there!"
-  }
-}
-
 export const Header = (props: TProps) => {
   const { userProfile, onUpdateUser } = props
   const handleLogout = () => {
     onUpdateUser(null)
   }
+  const text = userName(userProfile)
   return (
     <Wrapper>
       <Inner>
-        <h2>{titleText(userProfile)}</h2>
+        <h2>{text ? `Hi there, ${text}` : "Welcome"}</h2>
         <RightButtons>
           <Button onClick={handleLogout}>Log out</Button>
           {userProfile?.avatar?.url && (
-            <Avatar
-              userProfile={userProfile}
-            />
+            <ProfilePictureUpload userProfile={userProfile} />
           )}
         </RightButtons>
       </Inner>
     </Wrapper>
   )
 }
+
+export * from "./profile-picture"
+export * from "./profile-picture-upload"

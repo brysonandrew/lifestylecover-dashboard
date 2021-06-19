@@ -8,14 +8,20 @@ import { PolicyClientAsset } from "../../components/policy/policy-client-asset"
 import { PolicyClientRisk } from "../../components/policy/policy-client-risk"
 import { PolicyClientPet } from "../../components/policy/policy-client-pet"
 import { PolicyClientKiwisaver } from "../../components/policy/policy-client-kiwisaver"
+import { MyAdvisor, NotesToClients } from "../../components/advisor-note"
+import { sizes } from "../../utils-viewport"
 
 const Wrapper = styled.div`
   position: relative;
   text-align: center;
-  left: ${layoutSizes.nav.row}px;
+  left: 0;
   min-height: 100vh;
   height: 100%;
-  width: calc(100% - ${layoutSizes.nav.row}px);
+  width: 100%;
+  ${sizes.mobileLg`
+    left: ${layoutSizes.nav.row}px;
+    width: calc(100% - ${layoutSizes.nav.row}px);
+  `}
 `
 
 const DARK_PADDING = 6
@@ -25,7 +31,11 @@ const Inner = styled.div`
   top: ${layoutSizes.nav.row + DARK_PADDING}px;
   width: calc(100% - ${DARK_PADDING * 2}px);
   min-height: calc(100% - ${layoutSizes.nav.row + DARK_PADDING * 2}px);
+  padding-bottom: 80px;
   background-color: ${color.lightCyan};
+  ${sizes.mobileLg`
+    padding-bottom: 0;
+  `}
 `
 
 type TProps = {
@@ -46,7 +56,9 @@ export const Content = (props: TProps) => {
           [EMenuItem.PolicyAsset]: () => <PolicyClientAsset userProfile={userProfile}/>,
           [EMenuItem.PolicyRisk]: () => <PolicyClientRisk userProfile={userProfile}/>,
           [EMenuItem.PolicyPet]: () => <PolicyClientPet userProfile={userProfile}/>,
-          [EMenuItem.PolicyKiwisaver]: () => <PolicyClientKiwisaver userProfile={userProfile}/>
+          [EMenuItem.PolicyKiwisaver]: () => <PolicyClientKiwisaver userProfile={userProfile}/>,
+          [EMenuItem.MyAdvisor]: () => <MyAdvisor userProfile={userProfile}/>,
+          [EMenuItem.NotesToClients]: () => <NotesToClients userProfile={userProfile}/>
         })}
       </Inner>
     </Wrapper>

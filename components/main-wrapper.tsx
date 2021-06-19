@@ -1,12 +1,12 @@
 import * as React from "react"
 import styled from "styled-components"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { blue, teal } from "@material-ui/core/colors"
+import { green, teal } from "@material-ui/core/colors"
 
 const theme = createMuiTheme({
   palette: {
     primary: teal,
-    secondary: blue,
+    secondary: green,
   },
   // status: {
   //   danger: red,

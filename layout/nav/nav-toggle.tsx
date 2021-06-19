@@ -3,10 +3,15 @@ import { motion } from "framer-motion"
 import styled from "styled-components"
 import { color, layoutSizes, GRADIENT } from "../../data"
 import { Fab } from "@material-ui/core"
+import { sizes } from "../../utils-viewport"
 
 const Wrapper = styled.div`
+  display: none;
   padding: 6px;
   height: ${layoutSizes.nav.row}px;
+  ${sizes.mobileLg`
+    display: block;
+  `}
 `
 
 const FabStyled = styled(Fab)`

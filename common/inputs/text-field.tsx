@@ -31,6 +31,7 @@ export const TextField: React.FC<any> = ({
   multiline,
   label,
   placeholder,
+  disabled,
   ...props
 }) => {
   const [field, meta] = useField<{}>(props)
@@ -46,6 +47,7 @@ export const TextField: React.FC<any> = ({
         type={props.type || "text"}
         multiline={multiline}
         rows={rows}
+        disabled={disabled}
       />
     </Wrapper>
   )

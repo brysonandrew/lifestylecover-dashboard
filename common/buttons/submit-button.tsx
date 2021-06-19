@@ -1,7 +1,13 @@
 import React from "react"
-import { Button } from "@material-ui/core"
+import styled from "styled-components"
+import { Fab, Button } from "@material-ui/core"
 import { ButtonWrapper } from "."
 import { AsyncStartIcon, TAsyncStartIconProps } from "./async-start-icon"
+import { color } from "../../data"
+
+const ButtonText = styled.span`
+  margin-left: 6px;
+`
 
 type TProps = {
   startIconConfig?: TAsyncStartIconProps
@@ -13,19 +19,19 @@ export const SubmitButton = (props: TProps) => {
   return (
     <ButtonWrapper>
       <Button
-        variant="contained"
-        color="primary"
+        variant="outlined"
+        color="secondary"
         size="large"
         type="submit"
         disabled={startIconConfig.isLoading || startIconConfig.isSuccess}
         onClick={onClick}
-        startIcon={(
-          <AsyncStartIcon
-            {...startIconConfig}
-          />
-        )}
       >
-        Save
+        <AsyncStartIcon
+          {...startIconConfig}
+        />
+        <ButtonText>
+          Save
+        </ButtonText>
       </Button>
     </ButtonWrapper>
   )

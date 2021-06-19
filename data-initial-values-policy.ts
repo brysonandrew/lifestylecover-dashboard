@@ -1,3 +1,8 @@
+const POLICY_FIXED_INPUTS = {
+  title: "EMPTY",
+  author: "EMPTY"
+}
+
 export const BENEFIT_RISK_INIT = {
   benefitType: "EMPTY",
   benefitDescription: "EMPTY",
@@ -9,7 +14,7 @@ export const BENEFIT_RISK_INIT = {
 }
 
 export const POLICY_RISK_TEXT_INPUTS = {
-  title: "EMPTY",
+  ...POLICY_FIXED_INPUTS,
   ownersName: "EMPTY",
   insured: "EMPTY",
   commencementDate: "EMPTY",
@@ -38,7 +43,7 @@ export const BENEFIT_ASSET_INIT = {
 }
 
 export const POLICY_ASSET_INIT = {
-  title: "",
+  ...POLICY_FIXED_INPUTS,
   benefits: []
 }
 
@@ -52,7 +57,7 @@ export const POLICY_KIWISAVER_INPUTS_INIT = {
 }
 
 export const POLICY_KIWISAVER_INIT = {
-  title: "",
+  ...POLICY_FIXED_INPUTS,
   ...POLICY_KIWISAVER_INPUTS_INIT
 }
 
@@ -70,6 +75,6 @@ export const PET_INIT = {
 }
 
 export const POLICY_PET_INIT = {
-  title: "",
+  ...POLICY_FIXED_INPUTS,
   pets: []
 }

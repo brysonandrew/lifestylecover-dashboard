@@ -1,11 +1,15 @@
 import { isArray } from 'util';
 export const changedValues = (initValues, currentValues) => {
-  return Object.keys(currentValues).reduce((changed, key) => {
-    if (initValues[key] !== currentValues[key]) {
-      changed[key] = currentValues[key]
-    }
-    return changed
-  }, {})
+  if (currentValues) {
+    return Object.keys(currentValues).reduce((changed, key) => {
+      if (initValues[key] !== currentValues[key]) {
+        changed[key] = currentValues[key]
+      }
+      return changed
+    }, {})
+  } else {
+    return null
+  }
 }
 
 export const dataToForm = (data: any) => {
@@ -23,13 +27,15 @@ export const dataToForm = (data: any) => {
 export const initializeFormValues = (compareValues, initFormValues, initArrayValues?) => {
   let values = {}
   Object.keys(initFormValues).forEach(key => {
-    const fromDb = dataToForm(compareValues)[key]
-    if (isArray(fromDb) && initArrayValues) {
-      values[key] = fromDb.length > 0
-        ? fromDb.map((values) => initializeFormValues(values, initArrayValues))
-        : initFormValues[key]
-    } else {
-      values[key] = fromDb || initFormValues[key]
+    if (key !== '__typename') {
+      const fromDb = dataToForm(compareValues)[key]
+      if (isArray(fromDb) && initArrayValues) {
+        values[key] = fromDb.length > 0
+          ? fromDb.map((values) => initializeFormValues(values, initArrayValues))
+          : initFormValues[key]
+      } else {
+        values[key] = fromDb || initFormValues[key]
+      }
     }
   })
   return values

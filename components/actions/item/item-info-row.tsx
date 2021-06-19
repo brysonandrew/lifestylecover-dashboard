@@ -16,7 +16,5 @@ type TProps = {
 }
 
 export const UserItemInfoRow = (props: TProps) => (
-  <Wrapper>
-    {props.children}
-  </Wrapper>
+  <Wrapper>{props.children}</Wrapper>
 )

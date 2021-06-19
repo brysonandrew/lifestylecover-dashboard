@@ -10,13 +10,13 @@ import { TPolicyProps, EMenuItem } from "../../../models"
 
 export const PolicyAsset = (props: TPolicyProps) => {
   return (
-    <PolicyController 
+    <PolicyController
       title="Home and Contents"
       icon={MENU_ITEM_ICONS[EMenuItem.PolicyAsset]}
       inputs={POLICY_ASSET_INIT}
       arrayInputs={BENEFIT_ASSET_INIT}
       {...props}
-    > 
+    >
       <PolicyAssetInputs />
     </PolicyController>
   )

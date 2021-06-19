@@ -8,5 +8,6 @@ export enum EMenuItem {
   Users = "Users",
   Clients = "Clients",
   Profile = "Profile",
-  YourAdvisor = "Your Advisor",
+  MyAdvisor = "My Advisor",
+  NotesToClients = "Notes To Clients",
 }

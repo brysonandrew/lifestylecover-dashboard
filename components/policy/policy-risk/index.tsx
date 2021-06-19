@@ -3,7 +3,10 @@ import { PolicyRiskInputs } from "./policy-risk-inputs"
 import { MENU_ITEM_ICONS } from "../../../data-menu-items"
 import { TPolicyProps } from "../../../models"
 import { PolicyController } from "../policy-controller"
-import { POLICY_RISK_INIT, BENEFIT_RISK_INIT } from "../../../data-initial-values-policy"
+import {
+  POLICY_RISK_INIT,
+  BENEFIT_RISK_INIT,
+} from "../../../data-initial-values-policy"
 import { EMenuItem } from "../../../models"
 
 export const PolicyRisk = (props: TPolicyProps) => (
@@ -14,6 +17,6 @@ export const PolicyRisk = (props: TPolicyProps) => (
     arrayInputs={BENEFIT_RISK_INIT}
     {...props}
   >
-    <PolicyRiskInputs/>
+    <PolicyRiskInputs />
   </PolicyController>
 )
