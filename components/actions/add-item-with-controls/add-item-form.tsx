@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Formik, Form } from "formik"
 import { addUserValidationSchema } from "../../../data-validation"
 import { ErrorDisplay, ModalButtons, AsyncStartIcon } from "../../../common"
-import { TAddConfig } from "../../../models"
+import { TAddConfig, EFormType } from "../../../models"
 import { useDataToSeeIfSuccess, useRefetch } from "../../../utils"
 
 type TProps = {
@@ -13,7 +13,13 @@ type TProps = {
 
 export const AddItemForm = (props: TProps) => {
   const { addConfig, onUnsetAdd } = props
-  const { refetch, inputs, componentInputs, createVariables, createMutation } = addConfig
+  const {
+    refetch,
+    inputs,
+    componentInputs,
+    createVariables,
+    createMutation,
+  } = addConfig
   const [handleCreatePolicy, { loading, data, error }] = createMutation
 
   const handleRefetch = () => {
@@ -21,7 +27,9 @@ export const AddItemForm = (props: TProps) => {
     onUnsetAdd()
   }
 
-  const isSuccess = useDataToSeeIfSuccess(data?.createPolicyAsset?.policyAsset?.id)
+  const isSuccess = useDataToSeeIfSuccess(
+    data?.createPolicyAsset?.policyAsset?.id
+  )
   const isRefetchTriggered = useRefetch(isSuccess, handleRefetch)
 
   return (
@@ -34,17 +42,20 @@ export const AddItemForm = (props: TProps) => {
         const variables = createVariables(values)
         return (
           <Form>
-            {React.cloneElement(componentInputs, { values })}
+            {React.cloneElement(componentInputs, {
+              values,
+              formType: EFormType.Add,
+            })}
             <ModalButtons
               onClose={() => onUnsetAdd()}
               onOk={() => handleCreatePolicy({ variables })}
-              okIcon={(
+              okIcon={
                 <AsyncStartIcon
                   isLoading={loading}
                   isSuccess={isSuccess}
                   isError={error}
                 />
-              )}
+              }
             >
               Save
             </ModalButtons>

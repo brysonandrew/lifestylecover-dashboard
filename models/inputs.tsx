@@ -1,4 +1,5 @@
 import { FieldAttributes } from "formik"
+import { EUserRole } from "./users"
 
 export type TTextFieldProps = { label?: string } & FieldAttributes<{}>
 
@@ -16,7 +17,7 @@ export enum EPolicy {
 
 export type TAddConfig = {
   refetch(): void
-  inputs: Record<string, string>
+  inputs: Record<string, string | number | any[]>
   createMutation: any
   createVariables(values: any): any
   componentInputs?: JSX.Element
@@ -28,7 +29,18 @@ export type TDeleteConfig = {
   deleteText(values: any): string
 }
 
+export type TEditConfig = {
+  isEditing: boolean
+  onSetEdit(): void
+}
+
 export type TItem = {
+  userRole?: EUserRole
   itemInfo: any
-  component(isEditing: boolean): JSX.Element
+  component(editConfig: TEditConfig): JSX.Element
+}
+
+export enum EFormType {
+  Add = "Add",
+  Edit = "Edit",
 }

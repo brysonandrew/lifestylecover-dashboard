@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { TextField } from "../../common/inputs"
 import { LOGIN_PLACEHOLDER_LOOKUP } from "../../data-placeholders"
 import { color } from "../../data"
+import { sizes } from "../../utils-viewport"
 
 const Wrapper = styled.div`
   position: relative;
@@ -12,8 +13,11 @@ const Wrapper = styled.div`
   border-radius: 4px;
   color: ${color.black};
   text-align: left;
-  box-shadow: inset 0 0 2px 1px ${color.black};
+  box-shadow: none;
   font-size: 28px;
+  ${sizes.mobileLg`
+    box-shadow: inset 0 0 2px 1px ${color.black};
+ `}
 `
 
 export const LoginInputs = () => {

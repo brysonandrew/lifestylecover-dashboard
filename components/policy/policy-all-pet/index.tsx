@@ -17,11 +17,15 @@ export const PolicyAllPet = (props: TProps) => {
   const updateMutation = useMutation(POLICY_UPDATE_PET_MUTATION)
   const createMutation = useMutation(POLICY_CREATE_PET_MUTATION)
   const deleteMutation = useMutation(POLICY_DELETE_PET_MUTATION)
-  const { loading, error, data, refetch } = useQuery(POLICY_GET_PET_LIST_QUERY, {})
+  const { loading, error, data, refetch } = useQuery(
+    POLICY_GET_PET_LIST_QUERY,
+    {}
+  )
 
   return (
     <PolicyPet
       isLoading={loading}
+      error={error}
       refetch={refetch}
       edges={data?.policiesPet?.edges}
       updateMutation={updateMutation}

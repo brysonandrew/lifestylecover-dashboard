@@ -15,9 +15,7 @@ export const PolicyAll = (props: TProps) => {
       {/* <PolicyAllRisk
         {...props}
       /> */}
-      <PolicyAllAsset
-        {...props}
-      />
+      <PolicyAllAsset {...props} />
       {/* <PolicyAllKiwisaver
         {...props}
       />

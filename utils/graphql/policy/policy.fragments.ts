@@ -1,10 +1,30 @@
 import gql from "graphql-tag"
 
+// export const POLICY_FIXED = {
+//   FIXED: gql`
+//     fragment FIXED on PolicyRisk {
+//       id
+//       title
+//       author {
+//         id
+//         username
+//       }
+//       reviewMeta
+//     }
+//   `,
+// }
+
 export const POLICY_FRAGMENTS = {
   RISK: gql`
     fragment RISK on PolicyRisk {
       id
       title
+      author {
+        id
+        username
+      }
+      reviewMeta
+      policyRiskId
       policyRisk {
         commencementDate
         insured
@@ -28,6 +48,12 @@ export const POLICY_FRAGMENTS = {
     fragment ASSET on PolicyAsset {
       id
       title
+      author {
+        id
+        username
+      }
+      reviewMeta
+      policyAssetId
       policyAsset {
         benefits {
           insuredPartyName
@@ -49,6 +75,12 @@ export const POLICY_FRAGMENTS = {
     fragment KIWISAVER on PolicyKiwisaver {
       id
       title
+      author {
+        id
+        username
+      }
+      reviewMeta
+      policyKiwisaverId
       policyKiwisaver {
         memberNumber
         dateJoined
@@ -63,6 +95,12 @@ export const POLICY_FRAGMENTS = {
     fragment PET on PolicyPet {
       id
       title
+      author {
+        id
+        username
+      }
+      reviewMeta
+      policyPetId
       policyPet {
         pets {
           petName
@@ -103,7 +141,7 @@ export const POLICIES_FRAGMENTS = {
           node {
             ...ASSET
           }
-        }      
+        }
       }
     }
     ${POLICY_FRAGMENTS.ASSET}
@@ -116,7 +154,7 @@ export const POLICIES_FRAGMENTS = {
           node {
             ...KIWISAVER
           }
-        }      
+        }
       }
     }
     ${POLICY_FRAGMENTS.KIWISAVER}
@@ -129,7 +167,7 @@ export const POLICIES_FRAGMENTS = {
           node {
             ...PET
           }
-        }      
+        }
       }
     }
     ${POLICY_FRAGMENTS.PET}

@@ -7,6 +7,7 @@ import { isBrowser, store } from '../utils';
 import { AUTH_TOKEN_KEY } from '../data';
 import { LoadingCentered } from "../common"
 import { Layout } from "../layout"
+import { USER_FIXTURE } from "../data-initial-values-user"
 
 export type TIndexProps = {
   user: any
@@ -32,18 +33,22 @@ export default (props: TIndexProps) => {
   }, [])
 
   React.useEffect(() => {
-    if (viewerInit.data && !user) {
+    if (!viewerInit.loading && viewerInit.data) {
       onUpdateUser({user: viewerInit.data.viewer})
     }
-  }, [viewerInit.data])
+  }, [viewerInit.loading])
 
   React.useEffect(() => {
     if (viewerInit.error) {
       onUpdateUser(null)
     }
   }, [viewerInit.error])
-
-
+  // return (
+  //   <Layout
+  //     {...props}
+  //     user={USER_FIXTURE}
+  //   />
+  // )
   if (activeMenuItem) {
     if (!user || viewerInit.loading) {
       return (
@@ -51,7 +56,9 @@ export default (props: TIndexProps) => {
       )
     } else {
       return (
-        <Layout {...props}/>
+        <Layout
+          {...props}
+        />
       )
     }
   } else {

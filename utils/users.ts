@@ -5,6 +5,7 @@ export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
   if (user) {
     let {
       id,
+      userId,
       username,
       firstName,
       lastName,
@@ -18,6 +19,7 @@ export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
       profilePicture,
       avatar,
       roles,
+      advisor,
       policiesRisk,
       policiesAsset,
       policiesKiwisaver,
@@ -27,6 +29,7 @@ export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
     dateOfBirth = formatDate(dateOfBirth)
     return {
       id,
+      userId,
       username,
       firstName,
       lastName,
@@ -38,6 +41,7 @@ export const createUserProfile = (user): (TUserProfile | TClientProfile) => {
       occupationRating,
       smoker,
       avatar,
+      advisor,
       profilePicture,
       role,
       policiesRisk,
@@ -61,3 +65,28 @@ export const createVariablesCreateUser = ({
   email,
   roles: [role]
 })
+
+
+export const profilePicture = (userProfile: TUserProfile): string =>
+  (userProfile.profilePicture !== "EMPTY"
+    ? userProfile.profilePicture 
+    : null)
+  || userProfile?.avatar?.url
+
+
+export const userName = (userProfile: TUserProfile) => {
+  if (userProfile) {
+    const { username, firstName, lastName } = userProfile
+    if (firstName) {
+      if (firstName && lastName) {
+        return `${firstName} ${lastName}`
+      } else {
+        return `${firstName}`
+      }
+    } else {
+      return `${username}`
+    }
+  } else {
+    return null
+  }
+}

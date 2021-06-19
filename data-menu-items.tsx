@@ -21,11 +21,12 @@ export const STATIC_MENU_ITEMS = {
   advisor: [
     EMenuItem.Profile,
     EMenuItem.Clients,
-    EMenuItem.PoliciesAll
+    EMenuItem.PoliciesAll,
+    EMenuItem.NotesToClients
   ],
   client: [
     EMenuItem.Profile,
-    EMenuItem.YourAdvisor
+    EMenuItem.MyAdvisor
   ],
 }
 
@@ -38,5 +39,6 @@ export const MENU_ITEM_ICONS = {
   [EMenuItem.Users]: <RecentActors />,
   [EMenuItem.Clients]: <People />,
   [EMenuItem.Profile]: <AccountCircle />,
-  [EMenuItem.YourAdvisor]: <Info />,
+  [EMenuItem.MyAdvisor]: <Info />,
+  [EMenuItem.NotesToClients]: <Info/>
 }

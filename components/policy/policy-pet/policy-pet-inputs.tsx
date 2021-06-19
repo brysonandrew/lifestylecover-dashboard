@@ -4,21 +4,25 @@ import { TextField, TextFieldArray, SubItemWrapper } from "../../../common"
 import { placeholder } from "../../../data-placeholders"
 import { PET_INIT } from "../../../data-initial-values-policy"
 import { fromCamelCase } from "../../../utils"
+import { PolicyFixedInputs } from "../policy-fixed-inputs"
+import { EFormType } from "../../../models"
 const name = "pet"
 
-export const PolicyPetInputs = props => {
+type TProps = {
+  values?: any
+  formType?: EFormType
+  isClient?: boolean
+}
+
+export const PolicyPetInputs = ({ values, isClient, formType }: TProps) => {
   return (
-    <div>
-      <TextField
-        label="Reference Number"
-        placeholder={placeholder.user.unknown}
-        name="title"
-      />
+    <PolicyFixedInputs isClient={isClient} formType={formType}>
       <TextFieldArray
         name={name}
+        namePlural={`${name}s`}
         title={`${name}s`}
         initialItem={PET_INIT}
-        values={props.values.pets}
+        values={values.pets}
       >
         {(_, index) => (
           <SubItemWrapper key={`${name}-${index}`}>
@@ -34,6 +38,6 @@ export const PolicyPetInputs = props => {
           </SubItemWrapper>
         )}
       </TextFieldArray>
-    </div>
+    </PolicyFixedInputs>
   )
 }

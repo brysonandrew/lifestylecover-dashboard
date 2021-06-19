@@ -1,3 +1,5 @@
+import { TUserProfile } from "../models"
+
 export function toKebabCase(name) {
   if (name) {
     return name
